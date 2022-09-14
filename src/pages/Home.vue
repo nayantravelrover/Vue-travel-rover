@@ -47,8 +47,8 @@
       </div>
       <div class="row items-center justify-between" style="width: 1000px">
         <div class="left-section col-md-5 q-pa-md">
-          <h2> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-          <h4>{{ data.header_content}}</h4>
+          <h2> {{header_content}}</h2>
+          <h4>Hi</h4>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
@@ -112,8 +112,7 @@
 
                 <q-item-section>
                   <q-item-label>Trips & Travel</q-item-label>
-                  <q-item-label caption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
+                  <q-item-label caption>{{header_content}}
                   </q-item-label>
                 </q-item-section>
               </q-item>
@@ -376,7 +375,7 @@
           </q-card-section>
 
         </q-card>
-       
+
         <q-card class="my-card">
           <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
@@ -525,8 +524,9 @@ import { ref, computed } from "vue";
 import { matTrendingFlat } from "@quasar/extras/material-icons";
 import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import MobileHeader from '../components/MobileHeader.vue'
+import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
+import {basicconfig} from "src/common/api_calls";
 export default defineComponent({
   name: "IndexPage",
   components: {
@@ -537,23 +537,33 @@ export default defineComponent({
   props: {
     isMobile: Boolean
   },
+  data(){
+    return {
+      header_content: ''
+    }
+  },
+  methods(){
+    function fetchData() {
+      loading.value = true;
+      basicconfig().then((res) => {
+        console.log(JSON.parse(res.data)[0].fields, "res")
+        data.value = JSON.parse(res.data)[0].fields
+        console.log("data value", JSON.parse(res.data)[0].fields)
+        this.header_content = JSON.parse(res.data)[0].fields.header_content
+        return JSON.parse(res.data)[0].fields
+      })
+    }
+  },
   setup() {
     const data = ref({});
     const loading = ref(true);
     const error = ref(null);
     const myCarousel = ref(null);
     console.log(myCarousel);
-    function fetchData() {
-      loading.value = true;
-      axios.get("http://admin.travelrover.in/travel-rover/basic-config").then((res) => {
-        console.log(JSON.parse(res.data.data)[0].fields, "res")
-        data.value = JSON.parse(res.data.data)[0].fields
-        console.log("data value", JSON.parse(res.data.data)[0].fields)
-      })
-    }
+
 
     onMounted(() => {
-      fetchData();
+
     });
     return {
       data,
@@ -563,6 +573,17 @@ export default defineComponent({
       slide: ref(1),
     };
   },
+  created() {
+
+     basicconfig().then((res) => {
+        // console.log(JSON.parse(res.data)[0].fields, "res")
+        // data.value = JSON.parse(res.data)[0].fields
+        console.log("data value", JSON.parse(res.data)[0].fields)
+        console.log()
+        this.header_content = JSON.parse(res.data)[0].fields.header_content
+        return JSON.parse(res.data)[0].fields
+      })
+  }
 });
 </script>
 <style>
