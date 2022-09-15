@@ -1,0 +1,357 @@
+// app global css in SCSS form
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.main {
+  //   background-color: red;
+  font-family: "Poppins", sans-serif;
+}
+.main-container {
+  background-image: url("../assets/Background.png");
+  background-repeat: no-repeat;
+  //   background-position: cente;
+  background-size: 100% 100%;
+  padding-bottom: 5rem;
+}
+.main-container-mobile {
+  // background-image: url("../assets/Background.png");
+  // background-repeat: no-repeat;
+  //   background-position: cente;
+  // background-size: 100% 100%;
+  padding-bottom: 5rem;
+  background-color: #003486;
+}
+.content {
+  padding-top: 8rem;
+}
+
+.search-btn {
+  background-color: #003486;
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+.date-input {
+  border-top-left-radius: 30px;
+}
+.input-area-1 {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: 1px solid gray;
+  padding: 2px;
+}
+.input-area-2 {
+  padding: 2px;
+  border-right: 1px solid gray;
+}
+.input-area-3 {
+  padding: 2px;
+  border-right: 1px solid gray;
+}
+.input-area-4 {
+  height: 60px !important;
+  background-color: #003486;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 2px;
+}
+.left-section-mobile h2 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  color: #000;
+}
+.left-section-mobile h4 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #000;
+}
+.left-section h2 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  color: #fff;
+}
+.left-section h4 {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #fff;
+}
+.explore-btn {
+  align-items: flex-start;
+  padding: 15px 25px;
+  color: #000;
+  height: 50px;
+
+  background: #ffc106;
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .subscribe-input-email{
+    width: 100% !important;height: 60px;
+  }
+  .subscribe-input-btn{
+    width: 10px;height: 60px;
+  }
+  .subscribe{
+    // width:100px
+  }
+  .input-area-1 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border: 10px solid white;
+    border-bottom: 1px solid gray;
+  }
+  .input-area-4 {
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 0px;
+
+    padding: 2px;
+    border: 10px solid white;
+  }
+  .input-area-2 {
+    border: 10px solid white;
+    border-bottom: 1px solid gray;
+  }
+  .input-area-3 {
+    border: 10px solid white;
+    border-bottom: 1px solid gray;
+  }
+}
+
+// section-3 css
+.section-3-main h5 {
+  font-weight: 700;
+  size: 24px;
+  line-height: 36px;
+}
+.section-3-heading {
+  width: 486px;
+}
+.section-3 {
+  background-image: url("../assets/mapSvg.svg");
+  background-repeat: no-repeat;
+  // background-position: 100% 100%;
+  background-size: 100% 100%;
+  // background-color: #003486;
+  background-color: #fff;
+  box-shadow: #003486;
+  background-blend-mode: difference;
+  // padding-bottom: 5rem;
+}
+.section-3 div h3 {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 75px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+}
+.my-card {
+  max-width: 370px;
+  max-height: 400px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02),
+    0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852),
+    0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481),
+    0px 20px 13px rgba(0, 0, 0, 0.01),
+    0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185),
+    0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: 26px;
+}
+.my-card img {
+  padding: 0rem;
+  border-radius: 2rem;
+}
+.destinations-section h3 {
+  font-family: "Poppins", sans-serif;
+
+  padding: 0px 0px 0px 47px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 1px;
+}
+.destinations-section .carousel {
+  // margin-top: 200px;
+  background-color: rebeccapurple;
+}
+// latest tour
+.latest-tour {
+  position: relative;
+  padding: 2rem;
+}
+.latest-tour img {
+  border-radius: 1rem;
+}
+.top-left-card {
+  height: 110.61px;
+  width: 110.61px;
+  background-color: #ee5060;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 1rem;
+}
+.top-left-card-round {
+  position: absolute;
+  width: 58.51px;
+  height: 58.51px;
+  left: 0px;
+  top: 28.79px;
+  background: #F0C53E;
+  top: 0;
+  border-radius: 4rem;
+}
+.bottom-right-card {
+  height: 185.16px;
+  width: 185.16px;
+  background-color: #f0c53e;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+}
+
+// carousel
+
+.carousel__slide > .carousel__item {
+  transform: scale(1);
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.carousel__slide--visible > .carousel__item {
+  opacity: 1;
+  transform: rotateY(0);
+}
+.carousel__slide--next > .carousel__item {
+  transform: scale(0.9) translate(-10px);
+}
+.carousel__slide--prev > .carousel__item {
+  transform: scale(0.9) translate(10px);
+}
+.carousel__slide--active > .carousel__item {
+  transform: scale(1.1);
+}
+
+//
+.carousel__slide > .carousel__item-1 {
+  transform: scale(1);
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.carousel__slide--visible > .carousel__item-1 {
+  opacity: 1;
+  transform: rotateY(0);
+}
+.carousel__slide--next > .carousel__item-1 {
+  transform: scale(0.9) translate(-10px);
+}
+.carousel__slide--prev > .carousel__item-1 {
+  transform: scale(0.9) translate(10px);
+}
+.carousel__slide--active > .carousel__item-1 {
+  transform: scale(1.1);
+}
+//
+.carousel__item {
+  margin: 4rem;
+  position: relative;
+}
+.carousel__item-1 {
+  margin: 2rem 0.5rem 2rem 0.5rem;
+  position: relative;
+}
+.carousel__slide--active .carousel-card {
+  width: 100%;
+  height: 240px;
+
+  background: #ffffff;
+  border: 3px solid #23bdee;
+  box-shadow: 0px 12px 24px rgba(255, 167, 55, 0.06);
+  border-radius: 20px;
+}
+.carousel-card {
+  width: 500px;
+  height: 200px;
+
+  background: #ffffff;
+  border: 1.5px solid #ffa737;
+  box-shadow: 0px 12px 24px rgba(255, 167, 55, 0.06);
+  border-radius: 20px;
+}
+.carousel-card img {
+  position: absolute;
+  top: -30px;
+  right: 10px;
+  height: 39px;
+  width: 60px;
+}
+.destination-carousel-card {
+  border-radius: 20px;
+}
+.destination-carousel-card img {
+  height: 300px;
+  width: 250px;
+}
+
+// subscribe
+.subscribe-container{
+display: flex;
+flex-wrap: wrap;
+// justify-content: center;
+
+}
+.subscribe-input-email{
+  width: 400px;height: 60px;
+}
+.subscribe-input-btn{
+  width: 179px;height: 60px;
+}
+.subscribe{
+  width: 100%;
+height: 365.44px;
+position: relative;
+
+background: #CBDCF6;
+box-shadow: #003486;
+
+// opacity: 0.2;
+border-radius: 129px 20px 20px 20px;
+// transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+.mask-left{
+
+
+  position: absolute;
+  opacity: 0.2;
+  width: 324.14px;
+  left: 0;
+  bottom: 0;
+
+
+}
+.mask-right{
+
+
+    position: absolute;
+
+  opacity: 0.2;
+  width: 284.8px;
+  right: 0;
+top: .79px;
+  
+
+}
