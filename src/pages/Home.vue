@@ -546,9 +546,7 @@ export default defineComponent({
     function fetchData() {
       loading.value = true;
       basicconfig().then((res) => {
-        console.log(JSON.parse(res.data)[0].fields, "res")
         data.value = JSON.parse(res.data)[0].fields
-        console.log("data value", JSON.parse(res.data)[0].fields)
         this.header_content = JSON.parse(res.data)[0].fields.header_content
         return JSON.parse(res.data)[0].fields
       })
