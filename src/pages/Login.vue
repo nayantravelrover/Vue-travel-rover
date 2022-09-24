@@ -1,11 +1,8 @@
-
-
 <template>
      <q-btn label="Close Icon" color="primary" @click="icon = true" />
      <q-dialog full-width style="width: 300px" v-model="icon">
       <q-card>
         <q-card-section class="row items-center q-pb-none">
-        
           <q-space />
           <!-- <q-btn icon="close" flat round dense v-close-popup /> -->
         </q-card-section>
@@ -31,7 +28,7 @@
                         <div>
                             <q-btn class="full-width" color="primary" label="Login" type="submit" rounded></q-btn>
 
-                          
+
                         </div>
                         <q-text class="orSection">Or</q-text>
                         <div>
@@ -48,7 +45,7 @@
         <div v-bind:class="{'justify-center': $q.screen.md || $q.screen.sm ||$q.screen.xs}"
             class=" borderCheck col-12 col-md-6 flex content-center">
             <q-card style="imageView" v-bind:style="$q.screen.lt.sm ? {'width': '100%'} : {'width': '100%'}">
-            
+
                 <div class="q-pa-md" style="width:80%; margin:0px auto">
                     <q-carousel swipeable animated v-model="slide" :autoplay="autoplay" ref="carousel" infinite>
                         <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
@@ -85,10 +82,10 @@
     import { useQuasar } from 'quasar'
     import { mapActions } from 'vuex'
     import { ref } from 'vue'
-    
+
     let $q
     export default {
-        
+
       name: 'LoginLayout',
       setup () {
     return {
@@ -139,7 +136,7 @@
       }
     }
     </script>
-    
+
     <style scoped>
     .wave {
         position: fixed;
@@ -148,9 +145,9 @@
         bottom: 0;
         z-index: -1;
     }
-    
 
-    
+
+
     .orSection {
         display: flex;
         justify-content: center;
@@ -158,5 +155,5 @@
     .q-card__section--vert{
   padding: 5px !important;
     }
-   
+
     </style>

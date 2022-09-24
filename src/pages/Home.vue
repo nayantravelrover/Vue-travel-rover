@@ -52,7 +52,6 @@
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
-
         <div class="col-md-5 md">
           <q-img style="width: 420px; height: 308px" src="../assets/travel.svg" />
         </div>
@@ -244,7 +243,7 @@
         We need to understand the shirt
         </q-card-section>
         </q-card>
-            
+
 
 
 
@@ -303,14 +302,14 @@
         We need to understand the shirt
         </q-card-section>
         </q-card>
-            
+
 
 
 
 
         </div>
       </q-carousel-slide>
-   
+
     </q-carousel>
 
         <!-- <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
@@ -450,7 +449,7 @@
       <div class="blog-heading">
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
       </div>
-      
+
       <div class="row">
 
         <q-card class="my-card">
@@ -495,8 +494,8 @@
 
 
 
-        
-      
+
+
     </div>
 
 

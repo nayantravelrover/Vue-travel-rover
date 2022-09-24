@@ -124,11 +124,10 @@ export default defineComponent({
     this.matAccountCircle = matAccountCircle;
   },
   name: "MainLayout",
-
   components: {
     EssentialLink,
     Login
-},
+  },
 
   setup() {
     const leftDrawerOpen = ref(false);
