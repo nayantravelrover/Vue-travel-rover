@@ -1,9 +1,8 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="main">
+  <q-layout view="lHh Lpr lFf">
     <q-header>
       <q-toolbar>
         <q-btn
-          v-show="isMobile"
           flat
           dense
           round
@@ -13,18 +12,18 @@
         />
 
         <q-toolbar-title class="q-pa-md row item-center">
-          <img src="../assets/Logo.png" />
+          <img src="../assets/logo.svg" />
         </q-toolbar-title>
 
-        <q-btn flat round dense class="q-ml-md md" label="Home" />
-        <q-btn flat round dense class="q-ml-md md" label="AboutUs" />
+        <q-btn flat round dense class="q-ml-md md" label="Home" to="/src/pages/MainHome.vue" />
+        <q-btn flat round dense class="q-ml-md md" label="AboutUs"/>
         <q-btn flat round dense class="q-ml-md md" label="Testinomial" />
         <q-btn flat round dense class="q-ml-md md" label="ContactUs" />
         <q-btn
           flat
           dense
           round
-          class="q-ml-md md"
+          class="q-ml-md"
           :icon="matAccountCircle"
           aria-label="Menu"
         >
@@ -33,10 +32,16 @@
               <!-- <q-item clickable v-close-popup>
                 <q-item-section>Login</q-item-section>
               </q-item> -->
-              <Login/>
+              <LoginPage2/>
+              <div>
+                <RegisterPage />
 
-              <q-item clickable v-close-popup>
-                <q-item-section>Signup</q-item-section>
+              </div>
+              
+
+              <q-item
+              clickable
+              v-close-popup>
               </q-item>
             </q-list></q-menu
           ></q-btn
@@ -46,7 +51,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      v-if="isMobile"
       :breakpoint="500"
       show-if-above
       bordered
@@ -63,7 +67,8 @@
     </q-drawer>
 
     <q-page>
-      <router-view :isMobile="isMobile" />
+      <router-view
+      :isMobile="isMobile" />
     </q-page>
   </q-layout>
 </template>
@@ -73,13 +78,18 @@ import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import Login from "src/pages/Login.vue";
+import RegisterPage from "src/pages/RegisterPage.vue"
+import LoginPage2 from "src/pages/LoginPage2.vue";
+import MainHomeVue from "src/pages/MainHome.vue";
+//import RegisterPage from "src/pages/RegisterPage.vue";
+//import LoginPage from "src/pages/LoginPage.vue";
 
 const linksList = [
   {
     title: "Docs",
     caption: "quasar.dev",
     icon: "school",
-    link: "https://quasar.dev",
+    link: "/src/pages/MainHome.vue",
   },
   {
     title: "Github",
@@ -127,7 +137,11 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    Login
+    // Login,
+    //LoginPage,
+    RegisterPage,
+    LoginPage2,
+    RegisterPage,
 },
 
   setup() {
