@@ -21,11 +21,11 @@ export default store(function (/* { ssrContext } */) {
         place_name: "Ladakh",
         place_description:"sdasdsadasd",
         place_img:"download.jpeg",
-        itinerary:{
-          days: [
+        itinerary_name:"This is my itinerary",
+        days: [
             {
               description:"I am nayan jain",
-              images:['download.jpeg']
+              images: ['download.jpeg']
             },
             {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -39,8 +39,7 @@ export default store(function (/* { ssrContext } */) {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
               images:['download.jpeg']
             },
-          ]
-        },
+        ],
         places_to_visit:"Naggar",
         accomodation_arrangements:"Naggar",
         travel_arrangements:"Naggar",
@@ -59,7 +58,31 @@ export default store(function (/* { ssrContext } */) {
       }
     },
     mutations:{
-
+      place_name_update(state,place_name) {
+        state.itinerary_preview.place_name=place_name;
+      },
+      place_description_update(state,place_description) {
+        state.itinerary_preview.place_description=place_description;
+      },
+      itinerary_name_update(state,itinerary_name) {
+        state.itinerary_preview.itinerary_name=itinerary_name;
+      },
+      start_date_update(state,start_date) {
+        state.itinerary_preview.start_date=start_date;
+      },
+      number_of_days_update(state,number_of_days) {
+        state.itinerary_preview.number_of_days =number_of_days;
+      },
+       place_img_update(state,place_img) {
+        console.log(place_img)
+        state.itinerary_preview.place_img =place_img;
+      },
+      itinerary_update(state,val) {
+        state.itinerary_preview = val;
+      },
+      day_add(state, val){
+        state.itinerary_preview.days.push({description: "", images: []})
+      }
     },
     actions:{
 

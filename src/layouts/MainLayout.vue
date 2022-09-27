@@ -44,23 +44,23 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      v-if="isMobile"
-      :breakpoint="500"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+<!--    <q-drawer-->
+<!--      v-model="leftDrawerOpen"-->
+<!--      v-if="isMobile"-->
+<!--      :breakpoint="500"-->
+<!--      show-if-above-->
+<!--      bordered-->
+<!--    >-->
+<!--      <q-list>-->
+<!--        <q-item-label header> Essential Links </q-item-label>-->
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
+<!--        <EssentialLink-->
+<!--          v-for="link in essentialLinks"-->
+<!--          :key="link.title"-->
+<!--          v-bind="link"-->
+<!--        />-->
+<!--      </q-list>-->
+<!--    </q-drawer>-->
 
     <q-page>
       <router-view :isMobile="isMobile" />
@@ -70,7 +70,7 @@
 
 <script>
 import { defineComponent, ref, computed } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
+// import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import Login from "src/pages/Login.vue";
 
@@ -125,7 +125,7 @@ export default defineComponent({
   },
   name: "MainLayout",
   components: {
-    EssentialLink,
+    // EssentialLink,
     Login
   },
 
