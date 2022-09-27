@@ -5,12 +5,20 @@ const routes = [
     redirect: "/home",
     component: () => import('layouts/MainLayout.vue'),
     children: [
+
+      {
+        path: "",
+        name: "home",
+        component: () => import("pages/Home.vue")
+      },
+      { path: '/page', component: () => import('pages/IndexPage.vue') }
       { path: "", name: "home", component: () => import("pages/Home.vue")},
       { path: '/page', component: () => import('pages/IndexPage.vue')},
       { path: '/login', component: () => import('pages/Login.vue')},
       { path: '/itinaries', component: () => import('pages/Itinaries.vue')},
       { path: '/itinarybuilder', component: () => import('components/ItinaryBuilder.vue') },
       { path: '/itinarypreview', component: () => import('components/ItineraryPreview.vue') }
+
     ]
   },
 

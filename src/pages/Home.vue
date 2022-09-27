@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div v-if="!isMobile" class="main-container row justify-center q-pa-md">
+    <div  class="main-container row justify-center q-pa-md md">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
           <div class="input-area-1 col-md-3 col-xs-12" style="background-color: white">
@@ -48,7 +48,6 @@
       <div class="row items-center justify-between" style="width: 1000px">
         <div class="left-section col-md-5 q-pa-md">
           <h2> {{header_content}}</h2>
-          <h4>Hi</h4>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
@@ -57,7 +56,7 @@
         </div>
       </div>
     </div>
-    <MobileHeader v-else />
+    <MobileHeader/>
     <!-- top 5 destinations -->
     <div class="q-pa-sm">
       <div class="carousel-heading">
@@ -204,7 +203,7 @@
     >
       <q-carousel-slide :name="1" class="column no-wrap">
         <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-          <q-card class="my-card rounded-borders col-3 full-height">
+        <q-card class="my-card rounded-borders col-3 full-height">
         <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
         <q-card-section>
@@ -393,7 +392,7 @@
       </div>
     </div>
     <!-- latest tour -->
-    <div class="row q-pa-xl justify-around">
+    <div class="parallax row q-pa-xl justify-around">
       <div class="col-md-5 col-sm-12">
         <q-card class="latest-tour" flat>
           <span class="top-left-card-round"></span>
@@ -410,7 +409,7 @@
         <q-card class="latest-tour" flat>
           <span class="top-left-card"></span>
           <span class="bottom-right-card"></span>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg"> </q-img>
+          <q-img class="tour-parallax-img" src="https://cdn.quasar.dev/img/parallax2.jpg"> </q-img>
         </q-card>
       </div>
     </div>
@@ -449,10 +448,124 @@
       <div class="blog-heading">
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
       </div>
+      
+      <div class="row q-pa-md">
 
-      <div class="row">
 
-        <q-card class="my-card">
+        <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
+          control-color="primary" navigation padding arrows class="rounded-borders">
+          <q-carousel-slide :name="1" class="column no-wrap">
+            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+              <q-card class="my-card rounded-borders col-3 full-height">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+              </q-card>
+        
+              <q-card class="my-card rounded-borders col-3 full-height">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+              </q-card>
+        
+        
+              <q-card class="my-card rounded-borders col-3 full-height">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+              </q-card>
+        
+        
+        
+        
+        
+            </div>
+          </q-carousel-slide>
+        
+        
+          <q-carousel-slide :name="2" class="column no-wrap">
+            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+              <q-card class="my-card rounded-borders col-3 full-height">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+        
+        
+        
+              </q-card>
+        
+              <q-card class="my-card rounded-borders col-3">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+        
+                <q-card-actions>
+                  <button color="primary" class="card-see-more"> See more </button>
+                </q-card-actions>
+        
+        
+              </q-card>
+        
+        
+              <q-card class="my-card rounded-borders col-3">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+        
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+              </q-card>
+        
+        
+        
+        
+        
+            </div>
+          </q-carousel-slide>
+        
+        </q-carousel>
+
+
+        <!--<q-card class="my-card">
         <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
         <q-card-section>
@@ -489,7 +602,7 @@
         <q-card-section class="q-pt-none">
         We need to understand the shirt
         </q-card-section>
-        </q-card>
+        </q-card>-->
 
 
 
@@ -693,6 +806,9 @@ export default defineComponent({
 });
 </script>
 <style>
+html,body{
+    overflow-x: hidden;
+  }
 :root {
   --footer-bg: #0C111F;
   --color: #ffffff;
@@ -716,6 +832,11 @@ export default defineComponent({
   cursor: pointer;
   border-radius: 0.5rem;
   font-size: 14px;
+}
+
+
+.row-card{
+  margin-left: 16px;
 }
 
 .carousel-heading h5 {
@@ -952,6 +1073,13 @@ footer ul {
     padding-left: 0px !important;
   }
 
+    .parallax {
+      display: flex;
+      padding-left: 0px;
+      padding-right: 0px;
+
+    }
+
   .col-title-bottom {
     font-family: "Merriweather", serif;
     color: var(--color);
@@ -992,7 +1120,11 @@ footer ul {
   }
 
   .subscribe-description {
-    display: none;
+    display: flex;
+    font-size: 15px;
+    line-height: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
   }
 
   .carousel-heading h5 {
