@@ -91,7 +91,7 @@
         verdana: 'Verdana'
       }"
     />
-  <q-file
+    <q-file
         v-model="place_img"
         label="Pick files"
         outlined
