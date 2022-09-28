@@ -11,8 +11,6 @@ const routes = [
         name: "home",
         component: () => import("pages/Home.vue")
       },
-      { path: '/page', component: () => import('pages/IndexPage.vue') }
-      { path: "", name: "home", component: () => import("pages/Home.vue")},
       { path: '/page', component: () => import('pages/IndexPage.vue')},
       { path: '/login', component: () => import('pages/Login.vue')},
       { path: '/itinaries', component: () => import('pages/Itinaries.vue')},
