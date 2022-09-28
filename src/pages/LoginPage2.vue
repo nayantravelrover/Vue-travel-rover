@@ -1,5 +1,5 @@
 <template>
-    <q-btn label="Login" color="primary" @click="icon = true" />
+    <q-btn label="Login" color="primary" @click="icon = true" style="margin-top:3px; width: 91px; margin: 4px;" />
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
             <q-card >
@@ -45,31 +45,6 @@
                                 <img src="../assets/loginframe.svg" alt="" style="height: 400px; width: 300px;">
                             </div>
                         </q-card-section>
-                        <!--<div class="col-md-5 col-md-5 col-md-5">
-                        <div  style="width:80%; margin:0px auto">
-                            <q-carousel swipeable animated v-model="slide" :autoplay="autoplay" ref="carousel" infinite>
-                                <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-                                <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-                                <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-                                <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
-                        
-                                <template v-slot:control>
-                                    <q-carousel-control position="top-right" :offset="[18, 18]" class="text-white rounded-borders"
-                                        style="background: rgba(0, 0, 0, .3); padding: 4px 8px;">
-                                        <q-btn icon="close" flat round dense v-close-popup />
-                                    </q-carousel-control>
-                        
-                                    <q-carousel-control position="bottom-right" :offset="[18, 18]" class="q-gutter-xs">
-                                        <q-btn push round dense color="orange" text-color="black" icon="arrow_left"
-                                            @click="$refs.carousel.previous()" />
-                                        <q-btn push round dense color="orange" text-color="black" icon="arrow_right"
-                                            @click="$refs.carousel.next()" />
-                                    </q-carousel-control>
-                                </template>
-                            </q-carousel>
-                        </div>
-
-                    </div>-->
 
                     </q-card-section>
                 </div>
@@ -102,11 +77,6 @@
                                 </q-btn>
                             </div>
                             <q-text class="orSection flex justify-center">Or</q-text>
-                            <div>
-                                <q-btn class="full-width" color="primary" label="Login with OTP" type="submit"
-                                    style="font-family: Poppins;">
-                                </q-btn>
-                            </div>
                             <div>
                                 <q-text class="text5 flex justify-center">Forgot Password? <a href="#">Click Here</a></q-text>
                             </div>
