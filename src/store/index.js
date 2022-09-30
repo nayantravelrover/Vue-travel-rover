@@ -49,6 +49,15 @@ export default store(function (/* { ssrContext } */) {
         cancellations_policy:"Naggar",
         things_to_carry:"Naggar",
         tour_rates:"Naggar",
+        places_to_visit_img:"Naggar",
+        accomodation_arrangements_img:"Naggar",
+        travel_arrangements_img:"Naggar",
+        inclusions_img:"Naggar",
+        exclusions_img:"Naggar",
+        terms_and_conditions_img:"Naggar",
+        cancellations_policy_img:"Naggar",
+        things_to_carry_img:"Naggar",
+        tour_rates_img:"Naggar",
         images_extra:["Naggar"],
         extra_information:"Naggar",
         sections:[{
@@ -67,6 +76,37 @@ export default store(function (/* { ssrContext } */) {
       itinerary_name_update(state,itinerary_name) {
         state.itinerary_preview.itinerary_name=itinerary_name;
       },
+      places_to_visit_update(state,itinerary_name) {
+        state.itinerary_preview.places_to_visit=itinerary_name;
+      },
+      accomodation_arrangements_update(state,itinerary_name) {
+        state.itinerary_preview.accomodation_arrangements=itinerary_name;
+      },
+
+      travel_arrangements_update(state,itinerary_name) {
+        state.itinerary_preview.travel_arrangements=itinerary_name;
+      },
+
+      inclusions_update(state,itinerary_name) {
+        state.itinerary_preview.inclusions=itinerary_name;
+      },
+
+      exclusions_update(state,itinerary_name) {
+        state.itinerary_preview.exclusions=itinerary_name;
+      },
+      terms_and_conditions_update(state,itinerary_name) {
+        state.itinerary_preview.terms_and_conditions=itinerary_name;
+      },
+
+      cancellations_policy_update(state,itinerary_name) {
+        state.itinerary_preview.cancellations_policy=itinerary_name;
+      },
+      things_to_carry_update(state,itinerary_name) {
+        state.itinerary_preview.things_to_carry=itinerary_name;
+      },
+      tour_rates_update(state,itinerary_name) {
+        state.itinerary_preview.tour_rates=itinerary_name;
+      },
       start_date_update(state,start_date) {
         state.itinerary_preview.start_date=start_date;
       },
@@ -76,6 +116,9 @@ export default store(function (/* { ssrContext } */) {
        place_img_update(state,place_img) {
         console.log(place_img)
         state.itinerary_preview.place_img =place_img;
+      },
+      day_content_update(state,indexed_val) {
+        state.itinerary_preview.days[indexed_val.index_day].description = indexed_val.value;
       },
       itinerary_update(state,val) {
         state.itinerary_preview = val;

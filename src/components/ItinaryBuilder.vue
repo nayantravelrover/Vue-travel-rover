@@ -1,9 +1,6 @@
 <template>
   <div class="row q-pa-md">
   <div class="col-6">
-    <div class="text-bold">Place Name</div>
-    <div class="text-bold">Place Name</div>
-    <div class="text-bold">Place Name</div>
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Name</div>
     <q-input class="q-ma-sm row" outlined v-model="place_name" label="Place Name"/>
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Description</div>
@@ -17,10 +14,11 @@
         multiple
         style="max-width: 300px"
       />
+
     </div>
     <div class="text-bold q-ma-sm row" style="font-size: large">Itinerary Name</div>
     <q-input class="q-ma-sm row" outlined v-model="itinerary_name" label="Itinerary Name"/>
-    <div class="q-ma-sm text-bold row" style="font-size: large">
+    <div class="q-ma-sm row" style="font-size: large">
       <div class="col-6">
         <div class="q-ma-sm text-bold row" style="font-size: large">Start Date</div>
         <q-input class="q-mr-md row" filled v-model="start_date" mask="date" :rules="['date']">
@@ -47,22 +45,22 @@
       </div>
       <q-btn class="column" @click="days_add()"> Add day</q-btn>
       <br/>
-      <PicturedWYISG class="row" heading="Places to Visit"></PicturedWYISG>
-     <PicturedWYISG heading="Accomodation Arrangements"></PicturedWYISG>
-     <PicturedWYISG heading="Travel Arrangements"></PicturedWYISG>
-     <PicturedWYISG heading="Inclusions"></PicturedWYISG>
-     <PicturedWYISG heading="Exclusions"></PicturedWYISG>
-     <PicturedWYISG heading="Terms and Conditions"></PicturedWYISG>
-     <PicturedWYISG heading="Cancellations Policy"></PicturedWYISG>
-     <PicturedWYISG heading="Things to Carry"></PicturedWYISG>
-     <PicturedWYISG heading="Tour Rates"></PicturedWYISG>
+      <PicturedWYISG property_key="places_to_visit" class="row" heading="Places to Visit"></PicturedWYISG>
+     <PicturedWYISG property_key="accomodation_arrangments" heading="Accomodation Arrangements"></PicturedWYISG>
+     <PicturedWYISG property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
+     <PicturedWYISG property_key="inclusions" heading="Inclusions"></PicturedWYISG>
+     <PicturedWYISG property_key="exclusions" heading="Exclusions"></PicturedWYISG>
+     <PicturedWYISG property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
+     <PicturedWYISG property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
+     <PicturedWYISG property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
+     <PicturedWYISG property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
 
 <!--    </div>-->
   </div>
     </div>
     <div class="col-6 q-pa-md bg-grey">
     <ItineraryPreview ></ItineraryPreview>
-      </div>
+    </div>
   </div>
 
 </template>
@@ -76,8 +74,6 @@ export default {
   components: {PicturedWYISG, ItineraryPreview, DayEditor},
   setup() {
     return {
-      // days:1
-      // date: ref('2019/02/01')
     }
   },
   methods: {

@@ -3,7 +3,7 @@
 <!--  TODO add v-model-->
   <div class="row text-bold q-ma-sm" style="font-size: large">Day {{day_index+1}}</div>
     <q-editor
-       v-model="day_content_local"
+       v-model="day_content_store"
       :dense="$q.screen.lt.md"
       :toolbar="[
         [
@@ -116,14 +116,16 @@ export default {
         event: 'day_content_change'
   },
   computed:{
-    day_content_local : {
+    day_content_store :{
       get: function (){
-        return this.day_content
+        return this.$store.state.itinerary_preview.days[this.day_index].description
       },
       set: function (val){
-        console.log(this.day_content)
-        // this.day_content = val
-        this.$emit('day_content_change', val)
+        var day_index = this.day_index
+        console.log(day_index)
+        var day_content_indexed = {index_day: day_index, value: val}
+        console.log(day_content_indexed)
+        this.$store.commit('day_content_update', day_content_indexed)
       }
     }
   }
