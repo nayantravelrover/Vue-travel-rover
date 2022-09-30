@@ -1,5 +1,5 @@
 <template>
- <div v-if="!$q.platform.is.mobile" class="main-container row justify-center q-pa-md">
+ <div v-if="!$q.platform.is.mobile" class="main-container row justify-center q-pa-md gt-md">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
           <div class="input-area-1 col-md-3 col-xs-12" style="background-color: white">

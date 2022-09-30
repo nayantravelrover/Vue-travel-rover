@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div  class="main-container row justify-center q-pa-md md">
+    <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
           <div class="input-area-1 col-md-3 col-xs-12" style="background-color: white">
@@ -46,17 +46,17 @@
         </div>
       </div>
       <div class="row items-center justify-between" style="width: 1000px">
-        <div class="left-section col-md-5 q-pa-md">
+        <div class="left-section col-md-5 q-pa-md-lg-xl">
           <h2> {{header_content}}</h2>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
-        <div class="col-md-5 md">
+        <div class="col-md-5 gt-sm">
           <q-img style="width: 420px; height: 308px" src="../assets/travel.svg" />
         </div>
       </div>
     </div>
-    <MobileHeader/>
+  <MobileHeader/>
     <!-- top 5 destinations -->
     <div class="q-pa-sm">
       <div class="carousel-heading">
@@ -392,7 +392,7 @@
       </div>
     </div>
     <!-- latest tour -->
-    <div class="parallax row q-pa-xl justify-around">
+    <div class="row q-pa-lg gt-sm justify-around">
       <div class="col-md-5 col-sm-12">
         <q-card class="latest-tour" flat>
           <span class="top-left-card-round"></span>
@@ -409,7 +409,8 @@
         <q-card class="latest-tour" flat>
           <span class="top-left-card"></span>
           <span class="bottom-right-card"></span>
-          <q-img class="tour-parallax-img" src="https://cdn.quasar.dev/img/parallax2.jpg"> </q-img>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+          </q-img>
         </q-card>
       </div>
     </div>
@@ -748,13 +749,14 @@ import "vue3-carousel/dist/carousel.css";
 import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig} from "src/common/api_calls";
+
 export default defineComponent({
   name: "IndexPage",
   components: {
     Carousel,
     Slide,
     MobileHeader
-  },
+},
   props: {
     isMobile: Boolean
   },

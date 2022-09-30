@@ -15,27 +15,25 @@
           <img src="../assets/logo.svg" />
         </q-toolbar-title>
 
-        <q-btn flat round dense class="q-ml-md md" label="Home" to="/src/pages/MainHome.vue" />
-        <q-btn flat round dense class="q-ml-md md" label="AboutUs"/>
-        <q-btn flat round dense class="q-ml-md md" label="Testinomial" />
-        <q-btn flat round dense class="q-ml-md md" label="ContactUs" />
+        <q-btn flat round dense class="q-ml-md gt-sm" label="Home" to="/src/pages/MainHome.vue" />
+        <q-btn flat round dense class="q-ml-md gt-sm" label="AboutUs"/>
+        <q-btn flat round dense class="q-ml-md gt-sm" label="Testinomial" />
+        <q-btn flat round dense class="q-ml-md gt-sm" label="ContactUs" />
         <q-btn
           flat
           dense
           round
           class="q-ml-md"
           :icon="matAccountCircle"
-          aria-label="Menu"
-        >
+          aria-label="Menu">
           <q-menu>
-            <q-list style="min-width: 100px,max-height:50px">
+            <q-list style="min-width: 100px;max-height:89px">
               <!-- <q-item clickable v-close-popup>
                 <q-item-section>Login</q-item-section>
               </q-item> -->
               <LoginPage2/>
-              <div>
+              <div class="q-pa-xs">
                 <RegisterPage />
-
               </div>
 
 
@@ -43,9 +41,9 @@
               clickable
               v-close-popup>
               </q-item>
-            </q-list></q-menu
-          ></q-btn
-        >
+            </q-list>
+          </q-menu>
+          </q-btn>
       </q-toolbar>
     </q-header>
 

@@ -1,5 +1,5 @@
 <template>
-    <q-btn label="Sign Up" color="primary" @click="icon = true" />
+    <q-btn label="Sign Up" color="primary" @click="icon = true" style="width: 100%;"/>
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
         <q-card>
@@ -24,9 +24,11 @@
                                     @click="isPwd = !isPwd" />
                             </template>
                         </q-input>
-                        <div>
+                        <div class="q-pa-md">
+                            <div class="q-gutter-sm">
                             <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
                                 true-value="yes" false-value="no" />
+                            </div>
                         </div>
                         <div>
                             <q-btn class="full-width" color="primary" label="Create Account" type="submit" style="font-family: Poppins;">
@@ -51,8 +53,6 @@
         </q-card>
         </div>
         <div class="lt-md">
-            <v-bind:class v-bind:class="{'justify-center': $q.screen.md || $q.screen.sm ||$q.screen.xs}"
-                class="col-sm-6 flex content-center borderCheck">
                 <q-card style="width:100%">
                     <q-card-section>
                         <q-form class="q-gutter-md" @submit.prevent="submitForm">
@@ -72,9 +72,11 @@
                                         @click="isPwd = !isPwd" />
                                 </template>
                             </q-input>
-                            <div>
+                            <div class="q-pa-md">
+                                <div>
                                 <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
                                     true-value="yes" false-value="no" />
+                                </div>
                             </div>
                             <div>
                                 <q-btn class="full-width" color="primary" label="Create Account" type="submit"
@@ -90,7 +92,6 @@
                         </q-form>
                     </q-card-section>
                 </q-card>
-            </v-bind:class>
         </div>
     </q-dialog>
 </template>
