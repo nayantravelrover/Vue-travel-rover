@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header>
+    <q-header app color="transparent" elevated="0">
       <q-toolbar>
         <q-btn
           flat
@@ -75,10 +75,9 @@
 import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
-import Login from "src/pages/Login.vue";
 import RegisterPage from "src/pages/RegisterPage.vue"
 import LoginPage2 from "src/pages/LoginPage2.vue";
-import MainHomeVue from "src/pages/MainHome.vue";
+
 //import RegisterPage from "src/pages/RegisterPage.vue";
 //import LoginPage from "src/pages/LoginPage.vue";
 
