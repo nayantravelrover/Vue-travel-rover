@@ -57,9 +57,6 @@
       </div>
     </div>
   <MobileHeader/>
-  <div>
-    <q-btn @click="$router.push({path: '/src/pages/MainHome.vue'})">Tanay</q-btn>
-  </div>
     <!-- top 5 destinations -->
     <div class="q-pa-sm">
       <div class="carousel-heading">
