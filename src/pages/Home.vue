@@ -57,6 +57,9 @@
       </div>
     </div>
   <MobileHeader/>
+  <div>
+    <q-btn @click="$router.push({path: '/src/pages/MainHome.vue'})">Tanay</q-btn>
+  </div>
     <!-- top 5 destinations -->
     <div class="q-pa-sm">
       <div class="carousel-heading">
@@ -65,16 +68,16 @@
       <Carousel :itemsToShow="isMobile?2: 5">
         <Slide v-for="slide in 10" :key="slide">
           <div class="carousel__item-1">
-            <q-card class="destination-carousel-card">
+            <q-card class="destination-carousel-card" >
               <img v-if="slide % 2 == 0"
                 src="https://images.unsplash.com/photo-1597459904558-4d0770ba4f54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlJTIwcG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80" />
               <img v-else
-                src="https://images.unsplash.com/photo-1466940219795-c670f475e59f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NnwxMDI1OTEwfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60" />"
+                src="../assets/Goa.jpg"/>
 
               <q-card-section>
                 <div class="row no-wrap justify-between">
-                  <div class="col-md-3 text-grey text-caption text-weight-thin">
-                    Karela
+                  <div class="col-md-3 text-black text-caption text-weight-thin">
+                    Goa
                   </div>
                   <div class="col-md-3 text-grey text-caption row no-wrap items-center">
                     <q-icon name="visibility" />
@@ -749,13 +752,14 @@ import "vue3-carousel/dist/carousel.css";
 import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig} from "src/common/api_calls";
+import MainHomeVue from "./MainHome.vue";
 
 export default defineComponent({
   name: "IndexPage",
   components: {
     Carousel,
     Slide,
-    MobileHeader
+    MobileHeader,
 },
   props: {
     isMobile: Boolean
@@ -764,6 +768,12 @@ export default defineComponent({
     return {
       header_content: ''
     }
+  },
+  method: {
+    goToGoa() {
+      this.$router.push('/src/pages/MainHome.vue')
+    }
+
   },
   methods(){
     function fetchData() {
