@@ -1,23 +1,29 @@
 <template>
-<div class="column">
-      <div class=" row q-ma-sm row" style="font-size: large">{{heading}}</div>
-      <q-editor class="" v-model="property_content_store" min-height="5rem" />
-       <q-file
-         class="row"
-        v-model="property_file_store"
-        label="Pick files"
-        outlined
-        use-chips
-        multiple
-        style="max-width: 300px"
-      />
- </div>
+<div class="">
+    <div class=" q-ma-sm " style="font-size: large">{{heading}}</div>
+    <q-editor class="" v-model="property_content_store" min-height="5rem" />
+    <q-uploader
+        color="grey"
+        url="http://admin.travelrover.in/travel-rover/api-files/"
+        style=""
+        auto-upload
+        label="Add image if any"
+        field-name="file"
+        @uploaded="property_img_update"/>
+</div>
 </template>
 
 <script>
 export default {
   name: "PicturedWYISG",
   props:["heading", "property_key"],
+  methods: {
+    property_img_update:function (info){
+      var file_response = JSON.parse(info.xhr.response).file
+      file_response = 'http://admin.travelrover.in' + file_response
+      this.$store.commit(this.property_key+'_img_update', file_response)
+    }
+  },
   computed :{
     property_content_store :{
       get: function (){

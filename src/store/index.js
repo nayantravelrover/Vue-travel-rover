@@ -104,6 +104,34 @@ export default store(function (/* { ssrContext } */) {
       things_to_carry_update(state,itinerary_name) {
         state.itinerary_preview.things_to_carry=itinerary_name;
       },
+      places_to_visit_img_update(state,itinerary_name) {
+        state.itinerary_preview.places_to_visit_img=itinerary_name;
+      },
+      accomodation_arrangements_img_update(state,itinerary_name) {
+        state.itinerary_preview.accomodation_arrangements_img=itinerary_name;
+      },
+
+      travel_arrangements_img_update(state,itinerary_name) {
+        state.itinerary_preview.travel_arrangements_img=itinerary_name;
+      },
+
+      inclusions_img_update(state,itinerary_name) {
+        state.itinerary_preview.inclusions_img=itinerary_name;
+      },
+
+      exclusions_img_update(state,itinerary_name) {
+        state.itinerary_preview.exclusions_img=itinerary_name;
+      },
+      terms_and_conditions_img_update(state,itinerary_name) {
+        state.itinerary_preview.terms_and_conditions_img=itinerary_name;
+      },
+
+      cancellations_policy_img_update(state,itinerary_name) {
+        state.itinerary_preview.cancellations_policy_img=itinerary_name;
+      },
+      things_to_carry_img_update(state,itinerary_name) {
+        state.itinerary_preview.things_to_carry_img=itinerary_name;
+      },
       tour_rates_update(state,itinerary_name) {
         state.itinerary_preview.tour_rates=itinerary_name;
       },
@@ -113,12 +141,15 @@ export default store(function (/* { ssrContext } */) {
       number_of_days_update(state,number_of_days) {
         state.itinerary_preview.number_of_days =number_of_days;
       },
-       place_img_update(state,place_img) {
+      place_img_update(state,place_img) {
         console.log(place_img)
         state.itinerary_preview.place_img =place_img;
       },
       day_content_update(state,indexed_val) {
         state.itinerary_preview.days[indexed_val.index_day].description = indexed_val.value;
+      },
+      day_img_update(state,indexed_val) {
+        state.itinerary_preview.days[indexed_val.index_day].images = indexed_val.value;
       },
       itinerary_update(state,val) {
         state.itinerary_preview = val;

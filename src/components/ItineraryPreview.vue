@@ -1,11 +1,12 @@
 <template>
-  <div class="column bg-white">
-        <q-img class="" :src="itinarary_data.place_img">
-          <div class="" >
-           <span style="font-size: x-large">{{itinarary_data.place_name}}</span>
-            <br>{{itinarary_data.place_description}}
-          </div>
-        </q-img>
+  <q-btn  icon="print" @click="print()"></q-btn>
+  <div id="preview" class="column bg-white">
+    <q-img class="" :src="itinarary_data.place_img">
+      <div class="absolute-full text-subtitle2 flex flex-center" >
+       <span style="font-size: x-large">{{itinarary_data.place_name}}</span>
+        <br>{{itinarary_data.place_description}}
+      </div>
+    </q-img>
     <div class="text-bold q-ma-sm row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" class ="row">
       <div class="col-8">
@@ -45,11 +46,21 @@
 <script>
 export default {
   name: "ItineraryPreview",
+  methods: {
+    print () {
+      // Pass the element id here
+      this.d.print('#preview')
+    }
+  },
+  mounted() {
+  },
   computed:{
     itinarary_data:function (){
       return this.$store.state.itinerary_preview
     }
-  }
+  },
+  setup(){},
+  created(){}
 }
 </script>
 

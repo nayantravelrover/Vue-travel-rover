@@ -91,14 +91,14 @@
         verdana: 'Verdana'
       }"
     />
-    <q-file
-        v-model="place_img"
-        label="Pick files"
-        outlined
-        use-chips
-        multiple
-        style="max-width: 300px"
-      />
+    <q-uploader
+        color="grey"
+        url="http://admin.travelrover.in/travel-rover/api-files/"
+        style=""
+        auto-upload
+        label="Add image if any"
+        field-name="file"
+        @uploaded="day_img_update"/>
 </div>
 </template>
 
@@ -114,6 +114,16 @@ export default {
   model: {
         prop: 'day_content',
         event: 'day_content_change'
+  },
+  methods:{
+      day_img_update : function (info){
+        var file_response = JSON.parse(info.xhr.response).file
+        file_response = 'http://admin.travelrover.in' + file_response
+        var day_index = this.day_index
+        var day_content_indexed = {index_day: day_index , value: file_response}
+        console.log(day_content_indexed)
+        this.$store.commit('day_img_update', day_content_indexed)
+      }
   },
   computed:{
     day_content_store :{

@@ -1,20 +1,33 @@
 <template>
-  <div class="row q-pa-md">
-  <div class="col-6">
+  <div class="row">
+  <q-scroll-area class="col-6 q-pa-md" style="height: 100vh;">
+  <div >
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Name</div>
     <q-input class="q-ma-sm row" outlined v-model="place_name" label="Place Name"/>
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Description</div>
     <q-input class="q-ma-sm row" outlined v-model="place_description" label="Place Description"/>
     <div class="q-pa-sm row">
-      <q-file
-        v-model="place_img"
-        label="Pick files"
-        outlined
-        use-chips
-        multiple
-        style="max-width: 300px"
-      />
-
+      <q-uploader
+        color="grey"
+        url="http://admin.travelrover.in/travel-rover/api-files/"
+        style=""
+        auto-upload
+        label="Add image if any"
+        field-name="file"
+        @uploaded="place_file_uploaded"/>
+<!--      <q-card style="width:100px">-->
+<!--          <q-card-section class="text-subitle2">-->
+<!--            <div :style="{ 'background-image': `url(${imageData})` }" @click="choosepicture">-->
+<!--              <span-->
+<!--                v-if="!imageData"-->
+<!--                class="placeholder"-->
+<!--                style="cursor: pointer"-->
+<!--              >Choose a picture</span>-->
+<!--              <input hidden class="file-input" ref="fileInput" type="file" @input="onSelectFile" />-->
+<!--            </div>-->
+<!--            <q-img :src="imageData" style="cursor: pointer" @click="choosepicture" />-->
+<!--          </q-card-section>-->
+<!--      </q-card>-->
     </div>
     <div class="text-bold q-ma-sm row" style="font-size: large">Itinerary Name</div>
     <q-input class="q-ma-sm row" outlined v-model="itinerary_name" label="Itinerary Name"/>
@@ -43,10 +56,10 @@
       <div class="row" v-for="(day, index) in days" v-bind:key="index">
         <DayEditor :day_index="index" :day_content="day.description" :day_images="day.images"></DayEditor>
       </div>
-      <q-btn class="column" @click="days_add()"> Add day</q-btn>
-      <br/>
-      <PicturedWYISG property_key="places_to_visit" class="row" heading="Places to Visit"></PicturedWYISG>
-     <PicturedWYISG property_key="accomodation_arrangments" heading="Accomodation Arrangements"></PicturedWYISG>
+      <q-btn  class="row" @click="days_add()">Add day</q-btn>
+      <br>
+      <PicturedWYISG property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
+     <PicturedWYISG property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
      <PicturedWYISG property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
      <PicturedWYISG property_key="inclusions" heading="Inclusions"></PicturedWYISG>
      <PicturedWYISG property_key="exclusions" heading="Exclusions"></PicturedWYISG>
@@ -58,17 +71,20 @@
 <!--    </div>-->
   </div>
     </div>
+   </q-scroll-area>
     <div class="col-6 q-pa-md bg-grey">
+      <q-scroll-area style="height: 100vh;">
     <ItineraryPreview ></ItineraryPreview>
+        </q-scroll-area>
     </div>
   </div>
-
 </template>
 
 <script>
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
+
 export default {
   name: "Itinary-Builder",
   components: {PicturedWYISG, ItineraryPreview, DayEditor},
@@ -77,12 +93,39 @@ export default {
     }
   },
   methods: {
+      place_file_uploaded: function(info) {
+        var file_response = JSON.parse(info.xhr.response).file
+        file_response = 'http://admin.travelrover.in' + file_response
+        this.$store.commit('place_img_update', file_response)
+      },
       days_add:function (){
         console.log("add days called")
         this.$store.commit('day_add', 1)
         console.log(this.$store.state.itinerary_preview.days)
 
+      },
+    onSelectFile() {
+      const input = this.$refs.fileInput;
+      const files = input.files;
+      this.FileImage = files[0];
+      if (files && files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          this.imageData = e.target.result;
+        };
+        reader.readAsDataURL(files[0]);
+        this.$emit("input", files[0]);
       }
+      console.log(this.imageData)
+    },
+    choosepicture() {
+      this.$refs.fileInput.click();
+    },
+  },
+  data(){
+    return {
+      imageData: null,
+    }
   },
   computed:{
     place_name: {
