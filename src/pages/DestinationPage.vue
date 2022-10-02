@@ -1,5 +1,6 @@
 <template>
-    <q-page>
+    <MainHome class="gt-xs"/>
+    <q-page class="lt-md">
         <div>    
             <q-carousel class="goaslide q-pa full-screen" animated v-model="slide" navigation
                     infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
@@ -332,6 +333,7 @@
 <script>
 import { ref } from 'vue'
 import FooterPage from './FooterPage.vue'
+import MainHome from './MainHome.vue';
 
 export default {
     name: "DestinationPage",
@@ -341,9 +343,10 @@ export default {
             autoplay: ref(true)
         };
     },
-    components: { 
-        FooterPage
-    }
+    components: {
+    FooterPage,
+    MainHome
+}
 }
 </script>
 <style lang="scss">
