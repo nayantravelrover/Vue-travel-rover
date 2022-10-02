@@ -269,9 +269,9 @@
 .carousel__slide--prev > .carousel__item-1 {
   transform: scale(0.9) translate(10px);
 }
-.carousel__slide--active > .carousel__item-1 {
-  transform: scale(1.1);
-}
+//.carousel__slide--active > .carousel__item-1 {
+//  transform: scale(1.1);
+//}
 //
 .carousel__item {
   margin: 4rem;
@@ -351,14 +351,14 @@ border-radius: 129px 20px 20px 20px;
 
 }
 .mask-right{
-
-
-    position: absolute;
-
+  position: absolute;
   opacity: 0.2;
   width: 284.8px;
   right: 0;
   top: .79px;
-  
+}
 
+
+.explore-destination-cards{
+  border-radius: 20px;
 }

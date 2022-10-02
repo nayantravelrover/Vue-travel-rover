@@ -186,130 +186,54 @@
     </div>
     <!-- Destinations -->
     <div>
-      <div class="q-pa-md destinations-section">
+      <div class="q-pa-md">
         <h3>Explore Destinations</h3>
+      </div>
+    </div>
+        <Carousel :itemsToShow="isMobile?2: 5">
+        <Slide v-for='(items) in expanded' :key='items.id' >
+          <div class="carousel__item-1">
+           <q-card flat bordered class="explore-destination-cards">
+      <q-img
+        src="https://cdn.quasar.dev/img/parallax2.jpg"
+      />
 
-        <q-carousel
-      v-model="slide"
-      transition-prev="slide-right"
-      transition-next="slide-left"
-      swipeable
-      animated
-      control-color="primary"
-      navigation
-      padding
-      arrows
-      class="rounded-borders"
-    >
-      <q-carousel-slide :name="1" class="column no-wrap">
-        <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-        <q-card class="my-card rounded-borders col-3 full-height">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-         <q-card class="my-card rounded-borders col-3 full-height">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-
-         <q-card class="my-card rounded-borders col-3 full-height">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-
-
-
-
+      <q-card-section>
+        <div class="text-overline text-orange-9">Overline</div>
+        <div class="text-h5 q-mt-sm q-mb-xs">Title</div>
+        <div class="text-caption text-grey">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
-      </q-carousel-slide>
+      </q-card-section>
 
+      <q-card-actions>
+        <q-btn flat color="primary" label="Book" />
 
-      <q-carousel-slide :name="2" class="column no-wrap">
-        <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-          <q-card class="my-card rounded-borders col-3 full-height">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        <q-space />
 
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
+        <q-btn
+          color="grey"
+          round
+          flat
+          dense
+          :icon="items.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+          @click="items.expanded = !items.expanded"
+        />
 
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
+      </q-card-actions>
 
-
-
-        </q-card>
-
-         <q-card class="my-card rounded-borders col-3">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-
-        <q-card-actions>
-            <button color="primary" class="card-see-more"> See more </button>
-        </q-card-actions>
-
-
-        </q-card>
-
-
-         <q-card class="my-card rounded-borders col-3">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-
-
-
-
+      <q-slide-transition>
+        <div v-show="items.expanded">
+          <q-separator />
+          <q-card-section class="text-subitle2">
+            assadsa
+          </q-card-section>
         </div>
-      </q-carousel-slide>
-
-    </q-carousel>
+      </q-slide-transition>
+    </q-card>
+          </div>
+        </Slide>
+      </Carousel>
 
         <!-- <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
           control-color="grey" padding arrows height="" class="bg-grey-1 carousel">
@@ -389,8 +313,7 @@
             </div>
           </q-carousel-slide>
         </q-carousel> -->
-      </div>
-    </div>
+    <!-- </div> -->
     <!-- latest tour -->
     <div class="row q-pa-lg gt-sm justify-around">
       <div class="col-md-5 col-sm-12">
@@ -453,8 +376,7 @@
       <div class="row q-pa-md">
 
 
-        <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-          control-color="primary" navigation padding arrows class="rounded-borders">
+        <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated class="rounded-borders">
           <q-carousel-slide :name="1" class="column no-wrap">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
               <q-card class="my-card rounded-borders col-3 full-height">
@@ -505,63 +427,6 @@
           </q-carousel-slide>
         
         
-          <q-carousel-slide :name="2" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card class="my-card rounded-borders col-3 full-height">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
-        
-                <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
-                </q-card-section>
-        
-                <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section>
-        
-        
-        
-              </q-card>
-        
-              <q-card class="my-card rounded-borders col-3">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
-        
-                <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
-                </q-card-section>
-        
-                <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section>
-        
-                <q-card-actions>
-                  <button color="primary" class="card-see-more"> See more </button>
-                </q-card-actions>
-        
-        
-              </q-card>
-        
-        
-              <q-card class="my-card rounded-borders col-3">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
-        
-                <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
-                </q-card-section>
-        
-                <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section>
-              </q-card>
-        
-        
-        
-        
-        
-            </div>
-          </q-carousel-slide>
         
         </q-carousel>
 
@@ -762,6 +627,23 @@ export default defineComponent({
   },
   data(){
     return {
+      expanded: [
+        {id: 1, expand: false},
+        {id: 2, expand: false},
+        {id: 3, expand: false},
+        {id: 4, expand: false},
+        {id: 5, expand: false},
+        {id: 6, expand: false},
+        {id: 7, expand: false},
+        {id: 8, expand: false},
+        {id: 9, expand: false},
+        {id: 10, expand: false},
+        {id: 11, expand: false},
+        {id: 12, expand: false},
+        {id: 13, expand: false},
+        {id: 14, expand: false},
+        {id: 15, expand: false},
+      ],
       header_content: ''
     }
   },
@@ -1188,5 +1070,6 @@ footer ul {
   .q-carousel{
     height: fit-content;
   }
+
 }
 </style>

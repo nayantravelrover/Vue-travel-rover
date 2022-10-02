@@ -1,8 +1,10 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header>
+
+
       <q-toolbar>
-        <q-btn
+        <q-btn v-if="$q.platform.is.mobile"
           flat
           dense
           round
@@ -47,7 +49,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
+    <q-drawer v-if="$q.platform.is.mobile"
       v-model="leftDrawerOpen"
       :breakpoint="500"
       show-if-above
@@ -75,7 +77,6 @@
 import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
-import Login from "src/pages/Login.vue";
 import RegisterPage from "src/pages/RegisterPage.vue"
 import LoginPage2 from "src/pages/LoginPage2.vue";
 import MainHomeVue from "src/pages/MainHome.vue";

@@ -14,10 +14,10 @@
                             </div>
                 
                         </div>
-                        <q-input outlined placeholder="Name" :dense="dense" />
+                        <q-input outlined placeholder="Name" v-model="login.name" />
                 
-                        <q-input outlined v-model="login.username" placeholder="Username" :dense="dense" />
-                        <q-input outlined :dense="dense" v-model="login.password" placeholder="Password" filled
+                        <q-input outlined v-model="login.username" placeholder="Username" />
+                        <q-input outlined v-model="login.password" placeholder="Password" filled
                             :type="isPwd ? 'password' : 'text'">
                             <template v-slot:append>
                                 <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
@@ -62,10 +62,10 @@
                                     <img src="../assets/travelrover.svg" style="height: 20px; weight: 20px" />
                                 </div>
                             </div>
-                            <q-input outlined placeholder="Name" :dense="dense" />
+                            <q-input outlined v-model="login.name" placeholder="Name" />
         
-                            <q-input outlined v-model="login.username" placeholder="Username" :dense="dense" />
-                            <q-input outlined :dense="dense" v-model="login.password" placeholder="Password" filled
+                            <q-input outlined v-model="login.username" placeholder="Username" />
+                            <q-input outlined v-model="login.password" placeholder="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
                                 <template v-slot:append>
                                     <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
@@ -96,13 +96,18 @@
     </q-dialog>
 </template>
 <script>
+
+import {basicconfig, create_user} from "src/common/api_calls";
+
 import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
+import { Notify } from "quasar";
+
 
 let $q
 export default {
-
+    plugins: { Notify },
     name: 'LoginLayout',
     setup() {
         return {
@@ -124,42 +129,36 @@ export default {
         return {
             login: {
                 username: '',
-                password: ''
+                password: '',
+                name: ''
             }
         }
     },
     methods: {
-        ...mapActions('auth', ['doLogin']),
         async submitForm() {
             if (!this.login.username || !this.login.password) {
                 $q.notify({
                     type: 'negative',
-                    message: 'Os dados informados são inválidos.'
+                    message: 'Please enter all the necessary fields',
+                    position: 'top'
                 })
             } else if (this.login.password.length < 6) {
                 $q.notify({
                     type: 'negative',
-                    message: 'A senha deve ter 6 ou mais caracteres.'
+                    message: 'Please enter a valid password'
                 })
-            } else {
-                try {
-                    await this.doLogin(this.login)
-                    const toPath = this.$route.query.to || '/admin'
-                    this.$router.push(toPath)
-                } catch (err) {
-                    if (err.response.data.detail) {
-                        $q.notify({
-                            type: 'negative',
-                            message: err.response.data.detail
-                        })
-                    }
-                }
+            } else{
+                console.log(this.login.username);
+                console.log(this.login.password);
+                console.log(this.login.name)
+                create_user(this.login)
             }
         }
     },
     mounted() {
         $q = useQuasar()
-    }
+    },
+
 }
 </script>
 
