@@ -1,60 +1,47 @@
 import { CSRF_TOKEN } from './csrf_token.js'
 import {LocalStorage, SessionStorage} from 'quasar'
 
-function handleResponse (response) {
-  if (response.status === 204) {
-    return response
-  } else if (response.status === 404) {
-    return response
-  } else if (response.status === 400) {
-    return response
-  } else if (response.status === 500) {
-    return response
-  } else {
-    return response.data
-  }
-}
-
-function apiService (endpoint, method, data) {
-  // D.R.Y. code to make HTTP requests to the REST API backend using fetch
-  // const store = this.$store.state.token
-  // console.log('inside api service token is' + store)
+function getAPIService(endpoint, headers, data){
   var axios = require('axios')
-  if(method == "GET"){
-    console.log("here")
-    console.log(data)
-    var config = {
-    method: method,
+  var config = {
+    method: "GET",
     url: endpoint,
-    params: data
-   }
-   var token = SessionStorage.getItem('token');
-    if(token!=null){
-      config["headers"] =
-        {
-      Authorization: 'JWT ' + SessionStorage.getItem('token'),
-      'Content-Type': 'application/json',
-       // 'X-CSRFTOKEN': CSRF_TOKEN
-    }
-    }
-
-  }
-  else{
-    var config = {
-    method: method || 'GET',
-    url: endpoint,
-    headers: {
-      Authorization: 'Token ' + SessionStorage.getItem('token'),
-      'Content-Type': 'application/json',
-       // 'X-CSRFTOKEN': CSRF_TOKEN
-    },
-    data: data
-  }
-
+    params: data,
+    headers:headers
   }
   return axios(config)
-    .then(response => handleResponse(response))
-
+    .then(function(response){
+      let resp = response;
+      console.log(resp);
+      return resp;
+    })
 }
 
-export { apiService }
+import { defineAsyncComponent } from 'vue'
+
+function postAPIService(endpoint, headers, data){
+  var axios = require('axios');
+  var data = JSON.stringify(data);
+  var config = {
+      method: 'post',
+      url: endpoint,
+      headers: headers,
+      data : data
+  };
+  return new Promise(function (resolve, reject) {
+        axios(config).then(
+            (response) => {
+                var result = response;
+                result["config"] = config
+                console.log('Processing Request');
+                resolve(result);
+            },
+                (error) => {
+                console.log("Inside Error")
+                reject(error);
+            }
+        );
+    });
+}
+  
+export { getAPIService, postAPIService }

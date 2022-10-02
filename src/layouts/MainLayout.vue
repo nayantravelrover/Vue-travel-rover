@@ -1,8 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header app color="transparent" elevated="0">
+    <q-header>
+    
       <q-toolbar>
-        <q-btn
+        <q-btn v-if="$q.platform.is.mobile"
           flat
           dense
           round
@@ -47,7 +48,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
+    <q-drawer v-if="$q.platform.is.mobile"
       v-model="leftDrawerOpen"
       :breakpoint="500"
       show-if-above
