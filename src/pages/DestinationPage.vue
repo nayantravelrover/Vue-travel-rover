@@ -36,7 +36,9 @@
                 <div class="full-width" style="margin-left: 10px; margin-bottom:20px;">
                     <text class="text10" style="margin-left: 15px;">Our top-selling Itineraries</text>
                 </div>
-                <q-carousel class="q-pa" v-model="slide"
+                <q-carousel style="height: 950px;" 
+                    class="q-pa" 
+                    v-model="slide"
                     transition-prev="slide-right"
                     transition-next="slide-left"
                     swipeable
@@ -290,6 +292,12 @@
                     </q-card>
                 </q-carousel-slide>
                 </q-carousel>
+                <div style="margin-left: 20px; margin-top: 20px;">
+                    <text class="text10">Itinerary Comparison</text>
+                    <div style="margin-top: 20px;">
+
+                    </div>
+                </div>
                 <div class="box1" style="margin-top: 30px;"> 
                     <q-img src="../assets/Goa/cartoon.svg"/>
                     <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your itinerary?</text>
@@ -435,7 +443,7 @@ width: 328px;
             gap: 20px;
         
             width: 380px;
-            height: 599px;
+            height: 0 auto;
         
         
             /* Inside auto layout */
@@ -545,8 +553,8 @@ width: 328px;
             padding: 10px 10px 9px;
             gap: 5px;
         
-            width: 156px;
-            height: 44px;
+            width: 0 auto;
+            height: 0 auto;
             border-radius: 6px;
     }
     .iternarybox{
