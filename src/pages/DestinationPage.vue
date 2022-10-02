@@ -334,6 +334,7 @@ import { ref } from 'vue'
 import FooterPage from './FooterPage.vue'
 
 export default {
+    name: "DestinationPage",
     setup() {
         return {
             slide: ref(1),

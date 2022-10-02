@@ -6,14 +6,14 @@
           <div class="input-area-1 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="Where to ?">
               <template v-slot:prepend>
-                <q-icon name="place" />
+                <q-icon style="margin-left: 5px;" name="place" />
               </template>
             </q-input>
           </div>
           <div class="input-area-2 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="From ?" v-model="date">
               <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
+                <q-icon style="margin-left: 5px;" name="event" class="cursor-pointer">
                   <q-popup-proxy cover transition-show="scale" transition-hide="scale">
                     <q-date v-model="date" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
@@ -28,7 +28,7 @@
           <div class="input-area-3 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="To ?" v-model="date">
               <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
+                <q-icon style="margin-left: 5px;" name="event" class="cursor-pointer">
                   <q-popup-proxy cover transition-show="scale" transition-hide="scale">
                     <q-date v-model="date" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
@@ -47,7 +47,7 @@
       </div>
       <div class="row items-center justify-between" style="width: 1000px">
         <div class="left-section col-md-5 q-pa-md-lg-xl">
-          <h2> {{header_content}}</h2>
+          <h2>travel tour over the world</h2>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
@@ -58,13 +58,13 @@
     </div>
   <MobileHeader/>
     <!-- top 5 destinations -->
-    <div class="q-pa-sm">
+    <div class="q-pa-sm" style="margin-top: 50px;">
       <div class="carousel-heading">
         <h5 class="text-center">Top 5 Destinations</h5>
       </div>
       <Carousel :itemsToShow="isMobile?2: 5">
         <Slide v-for="slide in 10" :key="slide">
-          <div class="carousel__item-1">
+          <div class="carousel__item-1" style="margin-top: 0px;">
             <q-card class="destination-carousel-card" >
               <img v-if="slide % 2 == 0"
                 src="https://images.unsplash.com/photo-1597459904558-4d0770ba4f54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlJTIwcG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80" />
@@ -73,12 +73,12 @@
 
               <q-card-section>
                 <div class="row no-wrap justify-between">
-                  <div class="col-md-3 text-black text-caption text-weight-thin">
+                  <div class="col-md-3 text-black text-caption text-weight-fat bold">
                     Goa
                   </div>
-                  <div class="col-md-3 text-grey text-caption row no-wrap items-center">
+                  <div class="col-md-3 text-black text-caption row no-wrap items-center">
                     <q-icon name="visibility" />
-                    300
+                    <div style="margin-left: 5px;">300</div>
                   </div>
                 </div>
               </q-card-section>
@@ -91,13 +91,13 @@
 
     <div class="q-pa-md section-3-main  justify-center">
       <div class="main-section-3">
-        <h5 class="text-center mobile-section-3">
+        <h5 class="text-center mobile-section-3" style="width: 486px">
           Steps to join your ultimate and trustworthy travel partner with us
         </h5>
       </div>
       <div class="row justify-center section-3">
         <div class="col-md-5">
-          <h3 class="mobile-main-heading">Why Choose Us</h3>
+          <h3 class="mobile-main-heading" style="margin-left: 25px;">Why Choose Us</h3>
           <p>
            {{data.why_choose_us_header}}
           </p>
@@ -185,12 +185,10 @@
       </div>
     </div>
     <!-- Destinations -->
-    <div>
-      <div class="q-pa-md">
-        <h3>Explore Destinations</h3>
-      </div>
+    <div class="q-pa-sm">
+        <text style="margin-left: 100px; font-family:Poppins; font-size: 35px;">Explore Destinations</text>
     </div>
-        <Carousel :itemsToShow="isMobile?2: 5">
+        <Carousel style="margin-left: 20px; margin-right: 20px;" :itemsToShow="isMobile?2: 5">
         <Slide v-for='(items) in expanded' :key='items.id' >
           <div class="carousel__item-1">
            <q-card flat bordered class="explore-destination-cards">
@@ -317,16 +315,18 @@
     <!-- latest tour -->
     <div class="row q-pa-lg gt-sm justify-around">
       <div class="col-md-5 col-sm-12">
-        <q-card class="latest-tour" flat>
-          <span class="top-left-card-round"></span>
-          <h4>Watch our latest tour</h4>
-        </q-card>
         <div>
-          <div class="text-gray" style="line-height: 34.63px">
-            {{data.watch_latest_tour_content}}
+        <q-card class="latest-tour" flat>
+          <span class="top-left-card-round" style="margin-top: 30px;"></span>
+          <text class="text19">Watch our latest tour</text>
+        </q-card>
+        </div>
+        <div style="margin-top: 20px; margin-left: 25px;">
+          <div class="text-gray" style="line-height: 34.63px; font-family: Poppins; font-size: 15px;">
+           <!-- {{data.watch_latest_tour_content}} --> hfdhghgv bfdgfwdghfags fwdhgfgsg gfdgafdgva dhgfgscvasvcgf dfghdvscvsvdhgfh feghgwfsevhhwiqwuyrug bvsghfdweh
           </div>
         </div>
-        <a href="" style="color: red">Learn more</a>
+        <a href="" style="color: red; margin-left: 25px;">Learn more</a>
       </div>
       <div class="col-md-5 col-sm-12 self-center">
         <q-card class="latest-tour" flat>
@@ -346,9 +346,9 @@
         <Slide v-for="slide in 10" :key="slide">
           <div class="carousel__item">
             <q-card class="carousel-card">
-              <img src="../assets/mark-removebg-preview.svg" />
+              <img src="../assets/Apostrophe.svg"/>
               <q-card-section>
-                <div class="text-subtitle2">
+                <div class="text-subtitle2" style="margin-top: 10px;">
                   Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis
                   ullamco cillum dolor. Voluptate exercitation incididunt
                   aliquip.
@@ -367,7 +367,7 @@
     <!-- Blog section -->
     <div>
       <div class="blog-heading">
-        <h3 class="blog-text">Blogs</h3>
+        <text class="blog-text" style="font-size: 34px;">Blogs</text>
       </div>
       <div class="blog-heading">
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
@@ -414,6 +414,19 @@
                   <div class="text-subtitle2">by John Doe</div>
                 </q-card-section>
         
+                <q-card-section class="q-pt-none">
+                  We need to understand the shirt
+                </q-card-section>
+              </q-card>
+
+              <q-card class="my-card rounded-borders col-3 full-height">
+                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+              
+                <q-card-section>
+                  <div class="text-h6">Our Changing Planet</div>
+                  <div class="text-subtitle2">by John Doe</div>
+                </q-card-section>
+              
                 <q-card-section class="q-pt-none">
                   We need to understand the shirt
                 </q-card-section>
@@ -504,19 +517,18 @@
     <div>
       <footer class="footer" id="footer">
         <div class="q-pa-md">
-
           <div class="row">
             <div class="col-md-4 col-xs-12">
               <span>
-                <h3 class="col-title">Corporate Office</h3>
+                <h3 class="col-title" style="font-family: Poppins;">Corporate Office</h3>
                 <nav class="col-list">
                   <ul>
-                    <li><a href="#">Sitaram Nagane House, Zakeria Rd, Opp Tulsi Hotel, Opp Zee Nest Cyber, Malad (west),
+                    <li><a href="#" style="font-family: Poppins;">Sitaram Nagane House, Zakeria Rd, Opp Tulsi Hotel, Opp Zee Nest Cyber, Malad (west),
                         Mumbai -400064, Maharashtra
                         Phone number : 02228810028
                         Email - sales@travelrover.in</a></li>
                     <li>
-                      <h3 class="social-col-title">Follow us</h3>
+                      <h3 class="social-col-title" style="margin-top: 30px; font-family:Poppins; font-size: 19px;">Follow us</h3>
                       <div class="social-media-list">
                         <a href="#" class="facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -545,11 +557,7 @@
 
             </div>
             <div class="col-md-5 col-xs-12 mobile-view-footer">
-
-
               <div class="row">
-
-
                 <span>
                   <h3 class="col-title">Company</h3>
                   <nav class="col-list">
@@ -588,14 +596,17 @@
 
           </div>
           <div class="row">
-            <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
+            <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
               <h3 class="col-title-bottom">Made in India </h3>
             </div>
-            <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
+            <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
               <h3 class="col-title-bottom">© 2022 All Rights Reserved</h3>
             </div>
-            <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
-              <h3 class="col-title-bottom">Terms & Conditions &nbsp; &nbsp; Privacy Policy</h3>
+            <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
+              <h3 class="col-title-bottom">Terms & Conditions</h3>
+            </div>
+            <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
+              <h3 class="col-title-bottom">Privacy Policy</h3>
             </div>
           </div>
 
@@ -730,11 +741,32 @@ html,body{
   margin-left: 16px;
 }
 
+.text19{
+  position: absolute;
+    width: 525.02px;
+    height: 46px;
+    left: 20.04px;
+    top: 39.21px;
+  
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28.8559px;
+    line-height: 160%;
+}
+
+.carousel-heading text {
+  font-family: "Poppins";
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 53.5px;
+}
+
 .carousel-heading h5 {
   font-family: "Poppins";
-  font-weight: 500;
-  font-size: 45px;
-  line-height: 53.5px;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 0px;
 }
 
 .subscribe-container {
@@ -776,7 +808,7 @@ footer ul {
 }
 
 .col-title {
-  font-family: "Merriweather", serif;
+  font-family: Poppins;
   color: var(--color);
   font-size: 18px;
   font-weight: 500;
@@ -786,7 +818,7 @@ footer ul {
 }
 
 .col-title-bottom {
-  font-family: "Merriweather", serif;
+  font-family: Poppins;
   color: var(--color);
   font-size: 14px;
   font-weight: 500;
@@ -797,6 +829,7 @@ footer ul {
 
 .col-list a {
   color: var(--color-smooth);
+  font-family: Poppins;
   text-decoration: none;
   line-height: 1.4;
   font-weight: 400;

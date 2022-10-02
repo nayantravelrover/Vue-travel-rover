@@ -16,10 +16,10 @@
           <img src="../assets/logo.svg" />
         </q-toolbar-title>
 
-        <q-btn flat round dense class="q-ml-md gt-sm" label="Home" to="/src/pages/MainHome.vue" />
-        <q-btn flat round dense class="q-ml-md gt-sm" label="AboutUs"/>
-        <q-btn flat round dense class="q-ml-md gt-sm" label="Testinomial" />
-        <q-btn flat round dense class="q-ml-md gt-sm" label="ContactUs" />
+        <q-btn flat round dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;"/>
+        <q-btn flat round dense class="q-ml-md gt-sm" label="AboutUs" style="font-family: Poppins;"/>
+        <q-btn flat round dense class="q-ml-md gt-sm" label="Testinomial" style="font-family: Poppins;"/>
+        <q-btn flat round dense class="q-ml-md gt-sm" label="ContactUs" style="font-family: Poppins;"/>
         <q-btn
           flat
           dense
