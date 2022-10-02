@@ -1,8 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header>
-
-
+    
       <q-toolbar>
         <q-btn v-if="$q.platform.is.mobile"
           flat
@@ -79,7 +78,7 @@ import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import RegisterPage from "src/pages/RegisterPage.vue"
 import LoginPage2 from "src/pages/LoginPage2.vue";
-import MainHomeVue from "src/pages/MainHome.vue";
+
 //import RegisterPage from "src/pages/RegisterPage.vue";
 //import LoginPage from "src/pages/LoginPage.vue";
 
