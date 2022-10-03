@@ -7,7 +7,19 @@ function basicconfig () {
   var headers = {
     'Content-Type': 'application/json'
   }
-  return getAPIService(endpoint,headers, null)
+  console.log("HEYYYY")
+  return new Promise(function (resolve, reject){
+    var result =  getAPIService(endpoint,headers, null).then(response =>{
+    console.log("Inside api call")
+    console.log(response)
+    resolve(response);
+  })
+  .catch(err =>{
+    reject(err)
+    console.log(err)
+  })
+  });
+  
 }
 
 function setAccessToken(data){
