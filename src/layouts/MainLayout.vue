@@ -1,4 +1,5 @@
 <template>
+  <div>
   <q-layout view="lHh Lpr lFf">
     <q-header>
     
@@ -70,6 +71,7 @@
       :isMobile="isMobile" />
     </q-page>
   </q-layout>
+  </div>
 </template>
 
 <script>

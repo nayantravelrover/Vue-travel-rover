@@ -1,5 +1,5 @@
 <template>
-    <q-page>
+    <div>
         <div>
             <q-carousel class="q-pa full-screen" style="margin-top: 76px; height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
                 transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
@@ -298,7 +298,7 @@
                 </div>
             </footer>
         </div>
-    </q-page>
+    </div>
 </template>
 <script>
 import { ref } from 'vue'
