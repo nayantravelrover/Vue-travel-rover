@@ -1,6 +1,7 @@
 <template>
+    <div>
     <MainHome class="gt-xs"/>
-    <q-page class="lt-md">
+    <div class="lt-md">
         <div>    
             <q-carousel class="goaslide q-pa full-screen" animated v-model="slide" navigation
                     infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
@@ -328,7 +329,8 @@
             </div>
         </q-layout>
         <FooterPage/>
-    </q-page>
+    </div>
+    </div>
 </template>
 <script>
 import { ref } from 'vue'
