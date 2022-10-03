@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <div>
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
@@ -613,7 +613,7 @@
         </div>
       </footer>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>
