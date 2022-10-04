@@ -1,16 +1,26 @@
 <template>
     <div>
         <div>
-            <q-carousel class="q-pa full-screen" style="margin-top: 76px; height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
+            <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
                 transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-                <q-carousel-slide :name="1" img-src="../assets/Goa.jpg" />
-                <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg" />
-                <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg" />
-                <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg" />
-                <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg" />
+                <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
+                    <transparent-bar/>
+                </q-carousel-slide>
+                <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
+                    <transparent-bar/>
+                </q-carousel-slide>
+                <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
+                    <transparent-bar/>
+                </q-carousel-slide>
+                <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
+                    <transparent-bar/>
+                </q-carousel-slide>
+                <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
+                    <transparent-bar/>
+                </q-carousel-slide>
             </q-carousel>
         </div>
-        <q-card class="q-pa-md full-width">
+        <div class="q-pa-md full-width">
             <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
             <div style="margin-top: 48px; margin-left: 48px;">
                 <text class="textguide">Goa Travel Guide</text>
@@ -31,7 +41,8 @@
                 </div>
             </div>
             </div>
-        </q-card>
+        </div>
+        <comparison-table/>
         <q-card class="q-pa-md full-width">
             <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
                 <text class="text-satisfied" style="margin-left: 30px;">Ain’t satisfied with the Top-Selling itinerary. Want to customise your itinerary?</text>
@@ -302,14 +313,18 @@
 </template>
 <script>
 import { ref } from 'vue'
+import ComparisonTable from './ComparisonTable.vue';
+import TransparentBar from './TransparentBar.vue';
+
 
 export default {
     setup() {
         return {
             slide: ref(1),
             autoplay: ref(true)
-        }
-    }
+        };
+    },
+    components: { ComparisonTable, TransparentBar }
 }
 </script>
 <style lang="scss">

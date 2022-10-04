@@ -609,7 +609,6 @@
               <h3 class="col-title-bottom">Privacy Policy</h3>
             </div>
           </div>
-
         </div>
       </footer>
     </div>
@@ -633,6 +632,11 @@ export default defineComponent({
     Carousel,
     Slide,
     MobileHeader,
+},
+methods:{
+  goToDestination(){
+    this.$router.push('/src/pages/DestinationPage.vue')
+  }
 },
   props: {
     isMobile: Boolean
@@ -658,12 +662,6 @@ export default defineComponent({
       ],
       header_content: ''
     }
-  },
-  method: {
-    goToGoa() {
-      this.$router.push('/src/pages/MainHome.vue')
-    }
-
   },
   methods(){
     function fetchData() {

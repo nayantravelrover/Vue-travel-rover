@@ -5,6 +5,7 @@ const routes = [
   { path: '/destination', component: () => import('pages/DestinationPage.vue') },
   { path: '/comparison', component: () => import('pages/ComparisonTable.vue') },
   { path: '/mainhome', component: () => import('pages/MainHome.vue') },
+  { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
 
   {
     path: '/',
