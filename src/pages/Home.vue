@@ -444,7 +444,6 @@
               <h3 class="col-title-bottom">Privacy Policy</h3>
             </div>
           </div>
-
         </div>
       </footer>
     </div>

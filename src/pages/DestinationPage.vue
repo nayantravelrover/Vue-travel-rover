@@ -2,18 +2,28 @@
     <div>
     <MainHome class="gt-xs"/>
     <div class="lt-md">
-        <div>    
+        <div>
             <q-carousel class="goaslide q-pa full-screen" animated v-model="slide" navigation
                     infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
                     @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-                    <q-carousel-slide :name="1" img-src="../assets/Goa.jpg" />
-                    <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg" />
-                    <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg" />
-                    <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg" />
-                    <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg" />
+                    <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
+                        <AppBar/>
+                    </q-carousel-slide>
+                    <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
+                        <AppBar />
+                    </q-carousel-slide>
+                    <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
+                        <AppBar />
+                    </q-carousel-slide>
+                    <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
+                        <AppBar />
+                    </q-carousel-slide>
+                    <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
+                        <AppBar />
+                    </q-carousel-slide>
             </q-carousel>
         </div>
-        <q-card class="description q-pa-md full-width">
+        <div class="description q-pa-md full-width">
             <div class="about full-width" style="margin-bottom: 30px;">
                 <div style="margin-left: 5px;">
                     <text class="text10">Goa travel guide</text>
@@ -32,7 +42,7 @@
                     </div> -->
                 </div>
             </div>
-        </q-card>
+        </div>
         <q-layout class="q-pa-md full-screen">
             <div>
                 <div class="full-width" style="margin-left: 10px; margin-bottom:20px;">
@@ -294,11 +304,8 @@
                     </q-card>
                 </q-carousel-slide>
                 </q-carousel>
-                <div style="margin-left: 20px; margin-top: 20px;">
-                    <text class="text10">Itinerary Comparison</text>
-                    <div style="margin-top: 20px;">
-
-                    </div>
+                <div style="margin-top: 20px;">
+                    <ComparisonTable/>
                 </div>
                 <div class="box1" style="margin-top: 30px;"> 
                     <q-img src="../assets/Goa/cartoon.svg"/>
@@ -336,6 +343,9 @@
 import { ref } from 'vue'
 import FooterPage from './FooterPage.vue'
 import MainHome from './MainHome.vue';
+import ComparisonTable from './ComparisonTable.vue';
+import AppBar from './AppBar.vue';
+
 
 export default {
     name: "DestinationPage",
@@ -347,14 +357,18 @@ export default {
     },
     components: {
     FooterPage,
-    MainHome
     },
     created(){
         console.log(this.$route.query.place)
     }
+    MainHome,
+    ComparisonTable,
+    AppBar
 }
+
 </script>
 <style lang="scss">
+    
 .faq_card{
         display: flex;
             flex-direction: column;
