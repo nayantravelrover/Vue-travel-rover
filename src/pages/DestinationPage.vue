@@ -348,7 +348,10 @@ export default {
     components: {
     FooterPage,
     MainHome
-}
+    },
+    created(){
+        console.log(this.$route.query.place)
+    }
 }
 </script>
 <style lang="scss">

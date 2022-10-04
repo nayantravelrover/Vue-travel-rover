@@ -65,7 +65,7 @@
       </div>
       <Carousel :itemsToShow="isMobile?2: 5">
         <Slide v-for="items,index in basic_data['explore_destination_images']" :key="items">
-          <div class="carousel__item-1" style="margin-top: 0px;">
+          <div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(index)">
             
             <q-card class="destination-carousel-card" >
               <img :src=items />
@@ -461,6 +461,7 @@ import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig} from "src/common/api_calls";
 import MainHomeVue from "./MainHome.vue";
+import DestinationPage from "./DestinationPage.vue";
 
 export default defineComponent({
   name: "IndexPage",
@@ -468,7 +469,7 @@ export default defineComponent({
     Carousel,
     Slide,
     MobileHeader,
-},
+  },
   props: {
     isMobile: Boolean
   },
@@ -496,7 +497,14 @@ export default defineComponent({
       svgs_color:["orange","light-green","brown","purple"]
     }
   },
-  methods(){
+  methods:{
+    go_to_images(item){
+      this.$router.push({
+        path: '/destination/',
+        name:'DestinationPage',
+        query: { place: this.basic_data["explore_destination"][item] }
+      })
+    }
   },
   setup() {
     const data = ref({});
