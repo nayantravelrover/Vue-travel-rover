@@ -1,6 +1,6 @@
 <template>
     <div>
-    <q-card class="card30" style="margin-left: 20px; margin-top: 30px;">
+    <q-card class="card30" style="margin-top: 30px;">
         <div class="card31">
             <div class="card32">
                 <div class="card33">
