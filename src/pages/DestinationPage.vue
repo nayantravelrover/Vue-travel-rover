@@ -356,14 +356,14 @@ export default {
         };
     },
     components: {
-    FooterPage,
+        FooterPage,
+        MainHome,
+        ComparisonTable,
+        AppBar
     },
     created(){
         console.log(this.$route.query.place)
     }
-    MainHome,
-    ComparisonTable,
-    AppBar
 }
 
 </script>

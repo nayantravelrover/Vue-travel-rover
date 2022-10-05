@@ -42,7 +42,7 @@
             </div>
             </div>
         </div>
-        <comparison-table/>
+        <ComparisonTable/>
         <q-card class="q-pa-md full-width">
             <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
                 <text class="text-satisfied" style="margin-left: 30px;">Ain’t satisfied with the Top-Selling itinerary. Want to customise your itinerary?</text>
