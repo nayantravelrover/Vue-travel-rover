@@ -345,16 +345,15 @@
     </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
 import FooterPage from './FooterPage.vue'
 import MainHome from './MainHome.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
 import MobileCard from './MobileCard.vue';
+import {places} from "src/common/api_calls";
 
-
-
-export default {
+export default defineComponent ({
     name: "DestinationPage",
     setup() {
         return {
@@ -370,11 +369,21 @@ export default {
         MobileCard
     },
     created(){
-        console.log(this.$route.query.place)
-    }
-    
-}
+        console.log(this.$route.query.place);
+        places("Goa").then(response =>{
+            console.log(response)
+            var resp = JSON.parse(response.data.data)[0]["fields"]
+            var place_dictionary = {
+                "name": resp["description"],
+                "faqs_question": resp["faqs"].split("$$$"),
+                "faqs_answer": resp["faqs_answer"],
+                "images": resp["images"]
+            }
+            this.$store.commit('place_description_update', place_dictionary)            
 
+    });
+    }
+})
 
 </script>
 <style lang="scss">

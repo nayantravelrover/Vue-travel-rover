@@ -19,8 +19,27 @@ function basicconfig () {
     console.log(err)
   })
   });
-  
 }
+
+function places (place) {
+  var endpoint = base_url + 'travel-rover/places/?place=' + place
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  console.log("Inside Place")
+  return new Promise(function (resolve, reject){
+    var result =  getAPIService(endpoint,headers, null).then(response =>{
+    console.log("Inside api call")
+    console.log(response)
+    resolve(response);
+  })
+  .catch(err =>{
+    reject(err)
+    console.log(err)
+  })
+  });
+}
+
 
 function setAccessToken(data){
   let access_token = data["access"]
@@ -72,6 +91,7 @@ function create_user(data){
 
 
 export {
+  places,
   base_url,
   create_user,
   basicconfig

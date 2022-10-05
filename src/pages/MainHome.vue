@@ -29,8 +29,8 @@
             <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
             <div style="margin-top: 48px; margin-left: 48px;">
                 <text class="textguide">Goa Travel Guide</text>
-                <div style="margin-top: 32px;">
                 <text class="textinit">
+                <div style="margin-top: 32px;">
                 A relaxing journey to Goa will enable you to appreciate the splendour of southern India. You may arrange a low-cost trip
                 to India's stunning backwater state with Travel Rover. As Goa is here to rejuvenate you, calm your inner mind. Goa is
                 situated in the southernmost portion of India, close to the Arabian Sea coast.
@@ -42,8 +42,9 @@
                 Get ready to be padding onboard for one of the best adventures in a long time as we depart from the beaches, temples,
                 cultural performances, and boathouses!
                 </div>
-                </text>
+                
                 </div>
+                </text>
             </div>
             </div>
         </div>

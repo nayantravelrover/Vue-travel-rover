@@ -64,7 +64,8 @@ export default store(function (/* { ssrContext } */) {
           title:"hotels",
           content:"These are hotels"
         }]
-      }
+      },
+      place_description: {}
     },
     mutations:{
       place_name_update(state,place_name) {
@@ -156,6 +157,9 @@ export default store(function (/* { ssrContext } */) {
       },
       day_add(state, val){
         state.itinerary_preview.days.push({description: "", images: []})
+      },
+      place_description_update(state,val){
+        state.place_description = val
       }
     },
     actions:{

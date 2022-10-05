@@ -7,7 +7,7 @@ function getAPIService(endpoint, headers, data){
 
   var config = {
     method: 'get',
-    url: 'http://admin.travelrover.in/travel-rover/basic-config/',
+    url: endpoint,
     headers: { 
       'Content-Type': 'application/json'
     }
