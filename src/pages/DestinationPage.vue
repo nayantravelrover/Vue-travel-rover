@@ -8,18 +8,23 @@
                     @mouseenter="autoplay = false" @mouseleave="autoplay = true">
                     <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
                         <AppBar/>
+                        <MobileCard/>
                     </q-carousel-slide>
                     <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
                         <AppBar />
+                        <MobileCard />
                     </q-carousel-slide>
                     <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
                         <AppBar />
+                        <MobileCard />
                     </q-carousel-slide>
                     <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
                         <AppBar />
+                        <MobileCard />
                     </q-carousel-slide>
                     <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
                         <AppBar />
+                        <MobileCard />
                     </q-carousel-slide>
             </q-carousel>
         </div>
@@ -345,6 +350,8 @@ import FooterPage from './FooterPage.vue'
 import MainHome from './MainHome.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
+import MobileCard from './MobileCard.vue';
+
 
 
 export default {
@@ -359,12 +366,15 @@ export default {
         FooterPage,
         MainHome,
         ComparisonTable,
-        AppBar
+        AppBar,
+        MobileCard
     },
     created(){
         console.log(this.$route.query.place)
     }
+    
 }
+
 
 </script>
 <style lang="scss">

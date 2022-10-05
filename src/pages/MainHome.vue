@@ -5,18 +5,23 @@
                 transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
                 <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
                     <transparent-bar/>
+                    <card-container/>
                 </q-carousel-slide>
                 <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
                     <transparent-bar/>
+                    <card-container />
                 </q-carousel-slide>
                 <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
                     <transparent-bar/>
+                    <card-container />
                 </q-carousel-slide>
                 <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
                     <transparent-bar/>
+                    <card-container />
                 </q-carousel-slide>
                 <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
                     <transparent-bar/>
+                    <card-container />
                 </q-carousel-slide>
             </q-carousel>
         </div>
@@ -42,14 +47,20 @@
             </div>
             </div>
         </div>
-        <ComparisonTable/>
-        <q-card class="q-pa-md full-width">
-            <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
-                <text class="text-satisfied" style="margin-left: 30px;">Ain’t satisfied with the Top-Selling itinerary. Want to customise your itinerary?</text>
-                <q-img class="cartoon" style="margin-left: 1000px;" src="../assets/Goa/cartoon.svg"/>
-            </div>
-        </q-card>
-        <q-card class="q-pa-md full-width">
+
+        <div style="margin-left: 100px;">
+            <ComparisonTable/>
+        </div>
+        <div class="q-pa-md column" style="margin-left: 100px;margin-top: 50px; width: 2000px;height: 800px;">
+                <text class="text-satisfied" style="margin-left: 30px;margin-top: 20px;">Ain’t satisfied with the Top-Selling itinerary.
+                    Want to customise your itinerary?
+                    <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
+                </text>
+            <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;">
+                <text style="font-size: 24px; font-family: 'Poppins';">Click Here</text>
+            </q-btn>
+        </div>
+        <div class="q-pa-md full-width">
         <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
             <text class="textguide" style="margin-left: 32px; margin-top: 30.39px;">FAQ About Goa</text>
             <div style="margin-top: 90px;">
@@ -203,7 +214,7 @@
                 <a href="#">View all</a>
             </div>
         </div>
-        </q-card>
+        </div>
         <div>
             <footer class="footer" id="footer">
                 <div class="q-pa-md">
@@ -315,6 +326,7 @@
 import { ref } from 'vue'
 import ComparisonTable from './ComparisonTable.vue';
 import TransparentBar from './TransparentBar.vue';
+import CardContainer from './CardContainer.vue';
 
 
 export default {
@@ -324,7 +336,7 @@ export default {
             autoplay: ref(true)
         };
     },
-    components: { ComparisonTable, TransparentBar }
+    components: { ComparisonTable, TransparentBar, CardContainer }
 }
 </script>
 <style lang="scss">
@@ -350,13 +362,13 @@ export default {
         flex-grow: 0;
 }
 .text-satisfied{
-    width: 888px;
-        height: 33px;
+    width: 1488px;
+        height: 23px;
     
         font-family: 'Poppins';
         font-style: normal;
-        font-weight: 500;
-        font-size: 22px;
+        font-weight: 800;
+        font-size: 23px;
         line-height: 33px;
         /* identical to box height */
     
