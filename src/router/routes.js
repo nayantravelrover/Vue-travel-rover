@@ -6,6 +6,8 @@ const routes = [
   { path: '/comparison', component: () => import('pages/ComparisonTable.vue') },
   { path: '/mainhome', component: () => import('pages/MainHome.vue') },
   { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
+  { path: '/editcardw', component: () => import('pages/EditItineraryCardw.vue') },
+  { path: '/editcardm', component: () => import('pages/EditItineraryCardm.vue') },
 
   {
     path: '/',
@@ -15,7 +17,7 @@ const routes = [
       {
         path: "",
         name: "home",
-        component: () => import("pages/DestinationPage.vue")
+        component: () => import("pages/Home.vue")
       },
     
       { path: '/page', component: () => import('pages/IndexPage.vue')},
