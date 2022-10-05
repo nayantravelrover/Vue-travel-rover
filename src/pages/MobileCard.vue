@@ -1,8 +1,8 @@
 <template>
     <div class="lt-md">
         <div class="container60">
-            <text class="text60">Goa</text>
-            <text class="text61">God's Own Country</text>
+            <text class="text60">{{this.$store.state.place_description['name']}}</text>
+            <text class="text61">{{this.$store.state.place_description['places_one_liner']}}y</text>
         </div>
     </div>
 </template>
@@ -11,7 +11,7 @@
 </script>
 <style>
 .text61{
-        width: 385px;
+        width: 300px;
             height: 30px;
         
             font-family: 'Poppins';
@@ -20,7 +20,7 @@
             font-size: 25px;
             line-height: 20px;
             margin-top: 50px;
-            margin-left: 140px;
+            /*margin-left: 140px;*/
             /* identical to box height */
         
             /* White/White 100 */
@@ -31,9 +31,10 @@
             flex: none;
             order: 1;
             flex-grow: 0;
+            text-align: center;
     }
 .text60{
-        width: 100px;
+        width: 300px;
             height: 28px;
         
             font-family: 'Poppins';
@@ -53,6 +54,7 @@
             order: 0;
             flex-grow: 0;
             margin: -10px 0px;
+            text-align: center;
     }
 .container60 {
             display: flex;

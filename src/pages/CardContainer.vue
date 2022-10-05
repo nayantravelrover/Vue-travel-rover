@@ -1,8 +1,8 @@
 <template>
     <div class="gt-xs">
         <div class="container40">
-            <text class="text50">Goa</text>
-            <text class="text51">God's Own Country</text>
+            <text class="text50">{{this.$store.state.place_description['name']}}</text>
+            <text class="text51">{{this.$store.state.place_description['places_one_liner']}}</text>
         </div>
     </div>
 </template>
@@ -11,7 +11,7 @@
 </script>
 <style>
 .text51{
-        width: 385px;
+        width: 500px;
             height: 60px;
         
             font-family: 'Poppins';
@@ -29,9 +29,10 @@
             flex: none;
             order: 1;
             flex-grow: 0;
+            text-align: center;
     }
 .text50{
-        width: 150px;
+            width: 500px;
             height: 108px;
         
             font-family: 'Poppins';
@@ -50,6 +51,7 @@
             order: 0;
             flex-grow: 0;
             margin: -10px 0px;
+            text-align: center;
     }
 .container40{
         display: flex;

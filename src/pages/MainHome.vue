@@ -3,46 +3,19 @@
         <div>
             <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
                 transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-                <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
-                    <transparent-bar/>
+                    <q-carousel-slide  v-for="items,index in this.$store.state.place_description['images']" :key="index" :name="index" :img-src=items>
+                        <transparent-bar/>
                     <card-container/>
-                </q-carousel-slide>
-                <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
-                    <transparent-bar/>
-                    <card-container />
-                </q-carousel-slide>
-                <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
-                    <transparent-bar/>
-                    <card-container />
-                </q-carousel-slide>
-                <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
-                    <transparent-bar/>
-                    <card-container />
-                </q-carousel-slide>
-                <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
-                    <transparent-bar/>
-                    <card-container />
-                </q-carousel-slide>
+                    </q-carousel-slide>
             </q-carousel>
         </div>
         <div class="q-pa-md full-width">
             <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
             <div style="margin-top: 48px; margin-left: 48px;">
-                <text class="textguide">Goa Travel Guide</text>
+                <text class="textguide">{{this.$store.state.place_description["name"]}} Travel Guide</text>
                 <text class="textinit">
-                <div style="margin-top: 32px;">
-                A relaxing journey to Goa will enable you to appreciate the splendour of southern India. You may arrange a low-cost trip
-                to India's stunning backwater state with Travel Rover. As Goa is here to rejuvenate you, calm your inner mind. Goa is
-                situated in the southernmost portion of India, close to the Arabian Sea coast.
-                <div style="margin-top: 32px;">
-                Keralites have a lovely way of living that is separate from the bustling and busy everyday routine. Travelers from all
-                over the world have been drawn to it by its dramatic tropical landscape and sporadic rains.
-                </div>
-                <div style="margin-top: 32px;">
-                Get ready to be padding onboard for one of the best adventures in a long time as we depart from the beaches, temples,
-                cultural performances, and boathouses!
-                </div>
-                
+                <div style="margin-top: 32px;" v-for="items in this.$store.state.place_description['description']" :key="items">
+                    {{items}}
                 </div>
                 </text>
             </div>
@@ -63,8 +36,19 @@
         </div>
         <div class="q-pa-md full-width">
         <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
-            <text class="textguide" style="margin-left: 32px; margin-top: 30.39px;">FAQ About Goa</text>
-            <div style="margin-top: 90px;">
+            <text class="textguide" style="margin-left: 32px; margin-top: 30.39px;">FAQ About {{this.$store.state.place_description["name"]}}</text>
+
+            <div style="margin-top: 90px;" v-for="items,index in this.$store.state.place_description['faqs_question']" :key="index">
+                <text class="number">{{index+1}}</text>
+                <text class="questions" style="margin-left: 20px;">{{items}}</text>
+                <div style="margin-left: 50px; margin-top: 20px;">
+                <text class="answers">
+                {{this.$store.state.place_description['faqs_answer'][index]}}
+                </text>
+                </div>
+            </div>
+
+            <!-- <div style="margin-top: 90px;" >
                 <text class="number">01</text>
                 <text class="questions" style="margin-left: 20px;">When is the best time to visit Goa?</text>
                 <div style="margin-left: 50px; margin-top: 20px;">
@@ -210,7 +194,7 @@
                         stations like Munnar can still be visited in the state.
                     </text>
                 </div>
-            </div>
+            </div> -->
             <div class="view_all justify-right" style="margin-top: 50px; margin-left: 80%;">
                 <a href="#">View all</a>
             </div>
