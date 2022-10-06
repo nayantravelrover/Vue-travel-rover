@@ -315,7 +315,7 @@
                 <div class="box1" style="margin-top: 30px;"> 
                     <q-img src="../assets/Goa/cartoon.svg"/>
                     <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your itinerary?</text>
-                    <q-btn class="btn12" unelevated rounded color="primary"><text style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text></q-btn>
+                    <q-btn class="btn12" unelevated rounded color="primary" @click="openDialogBox()"><text style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text></q-btn>
                 </div>
                 <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
                     <text class="text10" >FAQ about Goa</text>
@@ -356,6 +356,12 @@ import MobileCard from './MobileCard.vue';
 
 export default {
     name: "DestinationPage",
+    methods: {
+        openDialogBox(){
+            this.$router.push('/editcardm');
+        }
+    },
+
     setup() {
         return {
             slide: ref(1),

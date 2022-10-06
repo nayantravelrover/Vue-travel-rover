@@ -35,7 +35,7 @@
               </q-item> -->
               <LoginPage2/>
               <div class="q-pa-xs">
-                <RegisterPage />
+                <RegisterPage/>
               </div>
 
 
