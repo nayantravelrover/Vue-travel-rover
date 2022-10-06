@@ -1,6 +1,6 @@
 <template>
     <div>
-        <q-card class="box1 absolute-center gt-sm" style="margin-top: 400px;">
+        <div class="box1 absolute-center gt-sm" style="margin-top: 400px;">
             <div class="box2">
                 <div class="box3">
                     <div class="box4">
@@ -58,7 +58,7 @@
             <div class="box12">
                 <div class="box13"></div>
             </div>
-        </q-card>
+        </div>
         <div class="box20 lt-md absolute-center" style="margin-top: 400px;">
             <div class="box21">
                 <div class="box22"></div>
@@ -541,5 +541,6 @@
     
         background: #FFFFFF;
         border-radius: 16px;
+        box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
 }
 </style>
