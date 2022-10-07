@@ -9,6 +9,7 @@ const routes = [
   { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
   { path: '/editcardw', component: () => import('pages/EditItineraryCardw.vue') },
   { path: '/editcardm', component: () => import('pages/EditItineraryCardm.vue') },
+  { path: '/viewitinerary', component: () => import('pages/ViewItinerary.vue') },
   {
     path: '/',
     redirect: "/home",
