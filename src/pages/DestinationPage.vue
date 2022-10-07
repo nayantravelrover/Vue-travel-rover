@@ -43,6 +43,11 @@
                     navigation
                     padding
                     arrows >
+
+                 
+
+
+
                 <q-carousel-slide :name="1">
                 <q-card class="iternarybox">
                     <q-img src="../assets/Goa/goa3.jpg" style="height: 282px;"/>
@@ -333,7 +338,7 @@ export default defineComponent ({
     setup() {
         return {
             slide: ref(1),
-            autoplay: ref(true)
+            // autoplay: ref(true)
         };
     },
     components: {

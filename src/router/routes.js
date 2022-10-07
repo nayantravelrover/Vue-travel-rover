@@ -7,6 +7,8 @@ const routes = [
   { path: '/comparison', component: () => import('pages/ComparisonTable.vue') },
   { path: '/mainhome', component: () => import('pages/MainHome.vue') },
   { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
+  { path: '/editcardw', component: () => import('pages/EditItineraryCardw.vue') },
+  { path: '/editcardm', component: () => import('pages/EditItineraryCardm.vue') },
   {
     path: '/',
     redirect: "/home",

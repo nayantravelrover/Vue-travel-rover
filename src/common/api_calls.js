@@ -48,6 +48,25 @@ function setAccessToken(data){
   window.sessionStorage.setItem("travel_rover_refresh_token", refresh_token);
 }
 
+function save_itinerary_api(data){
+  var endpoint = base_url + 'travel-rover/placesitinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  var result = postAPIService(endpoint,headers, data).then(response => {
+    if(response.status == 201){
+        console.log(response)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      if(err.response.status == 400){
+        alert("Not saved")
+      }
+    })
+}
+
 
 
 
@@ -94,5 +113,6 @@ export {
   places,
   base_url,
   create_user,
-  basicconfig
+  basicconfig,
+  save_itinerary_api
 }
