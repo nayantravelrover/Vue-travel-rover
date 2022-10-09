@@ -17,7 +17,7 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            font-size: 40px;
+            font-size: 36px;
             line-height: 60px;
             /* identical to box height */
         
@@ -62,8 +62,8 @@
             position: absolute;
             width: 511px;
             height: 222px;
-            left: 465px;
-            top: 300px;
+            
+            top: 375px;
         
             background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
