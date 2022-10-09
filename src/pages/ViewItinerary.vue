@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="box1 absolute-center gt-sm" style="margin-top: 400px;">
+    <div class="q-pa-md">
+        <div class="box1 absolute-center gt-sm" style="margin-top: 300px;">
             <div class="box2">
                 <div class="box3">
                     <div class="box4">

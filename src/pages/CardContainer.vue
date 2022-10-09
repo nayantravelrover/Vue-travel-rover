@@ -17,7 +17,7 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            font-size: 40px;
+            font-size: 36px;
             line-height: 60px;
             /* identical to box height */
         

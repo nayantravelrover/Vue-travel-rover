@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card90 absolute-center" style="margin-top: 400px;">
+        <div class="card90 absolute-center" style="margin-top: 350px;">
             <div class="card91">
                 <q-card flat bordered class="card92">
                     <div class="card93">
