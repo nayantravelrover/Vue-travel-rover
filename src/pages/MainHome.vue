@@ -83,7 +83,7 @@
                                 label="Add to Compare " />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary " />
+                                label="View Itinerary " @click="icon = true" />
                         </div>
                     </div>
                 </q-card>

@@ -28,12 +28,12 @@
                 </div>
             </div>
         </div>
-        <q-layout class="q-pa-md full-screen">
+        <q-layout class="q-pa-md justify-center">
             <div>
-                <div class="full-width" style="margin-left: 10px; margin-bottom:20px;">
+                <div class="full-width" style="margin-left: 10px; margin-bottom:10px;">
                     <text class="text10" style="margin-left: 15px;">Our top-selling Itineraries</text>
                 </div>
-                <q-carousel style="height: 950px;" 
+                <q-carousel style="height: 790px;" 
                     class="q-pa" 
                     v-model="slide"
                     transition-prev="slide-right"
@@ -44,13 +44,9 @@
                     padding
                     arrows >
 
-                 
-
-
-
                 <q-carousel-slide :name="1">
                 <q-card class="iternarybox">
-                    <q-img src="../assets/Goa/goa3.jpg" style="height: 282px;"/>
+                    <q-img src="../assets/Goa/goa3.jpg" style="height: 200px;"/>
                     <div class="heartbox">
                     <q-img src="../assets/Goa/heart.svg" class="heart"/>
                     </div>
@@ -94,7 +90,7 @@
                 </q-carousel-slide>
                 <q-carousel-slide :name="2">
                     <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa4.jpg" style="height: 282px;" />
+                        <q-img src="../assets/Goa/goa4.jpg" style="height: 200px;" />
                         <div class="heartbox">
                             <q-img src="../assets/Goa/heart.svg" class="heart" />
                         </div>
@@ -142,7 +138,7 @@
                 </q-carousel-slide>
                 <q-carousel-slide :name="3">
                     <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa2.jpg" style="height: 282px;" />
+                        <q-img src="../assets/Goa/goa2.jpg" style="height: 200px;" />
                         <div class="heartbox">
                             <q-img src="../assets/Goa/heart.svg" class="heart" />
                         </div>
@@ -193,7 +189,7 @@
                 </q-carousel-slide>
                 <q-carousel-slide :name="4">
                     <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa1.jpg" style="height: 282px;" />
+                        <q-img src="../assets/Goa/goa1.jpg" style="height: 200px;" />
                         <div class="heartbox">
                             <q-img src="../assets/Goa/heart.svg" class="heart" />
                         </div>
@@ -244,7 +240,7 @@
                 </q-carousel-slide>
                 <q-carousel-slide :name="5">
                     <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa.jpg" style="height: 282px;" />
+                        <q-img src="../assets/Goa/goa.jpg" style="height: 200px;" />
                         <div class="heartbox">
                             <q-img src="../assets/Goa/heart.svg" class="heart" />
                         </div>
@@ -283,7 +279,7 @@
                             </div>
                         </div>
                         <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
+                        <div style="margin-top: 25px;margin-left: 28px; margin-bottom: 30px;">
                             <div class="btns">
                                 <q-btn class="compare" unelevated
                                     style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="Add to Compare " />
@@ -429,7 +425,7 @@ export default defineComponent ({
     position: absolute;
         width: 32px;
         height: 32px;
-        left: 332px;
+        left: 282px;
         top: 24px;
     }
 .heart{
@@ -479,13 +475,13 @@ export default defineComponent ({
     }
 .text16{
 
-width: 328px;
+width: 200px;
     height: 44px;
 
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 22px;
     /* or 183% */
 
@@ -536,7 +532,7 @@ width: 328px;
             flex-grow: 1;
     }
     .line_break{
-        width: 348px;
+        width: 298px;
             height: 0px;
         
             border: 1px dashed #EEEEEE;
@@ -591,9 +587,9 @@ width: 328px;
             flex-direction: row;
             align-items: center;
             padding: 0px;
-            gap: 16px;
+            gap: 10px;
         
-            width: 328px;
+            width: 288px;
             height: 44px;
     }
     .compare{
@@ -604,7 +600,7 @@ width: 328px;
             padding: 10px 10px 9px;
             gap: 5px;
         
-            width: 156px;
+            width: 496px;
             height: 44px;
             border-radius: 6px;
     }
@@ -623,8 +619,7 @@ width: 328px;
     .iternarybox{
         box-sizing: border-box;
         
-            width: 388px;
-            height: auto;
+            width: 338px;
             left: 0px;
             top: 0px;
         
@@ -634,13 +629,13 @@ width: 328px;
             border-radius: 16px;
     }
     .text13{
-        width: 348px;
-            height: 184px;
+        width: 298px;
+            height: 134px;
         
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 400;
-            font-size: 15px;
+            font-size: 9px;
             line-height: 22px;
         
             color: #343434;
@@ -656,7 +651,7 @@ width: 328px;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 600;
-            font-size: 20px;
+            font-size: 15px;
             line-height: 30px;
             /* identical to box height */
             display: flex;
