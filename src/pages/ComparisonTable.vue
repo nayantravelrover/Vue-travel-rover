@@ -89,20 +89,20 @@
                     <li>Day 6 - Leh Drop.</li>
                 </ul>
                 <ul class="text39" style="margin-top: 50px; margin-left: 20px;">
-                    <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
+                    <!-- <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
                     <li>Day 2 - Leh Local Sightseeing.</li>
                     <li>Day 3 - Leh Nubra Valley Overnight.</li>
                     <li>Day 4 - Nubra Valley Pongong Lake Overnight.</li>
                     <li>Day 5 - Pongong Lake - Leh.</li>
-                    <li>Day 6 - Leh Drop.</li>
+                    <li>Day 6 - Leh Drop.</li> -->
                 </ul>
                 <ul class="text39" style="margin-top: 50px; margin-left: 20px;">
-                    <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
+                    <!-- <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
                     <li>Day 2 - Leh Local Sightseeing.</li>
                     <li>Day 3 - Leh Nubra Valley Overnight.</li>
                     <li>Day 4 - Nubra Valley Pongong Lake Overnight.</li>
                     <li>Day 5 - Pongong Lake - Leh.</li>
-                    <li>Day 6 - Leh Drop.</li>
+                    <li>Day 6 - Leh Drop.</li> -->
                 </ul>
             </div>
             <div class="container30" style="margin-top: 270px;">
@@ -282,6 +282,39 @@
     </q-card>
     </div>
 </template>
+
+<script type="text/javascript">
+import { ref, defineComponent } from 'vue'
+
+export default defineComponent ({
+    name: "ComparisonTable",
+    created(){
+        console.log(this.$parent.itineraries_list)
+    },
+    setup(){
+    },
+    data(){
+        return{
+            full_itineraries_to_compare: []
+        }
+    },
+    computed:{
+        function_full_itineraries_to_compare(){
+            return this.$parent.itineraries_list
+        }
+    },
+    watch:{
+        function_full_itineraries_to_compare(firstValue,secondValue){
+            console.log(this.$parent.itineraries_list)
+            this.full_itineraries_to_compare = this.$parent.itineraries_list[0]
+            console.log(this.full_itineraries_to_compare)
+        }
+    }
+})
+</script>
+
+
+
 <style>
     .text40{
         font-family: 'Poppins';

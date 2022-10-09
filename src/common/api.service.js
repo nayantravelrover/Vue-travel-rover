@@ -14,18 +14,13 @@ function getAPIService(endpoint, headers, data){
   };
 
   return new Promise(function (resolve, reject) {
-        console.log("LOLOL")
-        console.log(config)
         axios(config).then(
             (response) => {
-                console.log("Here")
                 var result = response;
                 result["config"] = config
-                console.log('Processing Request');
                 resolve(result);
             },
                 (error) => {
-                console.log("Inside Error")
                 reject(error);
             }
         );
@@ -46,11 +41,9 @@ function postAPIService(endpoint, headers, data){
             (response) => {
                 var result = response;
                 result["config"] = config
-                console.log('Processing Request');
                 resolve(result);
             },
                 (error) => {
-                console.log("Inside Error")
                 reject(error);
             }
         );

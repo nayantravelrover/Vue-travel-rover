@@ -58,14 +58,10 @@ export default store(function (/* { ssrContext } */) {
         cancellations_policy_img:"Naggar",
         things_to_carry_img:"Naggar",
         tour_rates_img:"Naggar",
-        // images_extra:["Naggar"],
-        // extra_information:"Naggar",
-        // sections:[{
-        //   title:"hotels",
-        //   content:"These are hotels"
-        // }]
       },
-      place_description: {}
+      place_description: {},
+      itineraries_list: [],
+      full_itineraries: [],
     },
     mutations:{
       place_name_update(state,place_name) {
@@ -159,7 +155,14 @@ export default store(function (/* { ssrContext } */) {
       },
       place_description_update(state,val){
         state.place_description = val
+      },
+      itineraries_list_update(state,val){
+        state.itineraries_list = val
+      },
+      full_itineraries_update(state,val){
+        state.full_itineraries = val
       }
+
     },
     actions:{
 

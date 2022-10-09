@@ -7,7 +7,7 @@
                     infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
                     @mouseenter="autoplay = false" @mouseleave="autoplay = true" >
                     
-                    <q-carousel-slide v-for="items,index in this.$store.state.place_description['images']" :key="index" :name="index" :img-src=items>
+                    <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                         <AppBar/>
                         <MobileCard/>
                     </q-carousel-slide>
@@ -17,9 +17,9 @@
         <div class="description q-pa-md full-width">
             <div class="about full-width" style="margin-bottom: 30px;">
                 <div style="margin-left: 5px;">
-                    <text class="text10">{{this.$store.state.place_description["name"]}} travel guide</text>
+                    <text class="text10">{{this.place_description["name"]}} travel guide</text>
                     <div class="" style="margin-top: 12px;">
-                    <text class="text11">{{this.$store.state.place_description["description"][0]}}
+                    <text class="text11">{{this.place_description["description"][0]}}
                     </text>
                     </div>
               <!--  <div>
@@ -303,14 +303,14 @@
                     <q-btn class="btn12" unelevated rounded color="primary" @click="openDialogBox()"><text style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text></q-btn>
                 </div>
                 <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
-                    <text class="text10" >FAQ about {{this.$store.state.place_description["name"]}}</text>
+                    <text class="text10" >FAQ about {{this.place_description["name"]}}</text>
                     <br>
-                    <div style="margin-top: 10px;"  v-for="items,index in this.$store.state.place_description['faqs_question']" :key="index">
+                    <div style="margin-top: 10px;"  v-for="items,index in this.place_description['faqs_question']" :key="index">
                         <text class="number">{{index + 1}}</text>
                         <text class="questions" style="margin-left: 10px;">{{items}}</text>
                         <div style="margin-left: 35px; margin-top: 10px;">
                             <text class="answers">
-                                {{this.$store.state.place_description['faqs_answer'][index]}}
+                                {{this.place_description['faqs_answer'][index]}}
                             </text>
                         </div>
                     </div>
@@ -324,6 +324,8 @@
     </div>
     </div>
 </template>
+
+
 <script>
 import { ref, defineComponent } from 'vue'
 import FooterPage from './FooterPage.vue'
@@ -331,7 +333,7 @@ import MainHome from './MainHome.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
 import MobileCard from './MobileCard.vue';
-import {places} from "src/common/api_calls";
+import {places,load_place_itinerary_data} from "src/common/api_calls";
 
 export default defineComponent ({
     name: "DestinationPage",
@@ -340,11 +342,16 @@ export default defineComponent ({
             this.$router.push('/editcardm');
         }
     },
-
+    data(){
+        return{
+            place_description:"",
+            itineraries_list_filtered: [],
+            full_itineraries_filtered: []
+        }
+    },
     setup() {
         return {
             slide: ref(1),
-            // autoplay: ref(true)
         };
     },
     components: {
@@ -356,9 +363,7 @@ export default defineComponent ({
     },
     created(){
         var place = this.$route.query.place.trim()
-        console.log("WE ARE AT PLACE", place)
         places(place).then(response =>{
-            console.log(response)
             var resp = JSON.parse(response.data.data)[0]["fields"]
             var place_dictionary = {
                 "name": resp["name"],
@@ -368,14 +373,40 @@ export default defineComponent ({
                 "places_one_liner": resp["one_liner"],
                 "description": resp["description"].split("$$$")
             }
+            this.place_description = place_dictionary
+        });
+        load_place_itinerary_data(place).then(response =>{
+            
+            var itineraries_list = []
+            var full_itineraries = []
+            for(var i=0;i<JSON.parse(response.data.data).length;i++){
 
-            this.$store.commit('place_description_update', place_dictionary)  
-            console.log(this.$store.state.place_description)          
-    });
-    }
+                var items = JSON.parse(response.data.data)[i]["fields"];
+                full_itineraries[JSON.parse(response.data.data)[i].pk] = items;
+                itineraries_list[JSON.parse(response.data.data)[i].pk] = {
+                    "itinerary_name":items.itinerary_name,
+                    "place_description":items.place_description.replaceAll("<ol><li>","").replaceAll("</li></ol>","").split("</li><li>"),
+                    "place_img":items.place_img,
+                    "inclusions":items.inclusions.replaceAll("<ol><li>","").replaceAll("</li></ol>","").split("</li><li>"),
+                    "exclusions":items.exclusions.replaceAll("<ol><li>","").replaceAll("</li></ol>","").split("</li><li>"),
+                    "tour_rates":items.tour_rates
+                }
+            }
+            var itineraries_list_filtered = itineraries_list.filter(function (el) {
+                    return el != null;
+            });
+            var full_itineraries_filtered = full_itineraries.filter(function (el) {
+                    return el != null;
+            });
+
+            this.itineraries_list_filtered = itineraries_list_filtered;
+            this.full_itineraries_update = full_itineraries_filtered;
+        });
+    },
 })
 
 </script>
+
 <style lang="scss">
     
 .faq_card{

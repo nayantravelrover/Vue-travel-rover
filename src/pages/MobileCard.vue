@@ -1,8 +1,8 @@
 <template>
     <div class="lt-md">
         <div class="container60">
-            <text class="text60">{{this.$store.state.place_description['name']}}</text>
-            <text class="text61">{{this.$store.state.place_description['places_one_liner']}}y</text>
+            <text class="text60">asdas</text>
+            <text class="text61">asd</text>
         </div>
     </div>
 </template>

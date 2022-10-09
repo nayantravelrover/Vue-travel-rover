@@ -2,6 +2,7 @@
   <div class="row">
   <q-scroll-area class="col-6 q-pa-md" style="height: 100vh;">
   <div >
+    <!-------- CONVERT PLACE NAME TO DROPDOWN ----->
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Name</div>
     <q-input class="q-ma-sm row" outlined v-model="place_name" label="Place Name"/>
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Description</div>
