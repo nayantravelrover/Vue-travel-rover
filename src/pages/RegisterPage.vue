@@ -148,9 +148,6 @@ export default {
                     message: 'Please enter a valid password'
                 })
             } else{
-                console.log(this.login.username);
-                console.log(this.login.password);
-                console.log(this.login.name)
                 create_user(this.login)
             }
         }

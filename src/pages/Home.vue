@@ -46,8 +46,9 @@
         </div>
       </div>
       <div class="row items-center justify-between" style="width: 1000px">
-        <div class="left-section col-md-5 q-pa-md-lg-xl">
-          <h2>travel tour over the world</h2>
+        <div class="left-section col-md-7 q-pa-md-lg-xl">
+          <h2><b>{{basic_data["header_content"]}}</b></h2>
+          <h4>{{basic_data["intro_content"]}}</h4>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" />
         </div>
@@ -63,18 +64,16 @@
         <h5 class="text-center">Top 5 Destinations</h5>
       </div>
       <Carousel :itemsToShow="isMobile?2: 5">
-        <Slide v-for="slide in 10" :key="slide">
-          <div class="carousel__item-1" style="margin-top: 0px;">
+        <Slide v-for="items,index in basic_data['explore_destination_images']" :key="items">
+          <div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(index)">
+            
             <q-card class="destination-carousel-card" >
-              <img v-if="slide % 2 == 0"
-                src="https://images.unsplash.com/photo-1597459904558-4d0770ba4f54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlJTIwcG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80" />
-              <img v-else
-                src="../assets/Goa.jpg"/>
-
+              <img :src=items />
+              
               <q-card-section>
                 <div class="row no-wrap justify-between">
-                  <div class="col-md-3 text-black text-caption text-weight-fat bold">
-                    Goa
+                  <div class="col-md-6 text-black text-caption text-weight-fat bold">
+                    {{basic_data["explore_destination"][index]}}
                   </div>
                   <div class="col-md-3 text-black text-caption row no-wrap items-center">
                     <q-icon name="visibility" />
@@ -97,57 +96,28 @@
       </div>
       <div class="row justify-center section-3">
         <div class="col-md-5">
-          <h3 class="mobile-main-heading" style="margin-left: 25px;">Why Choose Us</h3>
-          <p>
-           {{data.why_choose_us_header}}
-          </p>
+          <h3 style="margin-left: 25px;">Why Choose Us</h3>
+          <h4 style="margin-left: 25px;">{{basic_data["why_choose_us_header"]}}</h4>
           <div class="q-pa-md" style="max-width: 350px">
-            <q-list>
+
+            <q-list v-for="items,index in basic_data['headers_of_why_choose_us']" :key="items">
               <q-item clickable v-ripple>
                 <q-item-section avatar>
-                  <q-avatar rounded color="orange" text-color="white" icon="home" />
+                  <q-avatar rounded :color="svgs_color[index]" text-color="white" :icon="basic_data['svgs_of_why_choose_us'][index]" />
                 </q-item-section>
 
                 <q-item-section>
-                  <q-item-label>Trips & Travel</q-item-label>
-                  <q-item-label caption>{{header_content}}
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-avatar rounded color="light-green" text-color="white" icon="group" />
-                </q-item-section>
-
-                <q-item-section>Sales
-                  <q-item-label caption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-avatar rounded color="brown" text-color="white" icon="dashboard" />
-                </q-item-section>
-
-                <q-item-section>Finance
-                  <q-item-label caption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-avatar rounded color="blue" text-color="white" icon="security" />
-                </q-item-section>
-
-                <q-item-section>Insurance
-                  <q-item-label caption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
+                  <q-item-label>{{items}}</q-item-label>
+                  <q-item-label caption>{{basic_data['content_of_why_choose_us'][index]}}
                   </q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
+
+
+
+
+           
           </div>
         </div>
         <div class="col-md-5 items-center self-center">
@@ -232,87 +202,6 @@
           </div>
         </Slide>
       </Carousel>
-
-        <!-- <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-          control-color="grey" padding arrows height="" class="bg-grey-1 carousel">
-          <q-carousel-slide :name="1" class="column">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card v-for="n in 5" :key="n" class="explore-destinations rounded-borders col-3 full-height">
-                <img class="exploreImage" src="https://cdn.quasar.dev/img/mountains.jpg" />
-
-                <div style="display:flex">
-                  <div class="text-h6">Kullu</div>
-                </div>
-
-                <div style="text-align:left" class="q-pt-none">
-                  <div>
-
-                    Lorem ipsum dolor sit amet, con turadip dolor sit amet.
-                  </div>
-                </div>
-                <q-card-actions>
-                  <button color="primary" class="card-see-more"> See more </button>
-                </q-card-actions>
-              </q-card>
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="2" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card v-for="n in 4" :key="n" class="rounded-borders col-3 full-height">
-                <img class="exploreImage" src="https://cdn.quasar.dev/img/mountains.jpg" />
-
-                <q-card-section>
-                  <div class="text-h6">Kullu</div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                  Lorem ipsum dolor sit amet, con turadip dolor sit amet.
-                </q-card-section>
-                <q-card-actions>
-                  <q-btn color="primary"> See more </q-btn>
-                </q-card-actions>
-              </q-card>
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="3" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card v-for="n in 4" :key="n" class="rounded-borders col-3 full-height">
-                <img class="exploreImage" src="https://cdn.quasar.dev/img/mountains.jpg" />
-
-                <q-card-section>
-                  <div class="text-h6">Kullu</div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                  Lorem ipsum dolor sit amet, con turadip dolor sit amet.
-                </q-card-section>
-                <q-card-actions>
-                  <q-btn color="primary"> See more </q-btn>
-                </q-card-actions>
-              </q-card>
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide :name="4" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card v-for="n in 4" :key="n" class="rounded-borders col-3 full-height">
-                <img class="exploreImage" src="https://cdn.quasar.dev/img/mountains.jpg" />
-
-                <q-card-section>
-                  <div class="text-h6">Kullu</div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                  Lorem ipsum dolor sit amet, con turadip dolor sit amet.
-                </q-card-section>
-                <q-card-actions>
-                  <q-btn color="primary"> See more </q-btn>
-                </q-card-actions>
-              </q-card>
-            </div>
-          </q-carousel-slide>
-        </q-carousel> -->
-    <!-- </div> -->
-    <!-- latest tour -->
     <div class="row q-pa-lg gt-sm justify-around">
       <div class="col-md-5 col-sm-12">
         <div>
@@ -431,63 +320,9 @@
                   We need to understand the shirt
                 </q-card-section>
               </q-card>
-        
-        
-        
-        
-        
             </div>
           </q-carousel-slide>
-        
-        
-        
         </q-carousel>
-
-
-        <!--<q-card class="my-card">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-        <q-card class="my-card">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>
-
-        <q-card class="my-card">
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
-
-        <q-card-section>
-        <div class="text-h6">Our Changing Planet</div>
-        <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-        We need to understand the shirt
-        </q-card-section>
-        </q-card>-->
-
-
-
-
-
-
     </div>
 
 
@@ -625,6 +460,7 @@ import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig} from "src/common/api_calls";
 import MainHomeVue from "./MainHome.vue";
+import DestinationPage from "./DestinationPage.vue";
 
 export default defineComponent({
   name: "IndexPage",
@@ -632,12 +468,7 @@ export default defineComponent({
     Carousel,
     Slide,
     MobileHeader,
-},
-methods:{
-  goToDestination(){
-    this.$router.push('/src/pages/DestinationPage.vue')
-  }
-},
+  },
   props: {
     isMobile: Boolean
   },
@@ -660,16 +491,17 @@ methods:{
         {id: 14, expand: false},
         {id: 15, expand: false},
       ],
-      header_content: ''
+      header_content: '',
+      basic_data: {},
+      svgs_color:["orange","light-green","brown","purple"]
     }
   },
-  methods(){
-    function fetchData() {
-      loading.value = true;
-      basicconfig().then((res) => {
-        data.value = JSON.parse(res.data)[0].fields
-        this.header_content = JSON.parse(res.data)[0].fields.header_content
-        return JSON.parse(res.data)[0].fields
+  methods:{
+    go_to_images(item){
+      this.$router.push({
+        path: '/destination/',
+        name:'DestinationPage',
+        query: { place: this.basic_data["explore_destination"][item] }
       })
     }
   },
@@ -678,12 +510,6 @@ methods:{
     const loading = ref(true);
     const error = ref(null);
     const myCarousel = ref(null);
-    console.log(myCarousel);
-
-
-    onMounted(() => {
-
-    });
     return {
       data,
       loading,
@@ -693,15 +519,17 @@ methods:{
     };
   },
   created() {
+    basicconfig().then(response =>{
+      this.basic_data = JSON.parse(response.data.data)[0]["fields"]
+      this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
+      this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
+      this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
+      this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
+      this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
 
-     basicconfig().then((res) => {
-        // console.log(JSON.parse(res.data)[0].fields, "res")
-        // data.value = JSON.parse(res.data)[0].fields
-        console.log("data value", JSON.parse(res.data)[0].fields)
-        console.log()
-        this.header_content = JSON.parse(res.data)[0].fields.header_content
-        return JSON.parse(res.data)[0].fields
-      })
+      console.log(this.basic_data)
+    });
+    console.log("HERE");
   }
 });
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div class="">
-    <div class=" q-ma-sm " style="font-size: large">{{heading}}</div>
-    <q-editor class="" v-model="property_content_store" min-height="5rem" />
+    <div class="q-ma-sm " style="font-size: large">{{heading}}</div>
+    <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['ordered']]" />
     <q-uploader
         color="grey"
         url="http://admin.travelrover.in/travel-rover/api-files/"
@@ -32,6 +32,7 @@ export default {
       set: function (val){
         var content_update = this.property_key + '_update'
         this.$store.commit(content_update, val)
+        console.log(this.$store.state)
       }
     },
     property_file_store :{

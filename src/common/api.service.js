@@ -1,23 +1,36 @@
 import { CSRF_TOKEN } from './csrf_token.js'
 import {LocalStorage, SessionStorage} from 'quasar'
+import { defineAsyncComponent } from 'vue'
 
 function getAPIService(endpoint, headers, data){
-  var axios = require('axios')
-  var config = {
-    method: "GET",
-    url: endpoint,
-    params: data,
-    headers:headers
-  }
-  return axios(config)
-    .then(function(response){
-      let resp = response;
-      console.log(resp);
-      return resp;
-    })
-}
+  var axios = require('axios');
 
-import { defineAsyncComponent } from 'vue'
+  var config = {
+    method: 'get',
+    url: endpoint,
+    headers: { 
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return new Promise(function (resolve, reject) {
+        console.log("LOLOL")
+        console.log(config)
+        axios(config).then(
+            (response) => {
+                console.log("Here")
+                var result = response;
+                result["config"] = config
+                console.log('Processing Request');
+                resolve(result);
+            },
+                (error) => {
+                console.log("Inside Error")
+                reject(error);
+            }
+        );
+    });
+}
 
 function postAPIService(endpoint, headers, data){
   var axios = require('axios');

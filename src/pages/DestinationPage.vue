@@ -5,41 +5,21 @@
         <div>
             <q-carousel class="goaslide q-pa full-screen" animated v-model="slide" navigation
                     infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
-                    @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-                    <q-carousel-slide :name="1" img-src="../assets/Goa.jpg">
+                    @mouseenter="autoplay = false" @mouseleave="autoplay = true" >
+                    
+                    <q-carousel-slide v-for="items,index in this.$store.state.place_description['images']" :key="index" :name="index" :img-src=items>
                         <AppBar/>
                         <MobileCard/>
                     </q-carousel-slide>
-                    <q-carousel-slide :name="2" img-src="../assets/Goa/goa1.jpg">
-                        <AppBar />
-                        <MobileCard />
-                    </q-carousel-slide>
-                    <q-carousel-slide :name="3" img-src="../assets/Goa/goa2.jpg">
-                        <AppBar />
-                        <MobileCard />
-                    </q-carousel-slide>
-                    <q-carousel-slide :name="4" img-src="../assets/Goa/goa3.jpg">
-                        <AppBar />
-                        <MobileCard />
-                    </q-carousel-slide>
-                    <q-carousel-slide :name="5" img-src="../assets/Goa/goa4.jpg">
-                        <AppBar />
-                        <MobileCard />
-                    </q-carousel-slide>
+
             </q-carousel>
         </div>
         <div class="description q-pa-md full-width">
             <div class="about full-width" style="margin-bottom: 30px;">
                 <div style="margin-left: 5px;">
-                    <text class="text10">Goa travel guide</text>
+                    <text class="text10">{{this.$store.state.place_description["name"]}} travel guide</text>
                     <div class="" style="margin-top: 12px;">
-                    <text class="text11">A relaxing journey to Goa will enable you to appreciate the splendour of southern India. You may arrange a low-cost trip
-                    to India's stunning backwater state with Travel Rover. As Goa is here to rejuvenate you, calm your inner mind. Goa is
-                    situated in the southernmost portion of India, close to the Arabian Sea coast. <span class="moreText"> Keralites have a lovely way of living
-                    that is separate from the bustling and busy everyday routine. Travelers from all over the world have been drawn to it by
-                    its dramatic tropical landscape and sporadic rains. Get ready to be padding onboard for one of the best adventures in a
-                    long time as we depart from the beaches, temples, cultural performances, and boathouses!
-                    </span>
+                    <text class="text11">{{this.$store.state.place_description["description"][0]}}
                     </text>
                     </div>
               <!--  <div>
@@ -62,7 +42,8 @@
                     control-color="primary"
                     navigation
                     padding
-                    arrows>
+                    arrows >
+
                 <q-carousel-slide :name="1">
                 <q-card class="iternarybox">
                     <q-img src="../assets/Goa/goa3.jpg" style="height: 200px;"/>
@@ -318,19 +299,14 @@
                     <q-btn class="btn12" unelevated rounded color="primary" @click="openDialogBox()"><text style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text></q-btn>
                 </div>
                 <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
-                    <text class="text10" >FAQ about Goa</text>
-                    <div style="margin-top: 10px;">
-                        <text class="number">01</text>
-                        <text class="questions" style="margin-left: 10px;">When is the best time to visit Goa?</text>
+                    <text class="text10" >FAQ about {{this.$store.state.place_description["name"]}}</text>
+                    <br>
+                    <div style="margin-top: 10px;"  v-for="items,index in this.$store.state.place_description['faqs_question']" :key="index">
+                        <text class="number">{{index + 1}}</text>
+                        <text class="questions" style="margin-left: 10px;">{{items}}</text>
                         <div style="margin-left: 35px; margin-top: 10px;">
                             <text class="answers">
-                                The best time to visit Goa is between October and February when the weather is perfect for sightseeing. The
-                                monsoon
-                                season between June and September is also a good time to visit and enjoy the natural beauty and Ayurveda
-                                therapies. In
-                                the summer season, it can be difficult to plan a trip to Goa because of high temperature and humidity.
-                                However, hill
-                                stations like Munnar can still be visited in the state.
+                                {{this.$store.state.place_description['faqs_answer'][index]}}
                             </text>
                         </div>
                     </div>
@@ -345,16 +321,15 @@
     </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
 import FooterPage from './FooterPage.vue'
 import MainHome from './MainHome.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
 import MobileCard from './MobileCard.vue';
+import {places} from "src/common/api_calls";
 
-
-
-export default {
+export default defineComponent ({
     name: "DestinationPage",
     methods: {
         openDialogBox(){
@@ -365,17 +340,37 @@ export default {
     setup() {
         return {
             slide: ref(1),
-            autoplay: ref(true)
+            // autoplay: ref(true)
         };
     },
     components: {
-    FooterPage,
-    MainHome,
-    ComparisonTable,
-    AppBar,
-    MobileCard
-}
-}
+        FooterPage,
+        MainHome,
+        ComparisonTable,
+        AppBar,
+        MobileCard
+    },
+    created(){
+        var place = this.$route.query.place.trim()
+        console.log("WE ARE AT PLACE", place)
+        places(place).then(response =>{
+            console.log(response)
+            var resp = JSON.parse(response.data.data)[0]["fields"]
+            var place_dictionary = {
+                "name": resp["name"],
+                "faqs_question": resp["faqs"].split("$$$"),
+                "faqs_answer": resp["faqs_answer"].split("$$$"),
+                "images": resp["images"].split("$$$"),
+                "places_one_liner": resp["one_liner"],
+                "description": resp["description"].split("$$$")
+            }
+
+            this.$store.commit('place_description_update', place_dictionary)  
+            console.log(this.$store.state.place_description)          
+    });
+    }
+})
+
 </script>
 <style lang="scss">
     

@@ -5,7 +5,9 @@
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Name</div>
     <q-input class="q-ma-sm row" outlined v-model="place_name" label="Place Name"/>
     <div class="text-bold q-ma-sm row" style="font-size: large">Place Description</div>
-    <q-input class="q-ma-sm row" outlined v-model="place_description" label="Place Description"/>
+    <!-- <q-input class="q-ma-sm row" outlined v-model="place_description" label="Place Description"/> -->
+
+    <PicturedWYISG property_key="place_description" heading="Place Description"></PicturedWYISG>
     <div class="q-pa-sm row">
       <q-uploader
         color="grey"
@@ -68,6 +70,9 @@
      <PicturedWYISG property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
      <PicturedWYISG property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
 
+     <q-btn  class="row" @click="save_itinerary()">Add day</q-btn>
+
+
 <!--    </div>-->
   </div>
     </div>
@@ -84,6 +89,8 @@
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
+import { save_itinerary_api } from "src/common/api_calls";
+
 
 export default {
   name: "Itinary-Builder",
@@ -102,8 +109,11 @@ export default {
         console.log("add days called")
         this.$store.commit('day_add', 1)
         console.log(this.$store.state.itinerary_preview.days)
-
       },
+      save_itinerary: function(){
+        console.log(this.$store.state.itinerary_preview)
+        save_itinerary_api(this.$store.state.itinerary_preview)
+      },      
     onSelectFile() {
       const input = this.$refs.fileInput;
       const files = input.files;
