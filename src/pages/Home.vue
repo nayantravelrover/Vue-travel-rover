@@ -502,7 +502,7 @@
         <div class="q-pa-md">
           <div class="subscribe-container">
 
-            <span class="subscribe-description">Subscribe to get information, latest news and other
+            <span class="subscribe-description q-pa-md">Subscribe to get information, latest news and other
               interesting offers about Travel Rover</span>
           </div>
           <div class="q-gutter-md row justify-center subscribe-inputs">
@@ -782,7 +782,7 @@ html,body{
   font-family: Poppins;
   font-size: 33px;
   font-weight: 600;
-  line-height: 54px;
+  line-height: 50px;
   letter-spacing: 0em;
   text-align: center;
   color: #5E6282;

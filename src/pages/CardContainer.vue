@@ -1,6 +1,6 @@
 <template>
     <div class="gt-xs">
-        <div class="container40">
+        <div class="container40 q-pa-md absolute-center">
             <text class="text50">Goa</text>
             <text class="text51">God's Own Country</text>
         </div>
@@ -60,8 +60,8 @@
             position: absolute;
             width: 511px;
             height: 222px;
-            left: 465px;
-            top: 300px;
+            
+            top: 375px;
         
             background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
