@@ -1,11 +1,10 @@
 <template>
 <div class="">
-    <div class="q-ma-sm " style="font-size: large">{{heading}}</div>
+    <div class="q-ma-sm sectionheading ">{{heading}}</div>
     <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['ordered']]" />
     <q-uploader
-        color="grey"
-        url="http://admin.travelrover.in/travel-rover/api-files/"
         style=""
+        url="http://admin.travelrover.in/travel-rover/api-files/"
         auto-upload
         label="Add image if any"
         field-name="file"
@@ -55,5 +54,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .sectionheading{
+    color: #4B5563;
+    font-size: large;
+    font-weight: bold;
+  }
 </style>

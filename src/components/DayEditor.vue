@@ -1,10 +1,9 @@
 <template>
 <div>
 <!--  TODO add v-model-->
-  <div class="row text-bold q-ma-sm" style="font-size: large">Day {{day_index+1}}</div>
+  <div class=" text-bold sectionheading" style="font-size: large">Day {{day_index+1}}</div>
     <q-editor
        v-model="day_content_store"
-      :dense="$q.screen.lt.md"
       :toolbar="[['bold', 'italic'],['ordered']]"
     />
     <q-uploader
@@ -48,9 +47,7 @@ export default {
       },
       set: function (val){
         var day_index = this.day_index
-        console.log(day_index)
         var day_content_indexed = {index_day: day_index, value: val}
-        console.log(day_content_indexed)
         this.$store.commit('day_content_update', day_content_indexed)
       }
     }
@@ -59,5 +56,13 @@ export default {
 </script>
 
 <style scoped>
+.sectionheading{
+    color: #4B5563;
+    font-size: large;
+    font-weight: bold;
+  }
+body {
+  font-family: SansSerif;
+}
 
 </style>

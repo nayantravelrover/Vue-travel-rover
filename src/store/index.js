@@ -1,5 +1,6 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import {ref} from "vue";
 // import example from './module-example'
 
 
@@ -49,15 +50,22 @@ export default store(function (/* { ssrContext } */) {
         cancellations_policy:"Naggar",
         things_to_carry:"Naggar",
         tour_rates:"Naggar",
-        places_to_visit_img:"Naggar",
-        accomodation_arrangements_img:"Naggar",
-        travel_arrangements_img:"Naggar",
-        inclusions_img:"Naggar",
-        exclusions_img:"Naggar",
-        terms_and_conditions_img:"Naggar",
-        cancellations_policy_img:"Naggar",
-        things_to_carry_img:"Naggar",
-        tour_rates_img:"Naggar",
+        places_to_visit_img:'download.jpeg',
+        accomodation_arrangements_img:'download.jpeg',
+        travel_arrangements_img:'download.jpeg',
+        inclusions_img:'download.jpeg',
+        exclusions_img:'download.jpeg',
+        terms_and_conditions_img:'download.jpeg',
+        cancellations_policy_img:'download.jpeg',
+        things_to_carry_img:"download.jpeg",
+        tour_rates_img:'download.jpeg',
+        start_date: ref('2019/02/01'),
+        // images_extra:["Naggar"],
+        // extra_information:"Naggar",
+        // sections:[{
+        //   title:"hotels",
+        //   content:"These are hotels"
+        // }]
       },
     },
     mutations:{
@@ -149,8 +157,8 @@ export default store(function (/* { ssrContext } */) {
       },
       day_add(state, val){
         state.itinerary_preview.days.push({description: "", images: []})
-      },
 
+      }
     },
     actions:{
 

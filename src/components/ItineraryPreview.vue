@@ -1,56 +1,45 @@
 <template>
-  <q-btn  icon="print" @click="print()"></q-btn>
   <div id="preview" class="column bg-white">
-    <q-img class="" :src="itinarary_data.place_img">
-      <div class="absolute-full text-subtitle2 flex flex-center" >
-       <span style="font-size: x-large">{{itinarary_data.place_name}}</span>
-        <br>{{itinarary_data.place_description}}
+    <q-img class="row" :src="itinarary_data.place_img">
+      <div class="column absolute-full flex flex-center text-subtitle2" >
+        <img class="q-pa-md top-left" src="../assets/logo.svg" />
+        <div class="row" style="font-size: x-large; color: white">{{itinarary_data.place_name}}</div>
+        <div class="row" style="color: white">{{itinarary_data.place_description}}</div>
       </div>
     </q-img>
-    <div class="text-bold q-ma-sm row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
+    <div class="text-bold q-pa-md row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" class ="row">
-      <div class="col-8">
-        <p class="text-bold q-pa-md">Day {{index+1}}</p>
-        <p class=" q-pa-md" v-html="day.description"></p>
-      </div>
-      <div class="col-4 q-pa-md">
-        <q-img :src="day.images[0]" class="q-ma-md"></q-img>
-      </div>
+      <DayPreview :day="day" :day_index="index"></DayPreview>
     </div>
-    <div class="text-bold row q-ma-sm">Places to visit</div>
-    <div class="q-ma-sm" v-html="itinarary_data.places_to_visit"></div>
-    <div class="text-bold row q-ma-sm">Accomodation Arrangements</div>
-    <div class="q-ma-sm" v-html="itinarary_data.accomodation_arrangements"></div>
-
-    <div class="text-bold row q-ma-sm">Travel Arrangements</div>
-    <div class="q-ma-sm" v-html="itinarary_data.travel_arrangements"></div>
-
-    <div class="text-bold row q-ma-sm">Inclusions</div>
-    <div class="q-ma-sm" v-html="itinarary_data.inclusions"></div>
-
-    <div class="text-bold row q-ma-sm">Exclusions</div>
-    <div class="q-ma-sm" v-html="itinarary_data.exclusions"></div>
-
-    <div class="text-bold row q-ma-sm">Terms and Conditions</div>
-    <div class="q-ma-sm" v-html="itinarary_data.terms_and_conditions"></div>
-
-    <div class="text-bold row q-ma-sm">Cancellations Policy</div>
-    <div class="q-ma-sm" v-html="itinarary_data.cancellations_policy"></div>
-
-    <div class="text-bold row q-ma-sm">Things to Carry</div>
-    <div class="q-ma-sm" v-html="itinarary_data.things_to_carry"></div>
+    <ItineraryContentPreview :image="itinarary_data.places_to_visit_img" :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.accomodation_arrangements_img" :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.travel_arrangements_img"  :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.inclusions_img" :content="itinarary_data.inclusions" label="Inclusions"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.exclusions_img" :content="itinarary_data.exclusions" label="Exclusions"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.terms_and_conditions_img" :content="itinarary_data.terms_and_conditions" label="Terms and Conditions"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.cancellations_policy_img" :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview>
+    <ItineraryContentPreview :image="itinarary_data.things_to_carry_img" :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
 </div>
 </template>
 
 
 <script>
+import {save_itinerary_api} from "src/common/api_calls";
+import DayPreview from "components/DayPreview";
+import ItineraryContentPreview from "components/ItineraryContentPreview";
+
 export default {
   name: "ItineraryPreview",
+  components: {ItineraryContentPreview, DayPreview},
   methods: {
     print () {
       // Pass the element id here
       this.d.print('#preview')
-    }
+    },
+    save_itinerary: function(){
+        console.log(this.$store.state.itinerary_preview)
+        save_itinerary_api(this.$store.state.itinerary_preview)
+      },
   },
   mounted() {
   },
@@ -65,5 +54,8 @@ export default {
 </script>
 
 <style scoped>
-
+div{
+  font-family: "Helvetica Neue";
+   color: #4B5563;
+  }
 </style>
