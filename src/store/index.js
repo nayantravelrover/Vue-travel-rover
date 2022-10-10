@@ -59,9 +59,6 @@ export default store(function (/* { ssrContext } */) {
         things_to_carry_img:"Naggar",
         tour_rates_img:"Naggar",
       },
-      place_description: {},
-      itineraries_list: [],
-      full_itineraries: [],
     },
     mutations:{
       place_name_update(state,place_name) {
@@ -153,15 +150,6 @@ export default store(function (/* { ssrContext } */) {
       day_add(state, val){
         state.itinerary_preview.days.push({description: "", images: []})
       },
-      place_description_update(state,val){
-        state.place_description = val
-      },
-      itineraries_list_update(state,val){
-        state.itineraries_list = val
-      },
-      full_itineraries_update(state,val){
-        state.full_itineraries = val
-      }
 
     },
     actions:{

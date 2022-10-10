@@ -2,7 +2,7 @@
     <div>
         <div>
             <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
-                transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
+                transition-next="slide-left">
                     <q-carousel-slide  v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                         <transparent-bar/>
                     <div class="gt-xs">
@@ -30,12 +30,11 @@
         <div class="full-width" style="margin-left: 10px; margin-bottom:20px;">
             <text class="text10" style="margin-left: 65px;">Our top-selling Itineraries</text>
         </div>
-        <q-carousel style="height: 950px;" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
+        <q-carousel style="height: 950px;padding: 90px" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
       swipeable
       animated
       control-color="primary"
       navigation
-      padding
       arrows>
             <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list.length/3)" :key="i" :name="i" class="column no-wrap">
                 <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
@@ -56,7 +55,7 @@
                             {{list_item}}
                         </li>
                     </ul>
-                    <div class="line_break" style="margin-left: 20px; margin-top:30px;"></div>
+                    <div class="line_break" style="margin-left: 10px; margin-top:10px;"></div>
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
 
@@ -93,9 +92,9 @@
             </q-carousel-slide>      
         </q-carousel>
         <div style="margin-left: 100px;">
-            <ComparisonTable :full_itineraries="full_itineraries"/>
+            <ComparisonTable/>
         </div>
-        <div class="q-pa-md column" style="margin-left: 100px;margin-top: 50px; width: 2000px;height: 800px;">
+        <div class="q-pa-md column" style="margin-left: 100px;margin-top: 50px; width: 2000px;height: 400px;">
                 <text class="text-satisfied" style="margin-left: 30px;margin-top: 20px;">Ain’t satisfied with the Top-Selling itinerary.
                     Want to customise your itinerary?
                     <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
@@ -248,7 +247,6 @@ export default {
         return{
             itineraries_list:this.$parent.itineraries_list_filtered,
             place_description:this.$parent.place_description,
-            name_new:"Nayan"
         }
     },
     computed:{
@@ -295,7 +293,7 @@ export default {
         flex-grow: 0;
 }
 .text-satisfied{
-    width: 1488px;
+        width: 1488px;
         height: 23px;
     
         font-family: 'Poppins';

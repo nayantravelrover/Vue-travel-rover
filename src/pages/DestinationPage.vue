@@ -4,8 +4,7 @@
     <div class="lt-md">
         <div>
             <q-carousel class="goaslide q-pa full-screen" animated v-model="slide" navigation
-                    infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left"
-                    @mouseenter="autoplay = false" @mouseleave="autoplay = true" >
+                    infinite :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left">
                     
                     <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                         <AppBar/>
@@ -41,8 +40,7 @@
                     swipeable
                     control-color="primary"
                     navigation
-                    padding
-                    arrows >
+                    arrows>
 
                 <q-carousel-slide :name="1">
                 <q-card class="iternarybox">
@@ -385,7 +383,8 @@ export default defineComponent ({
                     "place_img":items.place_img,
                     "inclusions":items.inclusions.replaceAll("<ol><li>","").replaceAll("</li></ol>","").split("</li><li>"),
                     "exclusions":items.exclusions.replaceAll("<ol><li>","").replaceAll("</li></ol>","").split("</li><li>"),
-                    "tour_rates":items.tour_rates
+                    "tour_rates":items.tour_rates,
+                    "full_itinerary":items
                 }
             }
             var itineraries_list_filtered = itineraries_list.filter(function (el) {
@@ -396,7 +395,7 @@ export default defineComponent ({
             });
 
             this.itineraries_list_filtered = itineraries_list_filtered;
-            this.full_itineraries_update = full_itineraries_filtered;
+            this.full_itineraries_filtered = full_itineraries_filtered;
         });
     },
 })
@@ -635,7 +634,7 @@ width: 200px;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 400;
-            font-size: 9px;
+            font-size: 12px;
             line-height: 22px;
         
             color: #343434;
