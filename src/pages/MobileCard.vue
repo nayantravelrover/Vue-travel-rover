@@ -1,6 +1,6 @@
 <template>
     <div class="lt-md">
-        <div class="container60">
+        <div class="container60 q-pa-md absolute center">
             <text class="text60">{{this.$store.state.place_description['name']}}</text>
             <text class="text61">{{this.$store.state.place_description['places_one_liner']}}y</text>
         </div>

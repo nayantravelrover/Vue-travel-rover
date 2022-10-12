@@ -1,6 +1,6 @@
 <template>
     <div class="gt-xs">
-        <div class="container40">
+        <div class="container40 q-pa-md absolute center">
             <text class="text50">{{this.$store.state.place_description['name']}}</text>
             <text class="text51">{{this.$store.state.place_description['places_one_liner']}}</text>
         </div>
