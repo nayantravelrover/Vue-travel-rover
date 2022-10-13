@@ -519,16 +519,24 @@ export default defineComponent({
     };
   },
   created() {
-    basicconfig().then(response =>{
-      this.basic_data = JSON.parse(response.data.data)[0]["fields"]
-      this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
-      this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
-      this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
-      this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
-      this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
+    // basicconfig().then(response =>{
+    //   this.basic_data = JSON.parse(response.data.data)[0]["fields"]
+    //   this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
+    //   this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
+    //   this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
+    //   this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
+    //   this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
 
-      console.log(this.basic_data)
-    });
+    //   console.log(this.basic_data)
+    // });
+
+    var test_arr = ["ab","bc"]
+    this.basic_data["explore_destination"] = test_arr
+    this.basic_data["explore_destination_images"] = test_arr
+    this.basic_data["headers_of_why_choose_us"] = test_arr
+    this.basic_data["svgs_of_why_choose_us"] = test_arr
+    this.basic_data["content_of_why_choose_us"] = test_arr
+
     console.log("HERE");
   }
 });
