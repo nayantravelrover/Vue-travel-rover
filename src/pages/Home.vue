@@ -473,6 +473,7 @@ export default defineComponent({
     isMobile: Boolean
   },
   data(){
+
     return {
       expanded: [
         {id: 1, expand: false},
@@ -519,18 +520,66 @@ export default defineComponent({
     };
   },
   created() {
-    // basicconfig().then(response =>{
-    //   this.basic_data = JSON.parse(response.data.data)[0]["fields"]
-    //   this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
-    //   this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
-    //   this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
-    //   this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
-    //   this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
 
-    //   console.log(this.basic_data)
-    // });
+    console.log(document.readyState)
+    console.log(this.basic_data)
+    // var axios = require('axios');
 
-    var test_arr = ["ab","bc"]
+    //     var config = {
+    //       method: 'get',
+    //       url: 'http://admin.travelrover.in/travel-rover/basic-config/',
+    //       headers: { 
+    //         'Content-Type': 'application/json'
+    //       }
+    //     };
+
+    //     axios(config)
+    //     .then(function (response) {
+    //       console.log(this.header_content)
+    //       console.log(this.basic_data)
+    //       this.basic_data = JSON.parse(response.data.data)[0]["fields"]
+          
+    //       this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
+    //           this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
+    //     this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
+    //     this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
+    //     this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
+    //     this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
+    //       console.log(this.basic_data)
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+
+    document.onreadystatechange = () => {
+      console.log("HEREE")
+      if (document.readyState === 'complete') {
+        console.log("document ready state complete")
+
+
+        var test_arr = ["ab","bc"]
+    this.basic_data["explore_destination"] = test_arr
+    this.basic_data["explore_destination_images"] = test_arr
+    this.basic_data["headers_of_why_choose_us"] = test_arr
+    this.basic_data["svgs_of_why_choose_us"] = test_arr
+    this.basic_data["content_of_why_choose_us"] = test_arr
+
+        basicconfig().then(response =>{
+        this.basic_data = JSON.parse(response.data.data)[0]["fields"]
+        this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
+        this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
+        this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
+        this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
+        this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
+
+        console.log(this.basic_data)
+    });
+    }
+  }
+
+    // console.log(document.readyState)
+
+    var test_arr = ["Uttarakhand","Himachal Pradesh"]
     this.basic_data["explore_destination"] = test_arr
     this.basic_data["explore_destination_images"] = test_arr
     this.basic_data["headers_of_why_choose_us"] = test_arr
