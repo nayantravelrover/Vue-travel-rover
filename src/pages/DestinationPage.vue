@@ -238,7 +238,7 @@
                 </q-carousel-slide>
                 <q-carousel-slide :name="5">
                     <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa.jpg" style="height: 200px;" />
+                        <q-img src="../assets/Goa/Goa.jpg" style="height: 200px;" />
                         <div class="heartbox">
                             <q-img src="../assets/Goa/heart.svg" class="heart" />
                         </div>
