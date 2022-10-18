@@ -41,9 +41,9 @@
     <div class="text-bold sectionheading row" >Itinerary Name</div>
     <q-input class=" row" outlined v-model="itinerary_name" />
     <div class="row">
-      <div class="col-6">
+      <div class="col-12">
         <div class=" text-bold row sectionheading" >Start Date</div>
-        <q-input class="row" filled v-model="start_date" mask="date" :rules="['date']">
+        <!-- <q-input class="row" filled v-model="start_date" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -55,9 +55,10 @@
               </q-popup-proxy>
             </q-icon>
           </template>
-        </q-input>
+        </q-input> -->
+        <Datepicker v-model="date" :enableTimePicker="false" multiDates />
       </div>
-      <div class="col-6">
+      <div class="col-12">
         <div class=" text-bold row sectionheading">Number of Days</div>
         <q-input class="row" outlined v-model="text" />
       </div>
@@ -100,15 +101,13 @@ import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
 import { save_itinerary_api } from "src/common/api_calls";
+import { ref } from 'vue'
 
-
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor},
-  setup() {
-    return {
-    }
-  },
+  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker},
   methods: {
       place_file_uploaded: function(info) {
         var file_response = JSON.parse(info.xhr.response).file
@@ -142,6 +141,7 @@ export default {
   data(){
     return {
       imageData: null,
+      date: null,
     }
   },
   computed:{
@@ -217,5 +217,8 @@ export default {
   }
   div{
     font-family: "Helvetica Neue";
+  }
+  .dp__button{
+    display: none;
   }
 </style>

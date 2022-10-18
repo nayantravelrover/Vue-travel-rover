@@ -25,20 +25,20 @@ export default store(function (/* { ssrContext } */) {
         itinerary_name:"This is my itinerary",
         days: [
             {
-              description:"I am nayan jain",
-              images: ['download.jpeg']
+              description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+              images: 'download.jpeg'
             },
             {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              images:['download.jpeg']
+              images:'download.jpeg'
             },
             {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              images:['download.jpeg']
+              images:'download.jpeg'
             },
             {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              images:['download.jpeg']
+              images:'download.jpeg'
             },
         ],
         places_to_visit:"Naggar",
@@ -50,16 +50,17 @@ export default store(function (/* { ssrContext } */) {
         cancellations_policy:"Naggar",
         things_to_carry:"Naggar",
         tour_rates:"Naggar",
-        places_to_visit_img:'download.jpeg',
-        accomodation_arrangements_img:'download.jpeg',
-        travel_arrangements_img:'download.jpeg',
-        inclusions_img:'download.jpeg',
-        exclusions_img:'download.jpeg',
-        terms_and_conditions_img:'download.jpeg',
-        cancellations_policy_img:'download.jpeg',
-        things_to_carry_img:"download.jpeg",
-        tour_rates_img:'download.jpeg',
         start_date: ref('2019/02/01'),
+        // places_to_visit_img:'download.jpeg',
+        // accomodation_arrangements_img:'download.jpeg',
+        // travel_arrangements_img:'download.jpeg',
+        // inclusions_img:'download.jpeg',
+        // exclusions_img:'download.jpeg',
+        // terms_and_conditions_img:'download.jpeg',
+        // cancellations_policy_img:'download.jpeg',
+        // things_to_carry_img:"download.jpeg",
+        // tour_rates_img:'download.jpeg',
+        
         // images_extra:["Naggar"],
         // extra_information:"Naggar",
         // sections:[{

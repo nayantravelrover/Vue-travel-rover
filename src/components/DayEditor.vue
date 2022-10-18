@@ -38,6 +38,7 @@ export default {
         var day_content_indexed = {index_day: day_index , value: file_response}
         console.log(day_content_indexed)
         this.$store.commit('day_img_update', day_content_indexed)
+        console.log(this.$store)
       }
   },
   computed:{

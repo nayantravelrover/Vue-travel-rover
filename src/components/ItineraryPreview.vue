@@ -8,17 +8,20 @@
       </div>
     </q-img>
     <div class="text-bold q-pa-md row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
-    <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" class ="row">
+    <div v-for="(day, index) in itinarary_data.days" v-bind:key="index">
       <DayPreview :day="day" :day_index="index"></DayPreview>
+      <br>
+      <br>
     </div>
-    <ItineraryContentPreview :image="itinarary_data.places_to_visit_img" :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.accomodation_arrangements_img" :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.travel_arrangements_img"  :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.inclusions_img" :content="itinarary_data.inclusions" label="Inclusions"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.exclusions_img" :content="itinarary_data.exclusions" label="Exclusions"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.terms_and_conditions_img" :content="itinarary_data.terms_and_conditions" label="Terms and Conditions"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.cancellations_policy_img" :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview>
-    <ItineraryContentPreview :image="itinarary_data.things_to_carry_img" :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.inclusions" label="Inclusions"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.exclusions" label="Exclusions"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.terms_and_conditions" label="Terms and Conditions"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview>
 </div>
 </template>
 
