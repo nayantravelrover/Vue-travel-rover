@@ -1,7 +1,7 @@
 <template>
     <div>
         <q-toolbar>
-            <q-btn v-if="$q.platform.is.mobile" flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" style="color: black;" />
+            <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" style="color: black;" />
             
             <q-toolbar-title class="q-pa-md row item-center">
                 <img src="../assets/logo.svg" />

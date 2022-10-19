@@ -2,17 +2,18 @@
     <div>
         <div class="q-pa-md">
             <AppBar/>
-            <div class="col-12" style="margin-top: 50px;">
+            <div class="col-6" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">Liked Itineraries</text>
-                <q-card class="new3 row">
+                <q-list class="new3 row">
                     <div>tanay</div>
-                    <q-separator style="background: #E6E7EA;" />
+                    <q-separator class="line10"/>
                     <div>efhw</div>
-                    <q-separator style="background: #E6E7EA;" />
+                    <q-separator class="line10" />
                     <div>hgdhwe</div>
-                    <q-separator style="background: #E6E7EA;" />
+                    <q-separator class="line10" />
                     <div>dhedjh</div>
-                </q-card>
+                    <q-separator class="line10" />
+                </q-list>
             </div>
         </div>
     </div>
@@ -30,6 +31,15 @@ export default defineComponent({
 }) 
 </script>
 <style>
+.line10{
+    background: #E6E7EA;
+    
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+}
 .new3{
     box-sizing: border-box;
     
@@ -41,7 +51,7 @@ export default defineComponent({
         gap: 20px;
     
         width: auto;
-        height: auto;
+        height: 600px;
         top: 10px;
         overflow-y: scroll;
     
