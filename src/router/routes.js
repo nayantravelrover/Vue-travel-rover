@@ -14,6 +14,9 @@ const routes = [
   { path: '/profilepage', component: () => import('pages/ProfilePage.vue') },
   { path: '/likeditinerary', component: () => import('pages/LikedItinerary.vue') },
   { path: '/vieweditinerary', component: () => import('pages/ViewedItinerary.vue') },
+  { path: '/topsellingitineraries', component: () => import('pages/TopSellingItineraries.vue') },
+  { path: '/carouselcomponent', component: () => import('pages/CarouselComponent.vue') },
+  { path: '/itinerarybuilder', component: () => import('pages/ItineraryBuilder.vue') },
   {
     path: '/',
     redirect: "/home",

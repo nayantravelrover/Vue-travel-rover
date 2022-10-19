@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </q-card>
-            <q-card class="liked new3 row">
+           <!-- <q-card class="liked new3 row">
                 <div>tanay</div>
                 <q-separator style="background: #E6E7EA;" />
                 <div>efhw</div>
@@ -111,7 +111,7 @@
                 <div>hgdhwe</div>
                 <q-separator style="background: #E6E7EA;" />
                 <div>dhedjh</div>
-            </q-card>
+            </q-card>-->
         </div>
     </div>
 </template>
