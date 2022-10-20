@@ -8,7 +8,8 @@
     />
     <q-uploader
        flat bordered
-        color="grey"
+        color="white"
+       text-color="black"
         url="http://admin.travelrover.in/travel-rover/api-files/"
         style=""
         auto-upload

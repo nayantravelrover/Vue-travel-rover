@@ -18,7 +18,7 @@
         flat
         bordered
         color="white"
-        text-color="grey"
+        text-color="black"
         url="http://admin.travelrover.in/travel-rover/api-files/"
         style=""
         auto-upload
