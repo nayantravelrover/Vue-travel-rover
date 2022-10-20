@@ -1,6 +1,6 @@
 <template>
 <div class="q-pa-md">
-   <div class="text-bold row q-ma-sm" style="">{{label}}</div>
+   <div class="text-bold row q-ma-sm" style="font-size: large">{{label}}</div>
    <div class="q-ma-sm row" v-html="content" style=""></div>
 </div>
 </template>

@@ -92,8 +92,8 @@
    </q-scroll-area>
     <div class="col-6 q-pa-md" style="background-color: #4B5563">
       <div style="background-color: transparent">
-        <q-btn flat  text-color="white" icon="print" @click="generateReport()"></q-btn>
-        <q-btn flat  text-color="white"  class="" @click="print()">Save Itinerary</q-btn>
+        <q-btn flat  text-color="white" icon="download" label="Download" @click="generateReport()"></q-btn>
+        <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="print()"></q-btn>
       </div>
       <q-scroll-area style="height: 100vh;">
         <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
