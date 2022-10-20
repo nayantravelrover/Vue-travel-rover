@@ -1,6 +1,6 @@
 <template>
   <div id="preview" class="column bg-white">
-    <q-img class="row" :src="itinarary_data.place_img">
+    <q-img style="height: 30vh" :src="itinarary_data.place_img">
       <div class="column absolute-full flex flex-center text-subtitle2" >
         <img class="q-pa-md top-left" src="../assets/logo.svg" />
         <div class="row" style="font-size: x-large; color: white">{{itinarary_data.place_name}}</div>
@@ -8,10 +8,9 @@
       </div>
     </q-img>
     <div class="text-bold q-pa-md row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
+    <ItineraryDates></ItineraryDates>
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index">
       <DayPreview :day="day" :day_index="index"></DayPreview>
-      <br>
-      <br>
     </div>
     <ItineraryContentPreview :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
@@ -22,7 +21,8 @@
     <ItineraryContentPreview :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview>
-</div>
+    <ExtraSections v-if="$store.state.itinerary_preview.extra_sections.length>0" class="q-pa-lg"></ExtraSections>
+  </div>
 </template>
 
 
@@ -30,10 +30,12 @@
 import {save_itinerary_api} from "src/common/api_calls";
 import DayPreview from "components/DayPreview";
 import ItineraryContentPreview from "components/ItineraryContentPreview";
+import ItineraryDates from "components/ItineraryDates";
+import ExtraSections from "components/ExtraSections";
 
 export default {
   name: "ItineraryPreview",
-  components: {ItineraryContentPreview, DayPreview},
+  components: {ExtraSections, ItineraryDates, ItineraryContentPreview, DayPreview},
   methods: {
     print () {
       // Pass the element id here
@@ -58,7 +60,7 @@ export default {
 
 <style scoped>
 div{
-  font-family: "Helvetica Neue";
+    font-family: "Helvetica Neue";
    color: #4B5563;
   }
 </style>

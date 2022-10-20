@@ -8,9 +8,9 @@
         'Ladakh', 'Himalayas'
       ]"  />
 <!--    </div>-->
-    <div class="text-bold row sectionheading" >Place Description</div>
-    <q-input class="row" outlined v-model="place_description" />
-
+    <div id="place_description" class="q-pt-lg ">
+      <div class="text-bold row sectionheading" >Place Description</div>
+      <q-input class="row" outlined v-model="place_description" />
 
 <!--    <PicturedWYISG property_key="place_description" heading="Place Description"></PicturedWYISG>-->
     <div class="q-pt-sm">
@@ -38,11 +38,16 @@
 <!--          </q-card-section>-->
 <!--      </q-card>-->
     </div>
+      </div>
+  <div id="itinerary_name" class="q-pt-lg ">
+
     <div class="text-bold sectionheading row" >Itinerary Name</div>
     <q-input class=" row" outlined v-model="itinerary_name" />
+  </div>
+    <div class="q-pt-lg ">
     <div class="row">
-      <div class="col-12">
-        <div class=" text-bold row sectionheading" >Start Date</div>
+      <div class="col-6">
+        <div class=" text-bold row sectionheading" >Start Dates</div>
         <!-- <q-input class="row" filled v-model="start_date" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
@@ -56,58 +61,59 @@
             </q-icon>
           </template>
         </q-input> -->
-        <Datepicker v-model="date" :enableTimePicker="false" multiDates />
+        <Datepicker class="q-pr-md" v-model="start_dates" :enableTimePicker="false" multiDates />
       </div>
-      <div class="col-12">
+      <div class="col-6">
         <div class=" text-bold row sectionheading">Number of Days</div>
-        <q-input class="row" outlined v-model="text" />
+        <q-input dense class="row" outlined />
       </div>
       </div>
+    </div>
+    <div class="q-pt-lg ">
       <div class="sectionheading" style="font-size: large">Itinerary</div>
-      <br>
+    </div>
       <div class="" v-for="(day, index) in days" v-bind:key="index">
+        <div  class="q-pt-lg ">
         <DayEditor :day_index="index" :day_content="day.description" :day_images="day.images"></DayEditor>
-      </div>
+        </div>
+        </div>
       <q-btn  class="row" @click="days_add()">Add day</q-btn>
       <br>
-      <PicturedWYISG property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
-     <PicturedWYISG property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
-     <PicturedWYISG property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
-     <PicturedWYISG property_key="inclusions" heading="Inclusions"></PicturedWYISG>
-     <PicturedWYISG property_key="exclusions" heading="Exclusions"></PicturedWYISG>
-     <PicturedWYISG property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
-     <PicturedWYISG property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
-     <PicturedWYISG property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
-     <PicturedWYISG property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
-
-<!--    </div>-->
-
+      <PicturedWYISG class="q-pt-lg " property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="inclusions" heading="Inclusions"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="exclusions" heading="Exclusions"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
     </div>
    </q-scroll-area>
     <div class="col-6 q-pa-md" style="background-color: #4B5563">
       <div style="background-color: transparent">
-      <q-btn  text-color="white" icon="print" @click="print()"></q-btn>
-      <q-btn text-color="white"  class="" @click="save_itinerary()">Save Itinerary</q-btn>
+        <q-btn flat  text-color="white" icon="print" @click="generateReport()"></q-btn>
+        <q-btn flat  text-color="white"  class="" @click="print()">Save Itinerary</q-btn>
       </div>
       <q-scroll-area style="height: 100vh;">
-    <ItineraryPreview ></ItineraryPreview>
-    </q-scroll-area>
+        <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
+      </q-scroll-area>
     </div>
   </div>
 </template>
-
 <script>
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
 import { save_itinerary_api } from "src/common/api_calls";
 import { ref } from 'vue'
-
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import html2pdf from "html2pdf.js/src";
+
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker},
+  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker, },
   methods: {
       place_file_uploaded: function(info) {
         var file_response = JSON.parse(info.xhr.response).file
@@ -119,7 +125,23 @@ export default {
         this.$store.commit('day_add', 1)
         console.log(this.$store.state.itinerary_preview.days)
       },
-
+    generateReport () {
+        console.log("generate report done")
+        html2pdf(document.getElementById("preview"), {
+            // margin: 1,
+            pagebreak: { mode: 'avoid-all', before: '#page2el' },
+            filename: this.$store.state.itinerary_preview.place_name,
+            // image: { type: 'jpeg', quality: 0.98 },
+            // html2canvas: { dpi: 192, letterRendering: true },
+            // jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+				  })
+      },
+    addScript(url) {
+     var script = document.createElement('script');
+     script.type = 'application/javascript';
+     script.src = url;
+     document.head.appendChild(script);
+    },
     onSelectFile() {
       const input = this.$refs.fileInput;
       const files = input.files;
@@ -141,7 +163,7 @@ export default {
   data(){
     return {
       imageData: null,
-      date: null,
+      date: [],
     }
   },
   computed:{
@@ -177,12 +199,16 @@ export default {
         return this.$store.state.itinerary_preview.itinerary_name
       }
     },
-    start_date: {
+    start_dates: {
       set(val){
-        this.$store.commit('start_date_update', val)
+        var updated_dates = []
+        val.map((date)=>{
+          updated_dates.push(date.toISOString().slice(0,10))
+        })
+        this.$store.commit('start_dates_update', updated_dates)
       },
       get() {
-        return this.$store.state.itinerary_preview.start_date
+        return this.$store.state.itinerary_preview.start_dates
       }
     },
 
@@ -205,7 +231,9 @@ export default {
   },
   created() {
     console.log(this.days)
-  }
+    // this.addScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
+  },
+
 }
 </script>
 

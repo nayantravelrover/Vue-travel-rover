@@ -1,7 +1,7 @@
 <template>
 <div class="q-pa-md">
-   <div class="text-bold row q-ma-sm" style="color: black;">{{label}}</div>
-   <div class="q-ma-sm row" v-html="content" style="color: black;"></div>
+   <div class="text-bold row q-ma-sm" style="">{{label}}</div>
+   <div class="q-ma-sm row" v-html="content" style=""></div>
 </div>
 </template>
 

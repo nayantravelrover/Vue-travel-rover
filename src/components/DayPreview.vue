@@ -1,20 +1,24 @@
 <template>
-  <div class="day_block" v-if="computedClass(day_index+1)">
-    <q-img class="day-image-example" width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
-    <div class="description">
-       <span><bold>Day {{day_index +1}}</bold></span><br>
+  <div class="q-pa-md">
+  <div class="row"  v-if="computedClass(day_index+1)">
+    <div  class="col-4 q-pr-md">
+    <q-img class="right-img"   width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
+    </div>
+      <div  class="col-8">
+       <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
       <span>{{day.description}}</span>
     </div>
-    
   </div>
-
-  <div class="day_block" v-else>
-     <div class="description">
-      <span><bold>Day {{day_index +1}}</bold></span><br>
+  <div v-else class="row" >
+     <div class="col-8">
+      <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
       <span>{{day.description}}</span>
     </div>
-    <q-img class="day-image-example" width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
+    <div class="col-4 q-pl-md">
+    <q-img class="left-img" width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
+    </div>
   </div>
+    </div>
 
 </template>
 
@@ -51,16 +55,17 @@ export default {
         -moz-box-align: center;
         -webkit-align-items: center;
         -ms-flex-align: center;
-        align-items: center;   
+        align-items: center;
         color: black;
     }
 
-  .day-image-example {
-        min-width: 250px;
-        max-width: 250px;
-        border-radius: 10%;
-        margin-right: 10px;
-        margin-left: 10px;
+  .left-img {
+    border-top-left-radius:15px;
+    border-bottom-right-radius: 15px;
+    }
+  .right-img {
+    border-top-right-radius:15px;
+    border-bottom-left-radius: 15px;
     }
 
   .description {

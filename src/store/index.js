@@ -50,7 +50,8 @@ export default store(function (/* { ssrContext } */) {
         cancellations_policy:"Naggar",
         things_to_carry:"Naggar",
         tour_rates:"Naggar",
-        start_date: ref('2019/02/01'),
+        start_dates: [],
+        extra_sections: []
         // places_to_visit_img:'download.jpeg',
         // accomodation_arrangements_img:'download.jpeg',
         // travel_arrangements_img:'download.jpeg',
@@ -60,7 +61,7 @@ export default store(function (/* { ssrContext } */) {
         // cancellations_policy_img:'download.jpeg',
         // things_to_carry_img:"download.jpeg",
         // tour_rates_img:'download.jpeg',
-        
+
         // images_extra:["Naggar"],
         // extra_information:"Naggar",
         // sections:[{
@@ -138,8 +139,8 @@ export default store(function (/* { ssrContext } */) {
       tour_rates_update(state,itinerary_name) {
         state.itinerary_preview.tour_rates=itinerary_name;
       },
-      start_date_update(state,start_date) {
-        state.itinerary_preview.start_date=start_date;
+      start_dates_update(state,start_dates) {
+        state.itinerary_preview.start_dates=start_dates;
       },
       number_of_days_update(state,number_of_days) {
         state.itinerary_preview.number_of_days =number_of_days;
