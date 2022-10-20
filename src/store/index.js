@@ -61,7 +61,6 @@ export default store(function (/* { ssrContext } */) {
         // cancellations_policy_img:'download.jpeg',
         // things_to_carry_img:"download.jpeg",
         // tour_rates_img:'download.jpeg',
-
         // images_extra:["Naggar"],
         // extra_information:"Naggar",
         // sections:[{

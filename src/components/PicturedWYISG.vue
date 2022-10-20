@@ -2,13 +2,16 @@
 <div class="">
     <div class="q-ma-sm sectionheading ">{{heading}}</div>
     <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['underline'],['ordered']]" />
-    <!-- <q-uploader
+<q-uploader
         style=""
+        color="white"
+        text-color="black"
+        bordered flat
         url="http://admin.travelrover.in/travel-rover/api-files/"
         auto-upload
         label="Add image if any"
         field-name="file"
-        @uploaded="property_img_update"/> -->
+        @uploaded="property_img_update"/>
 </div>
 </template>
 

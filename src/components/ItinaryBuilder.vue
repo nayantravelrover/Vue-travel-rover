@@ -24,6 +24,7 @@
         auto-upload
         label="Add image if any"
         field-name="file"
+        max-files="1"
         @uploaded="place_file_uploaded"/>
 <!--      <q-card style="width:100px">-->
 <!--          <q-card-section class="text-subitle2">-->

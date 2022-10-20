@@ -15,7 +15,10 @@
         auto-upload
         label="Add image if any"
         field-name="file"
-        @uploaded="day_img_update"/>
+        @uploaded="day_img_update"
+        max-files="1"
+        @rejected="onRejected"
+    />
 </div>
 </template>
 
@@ -41,7 +44,15 @@ export default {
         console.log(day_content_indexed)
         this.$store.commit('day_img_update', day_content_indexed)
         console.log(this.$store)
-      }
+      },
+    onRejected: function (rejectedEntries) {
+      // Notify plugin needs to be installed
+      // https://quasar.dev/quasar-plugins/notify#Installation
+      $q.notify({
+        type: 'negative',
+        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
+      })
+    }
   },
   computed:{
     day_content_store :{
