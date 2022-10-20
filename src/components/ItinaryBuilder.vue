@@ -15,6 +15,7 @@
 <!--    <PicturedWYISG property_key="place_description" heading="Place Description"></PicturedWYISG>-->
     <div class="q-pt-sm">
       <q-uploader
+        flat
         bordered
         color="white"
         text-color="grey"

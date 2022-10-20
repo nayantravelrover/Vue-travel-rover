@@ -7,6 +7,7 @@
       :toolbar="[['bold', 'italic'],['ordered']]"
     />
     <q-uploader
+       flat bordered
         color="grey"
         url="http://admin.travelrover.in/travel-rover/api-files/"
         style=""
