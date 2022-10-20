@@ -2,7 +2,7 @@
   <div id="preview" class="column bg-white">
     <q-img style="height: 30vh" :src="itinarary_data.place_img">
       <div class="column absolute-full flex flex-center text-subtitle2" >
-        <img class="q-pa-md top-left" src="../assets/logo.svg" />
+        <img class="q-pa-md top-left" src="../assets/logo.svg" style="max-width: 200px" />
         <div class="row" style="font-size: x-large; color: white">{{itinarary_data.place_name}}</div>
         <div class="row" style="color: white">{{itinarary_data.place_description}}</div>
       </div>

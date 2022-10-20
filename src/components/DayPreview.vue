@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
   <div class="row"  v-if="computedClass(day_index+1)">
-    <div  class="col-4 q-pr-md">
-    <q-img class="right-img"   width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
+    <div v-if="!$q.platform.is.mobile"  class="col-4 q-pr-md">
+    <q-img class="right-img"   width="300" height="300" :src="day.images" alt=""  />
     </div>
       <div  class="col-8">
        <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
@@ -14,8 +14,8 @@
       <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
       <span>{{day.description}}</span>
     </div>
-    <div class="col-4 q-pl-md">
-    <q-img class="left-img" width="300" height="300" :src="day.images" alt="" v-if="!$q.platform.is.mobile" />
+    <div class="col-4 q-pl-md "  v-if="!$q.platform.is.mobile">
+    <q-img class="left-img" width="300" height="300" :src="day.images" alt="" />
     </div>
   </div>
     </div>

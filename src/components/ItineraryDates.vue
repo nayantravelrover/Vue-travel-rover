@@ -1,9 +1,9 @@
 <template>
-<div>
+<div class="q-pa-md" v-if="this.$store.state.itinerary_preview.start_dates.length>0">
+  <div class="text-bold" style="font-size: large">Tour Departures</div><br>
+
   <q-table
     bordered
-    class="q-ma-lg"
-    v-if="this.$store.state.itinerary_preview.start_dates.length>0"
     flat
     hide-pagination
       :rows="groupByMonth"
