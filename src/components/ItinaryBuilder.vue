@@ -26,19 +26,7 @@
         field-name="file"
         max-files="1"
         @uploaded="place_file_uploaded"/>
-<!--      <q-card style="width:100px">-->
-<!--          <q-card-section class="text-subitle2">-->
-<!--            <div :style="{ 'background-image': `url(${imageData})` }" @click="choosepicture">-->
-<!--              <span-->
-<!--                v-if="!imageData"-->
-<!--                class="placeholder"-->
-<!--                style="cursor: pointer"-->
-<!--              >Choose a picture</span>-->
-<!--              <input hidden class="file-input" ref="fileInput" type="file" @input="onSelectFile" />-->
-<!--            </div>-->
-<!--            <q-img :src="imageData" style="cursor: pointer" @click="choosepicture" />-->
-<!--          </q-card-section>-->
-<!--      </q-card>-->
+
     </div>
       </div>
   <div id="itinerary_name" class="q-pt-lg ">
@@ -81,9 +69,9 @@
         </div>
       <q-btn  class="row" @click="days_add()">Add day</q-btn>
       <br>
-      <PicturedWYISG class="q-pt-lg " property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
-     <PicturedWYISG class="q-pt-lg " property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
-     <PicturedWYISG class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
+     <PicturedWYISG :image="true" class="q-pt-lg" property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
+     <PicturedWYISG :image="true" class="q-pt-lg " property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
+     <PicturedWYISG  :image="true" class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="inclusions" heading="Inclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="exclusions" heading="Exclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
@@ -92,12 +80,12 @@
      <PicturedWYISG class="q-pt-lg " property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
     </div>
    </q-scroll-area>
-    <div class="col-6 q-pa-md" style="background-color: #4B5563">
+    <div class="col-6 q-pa-md" style="background-color: #4B5563;">
       <div style="background-color: transparent">
         <q-btn flat  text-color="white" icon="download" label="Download" @click="generateReport()"></q-btn>
         <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="print()"></q-btn>
       </div>
-      <q-scroll-area style="height: 100vh;">
+      <q-scroll-area style="height: 92vh">
         <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
       </q-scroll-area>
     </div>

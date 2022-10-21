@@ -3,6 +3,7 @@
     <div class="q-ma-sm sectionheading ">{{heading}}</div>
     <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['underline'],['ordered']]" />
 <q-uploader
+        v-if="this.image"
         style=""
         color="white"
         text-color="black"
@@ -18,7 +19,7 @@
 <script>
 export default {
   name: "PicturedWYISG",
-  props:["heading", "property_key"],
+  props:["heading", "property_key", "image"],
   // methods: {
   //   property_img_update:function (info){
   //     var file_response = JSON.parse(info.xhr.response).file

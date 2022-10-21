@@ -51,10 +51,10 @@ export default store(function (/* { ssrContext } */) {
         things_to_carry:"Naggar",
         tour_rates:"Naggar",
         start_dates: [],
-        extra_sections: []
-        // places_to_visit_img:'download.jpeg',
-        // accomodation_arrangements_img:'download.jpeg',
-        // travel_arrangements_img:'download.jpeg',
+        extra_sections: [],
+        places_to_visit_img:'download.jpeg',
+        accomodation_arrangements_img:'download.jpeg',
+        travel_arrangements_img:'download.jpeg',
         // inclusions_img:'download.jpeg',
         // exclusions_img:'download.jpeg',
         // terms_and_conditions_img:'download.jpeg',
@@ -117,11 +117,9 @@ export default store(function (/* { ssrContext } */) {
       travel_arrangements_img_update(state,itinerary_name) {
         state.itinerary_preview.travel_arrangements_img=itinerary_name;
       },
-
       inclusions_img_update(state,itinerary_name) {
         state.itinerary_preview.inclusions_img=itinerary_name;
       },
-
       exclusions_img_update(state,itinerary_name) {
         state.itinerary_preview.exclusions_img=itinerary_name;
       },
@@ -158,7 +156,6 @@ export default store(function (/* { ssrContext } */) {
       },
       day_add(state, val){
         state.itinerary_preview.days.push({description: "", images: []})
-
       }
     },
     actions:{
