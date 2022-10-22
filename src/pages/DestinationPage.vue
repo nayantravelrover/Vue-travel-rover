@@ -86,7 +86,7 @@
                                 label="Add to Compare " />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary " @click="icon = true" />
+                                label="View Itinerary " @click="card = true" />
                         </div>
                     </div>
                 </q-card>
@@ -139,6 +139,7 @@ import DestinationPageWeb from './DestinationPageWeb.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
+import ViewItinerary from './ViewItinerary.vue';
 
 export default defineComponent({
     name: "DestinationPage",
@@ -157,13 +158,14 @@ export default defineComponent({
     setup() {
         return {
             slide: ref(1),
+            card: ref(false),
         };
     },
     components: {
-        FooterPage,
-        DestinationPageWeb,
-        AppBar,        
-    },
+    FooterPage,
+    DestinationPageWeb,
+    AppBar,
+},
     created() {
         var place = this.$route.query.place.trim()
         places(place).then(response => {
