@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MainHome class="gt-xs" />
+        <DestinationPageWeb class="gt-xs" />
         <div class="lt-md">
             <div>
                 <q-carousel class="goaslide q-pa" animated v-model="slide" navigation infinite
@@ -9,7 +9,11 @@
                     <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index"
                         :img-src=items>
                         <AppBar />
-                        <MobileCard />
+                        <div id="inner" style="display: table;margin: 0 auto; margin-top: 35%;color: white;font-weight: bold;">
+                            <div style="font-size:30px;font-family: Poppins;text-align: center;">{{this.place_description["name"]}}</div>
+                            <div style="text-align: center;font-size:20px;font-family: Poppins;"> {{this.place_description['places_one_liner']}}</div>
+                        </div>
+
                     </q-carousel-slide>
 
                 </q-carousel>
@@ -22,9 +26,6 @@
                             <text class="text11">{{this.place_description["description"][0]}}
                             </text>
                         </div>
-                        <!--  <div>
-                        <q-btn class="viewBtn">view more</q-btn>
-                    </div> -->
                     </div>
                 </div>
             </div>
@@ -33,44 +34,39 @@
                     <div style="padding: 10px 0 0 20px;">
                         <text class="text10">Our top-selling Itineraries</text>
                     </div>
-                    <div style="display: flex;">
-                    <CarouselComponent/>
-                    </div>
-                    <!-- <q-carousel style="height: 790px;" 
-                    class="q-pa" 
-                    v-model="slide"
-                    transition-prev="slide-right"
-                    transition-next="slide-left"
-                    swipeable
-                    control-color="primary"
-                    navigation
-                    arrows>
+                    <div>
 
-                <q-carousel-slide :name="1">
-                    <TopSellingItineraries style="display: flex;"/>
-                <q-card class="iternarybox gt-md">
-                    <q-img src="../assets/Goa/goa3.jpg" style="height: 200px;"/>
+                        <q-carousel class="q-pa" style="margin-right: 5px;" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
+                          swipeable
+                          animated
+                          control-color="primary"
+                          navigation
+                          >
+            <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list_filtered.length/1)" :key="i" :name="i" class="column no-wrap">
+                <div class="row fit justify-start items-center q-col no-wrap">
+                <q-card v-for="item in itineraries_list_filtered.slice((i - 1) * 3, i * 3)" :key="item" class="iternarybox" style="width: 100%">
+
+                    <q-img src="../assets/Goa/goa3.jpg" style="height: 282px;" />
                     <div class="heartbox">
-                    <q-img src="../assets/Goa/heart.svg" class="heart"/>
+                        <q-img src="../assets/Goa/heart.svg" class="heart" />
                     </div>
                     <div style="margin-top: 25px; margin-left: 20px;">
-                        <text class="text12">Exotic Goa 9 Nights / 10 Days Tour</text>
+                        <text class="text12">{{item.itinerary_name}}</text>
                     </div>
+                    
                     <ul class="text13">
-                        <li>
-                            The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                        </li>
-                        <li>
-                            The picturesque emerald backwaters of Goa take you on a tour of the unique lifestyle of the villages in the
-                            states.
-                        </li>
-                        <li>
-                            The sandy beaches of Goa with azure waters are undoubtably the perfect places for beach holidays in south India.
+                        <li v-for="list_item in item.place_description" :key="list_item">
+                            {{list_item}}
                         </li>
                     </ul>
-                    <div class="line_break" style="margin-left: 20px; margin-top:50px;"></div>
+                    <div class="line_break" style="margin-left: 10px; margin-top:10px;"></div>
                     <div style="margin-top: 20px; margin-left: 30px;">
-                        <text class="text16">✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at site seeing Place</text>
+                        <text class="text16">
+
+<text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+<br>
+<text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+                        </text>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
                     <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
@@ -78,224 +74,31 @@
                             <text class="text14" style="width: 80px;">Starts from</text>
                         </div>
                         <div class="text15">
-                            <text>42,999</text>
+                            <text>{{item.tour_rates}}</text>
                             <text class="text14">/Per Person</text>
                         </div>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
                     <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
                         <div class="btns">
-                            <q-btn class="compare" unelevated style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="Add to Compare " />
-                            <q-btn class="compare" unelevated style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="View Itinerary " />
+                            <q-btn class="compare" unelevated
+                                style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
+                                label="Add to Compare " />
+                            <q-btn class="compare" unelevated
+                                style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
+                                label="View Itinerary " @click="icon = true" />
                         </div>
                     </div>
                 </q-card>
-                </q-carousel-slide>
-                <q-carousel-slide :name="2">
-                    <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa4.jpg" style="height: 200px;" />
-                        <div class="heartbox">
-                            <q-img src="../assets/Goa/heart.svg" class="heart" />
-                        </div>
-                        <div style="margin-top: 25px; margin-left: 20px;">
-                            <text class="text12">Exotic Goa 9 Nights / 10 Days Tour</text>
-                        </div>
-                        <ul class="text13">
-                            <li>
-                                The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                            </li>
-                            <li>
-                                The picturesque emerald backwaters of Goa take you on a tour of the unique lifestyle of the villages in the
-                                states.
-                            </li>
-                            <li>
-                                The sandy beaches of Goa with azure waters are undoubtably the perfect places for beach holidays in south
-                                India.
-                            </li>
-                        </ul>
-                        <div class="line_break" style="margin-left: 20px; margin-top:50px;"></div>
-                        <div style="margin-top: 20px; margin-left: 30px;">
-                            <text class="text16">✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at site
-                                seeing Place</text>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
-                            <div class="price_container">
-                                <text class="text14" style="width: 80px;">Starts from</text>
-                            </div>
-                            <div class="text15">
-                                <text>42,999</text>
-                                <text class="text14">/Per Person</text>
-                            </div>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
-                            <div class="btns">
-                                <q-btn class="compare" unelevated style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                    label="Add to Compare " />
-                                <q-btn class="compare" unelevated style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                    label="View Itinerary " />
-                            </div>
-                        </div>
-                    </q-card>
-                </q-carousel-slide>
-                <q-carousel-slide :name="3">
-                    <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa2.jpg" style="height: 200px;" />
-                        <div class="heartbox">
-                            <q-img src="../assets/Goa/heart.svg" class="heart" />
-                        </div>
-                        <div style="margin-top: 25px; margin-left: 20px;">
-                            <text class="text12">Exotic Goa 9 Nights / 10 Days Tour</text>
-                        </div>
-                        <ul class="text13">
-                            <li>
-                                The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                            </li>
-                            <li>
-                                The picturesque emerald backwaters of Goa take you on a tour of the unique lifestyle of the villages in
-                                the
-                                states.
-                            </li>
-                            <li>
-                                The sandy beaches of Goa with azure waters are undoubtably the perfect places for beach holidays in
-                                south
-                                India.
-                            </li>
-                        </ul>
-                        <div class="line_break" style="margin-left: 20px; margin-top:50px;"></div>
-                        <div style="margin-top: 20px; margin-left: 30px;">
-                            <text class="text16">✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at
-                                site
-                                seeing Place</text>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
-                            <div class="price_container">
-                                <text class="text14" style="width: 80px;">Starts from</text>
-                            </div>
-                            <div class="text15">
-                                <text>42,999</text>
-                                <text class="text14">/Per Person</text>
-                            </div>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
-                            <div class="btns">
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="Add to Compare " />
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="View Itinerary " />
-                            </div>
-                        </div>
-                    </q-card>
-                </q-carousel-slide>
-                <q-carousel-slide :name="4">
-                    <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/goa1.jpg" style="height: 200px;" />
-                        <div class="heartbox">
-                            <q-img src="../assets/Goa/heart.svg" class="heart" />
-                        </div>
-                        <div style="margin-top: 25px; margin-left: 20px;">
-                            <text class="text12">Exotic Goa 9 Nights / 10 Days Tour</text>
-                        </div>
-                        <ul class="text13">
-                            <li>
-                                The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                            </li>
-                            <li>
-                                The picturesque emerald backwaters of Goa take you on a tour of the unique lifestyle of the villages in
-                                the
-                                states.
-                            </li>
-                            <li>
-                                The sandy beaches of Goa with azure waters are undoubtably the perfect places for beach holidays in
-                                south
-                                India.
-                            </li>
-                        </ul>
-                        <div class="line_break" style="margin-left: 20px; margin-top:50px;"></div>
-                        <div style="margin-top: 20px; margin-left: 30px;">
-                            <text class="text16">✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at
-                                site
-                                seeing Place</text>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
-                            <div class="price_container">
-                                <text class="text14" style="width: 80px;">Starts from</text>
-                            </div>
-                            <div class="text15">
-                                <text>42,999</text>
-                                <text class="text14">/Per Person</text>
-                            </div>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
-                            <div class="btns">
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="Add to Compare " />
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="View Itinerary " />
-                            </div>
-                        </div>
-                    </q-card>
-                </q-carousel-slide>
-                <q-carousel-slide :name="5">
-                    <q-card class="iternarybox">
-                        <q-img src="../assets/Goa/Goa.jpg" style="height: 200px;" />
-                        <div class="heartbox">
-                            <q-img src="../assets/Goa/heart.svg" class="heart" />
-                        </div>
-                        <div style="margin-top: 25px; margin-left: 20px;">
-                            <text class="text12">Exotic Goa 9 Nights / 10 Days Tour</text>
-                        </div>
-                        <ul class="text13">
-                            <li>
-                                The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                            </li>
-                            <li>
-                                The picturesque emerald backwaters of Goa take you on a tour of the unique lifestyle of the villages in
-                                the
-                                states.
-                            </li>
-                            <li>
-                                The sandy beaches of Goa with azure waters are undoubtably the perfect places for beach holidays in
-                                south
-                                India.
-                            </li>
-                        </ul>
-                        <div class="line_break" style="margin-left: 20px; margin-top:50px;"></div>
-                        <div style="margin-top: 20px; margin-left: 30px;">
-                            <text class="text16">✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at
-                                site
-                                seeing Place</text>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
-                            <div class="price_container">
-                                <text class="text14" style="width: 80px;">Starts from</text>
-                            </div>
-                            <div class="text15">
-                                <text>42,999</text>
-                                <text class="text14">/Per Person</text>
-                            </div>
-                        </div>
-                        <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                        <div style="margin-top: 25px;margin-left: 28px; margin-bottom: 30px;">
-                            <div class="btns">
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="Add to Compare " />
-                                <q-btn class="compare" unelevated
-                                    style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;" label="View Itinerary " />
-                            </div>
-                        </div>
-                    </q-card>
-                </q-carousel-slide>
-                </q-carousel> -->
-                    <!-- <div style="margin-top: 20px;">
-                        <ComparisonTable/>
-                    </div> -->
+            </div>
+
+
+            </q-carousel-slide>      
+        </q-carousel>
+                        
+
+                    </div>
+                    
                     <div class="box1" style="margin-top: 30px;">
                         <q-img src="../assets/Goa/cartoon.svg" />
                         <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your
@@ -332,13 +135,10 @@
 <script>
 import { ref, defineComponent } from 'vue'
 import FooterPage from './FooterPage.vue'
-import MainHome from './MainHome.vue';
+import DestinationPageWeb from './DestinationPageWeb.vue';
 import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
-import MobileCard from './MobileCard.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
-import TopSellingItineraries from "./TopSellingItineraries.vue";
-import CarouselComponent from './CarouselComponent.vue';
 
 export default defineComponent({
     name: "DestinationPage",
@@ -351,7 +151,7 @@ export default defineComponent({
         return {
             place_description: "",
             itineraries_list_filtered: [],
-            full_itineraries_filtered: []
+            full_itineraries_filtered: [],
         }
     },
     setup() {
@@ -361,12 +161,8 @@ export default defineComponent({
     },
     components: {
         FooterPage,
-        MainHome,
-        // ComparisonTable,
-        AppBar,
-        MobileCard,
-        CarouselComponent
-        
+        DestinationPageWeb,
+        AppBar,        
     },
     created() {
         var place = this.$route.query.place.trim()
@@ -613,7 +409,7 @@ export default defineComponent({
     padding: 0px;
     gap: 10px;
 
-    width: 288px;
+    width: 90%;
     height: 44px;
 }
 

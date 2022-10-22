@@ -56,12 +56,16 @@
                 </div>
             </div>
             <div class="box12">
-                <div class="box13"></div>
+                <div class="box13">
+                    <ItineraryPreview class="q-ma-lg"  id="preview" style="margin:0px;"></ItineraryPreview>
+                </div>
             </div>
         </div>
         <div class="box20 lt-md absolute-center" style="margin-top: 400px;">
             <div class="box21">
-                <div class="box22"></div>
+                <div class="box22">
+                    <ItineraryPreview class="q-ma-lg"  id="preview" style="margin:0px;"></ItineraryPreview>
+                </div>
             </div>
             <div class="box23">
                 <div class="box24">
@@ -79,6 +83,12 @@
 
     </div>
 </template>
+<script type="text/javascript">
+    import ItineraryPreview from "components/ItineraryPreview";
+    export default {
+        components: {ItineraryPreview},
+    }
+</script>
 <style>
 .card2{
         width: 20.13px;
@@ -179,7 +189,7 @@
         
             position: absolute;
             width: 408px;
-            height: 3401.62px;
+            height: fit-content;
             left: 0px;
             top: 0px;
         
@@ -262,7 +272,7 @@
         
             position: absolute;
             width: 489px;
-            height: 4001px;
+            height: fit-content;
             left: 0px;
             top: 0px;
         

@@ -83,7 +83,7 @@
     <div class="col-6 q-pa-md" style="background-color: #4B5563;">
       <div style="background-color: transparent">
         <q-btn flat  text-color="white" icon="download" label="Download" @click="generateReport()"></q-btn>
-        <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="print()"></q-btn>
+        <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="save_itinerary()"></q-btn>
       </div>
       <q-scroll-area style="height: 92vh">
         <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
@@ -95,11 +95,12 @@
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
-import { save_itinerary_api } from "src/common/api_calls";
 import { ref } from 'vue'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import html2pdf from "html2pdf.js/src";
+import {save_itinerary_api} from "src/common/api_calls";
+
 
 export default {
   name: "Itinary-Builder",
@@ -125,6 +126,10 @@ export default {
             // html2canvas: { dpi: 192, letterRendering: true },
             // jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
 				  })
+      },
+      save_itinerary: function(){
+        console.log(this.$store.state.itinerary_preview)
+        save_itinerary_api(this.$store.state.itinerary_preview)
       },
     addScript(url) {
      var script = document.createElement('script');

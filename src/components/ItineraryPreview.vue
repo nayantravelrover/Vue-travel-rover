@@ -27,11 +27,11 @@
 
 
 <script>
-import {save_itinerary_api} from "src/common/api_calls";
 import DayPreview from "components/DayPreview";
 import ItineraryContentPreview from "components/ItineraryContentPreview";
 import ItineraryDates from "components/ItineraryDates";
 import ExtraSections from "components/ExtraSections";
+
 
 export default {
   name: "ItineraryPreview",
@@ -41,10 +41,6 @@ export default {
       // Pass the element id here
       this.d.print('#preview')
     },
-    save_itinerary: function(){
-        console.log(this.$store.state.itinerary_preview)
-        save_itinerary_api(this.$store.state.itinerary_preview)
-      },
   },
   mounted() {
   },

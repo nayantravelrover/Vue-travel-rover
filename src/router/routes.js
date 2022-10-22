@@ -5,7 +5,7 @@ const routes = [
   { path: '/itinarybuilder', component: () => import('components/ItinaryBuilder.vue') },
   { path: '/destination',name:'DestinationPage', component: () => import('pages/DestinationPage.vue'),props: true },
   { path: '/comparison', component: () => import('pages/ComparisonTable.vue') },
-  { path: '/mainhome', component: () => import('pages/MainHome.vue') },
+  { path: '/destinationweb', component: () => import('pages/DestinationPageWeb.vue') },
   { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
   { path: '/editcardw', component: () => import('pages/EditItineraryCardw.vue') },
   { path: '/editcardm', component: () => import('pages/EditItineraryCardm.vue') },
@@ -14,8 +14,6 @@ const routes = [
   { path: '/profilepage', component: () => import('pages/ProfilePage.vue') },
   { path: '/likeditinerary', component: () => import('pages/LikedItinerary.vue') },
   { path: '/vieweditinerary', component: () => import('pages/ViewedItinerary.vue') },
-  { path: '/topsellingitineraries', component: () => import('pages/TopSellingItineraries.vue') },
-  { path: '/carouselcomponent', component: () => import('pages/CarouselComponent.vue') },
   { path: '/itinerarybuilder', component: () => import('pages/ItineraryBuilder.vue') },
   {
     path: '/',

@@ -459,7 +459,7 @@ import "vue3-carousel/dist/carousel.css";
 import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig} from "src/common/api_calls";
-import MainHomeVue from "./MainHome.vue";
+import DestinationPageWeb from "./DestinationPageWeb.vue";
 import DestinationPage from "./DestinationPage.vue";
 
 export default defineComponent({
