@@ -4,7 +4,7 @@
             <app-bar/>
             <div class="col-12" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">My Profile</text>
-                <q-card style="max-width: 500px; max-height: 516px;margin-top: 10px;">
+                <q-card style="max-width: auto; max-height: auto;margin-top: 10px;">
                     <div class="column flex-start flex">
                         <div class="column flex-start flex">
                             <div class="new5 row-6">
@@ -113,12 +113,9 @@ export default defineComponent({
         font-weight: 500;
         font-size: 18px;
         line-height: 27px;
-        /* identical to box height */
+        
     
         color: #BFBFBF;
-    
-    
-        /* Inside auto layout */
         flex: none;
         order: 0;
         flex-grow: 0;
