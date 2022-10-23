@@ -90,27 +90,9 @@
                         </div>
                     </div>
                 </q-card>
-                <!-- <q-dialog v-model="card">
-                    <q-card class="box20 lt-md absolute-center" style="margin-top: 400px;">
-                        <div class="box21">
-                            <div class="box22">
-                                <ItineraryPreview class="q-ma-lg" id="preview" style="margin:0px;"></ItineraryPreview>
-                            </div>
-                        </div>
-                        <div class="box23">
-                            <div class="box24">
-                                <div class="box25">
-                                    <text class="type20">Contact Us</text>
-                                    <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
-                                </div>
-                                <div class="box25">
-                                    <text class="type20">Buy Now</text>
-                                    <img class="card2" src="../assets/editcard/cart1.svg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </q-card>
-                </q-dialog> -->
+                <q-dialog v-model="card">
+                    <ViewItinerary/>
+                </q-dialog>
             </div>
 
 
@@ -124,10 +106,13 @@
                         <q-img src="../assets/Goa/cartoon.svg" />
                         <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your
                             itinerary?</text>
-                        <q-btn class="btn12" unelevated rounded color="primary" @click="openDialogBox()"><text
+                        <q-btn class="btn12" unelevated rounded color="primary" @click="edititinerary = true"><text
                                 style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text>
                         </q-btn>
                     </div>
+                    <q-dialog v-model="edititinerary">
+                        <EditItineraryCardw/>
+                    </q-dialog>
                     <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
                         <text class="text10">FAQ about {{this.place_description["name"]}}</text>
                         <br>
@@ -161,6 +146,8 @@ import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
 import ViewItinerary from './ViewItinerary.vue';
+import EditItineraryCardw from './EditItineraryCardw.vue';
+
 
 export default defineComponent({
     name: "DestinationPage",
@@ -180,12 +167,15 @@ export default defineComponent({
         return {
             slide: ref(1),
             card: ref(false),
+            edititinerary: ref(false),
         };
     },
     components: {
     FooterPage,
     DestinationPageWeb,
     AppBar,
+    EditItineraryCardw,
+    ViewItinerary
 },
     created() {
         var place = this.$route.query.place.trim()
