@@ -277,9 +277,9 @@
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""
                                     @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
                         </div>
-                        <div class="compare_img_container">
-                            <q-img :src="this.$parent.compare_itinerary_one.place_img" alt="" class="compare_img"/>
-                        </div>
+                        <q-img class="compare_img_container">
+                            <img :src="this.$parent.compare_itinerary_one.place_img" alt="" class="compare_img"/>
+                        </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_one.itinerary_name}}</div>
                         <div class="compare_title2">Starts From</div>
                         <div class="row">
@@ -294,9 +294,9 @@
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""
                                     @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
                         </div>
-                        <div class="compare_img_container">
-                            <q-img :src="this.$parent.compare_itinerary_two.place_img" alt="" class="compare_img" />
-                        </div>
+                        <q-img class="compare_img_container">
+                            <img :src="this.$parent.compare_itinerary_two.place_img" alt="" class="compare_img" />
+                        </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_two.itinerary_name}}</div>
                         <div class="compare_title2">Starts From</div>
                         <div class="row">
@@ -311,9 +311,9 @@
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""
                                     @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
                         </div>
-                        <div class="compare_img_container">
-                            <q-img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img" />
-                        </div>
+                        <q-img class="compare_img_container">
+                            <img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img" />
+                        </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_three.itinerary_name}}</div>
                         <div class="compare_title2">Starts From</div>
                         <div class="row">
@@ -330,7 +330,7 @@
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""></div>
                         </div>
                         <q-img class="compare_img_container">
-                            <img src="../assets/Goa/goa1.jpg" alt="" class="compare_img">
+                            <img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img">
                         </q-img>
                         <div class="compare_title1">Exotic Goa 9 Nights / 10 Days Tour</div>
                         <div class="compare_title2">Starts From</div>
@@ -339,7 +339,7 @@
                             <div class="compare_title3">/per person</div>
                         </div>
                     </div>
-                </div>-->
+                </div> -->
             </div> 
             <q-separator />
             <div class="column" style="padding: 10px 0 0 0;">
