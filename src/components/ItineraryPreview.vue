@@ -8,6 +8,8 @@
       </div>
     </q-img>
     <div class="text-bold q-pa-md row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
+    <div class="text-bold q-pa-md row" style="font-size: medium" v-html="itinarary_data.tour_highlights"></div>
+
     <ItineraryDates></ItineraryDates>
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index">
       <DayPreview :day="day" :day_index="index"></DayPreview>

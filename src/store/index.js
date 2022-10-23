@@ -23,6 +23,7 @@ export default store(function (/* { ssrContext } */) {
         place_description:"sdasdsadasd",
         place_img:"download.jpeg",
         itinerary_name:"This is my itinerary",
+        tour_highlights:"2 - nights - Kerala. 2-night Vagamon.2 - nights - Kerala. 2-night Vagamon.2 - nights - Kerala.2-night Vagamon.",
         days: [
             {
               description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -156,6 +157,9 @@ export default store(function (/* { ssrContext } */) {
       },
       day_add(state, val){
         state.itinerary_preview.days.push({description: "", images: []})
+      },
+      tour_highlights_update(state,val){
+        state.itinerary_preview.tour_highlights = val
       }
     },
     actions:{

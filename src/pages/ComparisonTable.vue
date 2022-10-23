@@ -9,7 +9,9 @@
                         <text class="text31">Compare Exotic Goa 9 Nights / 10 Days Tour vs 2 others</text>
                     </div>
                     <div class="card35" style="flex-direction: column;">
+
                         <div class="card36">
+                            {{this.compare_itinerary_one}}
                             <div class="text32">
                                 <text class="text33">
                                     <img src="../assets/comparison/Removebtn.svg" alt="">
@@ -26,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card36" style="margin-left: 290px;">
+                        <div class="card36" style="margin-left: 290px;" >
                             <div class="text32">
                                 <text class="text33">
                                     <img src="../assets/comparison/Removebtn.svg" alt="">
@@ -43,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card36" style="margin-left: 580px;">
+                        <div class="card36" style="margin-left: 580px;" >
                             <div class="text32">
                                 <text class="text33">
                                     <img src="../assets/comparison/Removebtn.svg" alt="">
@@ -289,25 +291,16 @@ import { ref, defineComponent } from 'vue'
 export default defineComponent ({
     name: "ComparisonTable",
     created(){
-        console.log(this.$parent.itineraries_list)
+    },
+    props:{
+        compare_itinerary_one:Array,
+        compare_itinerary_two:Array,
+        compare_itinerary_three:Array
     },
     setup(){
     },
     data(){
         return{
-            full_itineraries_to_compare: []
-        }
-    },
-    computed:{
-        function_full_itineraries_to_compare(){
-            return this.$parent.itineraries_list
-        }
-    },
-    watch:{
-        function_full_itineraries_to_compare(firstValue,secondValue){
-            console.log(this.$parent.itineraries_list)
-            this.full_itineraries_to_compare = this.$parent.itineraries_list[0]
-            console.log(this.full_itineraries_to_compare)
         }
     }
 })

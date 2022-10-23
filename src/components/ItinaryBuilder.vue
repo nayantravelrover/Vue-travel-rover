@@ -12,6 +12,8 @@
       <div class="text-bold row sectionheading" >Place Description</div>
       <q-input class="row" outlined v-model="place_description" />
 
+    
+
 <!--    <PicturedWYISG property_key="place_description" heading="Place Description"></PicturedWYISG>-->
     <div class="q-pt-sm">
       <q-uploader
@@ -31,9 +33,13 @@
       </div>
   <div id="itinerary_name" class="q-pt-lg ">
 
-    <div class="text-bold sectionheading row" >Itinerary Name</div>
-    <q-input class=" row" outlined v-model="itinerary_name" />
+    <div class="text-bold sectionheading row">Itinerary Name</div>
+    <q-input class="row" outlined v-model="itinerary_name" />
   </div>
+
+  <PicturedWYISG class="q-pt-lg" property_key="tour_highlights" heading="Tour Highlights"></PicturedWYISG>
+
+
     <div class="q-pt-lg ">
     <div class="row">
       <div class="col-6">
@@ -176,6 +182,14 @@ export default {
       },
       get() {
         return this.$store.state.itinerary_preview.place_description
+      }
+    },
+    tour_highlights: {
+      set(val){
+        this.$store.commit('tour_highlights_update', val)
+      },
+      get() {
+        return this.$store.state.itinerary_preview.tour_highlights
       }
     },
     place_img: {

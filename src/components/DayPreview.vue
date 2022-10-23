@@ -6,13 +6,13 @@
     </div>
       <div  class="col-8">
        <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
-      <span>{{day.description}}</span>
+      <span v-html="day.description"></span>
     </div>
   </div>
   <div v-else class="row" >
      <div class="col-8">
       <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
-      <span>{{day.description}}</span>
+      <span v-html="day.description"></span>
     </div>
     <div class="col-4 q-pl-md "  v-if="!$q.platform.is.mobile">
     <q-img class="left-img" width="300" height="300" :src="day.images" alt="" />
