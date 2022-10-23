@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-3 toy5">
                         <q-card class="subdiv4">
-                            <img src="../assets/Goa/Goa1.jpg" alt="">
+                            <img src="../assets/Goa/goa1.jpg" alt="">
                             <div class="absolute-bottom subtitle2 text-center">
                                 <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
                             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-3 toy5">
                         <q-card class="subdiv4">
-                            <img src="../assets/Goa/Goa2.jpg" alt="">
+                            <img src="../assets/Goa/goa2.jpg" alt="">
                             <div class="absolute-bottom subtitle2 text-center">
                                 <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
                             </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-3 toy5">
                         <q-card class="subdiv4">
-                            <img src="../assets/Goa/Goa3.jpg" alt="">
+                            <img src="../assets/Goa/goa3.jpg" alt="">
                             <div class="absolute-bottom subtitle2 text-center">
                                 <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
                             </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-3 toy5">
                         <q-card class="subdiv4">
-                            <img src="../assets/Goa/Goa4.jpg" alt="">
+                            <img src="../assets/Goa/goa4.jpg" alt="">
                             <div class="absolute-bottom subtitle2 text-center">
                                 <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
                             </div>

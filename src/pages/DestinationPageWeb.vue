@@ -442,7 +442,8 @@ export default {
         place_description_update(newplace, oldplace){
             this.place_description=this.$parent.place_description
         },
-    components: { ComparisonTable, TransparentBar, ViewItinerary }
+    },
+    components: {TransparentBar, ViewItinerary }
 }
 
 
