@@ -1,6 +1,6 @@
 <template>
-    <div class="q-pa">
-        <div class="box1 gt-sm">
+    <div style="max-width: fit-content;max-height: fit-content;">
+        <div class="modal_view_itinerary_box gt-sm">
             <div class="box2">
                 <div class="box3">
                     <div class="box4">
@@ -493,7 +493,7 @@
             top: 0px;
             bottom: 150px;
     }
-.box1{
+.modal_view_itinerary_box{
     position: relative;
         width: 842px;
         height: 600px;
