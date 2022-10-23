@@ -82,10 +82,13 @@
                                 label="Add to Compare" @click="this.$parent.add_to_compare(item)" />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary " @click="icon = true" />
+                                label="View Itinerary " @click="card = true" />
                         </div>
                     </div>
                 </q-card>
+                <q-dialog v-model="card">
+                    <ViewItinerary/>
+                </q-dialog>
             </div>
 
 
@@ -406,6 +409,7 @@
 import { ref, watch } from 'vue'
 // import ComparisonTable from './ComparisonTable.vue';
 import TransparentBar from './TransparentBar.vue';
+import ViewItinerary from './ViewItinerary.vue';
 
 
 export default {
@@ -413,6 +417,7 @@ export default {
     setup() {
         return {
             slide: ref(1),
+            card: ref(false),
         };
     },
     data(){
@@ -437,9 +442,7 @@ export default {
         place_description_update(newplace, oldplace){
             this.place_description=this.$parent.place_description
         },
-        deep:true,
-        },
-    components: { TransparentBar }
+    components: { ComparisonTable, TransparentBar, ViewItinerary }
 }
 
 
