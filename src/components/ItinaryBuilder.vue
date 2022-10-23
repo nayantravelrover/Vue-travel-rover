@@ -124,6 +124,7 @@ export default {
       },
     generateReport () {
         console.log("generate report done")
+        
         html2pdf(document.getElementById("preview"), {
             // margin: 1,
             pagebreak: { mode: 'avoid-all', before: '#page2el' },

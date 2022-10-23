@@ -4,10 +4,11 @@
     <div v-if="!$q.platform.is.mobile"  class="col-4 q-pr-md">
     <q-img class="right-img"   width="300" height="300" :src="day.images" alt=""  />
     </div>
-      <div  class="col-8">
+      <div  class="col-8" v-if="!$q.platform.is.mobile">
        <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
       <span v-html="day.description"></span>
-    </div>
+      </div>
+
   </div>
   <div v-else class="row" >
      <div class="col-8">

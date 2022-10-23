@@ -39,11 +39,15 @@
 
                         <q-carousel class="q-pa" style="margin-right: 5px;" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
                           swipeable
+                          animated
+                          control-color="primary"
+                          navigation
+                          arrows
                           >
-            <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list_filtered.length)" :key="i-1" :name="i-1" class="column no-wrap">
-                <div class="row fit justify-start items-center q-col no-wrap">
-                <q-card v-for="item in itineraries_list_filtered" :key="item" class="iternarybox" style="width: 100%">
+            <q-carousel-slide  class="column no-wrap" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
 
+                <div class="row fit justify-start items-center q-col no-wrap">
+                <q-card  class="iternarybox" style="width: 100%">
                     <q-img :src="item.place_img" style="height: 282px;" />
                     <div class="heartbox">
                         <q-img src="../assets/Goa/heart.svg" class="heart" />
@@ -413,6 +417,7 @@ export default defineComponent({
                 return el != null;
             });
             this.itineraries_list_filtered = itineraries_list_filtered;
+            console.log(this.itineraries_list_filtered)
             try{
                 this.compare_itinerary_one = this.itineraries_list_filtered[0]
             }catch(e){};

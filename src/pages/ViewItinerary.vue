@@ -70,13 +70,14 @@
             </div>
             <div class="box23 col">
                 <div class="box24">
-                    <q-btn class="box25">
-                        <text class="type20">Contact Us</text>
-                        <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
+                    <q-btn class="box25" @click="this.generateReport()">
+                        <text class="type20">Download</text>
+                        
+                        <img class="card2" src="../assets/editcard/cart1.svg" alt="">
                     </q-btn>
                     <q-btn class="box25">
                         <text class="type20">Buy Now</text>
-                        <img class="card2" src="../assets/editcard/cart1.svg" alt="">
+                        <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
                     </q-btn>
                 </div>
             </div>
@@ -86,9 +87,26 @@
     </div>
 </template>
 <script type="text/javascript">
+    import html2pdf from "html2pdf.js/src";
     import ItineraryPreview from "components/ItineraryPreview";
     export default {
         components: {ItineraryPreview},
+        methods:{
+            generateReport () {
+            alert("generate report done")
+            
+            html2pdf(document.getElementById("preview"), {
+                // margin: 1,
+                pagebreak: { mode: 'avoid-all', before: '#page2el' },
+                filename: this.$store.state.itinerary_preview.place_name,
+                // image: { type: 'jpeg', quality: 0.98 },
+                // html2canvas: { dpi: 192, letterRendering: true },
+                // jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+                      })
+                windows.location.reload();
+                },
+
+        }
     }
 </script>
 <style>
