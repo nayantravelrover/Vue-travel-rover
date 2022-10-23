@@ -79,7 +79,7 @@
                         <div class="btns">
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="Add to Compare " />
+                                label="Add to Compare" @click="this.$parent.add_to_compare(item)" />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
                                 label="View Itinerary " @click="icon = true" />
@@ -101,14 +101,14 @@
                 <div class="card33">
                     <div class="card34">
                         <text class="text30" style="font-size:30px;">Itinerary Comparison</text>
-                        <text class="text31">Compare Exotic Goa 9 Nights / 10 Days Tour vs 2 others</text>
+                        <text class="text31">Compare three itineraries at a time</text>
                     </div>
                     <div class="card35" style="flex-direction: column;" >
 
                         <div class="card36">
                             <div class="text32">
                                 <text class="text33">
-                                    <img src="../assets/comparison/Removebtn.svg" alt="">
+                                    <q-img src="../assets/comparison/Removebtn.svg" alt="" @click="this.$parent.remove_itinerary('compare_itinerary_one')"></q-img>
                                 </text>
                             </div>
                             <q-card class="card37">
@@ -125,7 +125,7 @@
                         <div class="card36" style="margin-left: 290px;" >
                             <div class="text32">
                                 <text class="text33">
-                                    <img src="../assets/comparison/Removebtn.svg" alt="">
+                                    <q-img src="../assets/comparison/Removebtn.svg" alt="" @click="this.$parent.remove_itinerary('compare_itinerary_two')"></q-img>
                                 </text>
                             </div>
                             <q-card class="card37" style="margin-left: 290px;">
@@ -142,7 +142,7 @@
                         <div class="card36" style="margin-left: 580px;" >
                             <div class="text32">
                                 <text class="text33">
-                                    <img src="../assets/comparison/Removebtn.svg" alt="">
+                                    <q-img src="../assets/comparison/Removebtn.svg" alt="" @click="this.$parent.remove_itinerary('compare_itinerary_three')"></q-img>
                                 </text>
                             </div>
                             <q-card class="card37" style="margin-left: 580px;">
@@ -176,202 +176,87 @@
             </div>
             <div class="container30" style="margin-top: 200px;">
                 <text class="text38">Tour Highlights</text>
-                <ul class="text39" style="margin-top: 50px; margin-left: 90px;">
-                    <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
-                    <li>Day 2 - Leh Local Sightseeing.</li>
-                    <li>Day 3 - Leh Nubra Valley Overnight.</li>
-                    <li>Day 4 - Nubra Valley Pongong Lake Overnight.</li>
-                    <li>Day 5 - Pongong Lake - Leh.</li>
-                    <li>Day 6 - Leh Drop.</li>
+                <ul class="text39" style="margin-top: 50px; margin-left: 90px;" v-html="this.$parent.compare_itinerary_one.tour_highlights">
+                    
                 </ul>
-                <ul class="text39" style="margin-top: 50px; margin-left: 20px;">
-                    <!-- <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
-                    <li>Day 2 - Leh Local Sightseeing.</li>
-                    <li>Day 3 - Leh Nubra Valley Overnight.</li>
-                    <li>Day 4 - Nubra Valley Pongong Lake Overnight.</li>
-                    <li>Day 5 - Pongong Lake - Leh.</li>
-                    <li>Day 6 - Leh Drop.</li> -->
+                <ul class="text39" style="margin-top: 50px; margin-left: 20px;" v-html="this.$parent.compare_itinerary_two.tour_highlights">
+                    
                 </ul>
-                <ul class="text39" style="margin-top: 50px; margin-left: 20px;">
-                    <!-- <li>Day 1 - Arrival Leh Kushok Bakula Airport.</li>
-                    <li>Day 2 - Leh Local Sightseeing.</li>
-                    <li>Day 3 - Leh Nubra Valley Overnight.</li>
-                    <li>Day 4 - Nubra Valley Pongong Lake Overnight.</li>
-                    <li>Day 5 - Pongong Lake - Leh.</li>
-                    <li>Day 6 - Leh Drop.</li> -->
+                <ul class="text39" style="margin-top: 50px; margin-left: 20px;" v-html="this.$parent.compare_itinerary_three.tour_highlights">
+                    
                 </ul>
+                
             </div>
             <div class="container30" style="margin-top: 270px;">
                 <text class="text38">Places to visit</text>
-                <ol class="text39" style="margin-top: 50px; margin-left:90px;">
-                    <li>Pangong Lake</li>
-                    <li>Khadung La Pass</li>
-                    <li>Nubra Valley</li>
-                    <li>Sangam</li>
-                    <li>Shanti Stupa</li>
-                    <li>Tso Moriri Lake</li>
-                    <li>Magnetic Hill</li>
-                    <li>Hall of Fame Museum</li>
-                    <li>Thiksey Monastery</li>
-                    <li>Zanskar Valley</li>
-                    <li>Shey Monastery and Palace</li>
-                    <li>Stok Palace</li>
+                <ol class="text39" style="margin-top: 50px; margin-left:90px;" v-html="this.$parent.compare_itinerary_one.places_to_visit">
                 </ol>
-                <ol class="text39" style="margin-top: 50px; margin-left:20px;">
-                    <li>Pangong Lake</li>
-                    <li>Khadung La Pass</li>
-                    <li>Nubra Valley</li>
-                    <li>Sangam</li>
-                    <li>Shanti Stupa</li>
-                    <li>Tso Moriri Lake</li>
-                    <li>Magnetic Hill</li>
-                    <li>Hall of Fame Museum</li>
-                    <li>Thiksey Monastery</li>
-                    <li>Zanskar Valley</li>
-                    <li>Shey Monastery and Palace</li>
-                    <li>Stok Palace</li>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_two.places_to_visit">
                 </ol>
-                <ol class="text39" style="margin-top: 50px; margin-left:20px;">
-                    <li>Pangong Lake</li>
-                    <li>Khadung La Pass</li>
-                    <li>Nubra Valley</li>
-                    <li>Sangam</li>
-                    <li>Shanti Stupa</li>
-                    <li>Tso Moriri Lake</li>
-                    <li>Magnetic Hill</li>
-                    <li>Hall of Fame Museum</li>
-                    <li>Thiksey Monastery</li>
-                    <li>Zanskar Valley</li>
-                    <li>Shey Monastery and Palace</li>
-                    <li>Stok Palace</li>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_three.places_to_visit">
                 </ol>
             </div>
             <div class="container30" style="margin-top: 360px;">
                 <text class="text38">Accommodation</text>
-               <!-- <ol class="text39">    
-                    <li>Apart from regular flights between Cities, most of your travelling requires quality Road Transport.</li>
-                    <li>We understand that as important as quality Accommodation, a reliable Vehicle and a caring Chauffeur is required for a pleasant tour.
-                    The following are the different types of transport at your disposal:</li>
-                    <ul>
-                        <li>Toyota Innova</li>
-                        <li>Chevrolet Tavera</li>
-                        <li>Mahindra Xylo</li>
-                        <li>Mini Bus 26 Seater</li>
-                    </ul>
-                </ol> -->
+                <ol class="text39" style="margin-top: 50px; margin-left:90px;" v-html="this.$parent.compare_itinerary_one.accomodation_arrangements">
+                </ol>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_two.accomodation_arrangements">
+                </ol>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_three.accomodation_arrangements">
+                </ol>
             </div>
             <div class="container30" style="margin-top: 200px;">
                 <text class="text38">Travel Arrangements</text>
+                <ol class="text39" style="margin-top: 50px; margin-left:90px;" v-html="this.$parent.compare_itinerary_one.travel_arrangements">
+                </ol>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_two.travel_arrangements">
+                </ol>
+                <ol class="text39" style="margin-top: 50px; margin-left:20px;" v-html="this.$parent.compare_itinerary_three.travel_arrangements">
+                </ol>
             </div>
             <div class="container30" style="margin-top: 200px;">
                 <text class="text38">Things to carry</text>
                 <text class="text40">
                     Clothing
-                    <ul class="text39">
-                        <li>Rucksack, Carry Bag & Plastic bags.</li>
-                        <li>7-8 pair of full sleeve cloths(shirt/T-shirts + trousers).</li>
-                        <li>Warm clothing (jacket, gloves, woolen cap, socks, thermal inner wear, Wind cheater).</li>
-                        <li>Raincoat/Poncho.</li>
-                        <li>Sports shoes with good rubber sole & full socks.</li>
+                    <ul class="text39" v-html="this.$parent.compare_itinerary_one.travel_arrangements">
                     </ul>
                 </text>
                 <text class="text40" style="margin-left: 20px;">
                     Clothing
-                    <ul class="text39">
-                        <li>Rucksack, Carry Bag & Plastic bags.</li>
-                        <li>7-8 pair of full sleeve cloths(shirt/T-shirts + trousers).</li>
-                        <li>Warm clothing (jacket, gloves, woolen cap, socks, thermal inner wear, Wind cheater).</li>
-                        <li>Raincoat/Poncho.</li>
-                        <li>Sports shoes with good rubber sole & full socks.</li>
+                    <ul class="text39" v-html="this.$parent.compare_itinerary_two.travel_arrangements">
                     </ul>
                 </text>
                 <text class="text40" style="margin-left: 20px;">
                     Clothing
-                    <ul class="text39">
-                        <li>Rucksack, Carry Bag & Plastic bags.</li>
-                        <li>7-8 pair of full sleeve cloths(shirt/T-shirts + trousers).</li>
-                        <li>Warm clothing (jacket, gloves, woolen cap, socks, thermal inner wear, Wind cheater).</li>
-                        <li>Raincoat/Poncho.</li>
-                        <li>Sports shoes with good rubber sole & full socks.</li>
+                    <ul class="text39" v-html="this.$parent.compare_itinerary_three.travel_arrangements">
                     </ul>
                 </text>
             </div>
             <div class="container30" style="margin-top: 400px;">
                 <text class="text38">Inclusions</text>
-                <ul class="text39" style="margin-left: 80px; margin-top: 50px;">
-                    <li>Travelling by Train & Bus/Winger.</li>
-                    <li>Food (8 Breakfast, 5 Lunch, 8 Dinner).</li>
-                    <li>Accommodation in Tent/Wooden Huts/Guest House (Sharing basis).</li>
-                    <li>Site Seeing.</li>
-                    <li>First Aid Support.</li>
-                    <li>Volunteers or Instructors.</li>
+                <ul class="text39" style="margin-left: 80px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_one.inclusions_html">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Travelling by Train & Bus/Winger.</li>
-                    <li>Food (8 Breakfast, 5 Lunch, 8 Dinner).</li>
-                    <li>Accommodation in Tent/Wooden Huts/Guest House (Sharing basis).</li>
-                    <li>Site Seeing.</li>
-                    <li>First Aid Support.</li>
-                    <li>Volunteers or Instructors.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_two.inclusions_html">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Travelling by Train & Bus/Winger.</li>
-                    <li>Food (8 Breakfast, 5 Lunch, 8 Dinner).</li>
-                    <li>Accommodation in Tent/Wooden Huts/Guest House (Sharing basis).</li>
-                    <li>Site Seeing.</li>
-                    <li>First Aid Support.</li>
-                    <li>Volunteers or Instructors.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_three.inclusions_html">
                 </ul>
             </div>
             <div class="container30" style="margin-top: 300px;">
                 <text class="text38">Exclusions</text>
-                <ul class="text39" style="margin-left: 80px; margin-top: 50px;">
-                    <li>Food during travel & Day of Amritsar – Wagha Border.</li>
-                    <li>Paragliding, River Rafting or any other paid Rides/Activities.</li>
-                    <li>Entry fees at site seeing Place (if any).</li>
-                    <li>Anything not mentioned in above.</li>
-                    <li>Emergency medical after First Aid Support.</li>
+                <ul class="text39" style="margin-left: 80px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_one.exclusions_html">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Food during travel & Day of Amritsar – Wagha Border.</li>
-                    <li>Paragliding, River Rafting or any other paid Rides/Activities.</li>
-                    <li>Entry fees at site seeing Place (if any).</li>
-                    <li>Anything not mentioned in above.</li>
-                    <li>Emergency medical after First Aid Support.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_two.exclusions_html">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Food during travel & Day of Amritsar – Wagha Border.</li>
-                    <li>Paragliding, River Rafting or any other paid Rides/Activities.</li>
-                    <li>Entry fees at site seeing Place (if any).</li>
-                    <li>Anything not mentioned in above.</li>
-                    <li>Emergency medical after First Aid Support.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_three.exclusions_html">
                 </ul>
             </div>
             <div class="container30" style="margin-top: 300px;">
                 <text class="text38">Cancellation Policy</text>
-                <ul class="text39" style="margin-left: 80px; margin-top: 50px;">
-                    <li>Cancellation would be granted by the Chief Instructor or higher authorities on receiving cancellation request on
-                    info@travelrover.in through participant registered mail ID.</li>
-                    <li>The refund amount will be paid in 10-15 working days through an AC payee cheque/Account Transfer.</li>
-                    <li>The cancellation Amount will be counted on the full camp fees only.</li>
-                    <li>No refund will be given in case the participant terminates the tour at any point due to any reason.</li>
-                    <li>Camp fees is not transferable to another person / other camp or camp date.</li>
+                <ul class="text39" style="margin-left: 80px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_one.cancellations_policy">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Cancellation would be granted by the Chief Instructor or higher authorities on receiving cancellation request on
-                        info@travelrover.in through participant registered mail ID.</li>
-                    <li>The refund amount will be paid in 10-15 working days through an AC payee cheque/Account Transfer.</li>
-                    <li>The cancellation Amount will be counted on the full camp fees only.</li>
-                    <li>No refund will be given in case the participant terminates the tour at any point due to any reason.</li>
-                    <li>Camp fees is not transferable to another person / other camp or camp date.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_two.cancellations_policy">
                 </ul>
-                <ul class="text39" style="margin-left: 20px; margin-top: 50px;">
-                    <li>Cancellation would be granted by the Chief Instructor or higher authorities on receiving cancellation request on
-                        info@travelrover.in through participant registered mail ID.</li>
-                    <li>The refund amount will be paid in 10-15 working days through an AC payee cheque/Account Transfer.</li>
-                    <li>The cancellation Amount will be counted on the full camp fees only.</li>
-                    <li>No refund will be given in case the participant terminates the tour at any point due to any reason.</li>
-                    <li>Camp fees is not transferable to another person / other camp or camp date.</li>
+                <ul class="text39" style="margin-left: 20px; margin-top: 50px;" v-html="this.$parent.compare_itinerary_three.cancellations_policy">
                 </ul>
             </div>
         </div>
