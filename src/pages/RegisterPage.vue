@@ -14,7 +14,7 @@
                             </div>
                 
                         </div>
-                        <q-input outlined placeholder="Name" v-model="login.name" />
+                        <q-input outlined placeholder="Name" v-model="login.first_name" />
                 
                         <q-input outlined v-model="login.username" placeholder="Username" />
                         <q-input outlined v-model="login.password" placeholder="Password" filled
@@ -62,7 +62,7 @@
                                     <img src="../assets/travelrover.svg" style="height: 20px; weight: 20px" />
                                 </div>
                             </div>
-                            <q-input outlined v-model="login.name" placeholder="Name" />
+                            <q-input outlined v-model="login.first_name" placeholder="Name" />
         
                             <q-input outlined v-model="login.username" placeholder="Username" />
                             <q-input outlined v-model="login.password" placeholder="Password" filled
@@ -130,7 +130,8 @@ export default {
             login: {
                 username: '',
                 password: '',
-                name: ''
+                first_name: '',
+                mobile_number: ''
             }
         }
     },
