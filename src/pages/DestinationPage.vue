@@ -108,6 +108,7 @@
                             </div>
                         </div>
                     </q-card>
+                    <ViewItinerary/>
                 </q-dialog>
             </div>
             </q-carousel-slide>      
@@ -414,10 +415,13 @@
                         <q-img src="../assets/Goa/cartoon.svg" />
                         <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your
                             itinerary?</text>
-                        <q-btn class="btn12" unelevated rounded color="primary" @click="openDialogBox()"><text
+                        <q-btn class="btn12" unelevated rounded color="primary" @click="edititinerary = true"><text
                                 style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text>
                         </q-btn>
                     </div>
+                    <q-dialog v-model="edititinerary">
+                        <EditItineraryCardw/>
+                    </q-dialog>
                     <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
                         <text class="text10">FAQ about {{this.place_description["name"]}}</text>
                         <br>
@@ -452,7 +456,12 @@ import AppBar from './AppBar.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
 import { useQuasar } from 'quasar'
 import ViewItinerary from './ViewItinerary.vue';
+<<<<<<< HEAD
 import ItineraryPreview from '../components/ItineraryPreview.vue'
+=======
+import EditItineraryCardw from './EditItineraryCardw.vue';
+
+>>>>>>> b5bbf4245f4e06d4d23ccecd96769b05351f6fa7
 
 export default defineComponent({
     name: "DestinationPage",
@@ -475,14 +484,24 @@ export default defineComponent({
         return {
             slide: ref(1),
             card: ref(false),
+            edititinerary: ref(false),
         };
     },
     components: {
+<<<<<<< HEAD
         FooterPage,
         DestinationPageWeb,
         AppBar,  
         ItineraryPreview
     },
+=======
+    FooterPage,
+    DestinationPageWeb,
+    AppBar,
+    EditItineraryCardw,
+    ViewItinerary
+},
+>>>>>>> b5bbf4245f4e06d4d23ccecd96769b05351f6fa7
     created() {
         var place = this.$route.query.place.trim()
         places(place).then(response => {
