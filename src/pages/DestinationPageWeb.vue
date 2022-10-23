@@ -94,11 +94,11 @@
 
             </q-carousel-slide>      
         </q-carousel>
-        <div style="margin-left: 100px;">
+        <div style="margin-left: 0px;">
             
 
              <div>
-    <q-card class="card30" style="margin-top: 30px;">
+    <!-- <q-card class="card30" style="margin-top: 30px;">
         <div class="card31">
             <div class="card32">
                 <div class="card33">
@@ -180,7 +180,7 @@
             <div class="container30" style="margin-top: 200px;">
                 <text class="text38">Tour Highlights</text>
                 <ul class="text39" style="margin-top: 50px; margin-left: 90px;" v-html="this.$parent.compare_itinerary_one.tour_highlights">
-                    
+
                 </ul>
                 <ul class="text39" style="margin-top: 50px; margin-left: 20px;" v-html="this.$parent.compare_itinerary_two.tour_highlights">
                     
@@ -263,7 +263,279 @@
                 </ul>
             </div>
         </div>
-    </q-card>
+    </q-card> -->
+    <div class="q-pa-md">
+        <q-card class="column">
+            <div class="compare_main_title" style="padding: 10px 0 10px 20px;">Itinerary Comparison</div>
+            <div class="row compare_content">
+                <div class="compare_inner_content2">
+                    <div class="compare_main_subtitle">Compare Exotic Goa 9 Nights / 10 Days Tour vs 2 others</div>
+                </div>
+                <div class="compare_inner_content2">
+                    <div class="column compare_images">
+                        <div class="compare_remove_btn">
+                            <div> <img src="../assets/comparison/Removebtn.svg" alt=""
+                                    @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
+                        </div>
+                        <div class="compare_img_container">
+                            <q-img :src="this.$parent.compare_itinerary_one.place_img" alt="" class="compare_img"/>
+                        </div>
+                        <div class="compare_title1">{{this.$parent.compare_itinerary_one.itinerary_name}}</div>
+                        <div class="compare_title2">Starts From</div>
+                        <div class="row">
+                            <div class="compare_price">{{this.$parent.compare_itinerary_one.tour_rates}}</div>
+                            <div class="compare_title3">/per person</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="compare_inner_content2">
+                    <div class="column compare_images">
+                        <div class="compare_remove_btn">
+                            <div> <img src="../assets/comparison/Removebtn.svg" alt=""
+                                    @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
+                        </div>
+                        <div class="compare_img_container">
+                            <q-img :src="this.$parent.compare_itinerary_two.place_img" alt="" class="compare_img" />
+                        </div>
+                        <div class="compare_title1">{{this.$parent.compare_itinerary_two.itinerary_name}}</div>
+                        <div class="compare_title2">Starts From</div>
+                        <div class="row">
+                            <div class="compare_price">{{this.$parent.compare_itinerary_two.tour_rates}}</div>
+                            <div class="compare_title3">/per person</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="compare_inner_content2">
+                    <div class="column compare_images">
+                        <div class="compare_remove_btn">
+                            <div> <img src="../assets/comparison/Removebtn.svg" alt=""
+                                    @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
+                        </div>
+                        <div class="compare_img_container">
+                            <q-img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img" />
+                        </div>
+                        <div class="compare_title1">{{this.$parent.compare_itinerary_three.itinerary_name}}</div>
+                        <div class="compare_title2">Starts From</div>
+                        <div class="row">
+                            <div class="compare_price">{{this.$parent.compare_itinerary_three.tour_rates}}</div>
+                            <div class="compare_title3">/per person</div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- <div class="compare_inner_content2">
+                    <div class="column compare_images">
+                        <div class="compare_remove_btn">
+                            <div> <img src="../assets/comparison/Removebtn.svg" alt=""></div>
+                        </div>
+                        <q-img class="compare_img_container">
+                            <img src="../assets/Goa/goa1.jpg" alt="" class="compare_img">
+                        </q-img>
+                        <div class="compare_title1">Exotic Goa 9 Nights / 10 Days Tour</div>
+                        <div class="compare_title2">Starts From</div>
+                        <div class="row">
+                            <div class="compare_price">4999</div>
+                            <div class="compare_title3">/per person</div>
+                        </div>
+                    </div>
+                </div>-->
+            </div> 
+            <q-separator />
+            <div class="column" style="padding: 10px 0 0 0;">
+    
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Tour Departure</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="compare_inner_content">
+                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                        </div>
+                        <div class="compare_inner_content">
+                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                        </div>
+                        <div class="compare_inner_content">
+                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Tour Highlights</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ul class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.tour_highlights">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_two.tour_highlights">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_three.tour_highlights">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Places To Visit</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ol class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.places_to_visit">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" v-html="this.$parent.compare_itinerary_two.places_to_visit">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" v-html="this.$parent.compare_itinerary_three.places_to_visit">
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Accomodation</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ol class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.accomodation_arrangements">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" v-html="this.$parent.compare_itinerary_two.accomodation_arrangements">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" v-html="this.$parent.compare_itinerary_three.accomodation_arrangements">
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Travel Arrangements</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ol class="compare_text" 
+                                v-html="this.$parent.compare_itinerary_one.travel_arrangements">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" 
+                                v-html="this.$parent.compare_itinerary_two.travel_arrangements">
+                            </ol>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ol class="compare_text" 
+                                v-html="this.$parent.compare_itinerary_three.travel_arrangements">
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Things to carry</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            Clothing
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_one.travel_arrangements">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            Clothing
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_two.travel_arrangements">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            Clothing
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_three.travel_arrangements">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Inclusions</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ul class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.inclusions_html">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_two.inclusions_html">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_three.inclusions_html">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Exclusions</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ul class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.exclusions_html">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_two.exclusions_html">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_three.exclusions_html">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="column compare_box">
+                    <div class="compare_mains">
+                        <div class="compare_title">Cancellations Policy</div>
+                    </div>
+                    <div class="row compare_content">
+                        <div class="compare_inner_content"></div>
+                        <div class="column compare_inner_content">
+                            <ul class="compare_text"
+                                v-html="this.$parent.compare_itinerary_one.cancellations_policy">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_two.cancellations_policy">
+                            </ul>
+                        </div>
+                        <div class="compare_inner_content">
+                            <ul class="compare_text" v-html="this.$parent.compare_itinerary_three.cancellations_policy">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </q-card>
+    </div>
     </div>
 
 
@@ -275,7 +547,7 @@
                     <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
                 </text>
             <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;">
-                <text style="font-size: 24px; font-family: 'Poppins';">Click Here</text>
+                <text style="font-size: 24px; ">Click Here</text>
             </q-btn>
         </div>
         <div class="q-pa-md full-width">
@@ -410,6 +682,7 @@ import { ref, watch } from 'vue'
 // import ComparisonTable from './ComparisonTable.vue';
 import TransparentBar from './TransparentBar.vue';
 import ViewItinerary from './ViewItinerary.vue';
+import CompareTable from './CompareTable.vue';
 
 
 export default {
@@ -443,7 +716,7 @@ export default {
             this.place_description=this.$parent.place_description
         },
     },
-    components: {TransparentBar, ViewItinerary }
+    components: { TransparentBar, ViewItinerary,}
 }
 
 
@@ -1390,8 +1663,8 @@ footer ul {
             padding: 15px;
             gap: 10px;
         
-            width: 1240px;
-            height: 4533.98px;
+            width: auto;
+            height: auto;
         
             /* White/White 100 */
             background: #FFFFFF;
@@ -1404,5 +1677,137 @@ footer ul {
             order: 1;
             flex-grow: 0;
     }
+}
+
+// for comparison
+.compare_inner_content {
+    justify-content: center;
+    padding: 20px;
+    width: 25%;
+    border: 1px dotted #DFDFDF;
+}
+
+.compare_inner_content2 {
+    justify-content: center;
+    padding: 20px;
+    width: 25%;
+
+}
+
+.compare_content {
+    width: 100%;
+}
+
+.compare_title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    padding: 5px 0 5px 10px;
+}
+
+.compare_box {
+    padding: 0 16px 0 16px;
+}
+
+.compare_mains {
+    background: #F9F9F9;
+}
+
+.compare_main_title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 48px;
+
+    color: #333333;
+}
+
+.compare_main_subtitle {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+
+    color: #000000;
+}
+
+.compare_images {
+
+    padding: 10px;
+}
+
+.compare_remove_btn {
+    float: left;
+}
+
+.compare_img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.compare_img_container {
+    border-radius: 10px;
+}
+
+.compare_title1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    color: #000000;
+}
+
+.compare_title2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    text-align: justify;
+
+    color: #999999;
+}
+
+.compare_price {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 42px;
+    /* identical to box height */
+    text-align: justify;
+
+    color: #2F2F42;
+}
+
+.compare_title3 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 12px;
+
+    color: #999999;
+}
+
+.vertical_separator {
+    border: 1px dashed #DFDFDF;
+    transform: rotate(90deg);
+}
+.compare_text{
+    font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 28px;
+    
+        color: #4B5563;
 }
 </style>

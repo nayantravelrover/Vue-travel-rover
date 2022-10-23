@@ -5,8 +5,10 @@
             <div class="col-12" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">Viewed Itineraries</text>
                 <q-card class="new3 row">
-                    <div>
-                        <div class="row-12"></div>
+                    <div class="col">
+                        <div class="row-12">
+                            <q-img></q-img>
+                        </div>
                     </div>
                     <q-separator style="background: #E6E7EA;" />
                     <div>efhw</div>

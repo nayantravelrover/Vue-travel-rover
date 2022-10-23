@@ -14,6 +14,7 @@ const routes = [
   { path: '/likeditinerary', component: () => import('pages/LikedItinerary.vue') },
   { path: '/vieweditinerary', component: () => import('pages/ViewedItinerary.vue') },
   { path: '/itinerarybuilder', component: () => import('pages/ItineraryBuilder.vue') },
+  { path: '/compare', component: () => import('pages/CompareTable.vue') },
   {
     path: '/',
     redirect: "/home",
