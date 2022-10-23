@@ -88,6 +88,27 @@
                         </div>
                     </div>
                 </q-card>
+                <!-- <q-dialog v-model="card">
+                    <q-card class="box20 lt-md absolute-center" style="margin-top: 400px;">
+                        <div class="box21">
+                            <div class="box22">
+                                <ItineraryPreview class="q-ma-lg" id="preview" style="margin:0px;"></ItineraryPreview>
+                            </div>
+                        </div>
+                        <div class="box23">
+                            <div class="box24">
+                                <div class="box25">
+                                    <text class="type20">Contact Us</text>
+                                    <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
+                                </div>
+                                <div class="box25">
+                                    <text class="type20">Buy Now</text>
+                                    <img class="card2" src="../assets/editcard/cart1.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </q-card>
+                </q-dialog> -->
             </div>
             </q-carousel-slide>      
         </q-carousel>
