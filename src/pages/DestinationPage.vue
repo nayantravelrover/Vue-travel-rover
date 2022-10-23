@@ -488,7 +488,6 @@ export default defineComponent({
                     "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                     "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                     "tour_rates": items.tour_rates,
-                    // "full_itinerary": items,
                     "tour_highlights":items.tour_highlights,
                     "places_to_visit": items.places_to_visit,
                     "accomodation_arrangements":items.accomodation_arrangements,

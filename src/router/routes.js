@@ -8,7 +8,6 @@ const routes = [
   { path: '/destinationweb', component: () => import('pages/DestinationPageWeb.vue') },
   { path: '/appbar', component: () => import('pages/TransparentBar.vue') },
   { path: '/editcardw', component: () => import('pages/EditItineraryCardw.vue') },
-  { path: '/editcardm', component: () => import('pages/EditItineraryCardm.vue') },
   { path: '/viewitinerary', component: () => import('pages/ViewItinerary.vue') },
   { path: '/profilepage2', component: () => import('pages/ProfilePage2.vue') },
   { path: '/profilepage', component: () => import('pages/ProfilePage.vue') },
