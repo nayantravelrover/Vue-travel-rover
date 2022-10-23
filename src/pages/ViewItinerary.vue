@@ -61,6 +61,7 @@
                 </div>
             </div>
         </div>
+        <q-dialog v-model="card">
         <q-card class="box20 lt-md absolute-center" style="margin-top: 400px;">
             <div class="box21">
                 <div class="box22">
@@ -80,6 +81,8 @@
                 </div>
             </div>
         </q-card>
+        </q-dialog>
+        
     </div>
 </template>
 <script type="text/javascript">
