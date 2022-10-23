@@ -430,6 +430,7 @@ import DestinationPageWeb from './DestinationPageWeb.vue';
 import AppBar from './AppBar.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
 import { useQuasar } from 'quasar'
+import ViewItinerary from './ViewItinerary.vue';
 
 export default defineComponent({
     name: "DestinationPage",
@@ -451,6 +452,7 @@ export default defineComponent({
         const $q = useQuasar()
         return {
             slide: ref(1),
+            card: ref(false),
         };
     },
     components: {

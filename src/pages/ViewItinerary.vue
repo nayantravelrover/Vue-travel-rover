@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="box20 lt-md absolute-center" style="margin-top: 400px;">
+        <q-card class="box20 lt-md absolute-center" style="margin-top: 400px;">
             <div class="box21">
                 <div class="box22">
                     <ItineraryPreview class="q-ma-lg"  id="preview" style="margin:0px;"></ItineraryPreview>
@@ -79,8 +79,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </q-card>
     </div>
 </template>
 <script type="text/javascript">
@@ -199,8 +198,6 @@
         position: absolute;
             width: 408px;
             height: 526px;
-            left: 0px;
-            top: 0px;
             overflow-y: scroll;
         
             background: #FFFFFF;
