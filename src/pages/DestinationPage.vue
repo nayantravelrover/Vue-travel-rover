@@ -84,15 +84,15 @@
                                 label="Add to Compare" @click="add_to_compare()" />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary" @click="icon = true" />
+                                label="View Itinerary" @click="card = true" />
                         </div>
                     </div>
                 </q-card>
-                <!-- <q-dialog v-model="card">
-                    <q-card class="box20 lt-md absolute-center" style="margin-top: 400px;">
+                <q-dialog v-model="card">
+                    <q-card class="box20 lt-md absolute-center">
                         <div class="box21">
                             <div class="box22">
-                                <ItineraryPreview class="q-ma-lg" id="preview" style="margin:0px;"></ItineraryPreview>
+                                <ItineraryPreview id="preview" style="margin:0px;"></ItineraryPreview>
                             </div>
                         </div>
                         <div class="box23">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                     </q-card>
-                </q-dialog> -->
+                </q-dialog>
             </div>
             </q-carousel-slide>      
         </q-carousel>
@@ -452,6 +452,7 @@ import AppBar from './AppBar.vue';
 import { places, load_place_itinerary_data } from "src/common/api_calls";
 import { useQuasar } from 'quasar'
 import ViewItinerary from './ViewItinerary.vue';
+import ItineraryPreview from '../components/ItineraryPreview.vue'
 
 export default defineComponent({
     name: "DestinationPage",
@@ -480,6 +481,7 @@ export default defineComponent({
         FooterPage,
         DestinationPageWeb,
         AppBar,  
+        ItineraryPreview
     },
     created() {
         var place = this.$route.query.place.trim()
