@@ -86,45 +86,32 @@ import LoginPage2 from "src/pages/LoginPage2.vue";
 
 const linksList = [
   {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
+    title: "Home",
+   
+    icon: "home",
     link: "/src/pages/MainHome.vue",
   },
   {
-    title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
+    title: "My Profile",
+  
+    icon: "account_circle",
+    link: "/src/pages/ProfilePage2.vue",
   },
   {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
+    title: "Liked Itineraries",
+    icon: "info",
+    link: "",
   },
   {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
+    title: "Viewed Itineraries",
+    
+    icon: "event",
+    link: "/src/pages/ViewedItinerary.vue",
   },
   {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-  {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
+    title: "Custom Itineraries",
+    
+    icon: "account_balance_wallet",
     link: "https://awesome.quasar.dev",
   },
 ];

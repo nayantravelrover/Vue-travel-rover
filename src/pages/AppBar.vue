@@ -1,10 +1,10 @@
 <template>
     <div>
         <q-toolbar>
-            <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" style="color: black;" />
+            <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen"  style="color: black;" />
             
             <q-toolbar-title class="q-pa-md row item-center">
-                <img src="../assets/logo.svg" />
+                <img src="../assets/logo.svg" style="max-width: 200px;"/>
             </q-toolbar-title>
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" style="color: white;">
                 <q-menu>
