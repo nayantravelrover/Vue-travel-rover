@@ -154,78 +154,6 @@
         </div>
       </div>
     </div>
-    <!-- Destinations -->
-    <div class="q-pa-sm">
-        <text style="margin-left: 100px; font-family:Poppins; font-size: 35px;">Explore Destinations</text>
-    </div>
-        <Carousel style="margin-left: 20px; margin-right: 20px;" :itemsToShow="isMobile?2: 5">
-        <Slide v-for='(items) in expanded' :key='items.id' >
-          <div class="carousel__item-1">
-           <q-card flat bordered class="explore-destination-cards">
-      <q-img
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Overline</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Title</div>
-        <div class="text-caption text-grey">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="primary" label="Book" />
-
-        <q-space />
-
-        <q-btn
-          color="grey"
-          round
-          flat
-          dense
-          :icon="items.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="items.expanded = !items.expanded"
-        />
-
-      </q-card-actions>
-
-      <q-slide-transition>
-        <div v-show="items.expanded">
-          <q-separator />
-          <q-card-section class="text-subitle2">
-            assadsa
-          </q-card-section>
-        </div>
-      </q-slide-transition>
-    </q-card>
-          </div>
-        </Slide>
-      </Carousel>
-    <div class="row q-pa-lg gt-sm justify-around">
-      <div class="col-md-5 col-sm-12">
-        <div>
-        <q-card class="latest-tour" flat>
-          <span class="top-left-card-round" style="margin-top: 30px;"></span>
-          <text class="text19">Watch our latest tour</text>
-        </q-card>
-        </div>
-        <div style="margin-top: 20px; margin-left: 25px;">
-          <div class="text-gray" style="line-height: 34.63px; font-family: Poppins; font-size: 15px;">
-           <!-- {{data.watch_latest_tour_content}} --> hfdhghgv bfdgfwdghfags fwdhgfgsg gfdgafdgva dhgfgscvasvcgf dfghdvscvsvdhgfh feghgwfsevhhwiqwuyrug bvsghfdweh
-          </div>
-        </div>
-        <a href="" style="color: red; margin-left: 25px;">Learn more</a>
-      </div>
-      <div class="col-md-5 col-sm-12 self-center">
-        <q-card class="latest-tour" flat>
-          <span class="top-left-card"></span>
-          <span class="bottom-right-card"></span>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
-          </q-img>
-        </q-card>
-      </div>
-    </div>
     <!--  -->
     <div class="q-pa-xs carousel-main">
       <div class="carousel-heading">
@@ -523,33 +451,6 @@ export default defineComponent({
 
     console.log(document.readyState)
     console.log(this.basic_data)
-    // var axios = require('axios');
-
-    //     var config = {
-    //       method: 'get',
-    //       url: 'http://admin.travelrover.in/travel-rover/basic-config/',
-    //       headers: { 
-    //         'Content-Type': 'application/json'
-    //       }
-    //     };
-
-    //     axios(config)
-    //     .then(function (response) {
-    //       console.log(this.header_content)
-    //       console.log(this.basic_data)
-    //       this.basic_data = JSON.parse(response.data.data)[0]["fields"]
-          
-    //       this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
-    //           this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
-    //     this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
-    //     this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
-    //     this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
-    //     this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
-    //       console.log(this.basic_data)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
 
     document.onreadystatechange = () => {
       console.log("HEREE")

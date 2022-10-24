@@ -8,9 +8,7 @@ function getAPIService(endpoint, headers, data){
   var config = {
     method: 'get',
     url: endpoint,
-    headers: { 
-      'Content-Type': 'application/json'
-    }
+    headers: headers
   };
 
   return new Promise(function (resolve, reject) {

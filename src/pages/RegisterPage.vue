@@ -15,8 +15,8 @@
                 
                         </div>
                         <q-input outlined placeholder="Name" v-model="login.first_name" />
-                
-                        <q-input outlined v-model="login.username" placeholder="Username" />
+                        <q-input outlined placeholder="Phone number (DW we won't spam you)" v-model="login.mobile_number" />
+                        <q-input outlined v-model="login.username" placeholder="Email ID" />
                         <q-input outlined v-model="login.password" placeholder="Password" filled
                             :type="isPwd ? 'password' : 'text'">
                             <template v-slot:append>
@@ -26,8 +26,8 @@
                         </q-input>
                         <div class="q-pa-md">
                             <div class="q-gutter-sm">
-                            <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
-                                true-value="yes" false-value="no" />
+                           <!--  <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
+                                true-value="yes" false-value="no" /> -->
                             </div>
                         </div>
                         <div>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <q-input outlined v-model="login.first_name" placeholder="Name" />
-        
+                            <q-input outlined placeholder="Phone number (DW we won't spam you)" v-model="login.mobile_number" />
                             <q-input outlined v-model="login.username" placeholder="Username" />
                             <q-input outlined v-model="login.password" placeholder="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
@@ -74,8 +74,8 @@
                             </q-input>
                             <div class="q-pa-md">
                                 <div>
-                                <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
-                                    true-value="yes" false-value="no" />
+                               <!--  <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
+                                    true-value="yes" false-value="no" /> -->
                                 </div>
                             </div>
                             <div>
@@ -103,7 +103,8 @@ import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
 import { Notify } from "quasar";
-
+import {base_url,setAccessToken} from '../common/api_calls.js'
+import {postAPIService} from '../common/api.service.js'
 
 let $q
 export default {
@@ -113,18 +114,21 @@ export default {
         return {
             password: ref(''),
             isPwd: ref(true),
-
             icon: ref(false),
         }
     },
-    terms() {
-        return {
-            customModel: ref('no')
+    // terms() {
+    //     return {
+    //         customModel: ref('no')
 
-        }
+    //     }
+
+    // },
+    created() {
+        
 
     },
-    
+
     data() {
         return {
             login: {
@@ -149,7 +153,63 @@ export default {
                     message: 'Please enter a valid password'
                 })
             } else{
-                create_user(this.login)
+                create_user(this.login).then(response => {
+                    if(response.status == 201){
+                      console.log(response)
+                      
+                      var username = JSON.parse(response.config.data).username
+                      var password = JSON.parse(response.config.data).password
+                      console.log(password)
+                      var name = JSON.parse(response.config.data).first_name
+                      var mobile_number = JSON.parse(response.config.data).mobile_number
+
+                      var endpoint_token = base_url + 'api/v1/jwt/create/'
+                      var data_token = {"username" : username, "password": password}
+                      var headers = {
+                        'Content-Type': 'application/json'
+                      }
+                      var create_token = postAPIService(endpoint_token, headers, data_token).then(response => {
+                        console.log(response.status)
+                        if(response.status == 200){
+                          console.log(response.data)
+                          setAccessToken(response.data)
+                          this.$store.commit('user_logged_in_update', true)
+                          this.icon = false
+
+                          //alert("Successfully logged in")
+                          $q.notify({
+                                type: 'positive',
+                                message: 'You are successfully logged in.',
+                                position: 'top'
+                            })
+                        }else{
+                            $q.notify({
+                                type: 'negative',
+                                message: 'The system seems to be under maintainence',
+                                position: 'top'
+                            })
+                          //alert("The system seems to be under maintainence");
+                        }
+                      }).catch(err => {
+                        console.log(err)
+                        $q.notify({
+                                type: 'negative',
+                                message: 'The system seems to be under maintainence',
+                                position: 'top'
+                            })
+                      })
+                      
+                      
+                      }
+                    }).catch(err => {
+                        console.log(err)
+                        $q.notify({
+                                type: 'negative',
+                                message: 'The system seems to be under maintainence'
+                            })
+                    })
+
+                
             }
         }
     },

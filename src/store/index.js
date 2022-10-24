@@ -18,6 +18,7 @@ export default store(function (/* { ssrContext } */) {
       // example
     },
     state: {
+      user_logged_in: false,
       itinerary_preview: {
         place_name: "Ladakh",
         place_description:"sdasdsadasd",
@@ -160,6 +161,9 @@ export default store(function (/* { ssrContext } */) {
       },
       tour_highlights_update(state,val){
         state.itinerary_preview.tour_highlights = val
+      },
+      user_logged_in_update(state,val){
+        state.user_logged_in = val
       }
     },
     actions:{

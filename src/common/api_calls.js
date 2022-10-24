@@ -38,6 +38,47 @@ function load_place_itinerary_data(place){
   });
 }
 
+function check_if_access_token_is_valid(){
+    var endpoint = base_url + 'api/v1/users/me/'
+    var access_token = window.sessionStorage.getItem("travel_rover_access");
+    console.log(access_token);
+    var refresh_token = window.sessionStorage.getItem("travel_rover_refresh_token");
+    var headers = { 
+        'Authorization': 'Bearer ' + access_token,
+        'Content-Type': 'application/json'
+        }
+    console.log(headers)
+    return new Promise(function (resolve, reject){
+    var result =  getAPIService(endpoint,headers, null).then(response =>{
+      console.log(response)
+      resolve(response);
+    })
+    .catch(err =>{
+      reject(err)
+      console.log(err)
+    })
+    });
+}
+
+
+function check_if_refresh_token_is_valid(){
+  var endpoint = base_url + 'api/v1/jwt/refresh/'
+  var refresh_token = window.sessionStorage.getItem("travel_rover_refresh_token");
+  var data = {
+    "refresh": refresh_token
+  }
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+  }
+
+
+
+
+
+
 function places (place) {
   var endpoint = base_url + 'travel-rover/places/?place=' + place
   var headers = {
@@ -91,34 +132,9 @@ function create_user(data){
   var headers = {
     'Content-Type': 'application/json'
   }
-  var result = postAPIService(endpoint,headers, data).then(response => {
-    if(response.status == 201){
-      console.log(response)
-      
-      var username = JSON.parse(response.config.data).username
-      var password = JSON.parse(response.config.data).password
-
-      var endpoint_token = base_url + 'api/v1/jwt/create/'
-      var data_token = {"username" : username, "password": password}
-      var create_token = postAPIService(endpoint_token, headers, data_token).then(response => {
-        if(response.status == 200){
-          setAccessToken(response.data)
-        }else{
-          alert("The system seems to be under maintainence");
-        }
-      }).catch(err => {
-        alert("There is some error.")
-      })
-      
-      alert("Succesfully registered");
-      }
-    })
-    .catch(err => {
-      if(err.response.status == 400){
-        alert(err.response.data.username[0])
-      }
-    })
-}
+  var result = postAPIService(endpoint,headers, data)
+  return result
+  }
 
 
 
@@ -129,5 +145,8 @@ export {
   create_user,
   basicconfig,
   save_itinerary_api,
-  load_place_itinerary_data
+  load_place_itinerary_data,
+  setAccessToken,
+  check_if_access_token_is_valid,
+  check_if_refresh_token_is_valid
 }
