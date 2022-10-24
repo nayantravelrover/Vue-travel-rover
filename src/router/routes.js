@@ -11,10 +11,12 @@ const routes = [
   { path: '/viewitinerary', component: () => import('pages/ViewItinerary.vue') },
   { path: '/profilepage2', component: () => import('pages/ProfilePage2.vue') },
   { path: '/profilepage', component: () => import('pages/ProfilePage.vue') },
+  { path: '/profilepageweb', component: () => import('pages/ProfilePageWeb.vue') },
   { path: '/likeditinerary', component: () => import('pages/LikedItinerary.vue') },
   { path: '/vieweditinerary', component: () => import('pages/ViewedItinerary.vue') },
   { path: '/itinerarybuilder', component: () => import('pages/ItineraryBuilder.vue') },
   { path: '/compare', component: () => import('pages/CompareTable.vue') },
+  { path: '/customitinerary', component: () => import('pages/CustomItinerary.vue') },
   {
     path: '/',
     redirect: "/home",

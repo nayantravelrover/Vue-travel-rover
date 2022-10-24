@@ -476,24 +476,8 @@
                     <div class="row compare_content">
                         <div class="compare_inner_content"></div>
                         <div class="column compare_inner_content">
-                            <text>this is my new itinerary page this is my new itinerary page</text>
-                            <text>this is my new itinerary page this is my new itinerary page</text>
-                            <text>this is my new itinerary page this is my new itinerary page</text>
-                                <text>this is my new itinerary page this is my new itinerary page</text>
-                                <text>this is my new itinerary page this is my new itinerary page</text>
-                                <text>this is my new itinerary page this is my new itinerary page</text>
-                                    <text>this is my new itinerary page this is my new itinerary page</text>
-                                    <text>this is my new itinerary page this is my new itinerary page</text>
-                                    <text>this is my new itinerary page this is my new itinerary page</text>
-                                        <text>this is my new itinerary page this is my new itinerary page</text>
-                                        <text>this is my new itinerary page this is my new itinerary page</text>
-                                        <text>this is my new itinerary page this is my new itinerary page</text>
-                                            <text>this is my new itinerary page this is my new itinerary page</text>
-                                            <text>this is my new itinerary page this is my new itinerary page</text>
-                                            <text>this is my new itinerary page this is my new itinerary page</text>
-                            
-                            <!-- <ul class="compare_text" v-html="this.compare_itinerary_one.travel_arrangements">
-                            </ul> -->
+                            <ul class="compare_text" v-html="this.compare_itinerary_one.travel_arrangements">
+                            </ul>
                         </div>
                         <div class="compare_inner_content">
                             Clothing
