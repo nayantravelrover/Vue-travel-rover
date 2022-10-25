@@ -136,6 +136,15 @@ function create_user(data){
   return result
   }
 
+function user_login(data){
+  var endpoint = base_url + 'api/v1/jwt/create/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+}
 
 
 
@@ -148,5 +157,6 @@ export {
   load_place_itinerary_data,
   setAccessToken,
   check_if_access_token_is_valid,
-  check_if_refresh_token_is_valid
+  check_if_refresh_token_is_valid,
+  user_login
 }

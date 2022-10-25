@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
@@ -88,8 +88,8 @@
     </div>
     <!-- why choose us  -->
 
-    <div class="q-pa-md section-3-main  justify-center">
-      <div class="main-section-3">
+    <div class="q-pa-md section-3-main  justify-center" >
+      <div class="main-section-3" id="why_choose_us">
         <h5 class="text-center mobile-section-3" style="width: 486px">
           Steps to join your ultimate and trustworthy travel partner with us
         </h5>
@@ -127,12 +127,12 @@
                 src="https://media.istockphoto.com/photos/young-man-arms-outstretched-by-the-sea-at-sunrise-enjoying-freedom-picture-id1285301614?b=1&k=20&m=1285301614&s=612x612&w=0&h=oL04ACGYXP5cepM8NLZIyJaeUjuYoXYIrTT-Ej2jTAQ=" />
 
               <div class="row no-wrap items-center">
-                <div class="col text-h6 ellipsis">Trip To Greece</div>
+                <div class="col text-h6 ellipsis">Trip To Goa</div>
 
                 <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"></div>
               </div>
               <div class="text-caption text-grey">
-                29 June | by Robbin joseph
+                31st December | Checkout Goa for more such trips
               </div>
               <!-- <q-rating v-model="stars" :max="5" size="32px" /> -->
               <div class="q-pa-xs q-gutter-sm">
@@ -144,7 +144,7 @@
 
             <q-card-section class="q-pt-none row no-wrap items-center">
               <div class="col text-caption text-grey">
-                <q-avatar color="white" size="30px" text-color="gray" icon="directions" />24 People going
+                <q-avatar color="white" size="30px" text-color="gray" icon="directions" />50 People going
               </div>
               <div class="col-auto text-grey text-caption">
                 <q-icon size="15px" name="favorite" />
@@ -155,7 +155,7 @@
       </div>
     </div>
     <!--  -->
-    <div class="q-pa-xs carousel-main">
+    <div class="q-pa-xs carousel-main" id="testimonials">
       <div class="carousel-heading">
         <h5 class="text-center">What our users say about us</h5>
       </div>
@@ -182,7 +182,7 @@
       </Carousel>
     </div>
     <!-- Blog section -->
-    <div>
+    <div id="blogs">
       <div class="blog-heading">
         <text class="blog-text" style="font-size: 34px;">Blogs</text>
       </div>
@@ -277,7 +277,7 @@
       </q-card>
     </div>
     <!-- footer -->
-    <div>
+    <div id="contact_us">
       <footer class="footer" id="footer">
         <div class="q-pa-md">
           <div class="row">
@@ -447,25 +447,9 @@ export default defineComponent({
       slide: ref(1),
     };
   },
-  created() {
-
-    console.log(document.readyState)
-    console.log(this.basic_data)
-
-    document.onreadystatechange = () => {
-      console.log("HEREE")
-      if (document.readyState === 'complete') {
-        console.log("document ready state complete")
-
-
-        var test_arr = ["ab","bc"]
-    this.basic_data["explore_destination"] = test_arr
-    this.basic_data["explore_destination_images"] = test_arr
-    this.basic_data["headers_of_why_choose_us"] = test_arr
-    this.basic_data["svgs_of_why_choose_us"] = test_arr
-    this.basic_data["content_of_why_choose_us"] = test_arr
-
-        basicconfig().then(response =>{
+  mounted(){
+    console.log("Here in Mounted");
+    basicconfig().then(response =>{
         this.basic_data = JSON.parse(response.data.data)[0]["fields"]
         this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
         this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
@@ -474,20 +458,9 @@ export default defineComponent({
         this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
 
         console.log(this.basic_data)
-    });
-    }
-  }
-
-    // console.log(document.readyState)
-
-    var test_arr = ["Uttarakhand","Himachal Pradesh"]
-    this.basic_data["explore_destination"] = test_arr
-    this.basic_data["explore_destination_images"] = test_arr
-    this.basic_data["headers_of_why_choose_us"] = test_arr
-    this.basic_data["svgs_of_why_choose_us"] = test_arr
-    this.basic_data["content_of_why_choose_us"] = test_arr
-
-    console.log("HERE");
+      });
+  },
+  created() {
   }
 });
 </script>

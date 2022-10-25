@@ -97,13 +97,11 @@
 </template>
 <script>
 
-import {basicconfig, create_user} from "src/common/api_calls";
-
 import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
 import { Notify } from "quasar";
-import {base_url,setAccessToken} from '../common/api_calls.js'
+import {base_url,setAccessToken,basicconfig, create_user} from '../common/api_calls.js'
 import {postAPIService} from '../common/api.service.js'
 
 let $q
@@ -179,7 +177,7 @@ export default {
                           //alert("Successfully logged in")
                           $q.notify({
                                 type: 'positive',
-                                message: 'You are successfully logged in.',
+                                message: 'You are successfully registered in.',
                                 position: 'top'
                             })
                         }else{

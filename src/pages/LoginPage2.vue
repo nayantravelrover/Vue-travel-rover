@@ -97,6 +97,8 @@
 import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
+import {base_url, setAccessToken, basicconfig, user_login} from '../common/api_calls.js'
+
 
 let $q
 export default {
@@ -119,7 +121,6 @@ export default {
         }
     },
     methods: {
-        ...mapActions('auth', ['doLogin']),
         async submitForm() {
             if (!this.login.username || !this.login.password) {
                 $q.notify({
@@ -132,23 +133,43 @@ export default {
                     message: 'A senha deve ter 6 ou mais caracteres.'
                 })
             } else {
-                try {
-                    await this.doLogin(this.login)
-                    const toPath = this.$route.query.to || '/admin'
-                    this.$router.push(toPath)
-                } catch (err) {
-                    if (err.response.data.detail) {
+               
+                user_login(this.login).then(response => {
+                        console.log(response.status)
+                        if(response.status == 200){
+                          console.log(response.data)
+                          setAccessToken(response.data)
+                          this.$store.commit('user_logged_in_update', true)
+                          this.icon = false
+
+                          //alert("Successfully logged in")
+                          $q.notify({
+                                type: 'positive',
+                                message: 'You are successfully logged in.',
+                                position: 'top'
+                            })
+                        }else{
+                            $q.notify({
+                                type: 'negative',
+                                message: 'Please check your username and password',
+                                position: 'top'
+                            })
+                          //alert("The system seems to be under maintainence");
+                        }
+                      }).catch(err => {
+                        console.log(err)
                         $q.notify({
-                            type: 'negative',
-                            message: err.response.data.detail
-                        })
-                    }
-                }
+                                type: 'negative',
+                                message: 'Please check your username and password',
+                                position: 'top'
+                            })
+                      })
+                      }
             }
+        },
+        mounted() {
+            $q = useQuasar()
         }
-    },
-    mounted() {
-        $q = useQuasar()
     }
-}
+    
 </script>

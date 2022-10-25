@@ -61,7 +61,7 @@
       </div>
       <div class="col-6">
         <div class=" text-bold row sectionheading">Number of Days</div>
-        <q-input dense class="row" outlined />
+        <q-input dense class="row" v-model="number_of_days" outlined />
       </div>
       </div>
     </div>
@@ -221,7 +221,14 @@ export default {
         return this.$store.state.itinerary_preview.start_dates
       }
     },
-
+    number_of_days:{
+      set(val){
+        this.$store.commit('number_of_days_update', val)
+      },
+      get() {
+        return this.$store.state.itinerary_preview.number_of_days
+      }
+    },
     itinerary_update: {
       set(val){
         this.$store.commit('itinerary_update', val)

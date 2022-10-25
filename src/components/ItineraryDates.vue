@@ -10,6 +10,7 @@
       :columns="columns"
       row-key="name"
     />
+    <div class="text-bold q-pa-md row" style="font-size: medium;padding-left: 0px">Number of days: {{this.$store.state.itinerary_preview.number_of_days}}</div>
 </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
     return {
       columns: [
         { name: 'Month', align: 'center', label: 'Month', field: 'month', sortable: true },
-      { name: 'Days', label: 'Days', align: 'center', field: 'days', sortable: true },
+        { name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
       ]
     }
   },
@@ -39,7 +40,17 @@ export default {
         "July", "August", "September", "October", "November", "December"
       ];
       var month_dates = _.groupBy(this.$store.state.itinerary_preview.start_dates, (date) => monthNames[new Date(date).getMonth()]);
+      console.log(month_dates);
+      // for(const month in month_dates){
+      //   console.log(month);
+      //   for (const items in month_dates[month]){
+      //     month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
+      //   }
+      // }
       for (const month in month_dates) {
+        for (const items in month_dates[month]){
+          month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
+        }
         result.push({"month": month, "days": month_dates[month].join(", ")})
       }
       return result
