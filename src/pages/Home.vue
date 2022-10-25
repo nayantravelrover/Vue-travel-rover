@@ -270,7 +270,7 @@
           </div>
           <div class="q-gutter-md row justify-center subscribe-inputs">
             <!-- <q-input class="subscribe-input-email" style="" rounded outlined v-model="text" label="Your Email" /> -->
-            <q-btn class="subscribe-input-btn" style="" unelevated rounded color="primary" label="Subscribe" />
+            <q-btn class="subscribe-input-btn" style="" unelevated rounded color="primary" label="Subscribe" @click="subscribe()" />
 
           </div>
         </div>
@@ -386,10 +386,11 @@ import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
-import {basicconfig} from "src/common/api_calls";
+import {basicconfig, subscribe_user,check_if_access_token_is_valid,check_if_refresh_token_is_valid} from "src/common/api_calls";
 import DestinationPageWeb from "./DestinationPageWeb.vue";
 import DestinationPage from "./DestinationPage.vue";
-
+import { useQuasar,Notify } from 'quasar'
+let $q
 export default defineComponent({
   name: "IndexPage",
   components: {
@@ -400,6 +401,7 @@ export default defineComponent({
   props: {
     isMobile: Boolean
   },
+  plugins: { Notify },
   data(){
 
     return {
@@ -432,6 +434,64 @@ export default defineComponent({
         name:'DestinationPage',
         query: { place: this.basic_data["explore_destination"][item] }
       })
+    },
+    subscribe(){
+      if(this.$store.state.user_logged_in==false){
+          $q.notify({
+              type: 'negative',
+              message: 'Kindly log-in/sign-up to enable this functionality',
+              position: 'top'
+              })
+      }else{
+        check_if_access_token_is_valid().then(response=>{
+          console.log(response);
+          var access_token = window.sessionStorage.getItem("travel_rover_access");
+          subscribe_user(access_token).then(response=>{
+                $q.notify({
+                  type: 'positive',
+                  message: 'You will get timely updates about travel now',
+                  position: 'top'
+              })
+              }).catch(err=>{
+                $q.notify({
+                  type: 'negative',
+                  message: 'Some internal issues are going on',
+                  position: 'top'
+              })
+              });
+          this.$store.commit('user_logged_in_update', true)
+        }).catch(err =>{
+            console.log(err)
+            check_if_refresh_token_is_valid().then(response => {
+              var access_token = response["data"]["access"];
+              console.log(access_token)
+              window.sessionStorage.setItem("travel_rover_access", access_token);
+              subscribe_user(access_token).then(response=>{
+                $q.notify({
+                  type: 'positive',
+                  message: 'You will get timely updates about travel now',
+                  position: 'top'
+              })
+              }).catch(err=>{
+                $q.notify({
+                  type: 'negative',
+                  message: 'Some internal issues are going on',
+                  position: 'top'
+              })
+              });
+              this.$store.commit('user_logged_in_update', true)
+              console.log(response);
+            }).catch(err =>{
+              $q.notify({
+                type: 'negative',
+                message: 'Kindly log-in/sign-up to enable this functionality',
+                position: 'top'
+              })
+              this.$store.commit('user_logged_in_update', false)
+              console.log(err);
+            });
+        });
+      }
     }
   },
   setup() {
@@ -448,6 +508,7 @@ export default defineComponent({
     };
   },
   mounted(){
+    $q = useQuasar()
     console.log("Here in Mounted");
     basicconfig().then(response =>{
         this.basic_data = JSON.parse(response.data.data)[0]["fields"]

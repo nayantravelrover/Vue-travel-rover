@@ -124,8 +124,6 @@ function save_itinerary_api(data){
 }
 
 
-
-
 function create_user(data){
   var endpoint = base_url + 'api/v1/users/'
   var data = data
@@ -146,6 +144,42 @@ function user_login(data){
   return result
 }
 
+function subscribe_user(access_token){
+  var endpoint = base_url + 'travel-rover/update-subscribe/'
+  var data = {}
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  console.log(result)
+  return result
+}
+
+function liked_itinerary(data,access_token){
+  var endpoint = base_url + 'travel-rover/like-itinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  console.log(result)
+  return result
+}
+
+function viewed_itinerary_api(data,access_token){
+  var endpoint = base_url + 'travel-rover/viewed-itinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  console.log(result)
+  return result
+}
+
 
 
 export {
@@ -158,5 +192,8 @@ export {
   setAccessToken,
   check_if_access_token_is_valid,
   check_if_refresh_token_is_valid,
-  user_login
+  user_login,
+  subscribe_user,
+  liked_itinerary,
+  viewed_itinerary_api
 }

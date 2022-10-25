@@ -49,8 +49,7 @@
                 <div class="row fit justify-start items-center q-col no-wrap">
                 <q-card  class="iternarybox" style="width: 100%">
                     <q-img :src="item.place_img" style="height: 282px;" />
-                    <div class="heartbox">
-                        <q-img src="../assets/Goa/heart.svg" class="heart" />
+                    <div class="heartbox"><q-img :src="this.heart_transparent" class="heart" @click="this.like_unlike_itinerary($event,item.itinerary_pk)" />
                     </div>
                     <div style="margin-top: 25px; margin-left: 20px;">
                         <text class="text12">{{item.itinerary_name}}</text>
@@ -65,9 +64,9 @@
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
 
-<text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
-<br>
-<text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+                        <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+                        <br>
+                        <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
                         </text>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
@@ -88,7 +87,7 @@
                                 label="Add to Compare" @click="add_to_compare()" />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary" @click="card = true" />
+                                label="View Itinerary" @click="this.view_itinerary(item.itinerary_pk)" />
                         </div>
                     </div>
                 </q-card>
@@ -410,20 +409,15 @@ import FooterPage from './FooterPage.vue'
 import DestinationPageWeb from './DestinationPageWeb.vue';
 // import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
-import { places, load_place_itinerary_data } from "src/common/api_calls";
-import { useQuasar } from 'quasar'
+import { places, load_place_itinerary_data, base_url, check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
+import { useQuasar, Notify } from 'quasar'
 import ViewItinerary from './ViewItinerary.vue';
 import ItineraryPreview from '../components/ItineraryPreview.vue'
 import EditItineraryCardw from './EditItineraryCardw.vue';
-
+let $q
 
 export default defineComponent({
     name: "DestinationPage",
-    methods: {
-        openDialogBox() {
-            this.$router.push('/editcardm');
-        }
-    },
     data() {
         return {
             place_description: "",
@@ -431,6 +425,8 @@ export default defineComponent({
             compare_itinerary_one:[],
             compare_itinerary_two:[],
             compare_itinerary_three:[],
+            heart_transparent : base_url + 'media/files/heart_transparent.svg',
+            heart_red : base_url + 'media/files/heart.svg'
         }
     },
     setup() {
@@ -448,7 +444,10 @@ export default defineComponent({
         EditItineraryCardw,
         ViewItinerary,
         // ItineraryPreview
-},
+    },
+    mounted(){
+        $q = useQuasar()
+    },
     created() {
         var place = this.$route.query.place.trim()
         places(place).then(response => {
@@ -465,7 +464,7 @@ export default defineComponent({
             console.log(this.place_description)
         });
         load_place_itinerary_data(place).then(response => {
-
+            console.log(response)
             var itineraries_list = []
             for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
 
@@ -484,7 +483,8 @@ export default defineComponent({
                     "inclusions_html": items.inclusions,
                     "exclusions_html": items.exclusions,
                     "things_to_carry": items.things_to_carry,
-                    "cancellation_policy":items.cancellation_policy
+                    "cancellation_policy":items.cancellation_policy,
+                    "itinerary_pk":JSON.parse(response.data.data)[i].pk
                 }
             }
             var itineraries_list_filtered = itineraries_list.filter(function (el) {
@@ -553,7 +553,132 @@ export default defineComponent({
             }
 
             console.log(this.compare_itinerary_one)
-        }
+        },
+        like_unlike_itinerary(elem, itinerary_pk){
+            
+            if(this.$store.state.user_logged_in==false){
+                  $q.notify({
+                      type: 'negative',
+                      message: 'Kindly log-in/sign-up to enable this functionality',
+                      position: 'top'
+                      })
+                return;
+            }
+            
+            var to_like = true
+            var heart_transparent = base_url + 'media/files/heart_transparent.svg'
+            var heart_red = base_url + 'media/files/heart.svg'
+            if(elem.target.src == heart_red){
+               elem.target.src = heart_transparent
+               var to_like = false
+            }else{
+                elem.target.src = heart_red
+            }
+
+            var data = {
+                "itinerary_pk":itinerary_pk,
+                "to_like":to_like
+            }
+
+
+            check_if_access_token_is_valid().then(response=>{
+                  console.log(response);
+                  var access_token = window.sessionStorage.getItem("travel_rover_access");
+                  liked_itinerary(data,access_token).then(response=>{
+                        if(to_like){
+                            $q.notify({
+                              type: 'positive',
+                              message: 'Added to liked itineraries',
+                              position: 'top'
+                            })
+                        }else{
+                            $q.notify({
+                              type: 'negative',
+                              message: 'Removed from liked itineraries',
+                              position: 'top'
+                            })
+                        }
+                        
+                      }).catch(err=>{
+                        $q.notify({
+                          type: 'negative',
+                          message: 'Some internal issues are going on',
+                          position: 'top'
+                      })
+                      });
+                  this.$store.commit('user_logged_in_update', true)
+                }).catch(err =>{
+                    console.log(err)
+                    check_if_refresh_token_is_valid().then(response => {
+                      var access_token = response["data"]["access"];
+                      console.log(access_token)
+                      window.sessionStorage.setItem("travel_rover_access", access_token);
+                      liked_itinerary(data,access_token).then(response=>{
+                        if(to_like){
+                            $q.notify({
+                              type: 'positive',
+                              message: 'Added to liked itineraries',
+                              position: 'top'
+                            })
+                        }else{
+                            $q.notify({
+                              type: 'negative',
+                              message: 'Removed from liked itineraries',
+                              position: 'top'
+                            })
+                        }
+                      }).catch(err=>{
+                        $q.notify({
+                          type: 'negative',
+                          message: 'Some internal issues are going on',
+                          position: 'top'
+                      })
+                      });
+                      this.$store.commit('user_logged_in_update', true)
+                      console.log(response);
+                    }).catch(err =>{
+                      $q.notify({
+                        type: 'negative',
+                        message: 'Kindly log-in/sign-up to enable this functionality',
+                        position: 'top'
+                      })
+                      this.$store.commit('user_logged_in_update', false)
+                      console.log(err);
+                    });
+                });
+            },
+            view_itinerary(itinerary_pk){
+                var data = {
+                    "itinerary_pk":itinerary_pk
+                }
+                this.card = true
+                console.log(itinerary_pk);
+                check_if_access_token_is_valid().then(response=>{
+                  console.log(response);
+                  var access_token = window.sessionStorage.getItem("travel_rover_access");
+                  viewed_itinerary_api(data, access_token);
+                  this.$store.commit('user_logged_in_update', true)
+                }).catch(err =>{
+                    console.log(err)
+                    check_if_refresh_token_is_valid().then(response => {
+                      var access_token = response["data"]["access"];
+                      console.log(access_token)
+                      window.sessionStorage.setItem("travel_rover_access", access_token);
+                      viewed_itinerary_api(data, access_token)
+                      this.$store.commit('user_logged_in_update', true)
+                      console.log(response);
+                    }).catch(err =>{
+                      $q.notify({
+                        type: 'negative',
+                        message: 'Kindly log-in/sign-up to enable this functionality',
+                        position: 'top'
+                      })
+                      this.$store.commit('user_logged_in_update', false)
+                      console.log(err);
+                    });
+                });
+            }
+
     }
 })
 

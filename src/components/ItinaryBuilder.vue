@@ -5,7 +5,7 @@
 <!--    <div class="q-ma-sm">-->
     <div class="text-bold  row sectionheading" >Place Name</div>
     <q-select outlined v-model="place_name" :options="[
-        'Ladakh', 'Himalayas'
+        'Himachal Pradesh','Leh Ladakh','Goa','Kashmir','Uttarakhand'
       ]"  />
 <!--    </div>-->
     <div id="place_description" class="q-pt-lg ">

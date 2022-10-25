@@ -39,10 +39,8 @@
             <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list.length/3)" :key="i" :name="i" class="column no-wrap">
                 <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
                 <q-card v-for="item in itineraries_list.slice((i - 1) * 3, i * 3)" :key="item" class="iternarybox" style="margin-left:35px;">
-
                     <q-img :src="item.place_img" style="height: 282px;" />
-                    <div class="heartbox">
-                        <q-img src="../assets/Goa/heart.svg" class="heart" />
+                    <div class="heartbox"><q-img :src="this.$parent.heart_transparent" class="heart" @click="this.$parent.like_unlike_itinerary($event,item.itinerary_pk)" />
                     </div>
                     <div style="margin-top: 25px; margin-left: 20px;">
                         <text class="text12">{{item.itinerary_name}}</text>
@@ -82,7 +80,7 @@
                                 label="Add to Compare" @click="this.$parent.add_to_compare(item)" />
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
-                                label="View Itinerary " @click="card = true" />
+                                label="View Itinerary " @click="this.view_itinerary(item.itinerary_pk)" />
                         </div>
                     </div>
                 </q-card>
@@ -497,6 +495,9 @@ import { ref, watch } from 'vue'
 import TransparentBar from './TransparentBar.vue';
 import ViewItinerary from './ViewItinerary.vue';
 import CompareTable from './CompareTable.vue';
+import { places, load_place_itinerary_data,base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
+import { useQuasar, Notify } from 'quasar'
+let $q
 
 
 export default {
@@ -529,6 +530,42 @@ export default {
         place_description_update(newplace, oldplace){
             this.place_description=this.$parent.place_description
         },
+    },
+    mounted(){
+        $q = useQuasar()
+    },
+    methods:{
+        view_itinerary(itinerary_pk){
+            var data = {
+                "itinerary_pk":itinerary_pk
+            }
+            this.card = true
+            console.log(itinerary_pk);
+            check_if_access_token_is_valid().then(response=>{
+              console.log(response);
+              var access_token = window.sessionStorage.getItem("travel_rover_access");
+              viewed_itinerary_api(data, access_token);
+              this.$store.commit('user_logged_in_update', true)
+            }).catch(err =>{
+                console.log(err)
+                check_if_refresh_token_is_valid().then(response => {
+                  var access_token = response["data"]["access"];
+                  console.log(access_token)
+                  window.sessionStorage.setItem("travel_rover_access", access_token);
+                  viewed_itinerary_api(data, access_token)
+                  this.$store.commit('user_logged_in_update', true)
+                  console.log(response);
+                }).catch(err =>{
+                  $q.notify({
+                    type: 'negative',
+                    message: 'Kindly log-in/sign-up to enable this functionality',
+                    position: 'top'
+                  })
+                  this.$store.commit('user_logged_in_update', false)
+                  console.log(err);
+                });
+            });
+        }
     },
     components: { TransparentBar, ViewItinerary,}
 }

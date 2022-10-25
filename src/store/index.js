@@ -20,7 +20,7 @@ export default store(function (/* { ssrContext } */) {
     state: {
       user_logged_in: false,
       itinerary_preview: {
-        place_name: "Ladakh",
+        place_name: "Kashmir",
         place_description:"sdasdsadasd",
         place_img:"download.jpeg",
         itinerary_name:"This is my itinerary",
