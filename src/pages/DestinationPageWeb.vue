@@ -358,10 +358,13 @@
                     Want to customise your itinerary?
                     <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
                 </text>
-            <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;">
+            <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;" @click="edititinerary = true">
                 <text style="font-size: 24px; ">Click Here</text>
             </q-btn>
         </div>
+        <q-dialog v-model="edititinerary">
+            <EditItineraryCardw/>
+        </q-dialog>
         <div class="q-pa-md full-width">
         <div style="margin-left: 100px; margin-right: 100px; margin-bottom: 50px;">
             <text class="textguide" style="margin-left: 32px; margin-top: 30.39px;">FAQ About {{this.place_description["name"]}}</text>
@@ -498,6 +501,7 @@ import CompareTable from './CompareTable.vue';
 import { places, load_place_itinerary_data,base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 let $q
+import EditItineraryCardw from './EditItineraryCardw.vue';
 
 
 export default {
@@ -506,6 +510,7 @@ export default {
         return {
             slide: ref(1),
             card: ref(false),
+            edititinerary: ref(false),
         };
     },
     data(){
@@ -567,7 +572,7 @@ export default {
             });
         }
     },
-    components: { TransparentBar, ViewItinerary,}
+    components: { TransparentBar, ViewItinerary, EditItineraryCardw }
 }
 
 
