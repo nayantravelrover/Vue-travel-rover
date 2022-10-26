@@ -6,16 +6,16 @@
           <div
             class="input-area-1 col-md-3 col-xs-12"
             style="background-color: white">
-            <q-input borderless bg-color="white" label="Where to ?">
+            <q-select filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon name="place" />
               </template>
-            </q-input>
+            </q-select>
           </div>
           <div
             class="input-area-2 col-md-3 col-xs-12"
             style="background-color: white">
-            <q-input borderless bg-color="white" label="From ?" v-model="date">
+            <q-input borderless bg-color="white" label="Date ?" v-model="date">
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
                   <q-popup-proxy
@@ -38,7 +38,7 @@
               </template>
             </q-input>
           </div>
-          <div
+          <!-- <div
             class="input-area-3 col-md-3 col-xs-12"
             style="background-color: white">
             <q-input borderless bg-color="white" label="To ?" v-model="date">
@@ -63,9 +63,9 @@
                 </q-icon>
               </template>
             </q-input>
-          </div>
+          </div> -->
           <div class="input-area-4 col-md-3 col-xs-12" style="">
-            <q-btn color="" class="search-btn" icon="search" label="Search" />
+            <q-btn color="" class="search-btn" icon="search" label="Search" @click="search_destination()" />
           </div>
         </div>
       </div>
@@ -95,6 +95,10 @@ export default defineComponent({
 
     return {
       date: ref(""),
+      options: [
+        'Uttarakhand', 'Leh Ladakh', 'Himachal Pradesh', 'Goa', 'Kashmir'
+      ],
+      where_to: ref(null),
 
     };
   },

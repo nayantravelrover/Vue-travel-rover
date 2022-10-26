@@ -3,15 +3,15 @@
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
-          <div class="input-area-1 col-md-3 col-xs-12" style="background-color: white">
-            <q-input borderless bg-color="white" label="Where to ?">
+          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white">
+           <q-select filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="place" />
               </template>
-            </q-input>
+            </q-select>
           </div>
-          <div class="input-area-2 col-md-3 col-xs-12" style="background-color: white">
-            <q-input borderless bg-color="white" label="From ?" v-model="date">
+          <div class="input-area-2 col-md-4 col-xs-12" style="background-color: white">
+            <q-input borderless bg-color="white" label="Date ?" v-model="date">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="event" class="cursor-pointer">
                   <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -25,7 +25,7 @@
               </template>
             </q-input>
           </div>
-          <div class="input-area-3 col-md-3 col-xs-12" style="background-color: white">
+          <!-- <div class="input-area-3 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="To ?" v-model="date">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="event" class="cursor-pointer">
@@ -39,9 +39,8 @@
                 </q-icon>
               </template>
             </q-input>
-          </div>
-          <div class="input-area-4 col-md-3 col-xs-12" style="">
-            <q-btn color="" class="search-btn" icon="search" label="Search" />
+          </div> -->
+          <div class="input-area-4 col-md-3 col-xs-12" style=""><q-btn color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
           </div>
         </div>
       </div>
@@ -57,7 +56,72 @@
         </div>
       </div>
     </div>
-  <MobileHeader/>
+
+<!------   Mobile Header   ------->
+
+    <div class="main-container-mobile row justify-center q-pa-md lt-md">
+      <div class="col-md-8 content ">
+        <div class="row items-center justify-center">
+          <div
+            class="input-area-1 col-md-3 col-xs-12"
+            style="background-color: white">
+           <q-select filled v-model="where_to" :options="options" label="Where to?">
+              <template v-slot:prepend>
+                <q-icon name="place" />
+              </template>
+            </q-select>
+          </div>
+          
+          <div
+            class="input-area-2 col-md-3 col-xs-12"
+            style="background-color: white">
+            <q-input borderless bg-color="white" label="Date ?" v-model="date">
+              <template v-slot:prepend>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date v-model="date" mask="YYYY-MM-DD">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+
+          <div class="input-area-4 col-md-3 col-xs-12" style="">
+            <q-btn color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
+          </div>
+        </div>
+      </div>
+      <div class="row items-center justify-between">
+        <div class="col-md-5 lt-md justify-center">
+          <q-img style="width: 300px; height: 200px; margin:20px; margin-left: 30px;" src="../assets/travel.svg" />
+        </div>
+        <div class="left-section-mobile col-md-5 q-pa-md">
+          <h4>TRAVELROVER IS A ONE STOP PLACE TO CREATE YOUR OWN ITINERARY, PUBLISH YOUR ITINERARY TO GET FEEDBACK FROM AGENTS,
+          CONNECT WITH AGENT ON ONE TO ONE BASIS.
+          </h4>
+          <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" />
+          
+        </div>
+      </div>
+    </div>
+  
+
+<!--- End of Mobile Header  ------>
+
+
     <!-- top 5 destinations -->
     <div class="q-pa-sm" style="margin-top: 50px;">
       <div class="carousel-heading">
@@ -65,7 +129,7 @@
       </div>
       <Carousel :itemsToShow="isMobile?2: 5">
         <Slide v-for="items,index in basic_data['explore_destination_images']" :key="items">
-          <div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(index)">
+<div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(basic_data['explore_destination'][index],default_date)">
             
             <q-card class="destination-carousel-card" >
               <img :src=items />
@@ -384,7 +448,7 @@ import { ref, computed } from "vue";
 import { matTrendingFlat } from "@quasar/extras/material-icons";
 import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import MobileHeader from '../components/MobileHeader.vue';
+// import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 import {basicconfig, subscribe_user,check_if_access_token_is_valid,check_if_refresh_token_is_valid} from "src/common/api_calls";
 import DestinationPageWeb from "./DestinationPageWeb.vue";
@@ -396,44 +460,71 @@ export default defineComponent({
   components: {
     Carousel,
     Slide,
-    MobileHeader,
+    // MobileHeader,
   },
   props: {
     isMobile: Boolean
   },
   plugins: { Notify },
   data(){
-
     return {
-      expanded: [
-        {id: 1, expand: false},
-        {id: 2, expand: false},
-        {id: 3, expand: false},
-        {id: 4, expand: false},
-        {id: 5, expand: false},
-        {id: 6, expand: false},
-        {id: 7, expand: false},
-        {id: 8, expand: false},
-        {id: 9, expand: false},
-        {id: 10, expand: false},
-        {id: 11, expand: false},
-        {id: 12, expand: false},
-        {id: 13, expand: false},
-        {id: 14, expand: false},
-        {id: 15, expand: false},
-      ],
+      default_date: new Date().toLocaleString("default", { year: "numeric" }) + '-' + new Date().toLocaleString("default", { month: "2-digit" }) + '-' + new Date().toLocaleString("default", { day: "2-digit" }),
       header_content: '',
       basic_data: {},
-      svgs_color:["orange","light-green","brown","purple"]
+      svgs_color:["orange","light-green","brown","purple"],
+      options: [
+        'Uttarakhand', 'Leh Ladakh', 'Himachal Pradesh', 'Goa', 'Kashmir'
+      ],
+      where_to: ref(null),
+      date: ref(""),
     }
   },
   methods:{
-    go_to_images(item){
-      this.$router.push({
-        path: '/destination/',
-        name:'DestinationPage',
-        query: { place: this.basic_data["explore_destination"][item] }
-      })
+    go_to_images(item,date){
+      if(this.$store.state.user_logged_in==false){
+          $q.notify({
+              type: 'negative',
+              message: 'Kindly log-in/sign-up to enable this functionality',
+              position: 'top'
+              })
+      }else{
+        check_if_access_token_is_valid().then(response=>{
+
+          console.log(response);
+          var access_token = window.sessionStorage.getItem("travel_rover_access");
+          this.$store.commit('user_logged_in_update', true)
+          this.$router.push({
+                  path: '/destination/',
+                  name:'DestinationPage',
+                  query: { place: item, date:date }
+                })
+          
+        }).catch(err =>{
+            console.log(err)
+            check_if_refresh_token_is_valid().then(response => {
+              var access_token = response["data"]["access"];
+              console.log(access_token)
+              window.sessionStorage.setItem("travel_rover_access", access_token);
+
+              this.$store.commit('user_logged_in_update', true)
+              this.$router.push({
+                  path: '/destination/',
+                  name:'DestinationPage',
+                  query: { place: item, date:date }
+                })
+              
+              console.log(response);
+            }).catch(err =>{
+              $q.notify({
+                type: 'negative',
+                message: 'Kindly log-in/sign-up to enable this functionality',
+                position: 'top'
+              })
+              this.$store.commit('user_logged_in_update', false)
+              console.log(err);
+            });
+        });
+      }
     },
     subscribe(){
       if(this.$store.state.user_logged_in==false){
@@ -492,13 +583,14 @@ export default defineComponent({
             });
         });
       }
-    }
+    },
   },
   setup() {
     const data = ref({});
     const loading = ref(true);
     const error = ref(null);
     const myCarousel = ref(null);
+
     return {
       data,
       loading,

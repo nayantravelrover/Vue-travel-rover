@@ -450,7 +450,8 @@ export default defineComponent({
     },
     created() {
         var place = this.$route.query.place.trim()
-        places(place).then(response => {
+        var date = this.$route.query.date.trim()
+        places(place,date).then(response => {
             var resp = JSON.parse(response.data.data)[0]["fields"]
             var place_dictionary = {
                 "name": resp["name"],
@@ -463,7 +464,7 @@ export default defineComponent({
             this.place_description = place_dictionary
             console.log(this.place_description)
         });
-        load_place_itinerary_data(place).then(response => {
+        load_place_itinerary_data(place,date).then(response => {
             console.log(response)
             var itineraries_list = []
             for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
@@ -494,14 +495,23 @@ export default defineComponent({
             console.log(this.itineraries_list_filtered)
             try{
                 this.compare_itinerary_one = this.itineraries_list_filtered[0]
+                if(this.compare_itinerary_one === undefined){
+                    this.compare_itinerary_one = []
+                }
             }catch(e){};
 
             try{
                 this.compare_itinerary_two = this.itineraries_list_filtered[1]
+                if(this.compare_itinerary_two === undefined){
+                    this.compare_itinerary_two = []
+                }
             }catch(e){};
 
             try{
                 this.compare_itinerary_three = this.itineraries_list_filtered[2]
+                if(this.compare_itinerary_three === undefined){
+                    this.compare_itinerary_three = []
+                }
             }catch(e){};
             console.log(this.compare_itinerary_one)
             console.log(this.compare_itinerary_two)

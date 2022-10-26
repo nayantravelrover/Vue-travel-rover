@@ -20,8 +20,8 @@ function basicconfig () {
 }
 
 
-function load_place_itinerary_data(place){
-  const endpoint = base_url + 'travel-rover/getcards/?place_name=' + place.trim()
+function load_place_itinerary_data(place,date){
+  const endpoint = base_url + 'travel-rover/getcards/?place_name=' + place.trim() + "&date=" + date
   var headers = {
     'Content-Type': 'application/json'
   }
@@ -79,8 +79,8 @@ function check_if_refresh_token_is_valid(){
 
 
 
-function places (place) {
-  var endpoint = base_url + 'travel-rover/places/?place=' + place
+function places (place,date) {
+  var endpoint = base_url + 'travel-rover/places/?place=' + place + "&date=" + date;
   var headers = {
     'Content-Type': 'application/json'
   }
