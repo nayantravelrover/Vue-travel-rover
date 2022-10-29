@@ -7,7 +7,6 @@ function basicconfig () {
   var headers = {
     'Content-Type': 'application/json'
   }
-  console.log("HEYYYY")
   return new Promise(function (resolve, reject){
     var result =  getAPIService(endpoint,headers, null).then(response =>{
     resolve(response);
@@ -41,16 +40,13 @@ function load_place_itinerary_data(place,date){
 function check_if_access_token_is_valid(){
     var endpoint = base_url + 'api/v1/users/me/'
     var access_token = window.sessionStorage.getItem("travel_rover_access");
-    console.log(access_token);
     var refresh_token = window.sessionStorage.getItem("travel_rover_refresh_token");
     var headers = { 
         'Authorization': 'Bearer ' + access_token,
         'Content-Type': 'application/json'
         }
-    console.log(headers)
     return new Promise(function (resolve, reject){
     var result =  getAPIService(endpoint,headers, null).then(response =>{
-      console.log(response)
       resolve(response);
     })
     .catch(err =>{
@@ -152,7 +148,6 @@ function subscribe_user(access_token){
     'Authorization': 'Bearer ' + access_token
   }
   var result = postAPIService(endpoint,headers, data)
-  console.log(result)
   return result
 }
 
@@ -164,7 +159,6 @@ function liked_itinerary(data,access_token){
     'Authorization': 'Bearer ' + access_token
   }
   var result = postAPIService(endpoint,headers, data)
-  console.log(result)
   return result
 }
 
@@ -176,7 +170,6 @@ function viewed_itinerary_api(data,access_token){
     'Authorization': 'Bearer ' + access_token
   }
   var result = postAPIService(endpoint,headers, data)
-  console.log(result)
   return result
 }
 

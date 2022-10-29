@@ -73,6 +73,9 @@ export default store(function (/* { ssrContext } */) {
       },
     },
     mutations:{
+      itinerary_preview_update(state,itinerary){
+        state.itinerary_preview = itinerary;
+      },
       place_name_update(state,place_name) {
         state.itinerary_preview.place_name=place_name;
       },

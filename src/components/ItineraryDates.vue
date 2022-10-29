@@ -39,14 +39,16 @@ export default {
       const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ];
-      var month_dates = _.groupBy(this.$store.state.itinerary_preview.start_dates, (date) => monthNames[new Date(date).getMonth()]);
-      console.log(month_dates);
-      // for(const month in month_dates){
-      //   console.log(month);
-      //   for (const items in month_dates[month]){
-      //     month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
-      //   }
-      // }
+      
+      var itinerary_preview_start_dates = this.$store.state.itinerary_preview.start_dates
+
+      if(typeof(itinerary_preview_start_dates)==="string"){
+        var itinerary_preview_start_dates = JSON.parse(this.$store.state.itinerary_preview.start_dates)
+        itinerary_preview_start_dates = Object.assign({}, itinerary_preview_start_dates);
+      }
+
+      var month_dates = _.groupBy(itinerary_preview_start_dates, (date) => monthNames[new Date(date).getMonth()]);
+      
       for (const month in month_dates) {
         for (const items in month_dates[month]){
           month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()

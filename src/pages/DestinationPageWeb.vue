@@ -122,7 +122,7 @@
                     <div class="column compare_images">
                         <div class="compare_remove_btn">
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""
-                                    @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
+                                    @click="this.$parent.remove_itinerary('compare_itinerary_two')"></div>
                         </div>
                         <q-img class="compare_img_container">
                             <img :src="this.$parent.compare_itinerary_two.place_img" alt="" class="compare_img" />
@@ -139,7 +139,7 @@
                     <div class="column compare_images">
                         <div class="compare_remove_btn">
                             <div> <img src="../assets/comparison/Removebtn.svg" alt=""
-                                    @click="this.$parent.remove_itinerary('compare_itinerary_one')"></div>
+                                    @click="this.$parent.remove_itinerary('compare_itinerary_three')"></div>
                         </div>
                         <q-img class="compare_img_container">
                             <img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img" />
@@ -544,22 +544,46 @@ export default {
             var data = {
                 "itinerary_pk":itinerary_pk
             }
-            this.card = true
-            console.log(itinerary_pk);
+            
             check_if_access_token_is_valid().then(response=>{
-              console.log(response);
+
               var access_token = window.sessionStorage.getItem("travel_rover_access");
+
+              this.card = true
+              var itinerary = []
+              for(var items in this.$parent.itineraries_list_filtered){
+                    if(itinerary_pk == this.$parent.itineraries_list_filtered[items].itinerary_pk){
+                        itinerary = this.$parent.itineraries_list_filtered[items].complete_itinerary
+                        break;
+                    }
+                }
+                this.$store.commit('itinerary_preview_update', itinerary)
+
+
               viewed_itinerary_api(data, access_token);
               this.$store.commit('user_logged_in_update', true)
             }).catch(err =>{
                 console.log(err)
                 check_if_refresh_token_is_valid().then(response => {
                   var access_token = response["data"]["access"];
-                  console.log(access_token)
+
                   window.sessionStorage.setItem("travel_rover_access", access_token);
+
+                  this.card = true
+
+                  var itinerary = []
+
+                  for(var items in this.$parent.itineraries_list_filtered){
+                        if(itinerary_pk == this.$parent.itineraries_list_filtered[items].itinerary_pk){
+                            itinerary = this.$parent.itineraries_list_filtered[items].complete_itinerary
+                            break;
+                        }
+                    }
+
+                  this.$store.commit('itinerary_preview_update', itinerary)
                   viewed_itinerary_api(data, access_token)
                   this.$store.commit('user_logged_in_update', true)
-                  console.log(response);
+                  
                 }).catch(err =>{
                   $q.notify({
                     type: 'negative',

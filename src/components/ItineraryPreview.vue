@@ -23,7 +23,7 @@
     <ItineraryContentPreview :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview>
-    <ExtraSections v-if="$store.state.itinerary_preview.extra_sections.length>0" class="q-pa-lg"></ExtraSections>
+   <!--  <ExtraSections v-if="$store.state.itinerary_preview.extra_sections.length>0" class="q-pa-lg"></ExtraSections> -->
   </div>
 </template>
 
@@ -32,12 +32,12 @@
 import DayPreview from "components/DayPreview";
 import ItineraryContentPreview from "components/ItineraryContentPreview";
 import ItineraryDates from "components/ItineraryDates";
-import ExtraSections from "components/ExtraSections";
+// import ExtraSections from "components/ExtraSections";
 
 
 export default {
   name: "ItineraryPreview",
-  components: {ExtraSections, ItineraryDates, ItineraryContentPreview, DayPreview},
+  components: {ItineraryDates, ItineraryContentPreview, DayPreview},
   methods: {
     print () {
       // Pass the element id here

@@ -38,7 +38,7 @@
                         <div class="box9">
                             <text class="type3">Starts from</text>
                             <div class="type5">
-                                <text class="type4">42,999</text>
+                                <text class="type4">{{this.$store.state.itinerary_preview.tour_rates}}</text>
                                 <text class="type3">/Per Person</text>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                             <text class="type6">Contact US</text>
                             <img src="../assets/editcard/whatsapp.svg" alt="">
                         </div>
-                        <div class="box11">
-                            <text class="type7">Buy Now</text>
+                        <div class="box11" @click="this.generateReport()">
+                            <text class="type7">Buy Now</text>                            
                             <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
                         </div>
                     </div>

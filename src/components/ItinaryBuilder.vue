@@ -216,6 +216,7 @@ export default {
           updated_dates.push(date.toISOString().slice(0,10))
         })
         this.$store.commit('start_dates_update', updated_dates)
+        console.log(this.$store.state.itinerary_preview.start_dates)
       },
       get() {
         return this.$store.state.itinerary_preview.start_dates
