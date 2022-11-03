@@ -1,4 +1,57 @@
 <template>
+    <div>
+      <q-layout style="min-height: 100px !important;">
+    <q-header>
+    
+      <q-toolbar>
+        <q-btn v-if="$q.platform.is.mobile"
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+
+        <q-toolbar-title class="q-pa-md row item-center">
+          <img src="../assets/logo.svg" />
+        </q-toolbar-title>
+
+        <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="go_to_home"/>
+        <q-btn
+          flat
+          dense
+          round
+          class="q-ml-md"
+          :icon="matAccountCircle"
+          aria-label="Menu">
+          <q-menu>
+            <q-list style="min-width: 100px;max-height:89px">
+              
+              <LoginPage2 v-if="this.$store.state.user_logged_in===false"/>
+              <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
+                <RegisterPage/>
+              </div>
+
+
+              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
+              <div class="q-pa-xs">
+              <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+               </div>
+
+
+              <q-item
+              clickable
+              v-close-popup>
+              </q-item>
+            </q-list>
+          </q-menu>
+          </q-btn>
+      </q-toolbar>
+    </q-header>
+    </q-layout>
+    </div>
+    <br/>
     <div class="q-pa-md">
         <div class="row profile_main">
             <q-card class="column" style="min-width: 400px;border-radius: 10px;max-height: 420px;">
@@ -18,27 +71,40 @@
                 </div>
                 <q-separator />
                 <div>
-                    <div class="row profile_spacing">
+                    <!-- <div class="row profile_spacing">
                         <img src="../assets/profilepage/accounticon.svg" alt="">
                         <div class="profile_text">My Profile</div>
-                    </div>
+                    </div> -->
                     <q-separator />
-                    <div class="row profile_spacing">
+                    <div class="row profile_spacing" @click="this.show_liked">
                         <img src="../assets/profilepage/favorite.svg" alt="">
                         <div class="profile_text">Liked Itineraries</div>
                     </div>
                     <q-separator />
-                    <div class="row profile_spacing">
+                    <div class="row profile_spacing"  @click="this.show_viewed">
                         <img src="../assets/profilepage/visibility.svg" alt="">
                         <div class="profile_text">Viewed Itineraries</div>
                     </div>
                     <q-separator />
-                    <div class="row profile_spacing">
+                    <div class="row profile_spacing"  @click="this.show_custom">
                         <img src="../assets/profilepage/tune.svg" alt="">
                         <div class="profile_text">Custom Itineraries</div>
                     </div>
                 </div>
             </q-card>
+
+
+            <div v-if="this.show_liked_itinerary==true">
+                <LikedItinerary/>
+            </div>
+
+            <div v-if="this.show_viewed_itinerary==true">
+                <ViewedItinerary/>
+            </div>
+
+            <div v-if="this.show_custom_itinerary==true">
+                <CustomItinerary/>
+            </div>
 
             
         </div>
@@ -46,11 +112,62 @@
 </template>
 <script>
 import { ref } from 'vue'
+import LikedItinerary from "./LikedItinerary.vue"
+import ViewedItinerary from "./ViewedItinerary.vue"
+import CustomItinerary from "./CustomItinerary.vue"
+import LoginPage2 from "./LoginPage2.vue"
+import RegisterPage from "./RegisterPage.vue"
+
+import { matAccountCircle } from "@quasar/extras/material-icons";
+
+// import AppBar from "./AppBar.vue"
 
 export default {
+    created(){
+        this.matAccountCircle = matAccountCircle;
+    },
     setup() {
         return {
             ratingModel: ref(3)
+        }
+    },
+    data(){
+        return{
+            show_liked_itinerary:true,
+            show_custom_itinerary:false,
+            show_viewed_itinerary: false
+        }
+    },
+    components:{
+        LikedItinerary,
+        LoginPage2,
+        RegisterPage,
+        ViewedItinerary,
+        CustomItinerary
+        
+    },
+    methods:{
+        show_liked(){
+            this.show_liked_itinerary = true
+            this.show_custom_itinerary = false
+            this.show_viewed_itinerary = false
+        },
+        show_custom(){
+            this.show_liked_itinerary = false
+            this.show_custom_itinerary = true
+            this.show_viewed_itinerary = false
+        },
+        show_viewed(){
+            this.show_liked_itinerary = false
+            this.show_custom_itinerary = false
+            this.show_viewed_itinerary = true
+        },
+        go_to_home(){
+            console.log("here")
+            this.$router.push({
+                  path: '',
+                  name:'home',
+                })
         }
     }
 }

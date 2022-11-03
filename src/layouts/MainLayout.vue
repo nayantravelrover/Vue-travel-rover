@@ -39,13 +39,16 @@
                 <RegisterPage/>
               </div>
 
-
-              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
+              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
+              <q-btn label="Itineraries" color="primary" style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.is_agent === true" @click="create_itinerary"/>
               <div class="q-pa-xs">
               <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                </div>
 
-
+               <!-- <div class="q-pa-xs">
+               
+               </div>
+ -->
               <q-item
               clickable
               v-close-popup>
@@ -74,13 +77,9 @@
         <q-item-label header> Navigate </q-item-label>
 
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in this.essentialLinks"
           :key="link.title"
-          v-bind="{
-            title:'Home',
-            icon: 'home',
-            link: '/src/pages/MainHome.vue',
-          }"
+          v-bind="link"
         />
       </q-list>
     </q-drawer>
@@ -101,9 +100,15 @@ import RegisterPage from "src/pages/RegisterPage.vue"
 import LoginPage2 from "src/pages/LoginPage2.vue";
 import { check_if_access_token_is_valid, check_if_refresh_token_is_valid} from '../common/api_calls.js'
 import { useQuasar,Notify } from 'quasar'
+
+import ProfilePageWeb from "../pages/ProfilePageWeb.vue";
+
 let $q
 //import RegisterPage from "src/pages/RegisterPage.vue";
 //import LoginPage from "src/pages/LoginPage.vue";
+
+
+
 
 const linksList = [
   {
@@ -111,28 +116,26 @@ const linksList = [
     icon: "home",
     link: "/src/pages/MainHome.vue",
   },
-  {
-    title: "My Profile",
+  // {
+  //   title: "My Profile",
   
-    icon: "account_circle",
-    link: "/src/pages/ProfilePage2.vue",
-  },
+  //   icon: "account_circle",
+  //   link: "/src/pages/ProfilePage2.vue",
+  // },
   {
     title: "Liked Itineraries",
     icon: "info",
-    link: "",
+    link: "/#/likeditinerary",
   },
   {
     title: "Viewed Itineraries",
-    
     icon: "event",
-    link: "/src/pages/ViewedItinerary.vue",
+    link: "/#/vieweditinerary",
   },
   {
     title: "Custom Itineraries",
-    
     icon: "account_balance_wallet",
-    link: "https://awesome.quasar.dev",
+    link: "/#/customitinerary",
   },
 ];
 
@@ -153,13 +156,17 @@ export default defineComponent({
   mounted(){
     check_if_access_token_is_valid().then(response=>{
       console.log(response)
+      if(response["data"]["type_of_user"] == "agent"){
+        this.$store.commit('is_agent_update', true)
+        console.log(this.$store.state.is_agent)
+      }
       this.$store.commit('user_logged_in_update', true)
     }).catch(err =>{
           console.log(err)
           check_if_refresh_token_is_valid().then(response => {
             var access_token = response["data"]["access"];
             console.log(access_token)
-            window.sessionStorage.setItem("travel_rover_access", access_token);
+            window.localStorage.setItem("travel_rover_access", access_token);
             this.$store.commit('user_logged_in_update', true)
             console.log(response);
           }).catch(err =>{
@@ -200,8 +207,8 @@ export default defineComponent({
   },
   methods:{
     logout(){
-      window.sessionStorage.removeItem("travel_rover_access");
-      window.sessionStorage.removeItem("travel_rover_refresh_token");
+      window.localStorage.removeItem("travel_rover_access");
+      window.localStorage.removeItem("travel_rover_refresh_token");
       this.$store.commit('user_logged_in_update', false)
       console.log("here in logout")
       $q.notify({
@@ -213,6 +220,18 @@ export default defineComponent({
     scroll(id){
       const element = document.getElementById(id);
       element.scrollIntoView({ behavior: 'smooth' });
+    },
+    go_to_profile(){
+      this.$router.push({
+          path: '/profilepageweb/',
+          name:'ProfilePageWeb'
+        })
+    },
+    create_itinerary(){
+      this.$router.push({
+          path: '/itinerarybuilder/',
+          name:'ItineraryBuilder'
+        })
     }
   }
 });

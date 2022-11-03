@@ -5,7 +5,7 @@
                 <q-toolbar class="toolbar">
                     <div class="toy">
                         <img class="toyimage" src="../assets/logo.svg" alt="">
-                        <div class="toy2">
+                <!--         <div class="toy2">
                             <text class="toytext">Itineraries</text>
                             <q-input dark dense rounded standout v-model="text" input-class="labelcss text-left"
                                 class="q-ml-md" bg-color="white" placeholder="Search Itineraries">
@@ -23,64 +23,93 @@
                                     <img src="../assets/ItineraryBuilder/expmore.svg" alt="">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </q-toolbar>
                 <div class="row" style="padding: 100px 100px 0 100px;">
                     <div class="col-3 toy5">
                         <div class="subdiv2">
-                            <div class="subdiv3">
+                            <div class="subdiv3" @click="create_my_itinerary()">
                                 <text class="toytext1">Create Itineraries</text>
                                 <q-icon name="add" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 toy5">
-                        <q-card class="subdiv4">
-                            <img src="../assets/Goa/Goa.jpg" alt="">
+
+                    <div v-for="item in this.itineraries" :key="item" class="col-3 toy5">
+                        <q-card class="subdiv4" @click="go_to_itinerary(item.pk)">
+                            <img :src="item['fields']['place_img']" alt="">
                             <div class="absolute-bottom subtitle2 text-center">
-                                <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
+                                <text class="toytext2">{{item.fields.itinerary_name}}</text>
                             </div>
                         </q-card>
+
                     </div>
-                    <div class="col-3 toy5">
-                        <q-card class="subdiv4">
-                            <img src="../assets/Goa/goa1.jpg" alt="">
-                            <div class="absolute-bottom subtitle2 text-center">
-                                <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
-                            </div>
-                        </q-card>
-                    </div>
-                    <div class="col-3 toy5">
-                        <q-card class="subdiv4">
-                            <img src="../assets/Goa/goa2.jpg" alt="">
-                            <div class="absolute-bottom subtitle2 text-center">
-                                <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
-                            </div>
-                        </q-card>
-                    </div>
-                    <div class="col-3 toy5">
-                        <q-card class="subdiv4">
-                            <img src="../assets/Goa/goa3.jpg" alt="">
-                            <div class="absolute-bottom subtitle2 text-center">
-                                <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
-                            </div>
-                        </q-card>
-                    </div>
-                    <div class="col-3 toy5">
-                        <q-card class="subdiv4">
-                            <img src="../assets/Goa/goa4.jpg" alt="">
-                            <div class="absolute-bottom subtitle2 text-center">
-                                <text class="toytext2">Exotic Leh Ladakh 5 Nights / 6 Days Tour</text>
-                            </div>
-                        </q-card>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+
+import { defineComponent, ref, computed } from "vue";
+import { useQuasar,Notify } from 'quasar'
+import { created_itinerary_api, base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid } from "src/common/api_calls";
+let $q
+
+export default defineComponent({
+  name: "ItineraryBuilder",
+  plugins: { Notify },
+  data(){
+    return{
+        itineraries:[]
+    }
+  },
+  mounted(){
+    check_if_access_token_is_valid().then(response=>{
+      console.log(response)
+      this.$store.commit('user_logged_in_update', true)
+    created_itinerary_api(null,window.localStorage.getItem("travel_rover_access")).then(response=>{
+        this.itineraries = JSON.parse(response.data.data)
+        console.log(this.itineraries)
+      })
+    }).catch(err =>{
+          console.log(err)
+          check_if_refresh_token_is_valid().then(response => {
+            var access_token = response["data"]["access"];
+            console.log(access_token)
+            window.localStorage.setItem("travel_rover_access", access_token);
+            this.$store.commit('user_logged_in_update', true)
+            created_itinerary_api(null,window.localStorage.getItem("travel_rover_access")).then(response=>{
+                this.itineraries = JSON.parse(response.data.data)
+                console.log(this.itineraries)
+              })
+          }).catch(err =>{
+            this.$store.commit('user_logged_in_update', false)
+            console.log(err);
+          });
+    });
+    $q = useQuasar()
+  },  
+  methods:{
+    create_my_itinerary(){
+        this.$router.push({
+          path: '/itinarybuilder',
+          name:'ItineraryCreator',
+          query: { pk: -1 }
+        })
+    },
+    go_to_itinerary(pk){
+        this.$router.push({
+          path: '/itinarybuilder',
+          name:'ItineraryCreator',
+          query: { pk: pk }
+        })
+    }
+
+  }
+});
 </script>
 <style>
 .toytext2{

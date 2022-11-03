@@ -1,6 +1,6 @@
 <template>
     <div class="q-pa-md">
-        <div class="column">
+        <div class="column lt-md">
             <div class="new2">Custom Itinerary</div>
             <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;">
                 <div class="row" style="width: 100%;">
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="width: 30%;">
+                    <div style="width: 30%;margin: auto;">
                         <div style="justify-content: center;">
                             <q-btn style="width: auto;background-color: #003FA3;">
                                 <div class="custom_btn_text">Message Us</div>

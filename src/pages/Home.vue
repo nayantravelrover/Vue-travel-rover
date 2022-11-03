@@ -424,7 +424,7 @@
           </div>
           <div class="row">
             <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
-              <h3 class="col-title-bottom">Made in India </h3>
+              <h3 class="col-title-bottom">Made in India</h3>
             </div>
             <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
               <h3 class="col-title-bottom">© 2022 All Rights Reserved</h3>
@@ -491,7 +491,7 @@ export default defineComponent({
         check_if_access_token_is_valid().then(response=>{
 
           console.log(response);
-          var access_token = window.sessionStorage.getItem("travel_rover_access");
+          var access_token = window.localStorage.getItem("travel_rover_access");
           this.$store.commit('user_logged_in_update', true)
           this.$router.push({
                   path: '/destination/',
@@ -504,7 +504,7 @@ export default defineComponent({
             check_if_refresh_token_is_valid().then(response => {
               var access_token = response["data"]["access"];
               console.log(access_token)
-              window.sessionStorage.setItem("travel_rover_access", access_token);
+              window.localStorage.setItem("travel_rover_access", access_token);
 
               this.$store.commit('user_logged_in_update', true)
               this.$router.push({
@@ -536,7 +536,7 @@ export default defineComponent({
       }else{
         check_if_access_token_is_valid().then(response=>{
           console.log(response);
-          var access_token = window.sessionStorage.getItem("travel_rover_access");
+          var access_token = window.localStorage.getItem("travel_rover_access");
           subscribe_user(access_token).then(response=>{
                 $q.notify({
                   type: 'positive',
@@ -556,7 +556,7 @@ export default defineComponent({
             check_if_refresh_token_is_valid().then(response => {
               var access_token = response["data"]["access"];
               console.log(access_token)
-              window.sessionStorage.setItem("travel_rover_access", access_token);
+              window.localStorage.setItem("travel_rover_access", access_token);
               subscribe_user(access_token).then(response=>{
                 $q.notify({
                   type: 'positive',

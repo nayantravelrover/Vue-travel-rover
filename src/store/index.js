@@ -19,6 +19,7 @@ export default store(function (/* { ssrContext } */) {
     },
     state: {
       user_logged_in: false,
+      is_agent: false,
       itinerary_preview: {
         place_name: "Kashmir",
         place_description:"sdasdsadasd",
@@ -171,6 +172,9 @@ export default store(function (/* { ssrContext } */) {
       },
       user_logged_in_update(state,val){
         state.user_logged_in = val
+      },
+      is_agent_update(state,val){
+        state.is_agent = val
       }
     },
     actions:{

@@ -181,6 +181,7 @@ export default {
                                 position: 'top'
                             })
                         }else{
+                            console.log("Here")
                             $q.notify({
                                 type: 'negative',
                                 message: 'The system seems to be under maintainence',
@@ -189,6 +190,7 @@ export default {
                           //alert("The system seems to be under maintainence");
                         }
                       }).catch(err => {
+                        console.log("Here")
                         console.log(err)
                         $q.notify({
                                 type: 'negative',
@@ -200,7 +202,8 @@ export default {
                       
                       }
                     }).catch(err => {
-                        console.log(err)
+                        console.log("Here")
+                        console.log(err.response)
                         $q.notify({
                                 type: 'negative',
                                 message: 'The system seems to be under maintainence'

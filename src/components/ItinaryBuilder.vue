@@ -105,13 +105,83 @@ import { ref } from 'vue'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import html2pdf from "html2pdf.js/src";
-import {save_itinerary_api} from "src/common/api_calls";
-
+import { places, load_place_itinerary_data,base_url,liked_itinerary, viewed_itinerary_api ,save_itinerary_api, view_itinerary,check_if_refresh_token_is_valid,check_if_access_token_is_valid, my_itinerary} from "src/common/api_calls";
+import { useQuasar, Notify } from 'quasar'
+let $q
 
 export default {
   name: "Itinary-Builder",
   components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker, },
+  mounted(){
+    const urlParams = window.location.href;
+    var itinerary_pk = window.location.href.split("?pk=")[1];
+    this.view_itinerary(itinerary_pk)
+
+    // const myParam = urlParams.get('pk');
+    // console.log(myParam)
+  },
   methods: {
+      view_itinerary(itinerary_pk){
+            var data = {
+                "itinerary_pk":itinerary_pk
+            }
+            
+            check_if_access_token_is_valid().then(response=>{
+
+              var access_token = window.localStorage.getItem("travel_rover_access");
+
+              this.card = true
+              var itinerary = []
+              console.log(itinerary_pk)
+
+              if(itinerary_pk != -1){
+                  my_itinerary(data,access_token).then(response=>{
+                  console.log(JSON.parse(response["data"]["data"])[0]["fields"])
+                  this.$store.commit('itinerary_preview_update', JSON.parse(response["data"]["data"])[0]["fields"])
+
+
+                  var start_dates = JSON.parse(response["data"]["data"])[0]["fields"]["start_dates"]
+                  start_dates = JSON.parse(start_dates)
+                  console.log(start_dates)
+                  this.$store.commit('start_dates_update', start_dates)
+              })
+              }
+              
+                //this.$store.commit('itinerary_preview_update', itinerary)
+              this.$store.commit('user_logged_in_update', true)
+            }).catch(err =>{
+                console.log(err)
+                check_if_refresh_token_is_valid().then(response => {
+                  var access_token = response["data"]["access"];
+
+                  window.localStorage.setItem("travel_rover_access", access_token);
+
+                  //this.$store.commit('itinerary_preview_update', itinerary)
+                  if(itinerary_pk != -1){
+                  my_itinerary(data,access_token).then(response=>{
+                  console.log(JSON.parse(response["data"]["data"])[0]["fields"])
+                  this.$store.commit('itinerary_preview_update', JSON.parse(response["data"]["data"])[0]["fields"])
+
+
+                  var start_dates = JSON.parse(response["data"]["data"])[0]["fields"]["start_dates"]
+                  start_dates = JSON.parse(start_dates)
+                  console.log(start_dates)
+                  this.$store.commit('start_dates_update', start_dates)
+                  })
+                  }
+                  this.$store.commit('user_logged_in_update', true)
+                  
+                }).catch(err =>{
+                  $q.notify({
+                    type: 'negative',
+                    message: 'Kindly log-in/sign-up to enable this functionality',
+                    position: 'top'
+                  })
+                  this.$store.commit('user_logged_in_update', false)
+                  console.log(err);
+                });
+            });
+        },
       place_file_uploaded: function(info) {
         var file_response = JSON.parse(info.xhr.response).file
         file_response = 'http://admin.travelrover.in' + file_response
@@ -136,7 +206,52 @@ export default {
       },
       save_itinerary: function(){
         console.log(this.$store.state.itinerary_preview)
-        save_itinerary_api(this.$store.state.itinerary_preview)
+
+
+        check_if_access_token_is_valid().then(response=>{
+
+              var access_token = window.localStorage.getItem("travel_rover_access");
+
+              save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token).then(response=>{
+                $q.notify({
+                    type: 'Positive',
+                    message: 'Itinerary Saved',
+                    position: 'top'
+                  })
+              })
+              
+              this.$store.commit('user_logged_in_update', true)
+            }).catch(err =>{
+                console.log(err)
+                check_if_refresh_token_is_valid().then(response => {
+                  var access_token = response["data"]["access"];
+
+                  window.localStorage.setItem("travel_rover_access", access_token);
+                  save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token).then(response=>{
+                      $q.notify({
+                          type: 'Positive',
+                          message: 'Itinerary Saved',
+                          position: 'top'
+                        })
+                    })
+                  this.$store.commit('user_logged_in_update', true)
+                }).catch(err =>{
+                  $q.notify({
+                    type: 'negative',
+                    message: 'Kindly log-in/sign-up to enable this functionality',
+                    position: 'top'
+                  })
+                  this.$store.commit('user_logged_in_update', false)
+                  console.log(err);
+                });
+            });
+
+
+
+
+
+
+        
       },
     addScript(url) {
      var script = document.createElement('script');

@@ -580,7 +580,7 @@ export default defineComponent({
 
 
             check_if_access_token_is_valid().then(response=>{
-                  var access_token = window.sessionStorage.getItem("travel_rover_access");
+                  var access_token = window.localStorage.getItem("travel_rover_access");
                   liked_itinerary(data,access_token).then(response=>{
                         if(to_like){
                             $q.notify({
@@ -607,7 +607,7 @@ export default defineComponent({
                 }).catch(err =>{
                     check_if_refresh_token_is_valid().then(response => {
                       var access_token = response["data"]["access"];
-                      window.sessionStorage.setItem("travel_rover_access", access_token);
+                      window.localStorage.setItem("travel_rover_access", access_token);
                       liked_itinerary(data,access_token).then(response=>{
                         if(to_like){
                             $q.notify({
@@ -647,7 +647,7 @@ export default defineComponent({
                 }
                 
                 check_if_access_token_is_valid().then(response=>{
-                  var access_token = window.sessionStorage.getItem("travel_rover_access");
+                  var access_token = window.localStorage.getItem("travel_rover_access");
                   this.card = true
                   var itinerary = []
                   for(var items in this.itineraries_list_filtered){
@@ -665,7 +665,7 @@ export default defineComponent({
                     check_if_refresh_token_is_valid().then(response => {
                       var access_token = response["data"]["access"];
 
-                      window.sessionStorage.setItem("travel_rover_access", access_token);
+                      window.localStorage.setItem("travel_rover_access", access_token);
                       this.card = true
                       var itinerary = []
                       for(var items in this.itineraries_list_filtered){

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="q-pa-md">
+        <div class="q-pa-md lt-md">
             <AppBar />
             <div class="col-12" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">Liked Itineraries</text>
@@ -73,25 +73,29 @@
         <!-- for web -->
 
         <div class="gt-sm">
-            <q-card class="column" style="min-width: 500px;border-radius: 14px;max-width: 800px;">
+            <q-card class="column" style="min-width: 800px;border-radius: 14px;max-width: 800px;">
                 <div class="column">
                     <div class="profile_liked">Liked Itineraries</div>
                     <div style="padding: 10px;">
             
-                        <q-list class="column" style="justify-items: space-evenly;">
-                            <div class="row" style="padding: 10px;width: 100%;justify-content: space-evenly;border-radius: 10px;">
+                        <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
+
+                            <div class="row" style="padding: 10px;width: 100%;justify-content: space-evenly;border-radius: 10px;" >
+
+
                                 <div class="column" style="width: 33%;padding: 5px;">
                                     <q-img class="profile_itinerary_image_container">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image">
+                                        <img :src="item.place_img" alt="" class="profile_itinerary_image">
                                     </q-img>
                                 </div>
                                 <div class="column" style="width: 33%;padding: 5px;">
-                                    <div class="profile_itinerary_card_text1">Exotic Kerala 9 Nights / 10 Days Tour</div>
+                                    <div class="profile_itinerary_card_text1">{{item.itinerary_name}}</div>
                                     <div class="profile_itinerary_card_text2">
-                                        <li>The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
+                                         <ul class="text13">
+                                        <li v-for="list_item in item.place_description" :key="list_item">
+                                            {{list_item}}
                                         </li>
-                                        <li>The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                                        </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div class="column" style="width: 33%;padding: 5px;">
@@ -100,20 +104,20 @@
                                             Inclusion
                                         </div>
                                         <div class="profile_itinerary_card_text4">
-                                            ✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at site
-                                            seeing Place
+                                            <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+                                            <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
                                         </div>
                                     </div>
                                     <div class="profile_itinerary_card_text5" style="margin-top:10px;">Starts</div>
                                     <div class="row">
-                                        <div class="profile_itinerary_card_text6" style="margin-top:10px;">4999</div>
+                                        <div class="profile_itinerary_card_text6" style="margin-top:10px;">{{item.tour_rates}}</div>
                                         <div class="profile_itinerary_card_text4" style="margin-top:20px;">/Per Person</div>
                                     </div>
                                     <q-btn class="profile_view_itinerary_btn">View Itinerary</q-btn>
                                 </div>
                             </div>
                             <q-separator />
-                            <div class="row"
+                            <!-- <div class="row"
                                 style="padding: 10px;width: 100%;justify-content: space-evenly;border-radius: 10px;margin-top: 10px;">
                                 <div class="column" style="width: 33%;padding: 5px;">
                                     <q-img class="profile_itinerary_image_container">
@@ -146,7 +150,7 @@
                                     </div>
                                     <q-btn class="profile_view_itinerary_btn">View Itinerary</q-btn>
                                 </div>
-                            </div>
+                            </div> -->
             
                         </q-list>
             
@@ -159,13 +163,116 @@
 <script>
 import { defineComponent } from "vue";
 import AppBar from "./AppBar.vue";
+import {get_liked_itineraries, check_if_access_token_is_valid,check_if_refresh_token_is_valid,get_viewed_itineraries} from "src/common/api_calls";
+import { useQuasar, Notify } from 'quasar'
+
+let $q
 
 export default defineComponent({
     name: "LikedItinerary",
 
     components: {
         AppBar
-    }
+    },
+    data(){
+        return{
+            itineraries_list_filtered:[]
+        }
+    },
+    mounted(){
+        $q = useQuasar()
+    },
+    created(){
+
+
+        check_if_access_token_is_valid().then(response=>{
+                  var access_token = window.localStorage.getItem("travel_rover_access");
+                  get_liked_itineraries(access_token).then(response =>{
+                        
+
+                        var itineraries_list = []
+                        for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
+
+                            var items = JSON.parse(response.data.data)[i]["fields"];
+                            itineraries_list[JSON.parse(response.data.data)[i].pk] = {
+                                "itinerary_name": items.itinerary_name,
+                                "place_description": items.place_description.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "place_img": items.place_img,
+                                "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "tour_rates": items.tour_rates,
+                                "tour_highlights":items.tour_highlights,
+                                "places_to_visit": items.places_to_visit,
+                                "accomodation_arrangements":items.accomodation_arrangements,
+                                "travel_arrangements":items.travel_arrangements,
+                                "inclusions_html": items.inclusions,
+                                "exclusions_html": items.exclusions,
+                                "things_to_carry": items.things_to_carry,
+                                "cancellation_policy":items.cancellation_policy,
+                                "itinerary_pk":JSON.parse(response.data.data)[i].pk,
+                            }
+                        }
+                        var itineraries_list_filtered = itineraries_list.filter(function (el) {
+                            return el != null;
+                        });
+                        this.itineraries_list_filtered = itineraries_list_filtered;
+
+
+
+
+                        console.log(this.itineraries_list_filtered)
+                    });
+                  this.$store.commit('user_logged_in_update', true)
+                }).catch(err =>{
+                    check_if_refresh_token_is_valid().then(response => {
+                      var access_token = response["data"]["access"];
+                      window.localStorage.setItem("travel_rover_access", access_token);
+                      get_liked_itineraries(access_token).then(response =>{
+                        
+
+                        var itineraries_list = []
+                        for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
+
+                            var items = JSON.parse(response.data.data)[i]["fields"];
+                            itineraries_list[JSON.parse(response.data.data)[i].pk] = {
+                                "itinerary_name": items.itinerary_name,
+                                "place_description": items.place_description.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "place_img": items.place_img,
+                                "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "tour_rates": items.tour_rates,
+                                "tour_highlights":items.tour_highlights,
+                                "places_to_visit": items.places_to_visit,
+                                "accomodation_arrangements":items.accomodation_arrangements,
+                                "travel_arrangements":items.travel_arrangements,
+                                "inclusions_html": items.inclusions,
+                                "exclusions_html": items.exclusions,
+                                "things_to_carry": items.things_to_carry,
+                                "cancellation_policy":items.cancellation_policy,
+                                "itinerary_pk":JSON.parse(response.data.data)[i].pk,
+                            }
+                        }
+                        var itineraries_list_filtered = itineraries_list.filter(function (el) {
+                            return el != null;
+                        });
+                        this.itineraries_list_filtered = itineraries_list_filtered;
+
+
+
+                        console.log(this.itineraries_list_filtered)
+                        console.log(response)
+                        });
+                      this.$store.commit('user_logged_in_update', true)
+                    }).catch(err =>{
+                      $q.notify({
+                        type: 'negative',
+                        message: 'Kindly log-in/sign-up to enable this functionality',
+                        position: 'top'
+                      })
+                      this.$store.commit('user_logged_in_update', false)
+                    });
+                });
+            }
 }) 
 </script>
 <style>

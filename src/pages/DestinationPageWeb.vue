@@ -547,7 +547,7 @@ export default {
             
             check_if_access_token_is_valid().then(response=>{
 
-              var access_token = window.sessionStorage.getItem("travel_rover_access");
+              var access_token = window.localStorage.getItem("travel_rover_access");
 
               this.card = true
               var itinerary = []
@@ -567,7 +567,7 @@ export default {
                 check_if_refresh_token_is_valid().then(response => {
                   var access_token = response["data"]["access"];
 
-                  window.sessionStorage.setItem("travel_rover_access", access_token);
+                  window.localStorage.setItem("travel_rover_access", access_token);
 
                   this.card = true
 
