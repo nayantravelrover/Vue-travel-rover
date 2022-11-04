@@ -17,6 +17,8 @@ const routes = [
   { path: '/itinerarybuilder',name:'ItineraryBuilder', component: () => import('pages/ItineraryBuilder.vue') },
   { path: '/compare', component: () => import('pages/CompareTable.vue') },
   { path: '/customitinerary', component: () => import('pages/CustomItinerary.vue') },
+  { path: '/blogspage', component: () => import('pages/BlogsPage.vue') },
+  { path: '/blogshomepage', component: () => import('pages/BlogsHomePage.vue') },
   {
     path: '/',
     redirect: "/home",
