@@ -1,15 +1,9 @@
 <template>
     <div>
         <q-toolbar style="color: white;">
-            <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" style="color: white;" />
             <q-toolbar-title class="q-pa-md row item-center">
                 <img src="../assets/logo.svg" />
             </q-toolbar-title>
-        
-            <q-btn flat round dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" />
-            <q-btn flat round dense class="q-ml-md gt-sm" label="AboutUs" style="font-family: Poppins;" />
-            <q-btn flat round dense class="q-ml-md gt-sm" label="Testinomial" style="font-family: Poppins;" />
-            <q-btn flat round dense class="q-ml-md gt-sm" label="ContactUs" style="font-family: Poppins;" />
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu">
                 <q-menu>
                     <q-list style="min-width: 100px;max-height:89px">

@@ -657,6 +657,7 @@ export default defineComponent({
                         }
                     }
                 this.$store.commit('itinerary_preview_update', itinerary)
+                console.log(this.$store.state.itinerary_preview)
                   viewed_itinerary_api(data, access_token);
 
                   this.$store.commit('user_logged_in_update', true)
@@ -674,6 +675,7 @@ export default defineComponent({
                                 break;
                             }
                         }
+                        console.log(this.$store.state.itinerary_preview)
                       viewed_itinerary_api(data, access_token)
                       this.$store.commit('user_logged_in_update', true)
 

@@ -1,12 +1,10 @@
 <template>
     <div>
         <q-toolbar>
-            <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen"  style="color: black;" />
-            
             <q-toolbar-title class="q-pa-md row item-center">
-                <img src="../assets/logo.svg" style="max-width: 200px;"/>
+                <img src="../assets/logo.svg" style="max-width: 200px;" @click="go_to_home"/>
             </q-toolbar-title>
-            <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" style="color: blue;">
+            <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="primary">
                 <q-menu>
                     <q-list style="min-width: 100px;max-height:89px">
                         <!-- <q-item clickable v-close-popup>
@@ -55,9 +53,13 @@
     </div>
 </template>
 <script>
+
+import LoginPage2 from './LoginPage2.vue'
+import RegisterPage from './RegisterPage.vue'
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import { check_if_access_token_is_valid, check_if_refresh_token_is_valid} from '../common/api_calls.js'
 import { useQuasar,Notify } from 'quasar'
+let $q
 
 const linksList = [
   {
@@ -103,6 +105,7 @@ export default {
                 console.log(err);
               });
         });
+        $q = useQuasar();
     },
     created() {
         this.matAccountCircle = matAccountCircle;
@@ -119,7 +122,13 @@ export default {
                       position: 'top'
                       })
             },
-
+        go_to_home(){
+        this.$router.push({
+          path: '',
+          name:'home',
+        })
     }
+    },
+    components: { LoginPage2, RegisterPage }
 }
 </script>

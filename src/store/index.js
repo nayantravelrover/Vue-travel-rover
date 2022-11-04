@@ -59,6 +59,8 @@ export default store(function (/* { ssrContext } */) {
         places_to_visit_img:'download.jpeg',
         accomodation_arrangements_img:'download.jpeg',
         travel_arrangements_img:'download.jpeg',
+        user_mobile_number: "",
+        user_name: ""
         // inclusions_img:'download.jpeg',
         // exclusions_img:'download.jpeg',
         // terms_and_conditions_img:'download.jpeg',

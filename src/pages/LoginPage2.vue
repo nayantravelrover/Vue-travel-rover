@@ -97,7 +97,7 @@
 import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
-import {base_url, setAccessToken, basicconfig, user_login} from '../common/api_calls.js'
+import {base_url, setAccessToken, basicconfig, user_login,check_if_access_token_is_valid} from '../common/api_calls.js'
 
 
 let $q
@@ -141,6 +141,14 @@ export default {
                           setAccessToken(response.data)
                           this.$store.commit('user_logged_in_update', true)
                           this.icon = false
+                          check_if_access_token_is_valid().then(response=>{
+                              console.log(response)
+                              console.log(this.$store.state.is_agent)
+                              if(response["data"]["type_of_user"] == "agent"){
+                                this.$store.commit('is_agent_update', true)
+                                console.log(this.$store.state.is_agent)
+                              }
+                            })
 
                           //alert("Successfully logged in")
                           $q.notify({

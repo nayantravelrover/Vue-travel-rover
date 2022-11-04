@@ -1,31 +1,8 @@
 <template>
+    <AppBar/>
     <div>
         <div>
             <div>
-                <q-toolbar class="toolbar">
-                    <div class="toy">
-                        <img class="toyimage" src="../assets/logo.svg" alt="">
-                <!--         <div class="toy2">
-                            <text class="toytext">Itineraries</text>
-                            <q-input dark dense rounded standout v-model="text" input-class="labelcss text-left"
-                                class="q-ml-md" bg-color="white" placeholder="Search Itineraries">
-                                <template v-slot:append>
-                                    <q-icon v-if="text === ''" name="search" style="color:#CCCFD6;" />
-                                    <q-icon v-else name="search" class="cursor-pointer" @click="text = ''"
-                                        style="color:#CCCFD6;" />
-                                </template>
-                            </q-input>
-                            <div class="toy1">
-                                <q-avatar class="avatardiv">
-                                    <img src="../assets/ItineraryBuilder/pari.svg" alt="">
-                                </q-avatar>
-                                <div>
-                                    <img src="../assets/ItineraryBuilder/expmore.svg" alt="">
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                </q-toolbar>
                 <div class="row" style="padding: 100px 100px 0 100px;">
                     <div class="col-3 toy5">
                         <div class="subdiv2">
@@ -56,16 +33,43 @@
 import { defineComponent, ref, computed } from "vue";
 import { useQuasar,Notify } from 'quasar'
 import { created_itinerary_api, base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid } from "src/common/api_calls";
+import AppBar from "./AppBar.vue"
 let $q
 
 export default defineComponent({
   name: "ItineraryBuilder",
   plugins: { Notify },
+  components : { AppBar },
   data(){
     return{
         itineraries:[]
     }
   },
+  created(){
+    check_if_access_token_is_valid().then(response=>{
+      console.log(response)
+      this.$store.commit('user_logged_in_update', true)
+    created_itinerary_api(null,window.localStorage.getItem("travel_rover_access")).then(response=>{
+        this.itineraries = JSON.parse(response.data.data)
+        console.log(this.itineraries)
+      })
+    }).catch(err =>{
+          console.log(err)
+          check_if_refresh_token_is_valid().then(response => {
+            var access_token = response["data"]["access"];
+            console.log(access_token)
+            window.localStorage.setItem("travel_rover_access", access_token);
+            this.$store.commit('user_logged_in_update', true)
+            created_itinerary_api(null,window.localStorage.getItem("travel_rover_access")).then(response=>{
+                this.itineraries = JSON.parse(response.data.data)
+                console.log(this.itineraries)
+              })
+          }).catch(err =>{
+            this.$store.commit('user_logged_in_update', false)
+            console.log(err);
+          });
+    });
+},
   mounted(){
     check_if_access_token_is_valid().then(response=>{
       console.log(response)

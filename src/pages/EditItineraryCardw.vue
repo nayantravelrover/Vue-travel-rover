@@ -440,6 +440,21 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     name: 'EditItineraryCardw',
+    mounted(){
+        console.log(window.location.href)
+        var param = this.url_params("place",window.location.href)
+        
+    },
+    methods:{
+        url_params( name, url ) {
+            if (!url) url = location.href;
+            name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+            var regexS = "[\\?&]"+name+"=([^&#]*)";
+            var regex = new RegExp( regexS );
+            var results = regex.exec( url );
+            return results == null ? null : results[1];
+        }
+    }
 })
 </script>
 <style>

@@ -1,4 +1,33 @@
 <template>
+  <div>
+        <q-toolbar>
+            
+            <q-btn color="primary" label="Back" @click="go_to_create_itinerary" />
+            <q-toolbar-title class="q-pa-md row item-center">
+                <img src="../assets/logo.svg" style="max-width: 200px;"/>
+            </q-toolbar-title>
+            <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="primary" >
+                <q-menu>
+                    <q-list style="min-width: 100px;max-height:89px">
+                        <!-- <q-item clickable v-close-popup>
+                                    <q-item-section>Login</q-item-section>
+                                  </q-item> -->
+                        <LoginPage2 v-if="this.$store.state.user_logged_in===false"/>
+                          <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
+                            <RegisterPage/>
+                          </div>
+
+
+                          <!-- <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" /> -->
+                          <div class="q-pa-xs">
+                          <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+                           </div>
+            
+                    </q-list>
+                </q-menu>
+            </q-btn>
+        </q-toolbar>
+    </div>
   <div class="row">
   <q-scroll-area   class="col-6 q-pa-md" style="height: 100vh;">
   <div  class="col q-pa-md">
@@ -107,11 +136,13 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import html2pdf from "html2pdf.js/src";
 import { places, load_place_itinerary_data,base_url,liked_itinerary, viewed_itinerary_api ,save_itinerary_api, view_itinerary,check_if_refresh_token_is_valid,check_if_access_token_is_valid, my_itinerary} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
+import { matAccountCircle } from "@quasar/extras/material-icons";
+
 let $q
 
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker, },
+  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker },
   mounted(){
     const urlParams = window.location.href;
     var itinerary_pk = window.location.href.split("?pk=")[1];
@@ -212,13 +243,7 @@ export default {
 
               var access_token = window.localStorage.getItem("travel_rover_access");
 
-              save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token).then(response=>{
-                $q.notify({
-                    type: 'Positive',
-                    message: 'Itinerary Saved',
-                    position: 'top'
-                  })
-              })
+              save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token)
               
               this.$store.commit('user_logged_in_update', true)
             }).catch(err =>{
@@ -227,13 +252,7 @@ export default {
                   var access_token = response["data"]["access"];
 
                   window.localStorage.setItem("travel_rover_access", access_token);
-                  save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token).then(response=>{
-                      $q.notify({
-                          type: 'Positive',
-                          message: 'Itinerary Saved',
-                          position: 'top'
-                        })
-                    })
+                  save_itinerary_api({"itinerary":this.$store.state.itinerary_preview,"itinerary_pk":window.location.href.split("?pk=")[1]},access_token)
                   this.$store.commit('user_logged_in_update', true)
                 }).catch(err =>{
                   $q.notify({
@@ -252,6 +271,13 @@ export default {
 
 
         
+      },
+      go_to_create_itinerary(){
+        this.$router.push({
+          path: '/itinerarybuilder',
+          name:'ItineraryBuilder',
+          query: { pk: -1 }
+        })
       },
     addScript(url) {
      var script = document.createElement('script');
@@ -364,6 +390,7 @@ export default {
   },
   created() {
     console.log(this.days)
+    this.matAccountCircle = matAccountCircle;
     // this.addScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
   },
 

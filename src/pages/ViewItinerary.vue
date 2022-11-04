@@ -44,12 +44,12 @@
                         </div>
                     </div>
                     <div class="box10">
-                        <div class="box11">
-                            <text class="type6">Contact US</text>
+                        <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank"><div class="box11">
+                            <text class="type6">Contact Us</text>
                             <img src="../assets/editcard/whatsapp.svg" alt="">
-                        </div>
+                        </div></a>
                         <div class="box11" @click="this.generateReport()">
-                            <text class="type7">Buy Now</text>                            
+                            <text class="type7">Download</text>                            
                             <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
                         </div>
                     </div>
@@ -75,10 +75,10 @@
                         
                         <img class="card2" src="../assets/editcard/cart1.svg" alt="">
                     </q-btn>
-                    <q-btn class="box25">
-                        <text class="type20">Buy Now</text>
+                    <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank"><q-btn class="box25">
+                        <text class="type20">Contact Us</text>
                         <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
-                    </q-btn>
+                    </q-btn></a>
                 </div>
             </div>
         </q-card>
@@ -93,7 +93,7 @@
         components: {ItineraryPreview},
         methods:{
             generateReport () {
-            alert("generate report done")
+            alert("Itinerary will be generated soon")
             
             html2pdf(document.getElementById("preview"), {
                 // margin: 1,

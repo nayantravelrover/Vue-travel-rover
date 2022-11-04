@@ -38,9 +38,10 @@
               <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
                 <RegisterPage/>
               </div>
-
-              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
+              <div v-if="this.$store.state.user_logged_in">
+              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;"  @click="go_to_profile" v-if="this.$store.state.is_agent === false" />
               <q-btn label="Itineraries" color="primary" style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.is_agent === true" @click="create_itinerary"/>
+            </div>
               <div class="q-pa-xs">
               <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                </div>
@@ -156,6 +157,7 @@ export default defineComponent({
   mounted(){
     check_if_access_token_is_valid().then(response=>{
       console.log(response)
+      console.log(this.$store.state.is_agent)
       if(response["data"]["type_of_user"] == "agent"){
         this.$store.commit('is_agent_update', true)
         console.log(this.$store.state.is_agent)

@@ -144,6 +144,12 @@ export default {
         return {
             ratingModel: ref(3)
         }
+    },
+    created(){
+        console.log(window.location.href)
+    },
+    mounted(){
+        console.log(window.location.href)
     }
 }
 </script>

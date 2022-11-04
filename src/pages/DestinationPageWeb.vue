@@ -4,7 +4,7 @@
             <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
                 transition-next="slide-left">
                     <q-carousel-slide  v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
-                        <transparent-bar/>
+                        <AppBar/>
                     <div class="gt-xs">
                      <div class="container40" style="display: flex;flex-direction: column;align-items: center;padding: 32px 63px;position: absolute;width: 511px;height: 222px;left: 465px;top: 300px;">
         <text class="text50" style="width: 500px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
@@ -354,7 +354,7 @@
 
         </div>
         <div class="q-pa-md column" style="margin-left: 100px;margin-top: 50px; width: 2000px;height: 400px;">
-                <text class="text-satisfied" style="margin-left: 30px;margin-top: 20px;">Ain’t satisfied with the Top-Selling itinerary.
+            <text class="text-satisfied" style="margin-left: 30px;margin-top: 20px;">Ain’t satisfied with the Top-Selling itinerary.
                     Want to customise your itinerary?
                     <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
                 </text>
@@ -495,7 +495,7 @@
 <script>
 import { ref, watch } from 'vue'
 // import ComparisonTable from './ComparisonTable.vue';
-import TransparentBar from './TransparentBar.vue';
+import AppBar from './AppBar.vue';
 import ViewItinerary from './ViewItinerary.vue';
 import CompareTable from './CompareTable.vue';
 import { places, load_place_itinerary_data,base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
@@ -559,7 +559,7 @@ export default {
                 }
                 this.$store.commit('itinerary_preview_update', itinerary)
 
-
+                console.log(this.$store.state.itinerary_preview)
               viewed_itinerary_api(data, access_token);
               this.$store.commit('user_logged_in_update', true)
             }).catch(err =>{
@@ -581,6 +581,7 @@ export default {
                     }
 
                   this.$store.commit('itinerary_preview_update', itinerary)
+                  console.log(this.$store.state.itinerary_preview)
                   viewed_itinerary_api(data, access_token)
                   this.$store.commit('user_logged_in_update', true)
                   
@@ -596,7 +597,7 @@ export default {
             });
         }
     },
-    components: { TransparentBar, ViewItinerary, EditItineraryCardw }
+    components: { AppBar, ViewItinerary, EditItineraryCardw }
 }
 
 
