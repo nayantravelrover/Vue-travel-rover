@@ -49,7 +49,7 @@
           <h2><b>{{basic_data["header_content"]}}</b></h2>
           <h4>{{basic_data["intro_content"]}}</h4>
           <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
-            :icon-right="matTrendingFlat" />
+            :icon-right="matTrendingFlat" @click="scroll('destinations')" />
         </div>
         <div class="col-md-5 gt-sm">
           <q-img style="width: 420px; height: 308px" src="../assets/travel.svg" />
@@ -109,10 +109,9 @@
           <q-img style="width: 300px; height: 200px; margin:20px; margin-left: 30px;" src="../assets/travel.svg" />
         </div>
         <div class="left-section-mobile col-md-5 q-pa-md">
-          <h4>TRAVELROVER IS A ONE STOP PLACE TO CREATE YOUR OWN ITINERARY, PUBLISH YOUR ITINERARY TO GET FEEDBACK FROM AGENTS,
-          CONNECT WITH AGENT ON ONE TO ONE BASIS.
+          <h4>{{basic_data["intro_content"]}}
           </h4>
-          <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" />
+          <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" @click="scroll('destinations')" />
           
         </div>
       </div>
@@ -123,11 +122,11 @@
 
 
     <!-- top 5 destinations -->
-    <div class="q-pa-sm" style="margin-top: 50px;">
+    <div class="q-pa-sm" style="margin-top: 50px;" id="destinations">
       <div class="carousel-heading">
-        <h5 class="text-center">Top 5 Destinations</h5>
+        <h5 class="text-center">Top Destinations</h5>
       </div>
-      <Carousel :itemsToShow="isMobile?2: 5">
+      <Carousel :itemsToShow="isMobile?1.3: 5.3">
         <Slide v-for="items,index in basic_data['explore_destination_images']" :key="items">
 <div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(basic_data['explore_destination'][index],default_date)">
             
@@ -224,20 +223,19 @@
         <h5 class="text-center">What our users say about us</h5>
       </div>
       <Carousel :itemsToShow="isMobile?1:2.2" :wrapAround="true">
-        <Slide v-for="slide in 10" :key="slide">
+
+        <Slide v-for="items,index in review_content" :key="items">
           <div class="carousel__item">
             <q-card class="carousel-card">
               <img src="../assets/Apostrophe.svg"/>
               <q-card-section>
                 <div class="text-subtitle2" style="margin-top: 10px;">
-                  Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis
-                  ullamco cillum dolor. Voluptate exercitation incididunt
-                  aliquip.
+                  {{items}}
                 </div>
               </q-card-section>
               <q-card-section>
                 <q-rating color="orange" v-model="stars" :max="5" size="32px" />
-                <div class="text-h6">Kristin Watson</div>
+                <div class="text-h6">{{reviewers[index]}}</div>
               </q-card-section>
 
             </q-card>
@@ -477,6 +475,8 @@ export default defineComponent({
       ],
       where_to: ref(null),
       date: ref(""),
+      reviewers: ["Anuj Vadecha","Nitin Bhansali","Aman Dedhia","Neel Shah", "Aayush Jain"],
+      review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."]
     }
   },
   methods:{
@@ -583,6 +583,10 @@ export default defineComponent({
             });
         });
       }
+    },
+    scroll(id){
+      const element = document.getElementById(id);
+      element.scrollIntoView({ behavior: 'smooth' });
     },
   },
   setup() {
