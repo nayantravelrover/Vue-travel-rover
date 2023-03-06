@@ -10,6 +10,7 @@
                     <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index"
                         :img-src=items>
                         <AppBar />
+                        {{this.place_description}}
                         <div id="inner" style="display: table;margin: 0 auto; margin-top: 35%;color: white;font-weight: bold;">
                             <div style="font-size:30px;font-family: Poppins;text-align: center;">{{this.place_description["name"]}}</div>
                             <div style="text-align: center;font-size:20px;font-family: Poppins;"> {{this.place_description['places_one_liner']}}</div>
@@ -450,10 +451,21 @@ export default defineComponent({
     },
     created() {
         var place = this.$route.query.place.trim()
+        console.log(place)
         var date = this.$route.query.date.trim()
+        var place_dictionary = {
+                "name": "",
+                "faqs_question": ["","",""],
+                "faqs_answer": ["","",""],
+                "images": ["","",""],
+                "places_one_liner": "",
+                "description": ["","",""]
+            }
+        this.place_description = place_dictionary
         places(place,date).then(response => {
             var resp = JSON.parse(response.data.data)[0]["fields"]
-            var place_dictionary = {
+            console.log(resp)
+            place_dictionary = {
                 "name": resp["name"],
                 "faqs_question": resp["faqs"].split("$$$"),
                 "faqs_answer": resp["faqs_answer"].split("$$$"),
@@ -461,6 +473,7 @@ export default defineComponent({
                 "places_one_liner": resp["one_liner"],
                 "description": resp["description"].split("$$$"),
             }
+
             this.place_description = place_dictionary
         });
         load_place_itinerary_data(place,date).then(response => {

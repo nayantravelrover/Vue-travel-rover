@@ -15,7 +15,24 @@
       <DayPreview :day="day" :day_index="index"></DayPreview>
     </div>
     <ItineraryContentPreview :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
+
+    <div :class="{'grid-container': nonEmptyImagesCountPlacesToVisit > 1}">
+    <div v-for="(img, index) in itinarary_data.places_to_visit_img[0].images" :key="index" class="grid-item">
+      <img v-if="img !== ''" :src="img" alt="place to visit" style="border-radius: 10px" width="200" height="200">
+    </div>
+  </div>
+
+    
+
+    <!-- <ItineraryContentPreview  :content="itinarary_data.places_to_visit_img" label="Places to visit"></ItineraryContentPreview> -->
     <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
+
+    <div :class="{'grid-container': nonEmptyImagesCountAccomodationArrangement > 1}">
+    <div v-for="(img, index) in itinarary_data.accomodation_arrangements_img[0].images" :key="index" class="grid-item">
+      <img v-if="img !== ''" :src="img" alt="accomodation_arrangements_img" style="border-radius: 10px" width="200" height="200">
+    </div>
+  </div>
+    
     <ItineraryContentPreview :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.inclusions" label="Inclusions"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.exclusions" label="Exclusions"></ItineraryContentPreview>
@@ -49,6 +66,12 @@ export default {
   computed:{
     itinarary_data:function (){
       return this.$store.state.itinerary_preview
+    },
+    nonEmptyImagesCountPlacesToVisit() {
+      return this.itinarary_data.places_to_visit_img[0].images.filter(img => img !== '').length;
+    },
+    nonEmptyImagesCountAccomodationArrangement(){
+      return this.itinarary_data.accomodation_arrangements_img[0].images.filter(img => img !== '').length;
     }
   },
   setup(){},
@@ -61,4 +84,28 @@ div{
     font-family: "Helvetica Neue";
    color: #4B5563;
   }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(200px, auto);
+  grid-gap: 10px;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+.grid-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
 </style>

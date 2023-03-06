@@ -50,7 +50,7 @@
         bordered
         color="white"
         text-color="black"
-        url="http://admin.travelrover.in/travel-rover/api-files/"
+        url="https://admin.travelrover.in/travel-rover/api-files/"
         style=""
         auto-upload
         label="Add image if any"
@@ -104,9 +104,30 @@
         </div>
       <q-btn  class="row" @click="days_add()">Add day</q-btn>
       <br>
-     <PicturedWYISG :image="true" class="q-pt-lg" property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
-     <PicturedWYISG :image="true" class="q-pt-lg " property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
-     <PicturedWYISG  :image="true" class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
+
+    <PicturedWYISG :image="false" class="q-pt-lg" property_key="places_to_visit" heading="Places to Visit"></PicturedWYISG>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="places_to_visit_1" heading="Places to Visit Image One"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="places_to_visit_2" heading="Places to Visit Image Two"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="places_to_visit_3" heading="Places to Visit Image Three"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="places_to_visit_4" heading="Places to Visit Image Four"></OnlyPicture>
+
+
+     <PicturedWYISG  class="q-pt-lg " property_key="accomodation_arrangements" heading="Accomodation Arrangements"></PicturedWYISG>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="accomodation_arrangements_1" heading="Accomodations Arrangements Image One"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="accomodation_arrangements_2" heading="Accomodations Arrangements Image Two"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="accomodation_arrangements_3" heading="Accomodations Arrangements Image Three"></OnlyPicture>
+
+     <OnlyPicture :image="true" class="q-pt-lg" property_key="accomodation_arrangements_4" heading="Accomodations Arrangements Image Four"></OnlyPicture>
+
+
+     <PicturedWYISG class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="inclusions" heading="Inclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="exclusions" heading="Exclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
@@ -130,6 +151,7 @@
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
+import OnlyPicture from "components/OnlyPicture";
 import { ref } from 'vue'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -137,19 +159,17 @@ import html2pdf from "html2pdf.js/src";
 import { places, load_place_itinerary_data,base_url,liked_itinerary, viewed_itinerary_api ,save_itinerary_api, view_itinerary,check_if_refresh_token_is_valid,check_if_access_token_is_valid, my_itinerary} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 import { matAccountCircle } from "@quasar/extras/material-icons";
+import {toDataURL} from "src/common/utils";
 
 let $q
 
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker },
+  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker,OnlyPicture },
   mounted(){
     const urlParams = window.location.href;
     var itinerary_pk = window.location.href.split("?pk=")[1];
     this.view_itinerary(itinerary_pk)
-
-    // const myParam = urlParams.get('pk');
-    // console.log(myParam)
   },
   methods: {
       view_itinerary(itinerary_pk){
@@ -174,9 +194,11 @@ export default {
                   var start_dates = JSON.parse(response["data"]["data"])[0]["fields"]["start_dates"]
                   start_dates = JSON.parse(start_dates)
                   console.log(start_dates)
-                  this.$store.commit('start_dates_update', start_dates)
+                  this.$store.commit('start_dates_update', start_dates)  
               })
               }
+
+
               
                 //this.$store.commit('itinerary_preview_update', itinerary)
               this.$store.commit('user_logged_in_update', true)
@@ -215,7 +237,7 @@ export default {
         },
       place_file_uploaded: function(info) {
         var file_response = JSON.parse(info.xhr.response).file
-        file_response = 'http://admin.travelrover.in' + file_response
+        file_response = 'https://e1bc-103-68-18-201.ngrok.io' + file_response
         this.$store.commit('place_img_update', file_response)
       },
       days_add:function (){
@@ -223,17 +245,86 @@ export default {
         this.$store.commit('day_add', 1)
         console.log(this.$store.state.itinerary_preview.days)
       },
+
     generateReport () {
-        console.log("generate report done")
         
-        html2pdf(document.getElementById("preview"), {
-            // margin: 1,
-            pagebreak: { mode: 'avoid-all', before: '#page2el' },
-            filename: this.$store.state.itinerary_preview.place_name,
-            // image: { type: 'jpeg', quality: 0.98 },
-            // html2canvas: { dpi: 192, letterRendering: true },
-            // jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-				  })
+        async function update_cover_image(images_list) {
+          const data_cover_image = await toDataURL(images_list.state.itinerary_preview.place_img);
+          images_list.commit('place_img_update', data_cover_image);
+        }
+
+        async function update_places_to_visit(images_list) {
+
+          for(let i = 0; i < images_list.state.itinerary_preview.places_to_visit_img[0].images.length; i++) {
+            
+            if(images_list.state.itinerary_preview.places_to_visit_img[0].images[i] != ""){
+
+              const dataUrl = await toDataURL(images_list.state.itinerary_preview.places_to_visit_img[0].images[i]);
+              
+              images_list.commit('places_to_visit_'+(i+1)+'_img_update', dataUrl);
+
+              console.log(images_list);
+            }
+          }
+        }
+
+        async function accomodation_arrangements(images_list) {
+
+          for(let i = 0; i < images_list.state.itinerary_preview.accomodation_arrangements_img[0].images.length; i++) {
+            
+            if(images_list.state.itinerary_preview.accomodation_arrangements_img[0].images[i] != ""){
+
+              const dataUrl = await toDataURL(images_list.state.itinerary_preview.accomodation_arrangements_img[0].images[i]);
+              
+              images_list.commit('accomodation_arrangements_'+(i+1)+'_img_update', dataUrl);
+
+              console.log(images_list);
+            }
+          }
+        }
+
+
+        async function updateDaysImages(images_list) {
+          alert("PDF will be downloaded within " + 2*images_list.state.itinerary_preview.days.length + " seconds")
+
+          for(let i = 0; i < images_list.state.itinerary_preview.days.length; i++) {
+            
+            const dataUrl = await toDataURL(images_list.state.itinerary_preview.days[i].images);
+            const day_content_indexed = { index_day: i, value: dataUrl };
+            images_list.commit('day_img_update', day_content_indexed);
+
+            console.log(images_list);
+            if(i==images_list.state.itinerary_preview.days.length-1){
+
+              setTimeout(() => {
+                html2pdf(document.getElementById("preview"), {
+                pagebreak: { mode: 'avoid-all', before: '#page2el' },
+                filename: images_list.state.itinerary_preview.place_name,
+              })
+              }, "1000")
+            }
+          }
+        }
+
+
+
+
+        update_cover_image(this.$store).then(response=>{
+          console.log("done")
+        })
+
+        accomodation_arrangements(this.$store).then(response=>{
+          console.log("done")
+        })
+
+        update_places_to_visit(this.$store).then(response=>{
+          console.log("done")
+        })
+
+        updateDaysImages(this.$store).then(response=>{
+          console.log("done")
+        })
+
       },
       save_itinerary: function(){
         console.log(this.$store.state.itinerary_preview)
@@ -264,13 +355,6 @@ export default {
                   console.log(err);
                 });
             });
-
-
-
-
-
-
-        
       },
       go_to_create_itinerary(){
         this.$router.push({
@@ -391,7 +475,6 @@ export default {
   created() {
     console.log(this.days)
     this.matAccountCircle = matAccountCircle;
-    // this.addScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
   },
 
 }

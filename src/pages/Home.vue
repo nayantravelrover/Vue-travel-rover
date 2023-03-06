@@ -140,7 +140,7 @@
                   </div>
                   <div class="col-md-3 text-black text-caption row no-wrap items-center">
                     <q-icon name="visibility" />
-                    <div style="margin-left: 5px;">300</div>
+                    <div style="margin-left: 5px;">{{basic_data["top_five_likes"][index]}}</div>
                   </div>
                 </div>
               </q-card-section>
@@ -207,7 +207,7 @@
 
             <q-card-section class="q-pt-none row no-wrap items-center">
               <div class="col text-caption text-grey">
-                <q-avatar color="white" size="30px" text-color="gray" icon="directions" />50 People going
+                <q-avatar color="white" size="30px" text-color="gray" icon="directions" />50 people trip
               </div>
               <div class="col-auto text-grey text-caption">
                 <q-icon size="15px" name="favorite" />
@@ -471,7 +471,7 @@ export default defineComponent({
       basic_data: {},
       svgs_color:["orange","light-green","brown","purple"],
       options: [
-        'Uttarakhand', 'Leh Ladakh', 'Himachal Pradesh', 'Goa', 'Kashmir'
+        'Uttarakhand', 'Leh Ladakh', 'Himachal Pradesh', 'Goa', 'Kashmir', 'Rajasthan'
       ],
       where_to: ref(null),
       date: ref(""),
@@ -605,36 +605,12 @@ export default defineComponent({
   },
   mounted(){
     $q = useQuasar()
-    console.log("Here in Mounted");
-    basicconfig().then(response =>{
-        this.basic_data = JSON.parse(response.data.data)[0]["fields"]
-        this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
-        this.basic_data["explore_destination_images"] = this.basic_data["explore_destination_images"].split("$$$")
-        this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
-        this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
-        this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
-
-        console.log(this.basic_data)
-      });
   },
   created() {
-
-    console.log(document.readyState)
-    console.log(this.basic_data)
-
     document.onreadystatechange = () => {
       console.log("HEREE")
       if (document.readyState === 'complete') {
         console.log("document ready state complete")
-
-
-        var test_arr = ["Himachal Pradesh","Leh Ladakh","Goa","Kashmir","Uttarakhand"]
-        this.basic_data["explore_destination"] = test_arr
-        this.basic_data["explore_destination_images"] = test_arr
-        this.basic_data["headers_of_why_choose_us"] = test_arr
-        this.basic_data["svgs_of_why_choose_us"] = test_arr
-        this.basic_data["content_of_why_choose_us"] = test_arr
-
         basicconfig().then(response =>{
         this.basic_data = JSON.parse(response.data.data)[0]["fields"]
         this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
@@ -642,22 +618,18 @@ export default defineComponent({
         this.basic_data["headers_of_why_choose_us"] = this.basic_data["headers_of_why_choose_us"].split("$$$")
         this.basic_data["svgs_of_why_choose_us"] = this.basic_data["svgs_of_why_choose_us"].split("$$$")
         this.basic_data["content_of_why_choose_us"] = this.basic_data["content_of_why_choose_us"].split("$$$")
+        this.basic_data["top_five_likes"] = this.basic_data["top_five_likes"].split("$$$")
+        //console.log(this.basic_data)
 
-        console.log(this.basic_data)
+        console.dir(JSON.stringify(this.basic_data), {'maxArrayLength': 10000000000});
       });
     }
   }
 
     // console.log(document.readyState)
 
-    var test_arr = ["Uttarakhand","Himachal Pradesh"]
-    this.basic_data["explore_destination"] = test_arr
-    this.basic_data["explore_destination_images"] = test_arr
-    this.basic_data["headers_of_why_choose_us"] = test_arr
-    this.basic_data["svgs_of_why_choose_us"] = test_arr
-    this.basic_data["content_of_why_choose_us"] = test_arr
 
-    console.log("HERE");
+    this.basic_data = {"header_content":"CREATE YOUR DREAM ITINERARY WITH TRAVELROVER. PLAN, CUSTOMIZE, PUBLISH AND GET AGENT FEEDBACK. ONE-STOP PLATFORM TO BUILD YOUR PERFECT TRIP. START NOW!","intro_content":"Unforgettable travel itineraries for adventure, relaxation, and culture. Browse curated trips or create bespoke experiences.","top_destination_content":"Steps to join your ultimate and trustworthy travel partner with us","why_choose_us_header":"You should choose us because we give you the best agents","svgs_of_why_choose_us":["app.clickup","lauda_lasoon"],"headers_of_why_choose_us":["Trips & Travel "," Sales "," Finance "," Insurance"],"content_of_why_choose_us":["Trips & Travel "," Sales "," Finance "," Insurance"],"gif_of_why_choose_us_link":"app.clickup.com","explore_destination":["Uttarakhand "," Leh Ladakh "," Himachal Pradesh "," Goa "," Kashmir"],"explore_destination_images":["https://admin.travelrover.in/media/files/uttarakhand_ocauCp1.jpg "," https://admin.travelrover.in/media/files/leh_ladakh_s2V3mcH.jpg "," https://admin.travelrover.in/media/files/himachal.jpg "," https://admin.travelrover.in/media/files/goa_TCoSYe6.jpg "," https://admin.travelrover.in/media/files/kashmir_C0NEKPM.jpg "," https://admin.travelrover.in/media/files/rajasthan.jpg"],"top_five_destination":"Kullu $$$ Maldives $$$ Kerala $$$ Manali $$$ Rishikesh","top_five_destination_images":"https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI","top_five_likes":["500","300","200","200","200","400"],"video_link":"www.google.com","watch_latest_tour_content":"Watch our latest tour content it is amazing"}
   }
 });
 </script>

@@ -19,7 +19,7 @@
 
         <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="scroll('home')"/>
       <q-btn flat  dense class="q-ml-md gt-sm" label="About Us" style="font-family: Poppins;" @click="scroll('why_choose_us')" />
-        <q-btn flat  dense class="q-ml-md gt-sm" label="Testinomial" style="font-family: Poppins;"  @click="scroll('testimonials')" />
+        <q-btn flat  dense class="q-ml-md gt-sm" label="Testimonials" style="font-family: Poppins;"  @click="scroll('testimonials')" />
         <q-btn flat  dense class="q-ml-md gt-sm" label="ContactUs" style="font-family: Poppins;" @click="scroll('contact_us')" />
         <q-btn
           flat

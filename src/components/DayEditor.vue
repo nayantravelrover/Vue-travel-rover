@@ -10,7 +10,7 @@
        flat bordered
         color="white"
        text-color="black"
-        url="http://admin.travelrover.in/travel-rover/api-files/"
+        url="https://admin.travelrover.in/travel-rover/api-files/"
         style=""
         auto-upload
         label="Add image if any"
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import {toDataURL} from "src/common/utils";
+
 export default {
   name: "day-editor",
   props:["day_index", "day_content", "day_images", "day_obj"],
@@ -38,12 +40,23 @@ export default {
   methods:{
       day_img_update : function (info){
         var file_response = JSON.parse(info.xhr.response).file
-        file_response = 'http://admin.travelrover.in' + file_response
+        file_response = 'https://e1bc-103-68-18-201.ngrok.io' + file_response
         var day_index = this.day_index
+
+        toDataURL(file_response)
+        .then(dataUrl => {
+          console.log('RESULT:', dataUrl)
+        })
+
         var day_content_indexed = {index_day: day_index , value: file_response}
         console.log(day_content_indexed)
         this.$store.commit('day_img_update', day_content_indexed)
         console.log(this.$store)
+
+        // var day_content_indexed = {index_day: day_index , value: file_response}
+        // console.log(day_content_indexed)
+        // this.$store.commit('day_img_update', day_content_indexed)
+        // console.log(this.$store)
       },
     onRejected: function (rejectedEntries) {
       // Notify plugin needs to be installed
