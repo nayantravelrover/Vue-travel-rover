@@ -7,10 +7,8 @@
                 <q-carousel class="goaslide q-pa" animated v-model="slide" navigation infinite
                     :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left">
 
-                    <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index"
-                        :img-src=items>
+                    <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                         <AppBar />
-                        {{this.place_description}}
                         <div id="inner" style="display: table;margin: 0 auto; margin-top: 35%;color: white;font-weight: bold;">
                             <div style="font-size:30px;font-family: Poppins;text-align: center;">{{this.place_description["name"]}}</div>
                             <div style="text-align: center;font-size:20px;font-family: Poppins;"> {{this.place_description['places_one_liner']}}</div>
