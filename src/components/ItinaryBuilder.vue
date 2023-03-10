@@ -237,7 +237,7 @@ export default {
         },
       place_file_uploaded: function(info) {
         var file_response = JSON.parse(info.xhr.response).file
-        file_response = 'https://e1bc-103-68-18-201.ngrok.io' + file_response
+        file_response = 'https://admin.travelrover.in' + file_response
         this.$store.commit('place_img_update', file_response)
       },
       days_add:function (){

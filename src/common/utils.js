@@ -6,7 +6,6 @@ const toDataURL = url => fetch(url)
     reader.onerror = reject
     reader.readAsDataURL(blob)
   }))
-//const admin_url = 'https://e1bc-103-68-18-201.ngrok.io'
 
 const admin_url = "https://admin.travelrover.in"
 

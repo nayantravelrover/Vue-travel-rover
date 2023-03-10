@@ -40,7 +40,7 @@ export default {
   methods:{
       day_img_update : function (info){
         var file_response = JSON.parse(info.xhr.response).file
-        file_response = 'https://e1bc-103-68-18-201.ngrok.io' + file_response
+        file_response = 'https://admin.travelrover.in' + file_response
         var day_index = this.day_index
 
         toDataURL(file_response)

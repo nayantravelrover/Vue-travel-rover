@@ -24,7 +24,7 @@ export default {
   methods: {
     property_img_update:function (info){
       var file_response = JSON.parse(info.xhr.response).file
-      file_response = 'https://e1bc-103-68-18-201.ngrok.io' + file_response
+      file_response = 'https://admin.travelrover.in' + file_response
       console.log("here")
       this.$store.commit(this.property_key+'_img_update', file_response)
       console.log(this.$store.state.itinerary_preview.places_to_visit_img)
