@@ -1,4 +1,29 @@
 <template>
+
+  <transition name="fade" appear>
+            <div class="modal-overlay" 
+                 v-if="showModal" 
+                 ></div>
+  </transition>
+  <transition name="pop" appear>
+  <div class="modal" 
+       role="dialog" 
+       v-if="showModal"
+       >
+    <div class="loader-wrapper">
+      <div class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p>Please wait, AI will generate your itinerary in 2 minutes.</p>
+  </div>
+
+  </div>
+    </transition>
+
+
   <div>
         <q-toolbar>
             
@@ -146,8 +171,13 @@
       </q-scroll-area>
     </div>
   </div>
+
+
+
+
 </template>
 <script>
+
 import DayEditor from "components/DayEditor";
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
@@ -156,10 +186,11 @@ import { ref } from 'vue'
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import html2pdf from "html2pdf.js/src";
-import { places, load_place_itinerary_data,base_url,liked_itinerary, viewed_itinerary_api ,save_itinerary_api, view_itinerary,check_if_refresh_token_is_valid,check_if_access_token_is_valid, my_itinerary} from "src/common/api_calls";
+import { places, load_place_itinerary_data,base_url,liked_itinerary, viewed_itinerary_api ,save_itinerary_api, view_itinerary,check_if_refresh_token_is_valid,check_if_access_token_is_valid, my_itinerary, create_chatgpt_itinerary} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import {toDataURL} from "src/common/utils";
+
 
 let $q
 
@@ -168,8 +199,83 @@ export default {
   components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker,OnlyPicture },
   mounted(){
     const urlParams = window.location.href;
-    var itinerary_pk = window.location.href.split("?pk=")[1];
-    this.view_itinerary(itinerary_pk)
+    var url_params = window.location.href.split("?")[1];
+    var params = new URLSearchParams(url_params);
+    console.log(params)
+    var itinerary_pk = params.get('pk');
+    var pk_of_prompt = params.get('pk_of_prompt');
+    console.log(itinerary_pk); // -1
+    console.log(pk_of_prompt); // 15
+
+    if(pk_of_prompt == null){
+      this.view_itinerary(itinerary_pk);
+      this.showModal = false;
+    }else{
+      // call chatgpt api, once success return with pk of itinerary and reload, until success show loader. 
+      this.showModal = true;
+      check_if_access_token_is_valid().then(response=>{
+
+
+              var access_token = window.localStorage.getItem("travel_rover_access");
+
+              create_chatgpt_itinerary({"pk_of_prompt":pk_of_prompt},access_token).then(response=>{
+                  console.log(response["data"])
+
+                  if(response["data"]["status"] == 200){
+
+                    console.log(response["data"]["pk_of_itinerary"])
+                    var pk_of_itinerary = response["data"]["pk_of_itinerary"]
+                    window.open("/#/itinarybuilder/?pk=" + pk_of_itinerary);
+
+                    window.location.href = "/#/itinarybuilder/?pk=" + pk_of_itinerary
+                    window.location.reload()
+                  }else{
+                    $q.notify({
+                          type: 'negative',
+                          message: 'There is some internal issues going on.',
+                          position: 'top'
+                        })
+                  }
+
+
+                }).catch(err =>{
+                  console.log(err)
+                  check_if_refresh_token_is_valid().then(response =>{
+                    var access_token = response["data"]["access"];
+                    window.localStorage.setItem("travel_rover_access", access_token);
+
+                    create_chatgpt_itinerary({"pk_of_prompt":pk_of_prompt},access_token).then(response=>{
+
+                        
+                        this.$store.commit('user_logged_in_update', true)
+                        if(response["data"]["status"] == 200){
+                          console.log(response["data"]["pk_of_itinerary"])
+                          
+                          var pk_of_itinerary = response["data"]["pk_of_itinerary"]
+                          window.location.href = "/#/itinarybuilder/?pk=" + pk_of_itinerary
+                          window.location.reload()
+                        }else{
+                          $q.notify({
+                                type: 'negative',
+                                message: 'There is some internal issues going on.',
+                                position: 'top'
+                              })
+                        }
+
+                    }).catch(err =>{
+                        $q.notify({
+                          type: 'negative',
+                          message: 'Kindly log-in/sign-up to enable this functionality',
+                          position: 'top'
+                        })
+                        this.$store.commit('user_logged_in_update', false)
+                        console.log(err);
+                      });
+
+                  })
+                })
+                });
+  }
   },
   methods: {
       view_itinerary(itinerary_pk){
@@ -183,7 +289,6 @@ export default {
 
               this.card = true
               var itinerary = []
-              console.log(itinerary_pk)
 
               if(itinerary_pk != -1){
                   my_itinerary(data,access_token).then(response=>{
@@ -391,6 +496,7 @@ export default {
     return {
       imageData: null,
       date: [],
+      showModal: false,
     }
   },
   computed:{
@@ -491,5 +597,103 @@ export default {
   }
   .dp__button{
     display: none;
+  }
+  .modal {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 22em;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #FFF;
+  z-index: 999;
+  transform: none;
+  }
+  .modal h1 {
+    margin: 0 0 1rem;
+  }
+
+  .modal-overlay {
+    content: '';
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+    background: #2c3e50;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  /* ---------------------------------- */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .4s linear;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .pop-enter-active,
+  .pop-leave-active {
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+  }
+
+  .pop-enter,
+  .pop-leave-to {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50%);
+  }
+  
+  .loader-wrapper {
+    text-align: center;
+  }
+
+  .loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .loader div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #6916a0;
+    border-radius: 50%;
+    animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #6916a0 transparent transparent transparent;
+  }
+  .loader div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .loader div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .loader div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>

@@ -48,8 +48,50 @@
         <div class="left-section col-md-7 q-pa-md-lg-xl">
           <h2><b>{{basic_data["header_content"]}}</b></h2>
           <h4>{{basic_data["intro_content"]}}</h4>
-          <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
-            :icon-right="matTrendingFlat" @click="scroll('destinations')" />
+          <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
+            :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
+
+
+
+          <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+<transition name="fade" appear>
+  <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+</transition>
+<transition name="pop" appear>
+  <div class="modal" role="dialog" v-if="showModal" style="max-width: fit-content;">
+    <div class="chatgpt-prompt">
+      <h5>Write your travel related needs below</h5>
+      <q-input v-model="area" class="text-area" type="textarea" float-label="Textarea" :max-height="100" :min-rows="3" placeholder="I want to go to Himachal Pradesh for 5 days with my family." />
+
+    </div>
+    <button @click="create_chatgpt_prompt()" class="button submit-btn">Submit</button>
+  </div>
+</transition>
+          <!-- <button @click="showModal = true" text-color="black" class="button explore-btn">AI Itinerary Creator</button>
+          <transition name="fade" appear>
+            <div class="modal-overlay" 
+                 v-if="showModal" 
+                 @click="showModal = false"></div>
+          </transition>
+          <transition name="pop" appear>
+            <div class="modal" 
+                 role="dialog" 
+                 v-if="showModal"
+                 style="max-width: fit-content;" 
+                 >
+              <h5>Write your prompt below</h5>
+
+              <q-input
+                v-model="area"
+                type="textarea"
+                float-label="Textarea"
+                :max-height="100"
+                :min-rows="3"
+              />
+              <button @click="create_chatgpt_prompt()" class="button">Submit</button>
+
+            </div>
+          </transition> -->
         </div>
         <div class="col-md-5 gt-sm">
           <q-img style="width: 420px; height: 308px" src="../assets/travel.svg" />
@@ -111,8 +153,48 @@
         <div class="left-section-mobile col-md-5 q-pa-md">
           <h4>{{basic_data["intro_content"]}}
           </h4>
-          <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" @click="scroll('destinations')" />
-          
+          <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
+
+          <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+<transition name="fade" appear>
+  <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+</transition>
+<transition name="pop" appear>
+  <div class="modal" role="dialog" v-if="showModal" style="max-width: fit-content;">
+    <div class="chatgpt-prompt">
+      <h5>Write your travel related needs below</h5>
+      <q-input v-model="area" class="text-area" type="textarea" float-label="Textarea" :max-height="100" :min-rows="3" placeholder="I want to go to Himachal Pradesh for 5 days with my family." />
+
+    </div>
+    <button @click="create_chatgpt_prompt()" class="button submit-btn">Submit</button>
+  </div>
+</transition>
+          <!-- <button @click="showModal = true" text-color="black" class="button explore-btn">AI Itinerary Creator</button>
+          <transition name="fade" appear>
+            <div class="modal-overlay" 
+                 v-if="showModal" 
+                 @click="showModal = false"></div>
+          </transition>
+          <transition name="pop" appear>
+            <div class="modal" 
+                 role="dialog" 
+                 v-if="showModal"
+                 style="max-width: fit-content;" 
+                 >
+              <h5>Write your prompt below</h5>
+
+              <q-input
+                v-model="area"
+                type="textarea"
+                float-label="Textarea"
+                :max-height="100"
+                :min-rows="3"
+              />
+              <button @click="create_chatgpt_prompt()" class="button">Submit</button>
+
+            </div>
+          </transition>
+           -->
         </div>
       </div>
     </div>
@@ -448,7 +530,15 @@ import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 // import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
-import {basicconfig, subscribe_user,check_if_access_token_is_valid,check_if_refresh_token_is_valid} from "src/common/api_calls";
+
+import {
+  basicconfig, 
+  subscribe_user,
+  check_if_access_token_is_valid,
+  check_if_refresh_token_is_valid,
+  create_prompt
+  } from "src/common/api_calls";
+
 import DestinationPageWeb from "./DestinationPageWeb.vue";
 import DestinationPage from "./DestinationPage.vue";
 import { useQuasar,Notify } from 'quasar'
@@ -476,7 +566,9 @@ export default defineComponent({
       where_to: ref(null),
       date: ref(""),
       reviewers: ["Anuj Vadecha","Nitin Bhansali","Aman Dedhia","Neel Shah", "Aayush Jain"],
-      review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."]
+      review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."],
+      showModal: false,
+      area: ""
     }
   },
   methods:{
@@ -583,6 +675,69 @@ export default defineComponent({
             });
         });
       }
+    },
+    create_chatgpt_prompt(){
+      if(this.$store.state.user_logged_in==false){
+          $q.notify({
+              type: 'negative',
+              message: 'Kindly log-in/sign-up to enable this functionality',
+              position: 'top'
+              })
+      }else{
+        check_if_access_token_is_valid().then(response=>{
+          console.log(response);
+          var access_token = window.localStorage.getItem("travel_rover_access");
+          console.log(this.area);
+          create_prompt({"prompt":this.area},access_token).then(response=>{
+                var pk_of_prompt = response["data"]["pk_of_prompt"]
+                
+                $q.notify({
+                  type: 'positive',
+                  message: 'Saved succesfully.',
+                  position: 'top'
+                });
+              window.open("/#/itinarybuilder?pk=-1&pk_of_prompt="+pk_of_prompt, '_blank');
+              }).catch(err=>{
+                $q.notify({
+                  type: 'negative',
+                  message: 'Some internal issues are going on, please try by reloading again',
+                  position: 'top'
+              })
+              });
+        }).catch(err =>{
+            console.log(err)
+            check_if_refresh_token_is_valid().then(response => {
+              var access_token = response["data"]["access"];
+              console.log(access_token)
+              window.localStorage.setItem("travel_rover_access", access_token);
+              create_prompt({"prompt":this.area}, access_token).then(response=>{
+                var pk_of_prompt = response["data"]["pk_of_prompt"]
+                $q.notify({
+                  type: 'positive',
+                  message: 'Saved succesfully.',
+                  position: 'top'
+              })
+              window.open("/#/itinarybuilder?pk=-1&pk_of_prompt="+pk_of_prompt, '_blank');
+              }).catch(err=>{
+                $q.notify({
+                  type: 'negative',
+                  message: 'Some internal issues are going on',
+                  position: 'top'
+              })
+              });
+              console.log(response);
+            }).catch(err =>{
+              $q.notify({
+                type: 'negative',
+                message: 'Kindly log-in/sign-up to enable this functionality',
+                position: 'top'
+              })
+              this.$store.commit('user_logged_in_update', false)
+              console.log(err);
+            });
+        });
+      }
+
     },
     scroll(id){
       const element = document.getElementById(id);
@@ -1038,4 +1193,138 @@ footer ul {
   }
 
 }
+
+.modal {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 22em;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #FFF;
+  z-index: 999;
+  transform: none;
+}
+.modal h1 {
+  margin: 0 0 1rem;
+}
+
+.modal-overlay {
+  content: '';
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  background: #2c3e50;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .4s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+
+.pop-enter,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
+}
+.explore-btn {
+    /*background-color: #007aff;
+    color: #fff;*/
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    margin-right: 10px;
+  }
+
+  .explore-btn:hover {
+    background-color: #0055ff;
+  }
+
+  /* Styles for the modal overlay */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  /* Styles for the modal */
+  .modal {
+    position: fixed;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  /* Styles for the chatgpt prompt */
+  .chatgpt-prompt {
+    margin-bottom: 20px;
+  }
+
+  /* Styles for the submit button */
+  .submit-btn {
+    background-color: #007aff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .submit-btn:hover {
+    background-color: #0055ff;
+  }
+
+  .text-area {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+  .text-area:focus {
+    outline: none;
+    border-color: #007aff;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5);
+  }
+
+
 </style>

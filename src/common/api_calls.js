@@ -1,6 +1,6 @@
 import { getAPIService,postAPIService } from './api.service'
 
-//const base_url = 'https://admin.travelrover.in/'
+//const base_url = 'https://3c56-49-36-122-103.ngrok.io/'
 const base_url = "https://admin.travelrover.in/"
 
 function basicconfig () {
@@ -243,6 +243,32 @@ function get_viewed_itineraries(access_token){
 }
 
 
+function create_prompt(data,access_token){
+  var endpoint = base_url + 'travel-rover/save-chatgpt-prompt/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+}
+
+
+function create_chatgpt_itinerary(data,access_token){
+  var endpoint = base_url + 'travel-rover/create-chatgpt-itinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+}
+
+
+
+
 
 export {
   places,
@@ -261,5 +287,7 @@ export {
   get_liked_itineraries,
   get_viewed_itineraries,
   created_itinerary_api,
-  my_itinerary
+  my_itinerary,
+  create_prompt,
+  create_chatgpt_itinerary
 }
