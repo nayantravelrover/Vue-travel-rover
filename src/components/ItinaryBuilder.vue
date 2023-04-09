@@ -368,7 +368,8 @@ export default {
               
               images_list.commit('places_to_visit_'+(i+1)+'_img_update', dataUrl);
 
-              console.log(images_list);
+              console.log(dataUrl)
+              
             }
           }
         }
@@ -383,7 +384,7 @@ export default {
               
               images_list.commit('accomodation_arrangements_'+(i+1)+'_img_update', dataUrl);
 
-              console.log(images_list);
+              
             }
           }
         }
@@ -393,6 +394,7 @@ export default {
           alert("PDF will be downloaded within " + 2*images_list.state.itinerary_preview.days.length + " seconds")
 
           for(let i = 0; i < images_list.state.itinerary_preview.days.length; i++) {
+            
             
             const dataUrl = await toDataURL(images_list.state.itinerary_preview.days[i].images);
             const day_content_indexed = { index_day: i, value: dataUrl };
