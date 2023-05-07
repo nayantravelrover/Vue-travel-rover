@@ -12,33 +12,24 @@ import {ref} from "vue";
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
+
+
+
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       // example
     },
     state: {
-      user_logged_in: false,
+      user_logged_in: true,
       is_agent: false,
       itinerary_preview: {
-        place_name: "Goa",
+        place_name: "Leh Ladakh",
         place_description: "Kerala, also known as 'God's Own Country', is a tropical paradise located in South India. It is known for its palm-lined beaches, serene backwaters, lush green hills, and traditional culture.",
         place_img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
         itinerary_name: "3 Days in Kerala",
         tour_highlights: "Day 1: Explore Kochi and enjoy a Kathakali performance. Day 2: Experience the backwaters of Alleppey on a houseboat. Day 3: Relax on the beach in Kovalam.",
-        days: [
-        {
-        description: "Day 1: Kochi\n\nExplore the vibrant city of Kochi. Visit the iconic Chinese fishing nets, the historic Jewish quarter, and the Dutch Palace. In the evening, watch a traditional Kathakali dance performance.\n\n",
-        images: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"        },
-        {
-        description: "Day 2: Alleppey\n\nExperience the serene backwaters of Alleppey on a traditional houseboat. Enjoy the scenic views, delicious local food, and peaceful atmosphere.\n\n",
-        images: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-        },
-        {
-        description: "Day 3: Kovalam\n\nRelax on the golden sands of Kovalam beach. Take a dip in the clear waters, indulge in some water sports, or simply soak up the sun.\n\n",
-        images: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-        }
-        ],
+        days:  [{"images": "https://source.unsplash.com/random/200x200/?mountain", "description": "Day 1: Nainital\n\nExplore the beautiful hill town of Nainital. Enjoy the breathtaking views of the lake and surrounding mountains. Go shopping at the local market or take a stroll in the nearby park.\n\n"}, {"images": "https://source.unsplash.com/random/200x200/?cave", "description": "Day 2: Tiger's Nest Cave\n\nTrek up to the Tiger's Nest Cave, an ancient cave temple located high up in the Garhwal Himalayas. Enjoy the serenity and breathtaking views along the way.\n\n"}, {"images": "https://source.unsplash.com/random/200x200/?temple", "description": "Day 3: Rishikesh\n\nSpend the day in Rishikesh, the 'yoga capital of the world'. Visit the holy Ganges River and explore the ashrams and temples.\n\n"}, {"images": "https://source.unsplash.com/random/200x200/?raft", "description": "Day 4: Rafting\n\nGo on a white water rafting adventure in Rishikesh. Enjoy the thrilling rapids and stunning views of the Himalayas.\n\n"}, {"images": "https://source.unsplash.com/random/200x200/?safari", "description": "Day 5: Jim Corbett National Park\n\nVisit the Jim Corbett National Park and spot some of India's famous wildlife. Go for a jungle safari and explore the enchanting forests.\n\n"}],
         places_to_visit: "Kochi, Alleppey, Kovalam",
         accomodation_arrangements: "Stay in a traditional houseboat in Alleppey.",
         travel_arrangements: "Transportation provided for all days.",
@@ -51,8 +42,8 @@ export default store(function (/* { ssrContext } */) {
         start_dates: [],
         number_of_days:0,
         extra_sections: [],
-        places_to_visit_img: [{images: ["","","",""]}],
-        accomodation_arrangements_img: [{images: ["","","",""]}],
+        places_to_visit_img: [{"images": ["https://source.unsplash.com/random/200x200/?landscape", "https://source.unsplash.com/random/200x200/?cave", "https://source.unsplash.com/random/200x200/?temple", "https://source.unsplash.com/random/200x200/?raft", "https://source.unsplash.com/random/200x200/?safari"]}],
+        accomodation_arrangements_img: [{"images": ["https://source.unsplash.com/random/200x200/?hotel", "https://source.unsplash.com/random/200x200/?hotel", "https://source.unsplash.com/random/200x200/?hotel", "https://source.unsplash.com/random/200x200/?hotel"]}],
         travel_arrangements_img:'download.jpeg',
         user_mobile_number: "",
         user_name: ""

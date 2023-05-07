@@ -405,7 +405,7 @@ export default {
 
               setTimeout(() => {
                 html2pdf(document.getElementById("preview"), {
-                pagebreak: { mode: 'avoid-all', before: '#page2el' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'], before: '#page2el' },
                 filename: images_list.state.itinerary_preview.place_name,
               })
               }, "1000")
