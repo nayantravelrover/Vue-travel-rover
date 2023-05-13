@@ -4,7 +4,7 @@
   <div class=" text-bold sectionheading" style="font-size: large">Day {{day_index+1}}</div>
     <q-editor
        v-model="day_content_store"
-      :toolbar="[['bold', 'italic'],['ordered']]"
+      :toolbar="[['bold', 'italic'],['ordered'],['link']]"
     />
     <q-uploader
        flat bordered
