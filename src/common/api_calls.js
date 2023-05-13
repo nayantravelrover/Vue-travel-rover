@@ -1,7 +1,7 @@
 import { getAPIService,postAPIService } from './api.service'
 
-//const base_url = 'https://3c56-49-36-122-103.ngrok.io/'
-const base_url = "https://admin.travelrover.in/"
+const base_url = 'http://127.0.0.1:8000/'
+//const base_url = "https://admin.travelrover.in/"
 
 function basicconfig () {
   const endpoint = base_url + 'travel-rover/basic-config/'
@@ -266,9 +266,23 @@ function create_chatgpt_itinerary(data,access_token){
   return result
 }
 
-
-
-
+function get_itinerary(itinerary_pk){
+  const endpoint = base_url + 'travel-rover/open-itinerary-api/?pk_of_itinerary=' + itinerary_pk["itinerary_pk"]
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  
+  return new Promise(function (resolve, reject){
+    var result =  getAPIService(endpoint,headers, null).then(response =>{
+    console.log(response)
+    resolve(response);
+  })
+  .catch(err =>{
+    reject(err)
+    console.log(err)
+  })
+  });
+}
 
 export {
   places,
@@ -289,5 +303,6 @@ export {
   created_itinerary_api,
   my_itinerary,
   create_prompt,
-  create_chatgpt_itinerary
+  create_chatgpt_itinerary,
+  get_itinerary
 }

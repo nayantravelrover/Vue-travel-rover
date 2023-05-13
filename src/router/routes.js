@@ -19,6 +19,7 @@ const routes = [
   { path: '/customitinerary', component: () => import('pages/CustomItinerary.vue') },
   { path: '/blogspage', component: () => import('pages/BlogsPage.vue') },
   { path: '/blogshomepage', component: () => import('pages/BlogsHomePage.vue') },
+  { path: '/itinerarylink', component: () => import('components/ItineraryPreviewOpenToInternet.vue') },
   {
     path: '/',
     redirect: "/home",
