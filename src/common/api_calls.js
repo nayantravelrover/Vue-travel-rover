@@ -1,7 +1,7 @@
 import { getAPIService,postAPIService } from './api.service'
 
-const base_url = 'http://127.0.0.1:8000/'
-//const base_url = "https://admin.travelrover.in/"
+//const base_url = 'http://127.0.0.1:8000/'
+const base_url = "https://admin.travelrover.in/"
 
 function basicconfig () {
   const endpoint = base_url + 'travel-rover/basic-config/'
