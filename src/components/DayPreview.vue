@@ -2,7 +2,7 @@
   <div class="q-pa-md">
   <div class="row"  v-if="computedClass(day_index+1)">
     <div class="col-4 q-pr-md">
-    <q-img class="right-img"   width="300" height="300" :src="day.images" alt=""  />
+    <q-img class="right-img" :src="day.images" alt=""  />
     </div>
       <div  class="col-8">
        <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
@@ -16,7 +16,7 @@
       <span v-html="day.description"></span>
     </div>
     <div class="col-4 q-pl-md">
-    <q-img class="left-img" width="300" height="300" :src="day.images" alt="" />
+    <q-img class="left-img" :src="day.images" alt="" />
     </div>
   </div>
     </div>

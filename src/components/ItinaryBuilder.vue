@@ -28,6 +28,8 @@
         <q-toolbar>
             
             <q-btn color="primary" label="Back" @click="go_to_create_itinerary" />
+            
+            <!-- <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="save_itinerary()"></q-btn> -->
             <q-toolbar-title class="q-pa-md row item-center">
                 <img src="../assets/logo.svg" style="max-width: 200px;"/>
             </q-toolbar-title>
@@ -160,11 +162,12 @@
      <PicturedWYISG class="q-pt-lg " property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
     </div>
+    <q-btn color="green" label="Save" @click="save_itinerary()" />
    </q-scroll-area>
     <div class="col-6 q-pa-md" style="background-color: #4B5563;">
       <div style="background-color: transparent">
-        <q-btn flat  text-color="white" icon="download" label="Download" @click="generateReport()"></q-btn>
-        <q-btn flat  text-color="white" icon="save" label="Save"  class="" @click="save_itinerary()"></q-btn>
+        <q-btn flat  text-color="white" icon="link" label="Create Shareable Link" @click="generateReport()"></q-btn>
+        
       </div>
       <q-scroll-area style="height: 92vh">
         <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
