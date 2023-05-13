@@ -1,7 +1,7 @@
 <template>
 <div class="">
     <div class="q-ma-sm sectionheading ">{{heading}}</div>
-    <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['underline'],['ordered']]" />
+    <q-editor class="" v-model="property_content_store" min-height="5rem" :toolbar = "[['bold', 'italic'],['ordered'],['link']]" />
 <q-uploader
         v-if="this.image"
         style=""

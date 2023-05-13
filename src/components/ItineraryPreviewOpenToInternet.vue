@@ -1,5 +1,5 @@
 <template>
-    <!-- <div class="row" style="min-height: 100%">
+    <div class="row" style="min-height: 100%">
 
     <div class="col-12 q-pa-lg" style="background-color: #4B5563;">
       <img class="top-left" src="../assets/logo.svg" style="max-width: 200px" />
@@ -7,9 +7,9 @@
         <ItineraryPreview class="q-pa-md"  id="preview"></ItineraryPreview>
       </q-scroll-area>
     </div>
-  </div> -->
+  </div>
 
-  <ItineraryPreview class="q-pa-md"  id="preview"></ItineraryPreview>
+  
 </template>
 
 
