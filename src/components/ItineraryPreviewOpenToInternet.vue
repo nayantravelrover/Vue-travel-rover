@@ -1,5 +1,8 @@
 <template>
-    <div class="row" style="min-height: 100%">
+
+    <ItineraryPreview class="q-pa-md"  id="preview" v-if="$q.platform.is.mobile"></ItineraryPreview>
+
+    <div class="row" style="min-height: 100%" v-else>
 
     <div class="col-12 q-pa-lg" style="background-color: #4B5563;">
       <img class="top-left" src="../assets/logo.svg" style="max-width: 200px" />
@@ -9,7 +12,7 @@
     </div>
   </div>
 
-  
+
 </template>
 
 
