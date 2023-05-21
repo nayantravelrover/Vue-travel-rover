@@ -17,6 +17,11 @@
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" style="width: 100%;">
       <DayPreview :day="day" :day_index="index"></DayPreview>
     </div>
+
+
+
+
+    <div>
     <ItineraryContentPreview :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
 
     <div :class="{'grid-container': nonEmptyImagesCountPlacesToVisit > 1}">
@@ -24,11 +29,16 @@
       <img v-if="img !== ''" :src="img" alt="place to visit" style="border-radius: 10px" width="200" height="200">
     </div>
   </div>
+</div>
+  <br>
+
 
     
 
     <!-- <ItineraryContentPreview  :content="itinarary_data.places_to_visit_img" label="Places to visit"></ItineraryContentPreview> -->
+    <div>
     <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
+  </div>
 
     <div :class="{'grid-container': nonEmptyImagesCountAccomodationArrangement > 1}">
     <div v-for="(img, index) in itinarary_data.accomodation_arrangements_img[0].images" :key="index" class="grid-item">
