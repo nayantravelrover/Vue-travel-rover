@@ -1,6 +1,6 @@
 <template>
 
-    <ItineraryPreview class="q-pa-md"  id="preview" v-if="$q.platform.is.mobile"></ItineraryPreview>
+    <ItineraryPreview class="q-pa-sm"  id="preview" v-if="$q.platform.is.mobile"></ItineraryPreview>
 
     <div class="row" style="min-height: 100%" v-else>
 

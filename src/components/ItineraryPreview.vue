@@ -10,11 +10,11 @@
         <div class="row" style="color: white">{{itinarary_data.place_description}}</div>
       </div>
     </q-img>
-    <div class="text-bold q-pa-md row" style="font-size: large">{{itinarary_data.itinerary_name}}</div>
+    <div class="text-bold q-pa-md row">{{itinarary_data.itinerary_name}}</div>
     <div class="text-bold q-pa-md row" style="font-size: medium" v-html="itinarary_data.tour_highlights"></div>
 
     <ItineraryDates></ItineraryDates>
-    <div v-for="(day, index) in itinarary_data.days" v-bind:key="index">
+    <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" style="width: 100%;">
       <DayPreview :day="day" :day_index="index"></DayPreview>
     </div>
     <ItineraryContentPreview :content="itinarary_data.places_to_visit" label="Places to visit"></ItineraryContentPreview>
