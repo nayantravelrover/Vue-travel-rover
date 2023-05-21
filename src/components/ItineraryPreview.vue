@@ -38,12 +38,13 @@
     <!-- <ItineraryContentPreview  :content="itinarary_data.places_to_visit_img" label="Places to visit"></ItineraryContentPreview> -->
     <div>
     <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
-  </div>
+  
 
     <div :class="{'grid-container': nonEmptyImagesCountAccomodationArrangement > 1}">
     <div v-for="(img, index) in itinarary_data.accomodation_arrangements_img[0].images" :key="index" class="grid-item">
       <img v-if="img !== ''" :src="img" alt="accomodation_arrangements_img" style="border-radius: 10px" width="200" height="200">
     </div>
+  </div>
   </div>
     
     <ItineraryContentPreview :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
