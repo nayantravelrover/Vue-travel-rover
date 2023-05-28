@@ -3,27 +3,27 @@
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
-          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white">
-           <q-select filled v-model="where_to" :options="options" label="Where to?">
+          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white; border-radius: 0px">
+           <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="place" />
               </template>
             </q-select>
           </div>
-          <div class="input-area-2 col-md-4 col-xs-12" style="background-color: white">
-            <q-input borderless bg-color="white" label="Date ?" v-model="date">
-              <template v-slot:prepend>
-                <q-icon style="margin-left: 5px;" name="event" class="cursor-pointer">
-                  <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                    <q-date v-model="date" mask="YYYY-MM-DD">
-                      <div class="row items-center justify-end">
-                        <q-btn v-close-popup label="Close" color="primary" flat />
-                      </div>
-                    </q-date>
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
+          <div class="input-area-1 col-md-4 col-xs-12" style="background-color: white; border-radius: 0px">
+
+            <q-input hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
+                    <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
+                      <q-date v-model="date" minimal @update:model-value="handleDateSelection" no-unset mask="YYYY-MM-DD">
+                        <div class="row items-center justify-end">
+                          <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                    <template v-slot:append>
+                      <q-icon name="event" class="cursor-pointer"></q-icon>
+                    </template>
+                  </q-input>
           </div>
           <!-- <div class="input-area-3 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="To ?" v-model="date">
@@ -106,8 +106,8 @@
         <div class="row items-center justify-center">
           <div
             class="input-area-1 col-md-3 col-xs-12"
-            style="background-color: white">
-           <q-select filled v-model="where_to" :options="options" label="Where to?">
+            style="background-color: white;border-radius: 0px">
+           <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon name="place" />
               </template>
@@ -116,29 +116,19 @@
           
           <div
             class="input-area-2 col-md-3 col-xs-12"
-            style="background-color: white">
-            <q-input borderless bg-color="white" label="Date ?" v-model="date">
-              <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date v-model="date" mask="YYYY-MM-DD">
-                      <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
-                      </div>
-                    </q-date>
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
+            style="background-color: white;border-radius: 0px">
+            <q-input hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
+                    <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
+                      <q-date v-model="date" minimal @update:model-value="handleDateSelection" no-unset mask="YYYY-MM-DD">
+                        <div class="row items-center justify-end">
+                          <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                    <template v-slot:append>
+                      <q-icon name="event" class="cursor-pointer"></q-icon>
+                    </template>
+                  </q-input>
           </div>
 
           <div class="input-area-4 col-md-3 col-xs-12" style="">
@@ -564,11 +554,11 @@ export default defineComponent({
         'Uttarakhand', 'Leh Ladakh', 'Himachal Pradesh', 'Goa', 'Kashmir', 'Rajasthan'
       ],
       where_to: ref(null),
-      date: ref(""),
+      date: (new Date()).toISOString().slice(0,10).replace(/-/g,"-"),
       reviewers: ["Anuj Vadecha","Nitin Bhansali","Aman Dedhia","Neel Shah", "Aayush Jain"],
       review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."],
-      showModal: false,
-      area: ""
+      area: "",
+      qDateProxy :ref(null)
     }
   },
   methods:{
@@ -742,6 +732,9 @@ export default defineComponent({
     scroll(id){
       const element = document.getElementById(id);
       element.scrollIntoView({ behavior: 'smooth' });
+    },
+    handleDateSelection() {
+      this.$refs.qDateProxy.hide(); // Close the modal after selecting a date
     },
   },
   setup() {

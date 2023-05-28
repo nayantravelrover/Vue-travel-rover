@@ -6,14 +6,14 @@
     </div>
       <div  class="col-8">
        <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
-      <span v-html="day.description"></span>
+      <span v-html="day.description" class="day-description"></span>
       </div>
 
   </div>
   <div v-else class="row" >
      <div class="col-8">
       <div class="text-bold" style="font-size: large"><bold>Day {{day_index +1}}</bold></div><br>
-      <span v-html="day.description"></span>
+      <span v-html="day.description" class="day-description"></span>
     </div>
     <div class="col-4 q-pl-md">
     <q-img class="left-img" :src="day.images" alt="" />
@@ -72,4 +72,16 @@ export default {
   .description {
         padding: 10px;
     }
+
+  .day-description {
+    display: block; /* Ensures the <span> behaves like a block element */
+    width: 100%;
+  }
+
+  .day-description div {
+    width: 100% !important; /* Inherits the width property from the parent */
+  }
+  
+
+
 </style>

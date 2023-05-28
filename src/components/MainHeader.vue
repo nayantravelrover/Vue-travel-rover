@@ -10,9 +10,9 @@
             </q-input>
           </div>
           <div class="input-area-2 col-md-3 col-xs-12" style="background-color: white">
-            <q-input borderless bg-color="white" label="From ?" v-model="date">
+            <q-input borderless bg-color="white" label="From ?" v-model="date" name="event">
               <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
+                <q-icon class="cursor-pointer">
                   <q-popup-proxy cover transition-show="scale" transition-hide="scale">
                     <q-date v-model="date" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
