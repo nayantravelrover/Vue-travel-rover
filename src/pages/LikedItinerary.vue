@@ -6,15 +6,15 @@
                 <text class="new2" style="margin-left: 10px;">Liked Itineraries</text>
                 <q-card class="column" style="padding: 5px;">
                     <q-list class="column" style="justify-items: space-evenly;">
-                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;">
+                    <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
                             <div class="row">
                                 <div style="width: 40%;">
                                     <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
+                                        <img :src="item.place_img" alt="" class="profile_itinerary_image_mobile">
                                     </q-img>
                                 </div>
                                 <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
+                                    <div class="viewed_itinerary_mobile_text">{{item.itinerary_name}}
                                     </div>
                                 </div>
                             </div>
@@ -26,45 +26,6 @@
                             </div>
                         </div>
                         <q-separator />
-                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;margin-top: 10px;">
-                            <div class="row">
-                                <div style="width: 40%;">
-                                    <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
-                                    </q-img>
-                                </div>
-                                <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 20px;width: 100%;">
-                                <div style="width: 50%;"></div>
-                                <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn">View Itinerary</q-btn>
-                                </div>
-                            </div>
-                        </div>
-                        <q-separator />
-                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;margin-top: 10px;">
-                            <div class="row">
-                                <div style="width: 40%;">
-                                    <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
-                                    </q-img>
-                                </div>
-                                <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 20px;width: 100%;">
-                                <div style="width: 50%;"></div>
-                                <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn">View Itinerary</q-btn>
-                                </div>
-                            </div>
-                        </div>
                     </q-list>
                 </q-card>
             </div>
@@ -91,11 +52,11 @@
                                 <div class="column" style="width: 33%;padding: 5px;">
                                     <div class="profile_itinerary_card_text1">{{item.itinerary_name}}</div>
                                     <div class="profile_itinerary_card_text2">
-                                         <ul class="text13">
+                                         
                                         <li v-for="list_item in item.place_description" :key="list_item">
                                             {{list_item}}
                                         </li>
-                                        </ul>
+                                        
                                     </div>
                                 </div>
                                 <div class="column" style="width: 33%;padding: 5px;">
@@ -117,40 +78,6 @@
                                 </div>
                             </div>
                             <q-separator />
-                            <!-- <div class="row"
-                                style="padding: 10px;width: 100%;justify-content: space-evenly;border-radius: 10px;margin-top: 10px;">
-                                <div class="column" style="width: 33%;padding: 5px;">
-                                    <q-img class="profile_itinerary_image_container">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image">
-                                    </q-img>
-                                </div>
-                                <div class="column" style="width: 33%;padding: 5px;">
-                                    <div class="profile_itinerary_card_text1">Exotic Kerala 9 Nights / 10 Days Tour</div>
-                                    <div class="profile_itinerary_card_text2">
-                                        <li>The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                                        </li>
-                                        <li>The scenic and serene hill stations in Goa offer unlimited rejuvenation to a tired soul.
-                                        </li>
-                                    </div>
-                                </div>
-                                <div class="column" style="width: 33%;padding: 5px;">
-                                    <div class="column">
-                                        <div class="profile_itinerary_card_text3">
-                                            Inclusion
-                                        </div>
-                                        <div class="profile_itinerary_card_text4">
-                                            ✔️ Site Seeing. ✔️ First Aid Support. ✔️ Volunteers or Instructors. ❌ Entry fees at site
-                                            seeing Place
-                                        </div>
-                                    </div>
-                                    <div class="profile_itinerary_card_text5" style="margin-top:10px;">Starts</div>
-                                    <div class="row">
-                                        <div class="profile_itinerary_card_text6" style="margin-top:10px;">4999</div>
-                                        <div class="profile_itinerary_card_text4" style="margin-top:20px;">/Per Person</div>
-                                    </div>
-                                    <q-btn class="profile_view_itinerary_btn">View Itinerary</q-btn>
-                                </div>
-                            </div> -->
             
                         </q-list>
             
@@ -181,6 +108,7 @@ export default defineComponent({
     },
     mounted(){
         $q = useQuasar()
+
     },
     created(){
 

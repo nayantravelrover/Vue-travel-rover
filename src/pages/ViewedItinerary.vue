@@ -5,12 +5,12 @@
             <div class="col-12" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">Viewed Itineraries</text>
                 <q-card class="column" style="padding: 5px;">
-                    <q-list class="column" style="justify-items: space-evenly;">
+                    <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
                         <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;">
                             <div class="row">
                                 <div style="width: 40%;">
                                     <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
+                                        <img :src="item.place_img" alt="" class="profile_itinerary_image_mobile">
                                     </q-img>
                                 </div>
                                 <div style="width: 60%;padding: 0 0 0 10px;">
@@ -26,45 +26,7 @@
                             </div>
                         </div>
                         <q-separator />
-                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;margin-top: 10px;">
-                            <div class="row">
-                                <div style="width: 40%;">
-                                    <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
-                                    </q-img>
-                                </div>
-                                <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 20px;width: 100%;">
-                                <div style="width: 50%;"></div>
-                                <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn">View Itinerary</q-btn>
-                                </div>
-                            </div>
-                        </div>
-                        <q-separator />
-                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;margin-top: 10px;">
-                            <div class="row">
-                                <div style="width: 40%;">
-                                    <q-img style="border-radius: 10px;">
-                                        <img src="../assets/Goa/goa1.jpg" alt="" class="profile_itinerary_image_mobile">
-                                    </q-img>
-                                </div>
-                                <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 20px;width: 100%;">
-                                <div style="width: 50%;"></div>
-                                <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn">View Itinerary</q-btn>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </q-list>
                 </q-card>
             </div>
@@ -91,11 +53,11 @@
                                 <div class="column" style="width: 33%;padding: 5px;">
                                     <div class="profile_itinerary_card_text1">{{item.itinerary_name}}</div>
                                     <div class="profile_itinerary_card_text2">
-                                         <ul class="text13">
+                                        
                                         <li v-for="list_item in item.place_description" :key="list_item">
                                             {{list_item}}
                                         </li>
-                                        </ul>
+                                        
                                     </div>
                                 </div>
                                 <div class="column" style="width: 33%;padding: 5px;">

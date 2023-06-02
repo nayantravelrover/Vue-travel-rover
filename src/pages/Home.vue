@@ -558,7 +558,8 @@ export default defineComponent({
       reviewers: ["Anuj Vadecha","Nitin Bhansali","Aman Dedhia","Neel Shah", "Aayush Jain"],
       review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."],
       area: "",
-      qDateProxy :ref(null)
+      qDateProxy :ref(null),
+      showModal: false
     }
   },
   methods:{

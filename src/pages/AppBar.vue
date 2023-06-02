@@ -16,9 +16,14 @@
                           </div>
 
 
-                          <!-- <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" /> -->
+                          
+                          <div>
+                            <div>
+                            <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
+                          </div>
                           <div class="q-pa-xs">
                           <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+                          </div>>
                            </div>
             
             
@@ -111,6 +116,7 @@ export default {
         this.matAccountCircle = matAccountCircle;
     },
     methods:{
+        
         logout(){
               window.localStorage.removeItem("travel_rover_access");
               window.localStorage.removeItem("travel_rover_refresh_token");
@@ -122,12 +128,20 @@ export default {
                       position: 'top'
                       })
             },
+
         go_to_home(){
-        this.$router.push({
-          path: '',
-          name:'home',
-        })
-    }
+          this.$router.push({
+            path: '',
+            name:'home',
+            })
+            },
+
+        go_to_profile(){
+          this.$router.push({
+            path: '/profilepageweb/',
+            name:'ProfilePageWeb'
+          })
+          },
     },
     components: { LoginPage2, RegisterPage }
 }
