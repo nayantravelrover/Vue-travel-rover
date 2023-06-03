@@ -4,14 +4,14 @@
     <q-header>
     
       <q-toolbar>
-        <q-btn v-if="$q.platform.is.mobile"
+        <!-- <q-btn v-if="$q.platform.is.mobile"
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        />
+        /> -->
 
         <q-toolbar-title class="q-pa-md row item-center">
           <img src="../assets/logo.svg" />
@@ -60,7 +60,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-if="$q.platform.is.mobile"
+  <!--   <q-drawer v-if="$q.platform.is.mobile"
       v-model="leftDrawerOpen"
       :breakpoint="500"
       show-if-above
@@ -84,7 +84,7 @@
         />
       </q-list>
     </q-drawer>
-
+ -->
     <q-page>
       <router-view
       :isMobile="isMobile" />
@@ -95,7 +95,7 @@
 
 <script>
 import { defineComponent, ref, computed } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
+// import EssentialLink from "components/EssentialLink.vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import RegisterPage from "src/pages/RegisterPage.vue"
 import LoginPage2 from "src/pages/LoginPage2.vue";
@@ -111,34 +111,28 @@ let $q
 
 
 
-const linksList = [
-  {
-    title: "Home",
-    icon: "home",
-    link: "/src/pages/MainHome.vue",
-  },
-  // {
-  //   title: "My Profile",
-  
-  //   icon: "account_circle",
-  //   link: "/src/pages/ProfilePage2.vue",
-  // },
-  {
-    title: "Liked Itineraries",
-    icon: "info",
-    link: "/#/likeditinerary",
-  },
-  {
-    title: "Viewed Itineraries",
-    icon: "event",
-    link: "/#/vieweditinerary",
-  },
-  {
-    title: "Custom Itineraries",
-    icon: "account_balance_wallet",
-    link: "/#/customitinerary",
-  },
-];
+// const linksList = [
+//   {
+//     title: "Home",
+//     icon: "home",
+//     link: "/src/pages/MainHome.vue",
+//   },
+//   {
+//     title: "Liked Itineraries",
+//     icon: "info",
+//     link: "/#/likeditinerary",
+//   },
+//   {
+//     title: "Viewed Itineraries",
+//     icon: "event",
+//     link: "/#/vieweditinerary",
+//   },
+//   {
+//     title: "Custom Itineraries",
+//     icon: "account_balance_wallet",
+//     link: "/#/customitinerary",
+//   },
+// ];
 
 export default defineComponent({
   created() {
@@ -148,7 +142,7 @@ export default defineComponent({
   name: "MainLayout",
   plugins: { Notify },
   components: {
-    EssentialLink,
+    // EssentialLink,
     // Login,
     //LoginPage,
     RegisterPage,
@@ -201,7 +195,7 @@ export default defineComponent({
       console.log("call");
     };
     return {
-      essentialLinks: linksList,
+      // essentialLinks: linksList,
       leftDrawerOpen,
       isMobile,
       toggleLeftDrawer,

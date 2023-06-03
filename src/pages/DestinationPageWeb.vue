@@ -163,13 +163,34 @@
                     <div class="row compare_content">
                         <div class="compare_inner_content"></div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                            <q-table
+                            bordered
+                            flat
+                            hide-pagination
+                              :rows="this.$parent.groupByMonth(this.$parent.compare_itinerary_one.travel_dates)"
+                              :columns="columns"
+                              row-key="name"
+                            />
                         </div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                            <q-table
+                            bordered
+                            flat
+                            hide-pagination
+                              :rows="this.$parent.groupByMonth(this.$parent.compare_itinerary_two.travel_dates)"
+                              :columns="columns"
+                              row-key="name"
+                            />
                         </div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                            <q-table
+                            bordered
+                            flat
+                            hide-pagination
+                              :rows="this.$parent.groupByMonth(this.$parent.compare_itinerary_three.travel_dates)"
+                              :columns="columns"
+                              row-key="name"
+                            />
                         </div>
                     </div>
                 </div>

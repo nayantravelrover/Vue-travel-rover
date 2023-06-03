@@ -460,29 +460,6 @@
                   <nav class="col-list">
                     <ul>
                       <li><a href="#">About Us</a></li>
-                      <li><a href="#">Sustainability</a></li>
-                      <li><a href="#">Terms of Service</a></li>
-                      <li><a href="#">Privacy</a></li>
-                    </ul>
-                  </nav>
-                </span>
-                <span>
-                  <h3 class="col-title">Company</h3>
-                  <nav class="col-list">
-                    <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Sustainability</a></li>
-                      <li><a href="#">Terms of Service</a></li>
-                      <li><a href="#">Privacy</a></li>
-                    </ul>
-                  </nav>
-                </span>
-                <span>
-                  <h3 class="col-title">Company</h3>
-                  <nav class="col-list">
-                    <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Sustainability</a></li>
                       <li><a href="#">Terms of Service</a></li>
                       <li><a href="#">Privacy</a></li>
                     </ul>
@@ -497,7 +474,7 @@
               <h3 class="col-title-bottom">Made in India</h3>
             </div>
             <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
-              <h3 class="col-title-bottom">© 2022 All Rights Reserved</h3>
+              <h3 class="col-title-bottom">© 2023 All Rights Reserved</h3>
             </div>
             <div class="col-md-3 col-xs-12" style="display: flex; justify-content: center;">
               <h3 class="col-title-bottom">Terms & Conditions</h3>

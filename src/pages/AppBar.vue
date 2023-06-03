@@ -27,7 +27,7 @@
                            </div>
             
             
-                        <q-drawer v-if="$q.platform.is.mobile"
+                        <!-- <q-drawer v-if="$q.platform.is.mobile"
                               v-model="leftDrawerOpen"
                               :breakpoint="500"
                               show-if-above
@@ -50,7 +50,7 @@
                                   v-bind="link"
                                 />
                               </q-list>
-                            </q-drawer>
+                            </q-drawer> -->
                     </q-list>
                 </q-menu>
             </q-btn>
@@ -66,34 +66,34 @@ import { check_if_access_token_is_valid, check_if_refresh_token_is_valid} from '
 import { useQuasar,Notify } from 'quasar'
 let $q
 
-const linksList = [
-  {
-    title: "Home",
-    icon: "home",
-    link: "/#/",
-  },
-  // {
-  //   title: "My Profile",
+// const linksList = [
+//   {
+//     title: "Home",
+//     icon: "home",
+//     link: "/#/",
+//   },
+//   // {
+//   //   title: "My Profile",
   
-  //   icon: "account_circle",
-  //   link: "/src/pages/ProfilePage2.vue",
-  // },
-  {
-    title: "Liked Itineraries",
-    icon: "info",
-    link: "/#/likeditinerary",
-  },
-  {
-    title: "Viewed Itineraries",
-    icon: "event",
-    link: "/#/vieweditinerary",
-  },
-  {
-    title: "Custom Itineraries",
-    icon: "account_balance_wallet",
-    link: "/#/customitinerary",
-  },
-];
+//   //   icon: "account_circle",
+//   //   link: "/src/pages/ProfilePage2.vue",
+//   // },
+//   {
+//     title: "Liked Itineraries",
+//     icon: "info",
+//     link: "/#/likeditinerary",
+//   },
+//   {
+//     title: "Viewed Itineraries",
+//     icon: "event",
+//     link: "/#/vieweditinerary",
+//   },
+//   {
+//     title: "Custom Itineraries",
+//     icon: "account_balance_wallet",
+//     link: "/#/customitinerary",
+//   },
+// ];
 
 export default {
     mounted(){

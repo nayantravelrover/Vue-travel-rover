@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="q-pa-md lt-md">
-            <AppBar />
+            <!-- <AppBar /> -->
             <div class="col-12" style="margin-top: 50px;">
                 <text class="new2" style="margin-left: 10px;">Liked Itineraries</text>
                 <q-card class="column" style="padding: 5px;">
@@ -89,7 +89,7 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import AppBar from "./AppBar.vue";
+// import AppBar from "./AppBar.vue";
 import {get_liked_itineraries, check_if_access_token_is_valid,check_if_refresh_token_is_valid,get_viewed_itineraries} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 
@@ -98,9 +98,9 @@ let $q
 export default defineComponent({
     name: "LikedItinerary",
 
-    components: {
-        AppBar
-    },
+    // components: {
+    //     AppBar
+    // },
     data(){
         return{
             itineraries_list_filtered:[]
@@ -144,9 +144,6 @@ export default defineComponent({
                             return el != null;
                         });
                         this.itineraries_list_filtered = itineraries_list_filtered;
-
-
-
 
                         console.log(this.itineraries_list_filtered)
                     });

@@ -187,13 +187,35 @@
                     <div class="row compare_content">
                         <div class="compare_inner_content"></div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                            
+                            <q-table
+                            bordered
+                            flat
+                            hide-pagination
+                              :rows="this.groupByMonth(this.compare_itinerary_one.travel_dates)"
+                              :columns="columns"
+                              row-key="name"
+                            />
                         </div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                           <q-table
+                                bordered
+                                flat
+                                hide-pagination
+                                  :rows="this.groupByMonth(this.compare_itinerary_two.travel_dates)"
+                                  :columns="columns"
+                                  row-key="name"
+                                />
                         </div>
                         <div class="compare_inner_content">
-                            <img src="../assets/comparison/DatesTable.svg" alt="">
+                            <q-table
+                                bordered
+                                flat
+                                hide-pagination
+                                  :rows="this.groupByMonth(this.compare_itinerary_three.start_dates)"
+                                  :columns="columns"
+                                  row-key="name"
+                                />
                         </div>
                     </div>
                 </div>
@@ -413,6 +435,7 @@ import { useQuasar, Notify } from 'quasar'
 import ViewItinerary from './ViewItinerary.vue';
 import ItineraryPreview from '../components/ItineraryPreview.vue'
 import EditItineraryCardw from './EditItineraryCardw.vue';
+import _ from "lodash";
 let $q
 
 export default defineComponent({
@@ -425,7 +448,11 @@ export default defineComponent({
             compare_itinerary_two:[],
             compare_itinerary_three:[],
             heart_transparent : base_url + 'media/files/heart_transparent.svg',
-            heart_red : base_url + 'media/files/heart.svg'
+            heart_red : base_url + 'media/files/heart.svg',
+            columns: [
+            { name: 'Month', align: 'center', label: 'Month', field: 'month', sortable: true },
+            { name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
+          ]
         }
     },
     setup() {
@@ -479,6 +506,7 @@ export default defineComponent({
             for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
 
                 var items = JSON.parse(response.data.data)[i]["fields"];
+
                 itineraries_list[JSON.parse(response.data.data)[i].pk] = {
                     "itinerary_name": items.itinerary_name,
                     "place_description": items.place_description.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
@@ -495,8 +523,12 @@ export default defineComponent({
                     "things_to_carry": items.things_to_carry,
                     "cancellation_policy":items.cancellation_policy,
                     "itinerary_pk":JSON.parse(response.data.data)[i].pk,
-                    "complete_itinerary":items
+                    "complete_itinerary":items,
+                    "travel_dates": items.start_dates
                 }
+                
+                console.log(items.itinerary_name + "  " + items.start_dates)
+                
             }
             var itineraries_list_filtered = itineraries_list.filter(function (el) {
                 return el != null;
@@ -535,22 +567,23 @@ export default defineComponent({
                 this.compare_itinerary_one = item
                 return
             }
+
             else if(this.compare_itinerary_two.length == 0){
                 this.compare_itinerary_two = item
                 return
             }
+
             else if(this.compare_itinerary_three.length == 0){
                 this.compare_itinerary_three = item
                 return
             }
+
             else{
                 this.compare_itinerary_three = item
             }
 
-
         },
         remove_itinerary(item){
-
             
             if(item=="compare_itinerary_one"){
                 this.compare_itinerary_one = []
@@ -700,6 +733,32 @@ export default defineComponent({
                       console.log(err);
                     });
                 });
+            },
+            groupByMonth(start_dates){
+              
+              console.log(start_dates)
+              var result = []
+              const _ = require('lodash');
+              const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+              
+              var itinerary_preview_start_dates = start_dates
+              
+
+              if(typeof(itinerary_preview_start_dates)==="string"){
+                var itinerary_preview_start_dates = JSON.parse(start_dates)
+                itinerary_preview_start_dates = Object.assign({}, itinerary_preview_start_dates);
+              }
+
+              var month_dates = _.groupBy(itinerary_preview_start_dates, (date) => monthNames[new Date(date).getMonth()]);
+              
+              for (const month in month_dates) {
+                for (const items in month_dates[month]){
+                  month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
+                }
+                result.push({"month": month, "days": month_dates[month].join(", ")})
+              }
+              return result
             }
 
     }

@@ -4,17 +4,17 @@
     <q-header>
     
       <q-toolbar>
-        <q-btn v-if="$q.platform.is.mobile"
+        <!-- <q-btn v-if="$q.platform.is.mobile"
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        />
+        /> -->
 
         <q-toolbar-title class="q-pa-md row item-center">
-          <img src="../assets/logo.svg" />
+          <img src="../assets/logo.svg" @click="go_to_home" />
         </q-toolbar-title>
 
         <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="go_to_home"/>
@@ -59,14 +59,14 @@
                     <div class="profile_avatar_main">
                         <img src="../assets/profilepage/imageframe.svg" alt="">
                     </div>
-                    <div class="profile_text2">Tanay Desai</div>
+                    <div class="profile_text2">{{this.name}}</div>
                     <div class="row profile_box2">
                         <img src="../assets/profilepage/mail.svg" alt="" style="width: 24px; height: 24px;">
-                        <div class="profile_text3">tanaydesai8055@gmail.com</div>
+                        <div class="profile_text3">{{this.username}}</div>
                     </div>
                     <div class="row profile_box2">
                         <img src="../assets/profilepage/call.svg" alt="" style="width: 20px; height:20px;">
-                        <div class="profile_text3">+91-7827099326</div>
+                        <div class="profile_text3">{{this.mobile_number}}</div>
                     </div>
                 </div>
                 <q-separator />
@@ -119,6 +119,7 @@ import LoginPage2 from "./LoginPage2.vue"
 import RegisterPage from "./RegisterPage.vue"
 
 import { matAccountCircle } from "@quasar/extras/material-icons";
+import {check_if_access_token_is_valid} from "src/common/api_calls";
 
 // import AppBar from "./AppBar.vue"
 
@@ -135,7 +136,10 @@ export default {
         return{
             show_liked_itinerary:true,
             show_custom_itinerary:false,
-            show_viewed_itinerary: false
+            show_viewed_itinerary: false,
+            username: "User",
+            mobile_number: "9999999999",
+            name: "User"
         }
     },
     components:{
@@ -145,6 +149,17 @@ export default {
         ViewedItinerary,
         CustomItinerary
         
+    },
+    mounted(){
+        console.log("here")
+        check_if_access_token_is_valid().then(response=>{
+            console.log(response)
+            this.username = response["data"]["username"]
+            this.mobile_number = response["data"]["mobile_number"]
+            this.name = response["data"]["first_name"]
+            console.log(this.username)
+            console.log(this.mobile_number)
+        })
     },
     methods:{
         show_liked(){
