@@ -96,12 +96,8 @@
             alert("Itinerary will be generated soon")
             
             html2pdf(document.getElementById("preview"), {
-                // margin: 1,
                 pagebreak: { mode: 'avoid-all', before: '#page2el' },
                 filename: this.$store.state.itinerary_preview.place_name,
-                // image: { type: 'jpeg', quality: 0.98 },
-                // html2canvas: { dpi: 192, letterRendering: true },
-                // jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
                       })
                 windows.location.reload();
                 },

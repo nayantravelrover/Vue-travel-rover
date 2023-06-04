@@ -21,7 +21,7 @@
                             <div class="row" style="margin-top: 20px;width: 100%;">
                                 <div style="width: 50%;"></div>
                                 <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn">View Itinerary</q-btn>
+                                    <q-btn class="viewed_itineray_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                         <div class="profile_itinerary_card_text6" style="margin-top:10px;">{{item.tour_rates}}</div>
                                         <div class="profile_itinerary_card_text4" style="margin-top:20px;">/Per Person</div>
                                     </div>
-                                    <q-btn class="profile_view_itinerary_btn">View Itinerary</q-btn>
+                                    <q-btn class="profile_view_itinerary_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                             <q-separator />
@@ -144,6 +144,62 @@ export default defineComponent({
     mounted(){
         $q = useQuasar()
     },
+    methods:{
+        view_itinerary(itinerary_pk){
+                console.log(itinerary_pk)
+                var data = {
+                    "itinerary_pk":itinerary_pk
+                }
+                
+                check_if_access_token_is_valid().then(response=>{
+                  var access_token = window.localStorage.getItem("travel_rover_access");
+                  this.$parent.card = true
+                  var itinerary = []
+                  console.log(this.itineraries_list_filtered)
+                  for(var items in this.itineraries_list_filtered){
+                        if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
+                            itinerary = this.itineraries_list_filtered[items].complete_itinerary
+                            break;
+                        }
+                    }
+                    
+                  console.log(itinerary)
+                  
+                  this.$store.commit('itinerary_preview_update', itinerary)
+                  this.$store.commit('user_logged_in_update', true)
+                  console.log(this.$store.state.itinerary_preview)
+                }).catch(err =>{
+                    console.log(err)
+                    check_if_refresh_token_is_valid().then(response => {
+                      var access_token = response["data"]["access"];
+
+                      window.localStorage.setItem("travel_rover_access", access_token);
+                      this.$parent.card = true
+                      var itinerary = []
+                      for(var items in this.itineraries_list_filtered){
+                            if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
+                                itinerary = this.itineraries_list_filtered[items].complete_itinerary
+                                break;
+                            }
+                        }
+                        
+                      this.$store.commit('itinerary_preview_update', itinerary)
+
+                      this.$store.commit('user_logged_in_update', true)
+
+                    }).catch(err =>{
+                      $q.notify({
+                        type: 'negative',
+                        message: 'Kindly log-in/sign-up to enable this functionality',
+                        position: 'top'
+                      })
+
+                      this.$store.commit('user_logged_in_update', false)
+                      console.log(err);
+                    });
+                });
+            }
+        },
     created(){
 
         check_if_access_token_is_valid().then(response=>{
@@ -170,6 +226,8 @@ export default defineComponent({
                                 "things_to_carry": items.things_to_carry,
                                 "cancellation_policy":items.cancellation_policy,
                                 "itinerary_pk":JSON.parse(response.data.data)[i].pk,
+                                "complete_itinerary":items,
+                                "travel_dates": items.start_dates
                             }
                         }
                         var itineraries_list_filtered = itineraries_list.filter(function (el) {

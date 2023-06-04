@@ -1,5 +1,9 @@
 <template>
     <div>
+        <q-dialog v-model="card">
+            <ViewItinerary/>
+        </q-dialog>
+        
       <q-layout style="min-height: 100px !important;">
     <q-header>
     
@@ -49,6 +53,8 @@
           </q-btn>
       </q-toolbar>
     </q-header>
+
+
     </q-layout>
     </div>
     <br/>
@@ -85,11 +91,11 @@
                         <img src="../assets/profilepage/visibility.svg" alt="">
                         <div class="profile_text">Viewed Itineraries</div>
                     </div>
-                    <q-separator />
-                    <div class="row profile_spacing"  @click="this.show_custom">
+                    <!-- <q-separator /> -->
+                    <!-- <div class="row profile_spacing"  @click="this.show_custom">
                         <img src="../assets/profilepage/tune.svg" alt="">
                         <div class="profile_text">Custom Itineraries</div>
-                    </div>
+                    </div> -->
                 </div>
             </q-card>
 
@@ -102,9 +108,9 @@
                 <ViewedItinerary/>
             </div>
 
-            <div v-if="this.show_custom_itinerary==true">
+            <!-- <div v-if="this.show_custom_itinerary==true">
                 <CustomItinerary/>
-            </div>
+            </div> -->
 
             
         </div>
@@ -114,12 +120,13 @@
 import { ref } from 'vue'
 import LikedItinerary from "./LikedItinerary.vue"
 import ViewedItinerary from "./ViewedItinerary.vue"
-import CustomItinerary from "./CustomItinerary.vue"
+// import CustomItinerary from "./CustomItinerary.vue"
 import LoginPage2 from "./LoginPage2.vue"
 import RegisterPage from "./RegisterPage.vue"
 
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import {check_if_access_token_is_valid} from "src/common/api_calls";
+import ViewItinerary from './ViewItinerary.vue';
 
 // import AppBar from "./AppBar.vue"
 
@@ -129,7 +136,8 @@ export default {
     },
     setup() {
         return {
-            ratingModel: ref(3)
+            ratingModel: ref(3),
+            card: ref(false),
         }
     },
     data(){
@@ -139,7 +147,7 @@ export default {
             show_viewed_itinerary: false,
             username: "User",
             mobile_number: "9999999999",
-            name: "User"
+            name: "User",
         }
     },
     components:{
@@ -147,8 +155,8 @@ export default {
         LoginPage2,
         RegisterPage,
         ViewedItinerary,
-        CustomItinerary
-        
+        // CustomItinerary,
+        ViewItinerary
     },
     mounted(){
         console.log("here")
