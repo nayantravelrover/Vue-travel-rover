@@ -150,8 +150,7 @@ export default defineComponent({
   },
   mounted(){
     check_if_access_token_is_valid().then(response=>{
-      console.log(response)
-      console.log(this.$store.state.is_agent)
+      
       if(response["data"]["type_of_user"] == "agent"){
         this.$store.commit('is_agent_update', true)
         console.log(this.$store.state.is_agent)
@@ -161,10 +160,10 @@ export default defineComponent({
           console.log(err)
           check_if_refresh_token_is_valid().then(response => {
             var access_token = response["data"]["access"];
-            console.log(access_token)
+            
             window.localStorage.setItem("travel_rover_access", access_token);
             this.$store.commit('user_logged_in_update', true)
-            console.log(response);
+            
           }).catch(err =>{
             this.$store.commit('user_logged_in_update', false)
             console.log(err);

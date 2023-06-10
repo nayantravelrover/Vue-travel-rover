@@ -11,25 +11,25 @@
                             <div class="box7">
                                 <img src="../assets/editcard/checked.svg" alt="">
                             </div>
-                            <text class="type2">Lorem Ipsum is simply dummy text of the printing</text>
+                            <text class="type2">Time-Saving Convenience</text>
                         </div>
                         <div class="box6">
                             <div class="box7">
                                 <img src="../assets/editcard/checked.svg" alt="">
                             </div>
-                            <text class="type2">Lorem Ipsum is simply dummy text of the printing</text>
+                            <text class="type2">Expert Local Knowledge</text>
                         </div>
                         <div class="box6">
                             <div class="box7">
                                 <img src="../assets/editcard/checked.svg" alt="">
                             </div>
-                            <text class="type2">Lorem Ipsum is simply dummy text of the printing</text>
+                            <text class="type2">Cost-Effective Options</text>
                         </div>
                         <div class="box6">
                             <div class="box7">
                                 <img src="../assets/editcard/checked.svg" alt="">
                             </div>
-                            <text class="type2">Lorem Ipsum is simply dummy text of the printing</text>
+                            <text class="type2">Reduced Stress and Enhanced Safety</text>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="box10">
                         <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank"><div class="box11">
-                            <text class="type6">Contact Us</text>
+                            <text class="type6">Buy Now</text>
                             <img src="../assets/editcard/whatsapp.svg" alt="">
                         </div></a>
                         <div class="box11" @click="this.generateReport()">

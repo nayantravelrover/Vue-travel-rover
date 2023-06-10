@@ -487,6 +487,12 @@
       </footer>
     </div>
   </div>
+
+
+   <button @click="open_payment">Pay</button>
+   
+
+
 </template>
 
 <script>
@@ -498,6 +504,7 @@ import "vue3-carousel/dist/carousel.css";
 // import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
 
+
 import {
   basicconfig, 
   subscribe_user,
@@ -508,7 +515,10 @@ import {
 
 import DestinationPageWeb from "./DestinationPageWeb.vue";
 import DestinationPage from "./DestinationPage.vue";
-import { useQuasar,Notify } from 'quasar'
+import { useQuasar,Notify } from 'quasar';
+
+
+
 let $q
 export default defineComponent({
   name: "IndexPage",
@@ -714,6 +724,21 @@ export default defineComponent({
     handleDateSelection() {
       this.$refs.qDateProxy.hide(); // Close the modal after selecting a date
     },
+    open_payment(){
+
+        let paytm = new_component()
+        console.log(paytm)
+        let paymentPromise = cashfree.pay({
+            paymentMethod: paytm,
+            paymentSessionId: "payment_session_id",
+            returnUrl: "https://test.cashfree.com/pgappsdemos/v3success.php?myorder={order_id}"
+        });
+
+        paymentPromise.then(function(result){
+            console.log(result);
+             
+        })
+    }
   },
   setup() {
     const data = ref({});
@@ -734,9 +759,9 @@ export default defineComponent({
   },
   created() {
     document.onreadystatechange = () => {
-      console.log("HEREE")
+      // console.log("HEREE")
       if (document.readyState === 'complete') {
-        console.log("document ready state complete")
+        // console.log("document ready state complete")
         basicconfig().then(response =>{
         this.basic_data = JSON.parse(response.data.data)[0]["fields"]
         this.basic_data["explore_destination"] = this.basic_data["explore_destination"].split("$$$")
@@ -747,7 +772,7 @@ export default defineComponent({
         this.basic_data["top_five_likes"] = this.basic_data["top_five_likes"].split("$$$")
         //console.log(this.basic_data)
 
-        console.dir(JSON.stringify(this.basic_data), {'maxArrayLength': 10000000000});
+        // console.dir(JSON.stringify(this.basic_data), {'maxArrayLength': 10000000000});
       });
     }
   }
