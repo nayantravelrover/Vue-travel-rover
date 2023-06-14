@@ -328,7 +328,7 @@
 
         <Carousel v-model="currentIndex" :itemsToShow="isMobile?1.3: 4.3">
      <Slide v-for="(item, index) in carouselItems" :key="index">
-      <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage(item)">
+      <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage(item.redirection_url)">
         <img :src="require(`../assets/${item.image}`)" class="image_style">
 
         <q-card-section>
@@ -501,21 +501,25 @@ export default defineComponent({
           title: "The Transformative Era of Travel in India",
           subtitle: "Exploring the Post-COVID Landscape",
           image: "blog_1.jpeg",
+          redirection_url: "embracing_blog"
         },
         {
           title: "Agent or Do it Yourself (DIY)?",
           subtitle: "Making the Right Choice for Your Travel Experience",
           image: "blog_6.jpeg",
+          redirection_url: "agent_or_diy"
         },
         {
           title: "Rising Popularity of Hostels",
           subtitle: "Why Gen Z Prefers the Social and Adventurous Experience",
           image: "blog_10.jpeg",
+          redirection_url: "popularity_zostel"
         },
         {
           title: "Work + Vacation = Workation",
           subtitle: "Unlocking Productivity and Serenity",
           image: "blog_17.jpeg",
+          redirection_url: "workation"
         },
       ],
     }
