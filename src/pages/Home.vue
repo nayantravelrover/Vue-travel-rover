@@ -324,67 +324,21 @@
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
       </div>
       
-      <div class="row q-pa-md">
+      <div class="q-pa-sm">
 
+        <Carousel v-model="currentIndex" :itemsToShow="isMobile?1.3: 4.3">
+     <Slide v-for="(item, index) in carouselItems" :key="index">
+      <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage(item)">
+        <img :src="require(`../assets/${item.image}`)" class="image_style">
 
-        <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated class="rounded-borders">
-          <q-carousel-slide :name="1" class="column no-wrap">
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('embracing_blog')">
-                <img src="../assets/blog_1.jpeg" class="image_style">
-        
-                <q-card-section>
-                  <div class="text-h6">The Transformative Era of Travel in India</div>
-                  <div class="text-subtitle2">Exploring the Post-COVID Landscape</div>
-                </q-card-section>
-        
-                <!-- <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section> -->
-              </q-card>
-        
-              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('agent_or_diy')">
-                <img src="../assets/blog_6.jpeg" class="image_style">
-        
-                <q-card-section>
-                  <div class="text-h6">Agent or Do it Yourself (DIY)?</div>
-                  <div class="text-subtitle2">Making the Right Choice for Your Travel Experience</div>
-                </q-card-section>
-        
-                <!-- <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section> -->
-              </q-card>
-        
-        
-              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('popularity_zostel')">
-                <img src="../assets/blog_10.jpeg" class="image_style">
-        
-                <q-card-section>
-                  <div class="text-h6">Rising Popularity of Hostels</div>
-                  <div class="text-subtitle2">Why Gen Z Prefers the Social and Adventurous Experience</div>
-                </q-card-section>
-        
-                <!-- <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section> -->
-              </q-card>
+        <q-card-section>
+          <div class="text-h6">{{ item.title }}</div>
+          <div class="text-subtitle2">{{ item.subtitle }}</div>
+        </q-card-section>
+      </q-card>
+    </Slide>
+  </Carousel>
 
-              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('workation')">
-                <img src="../assets/blog_17.jpeg" class="image_style">
-              
-                <q-card-section>
-                  <div class="text-h6">Work + Vacation = Workation</div>
-                  <div class="text-subtitle2">The Ultimate Blend of Work and Vacation - Unlocking Productivity and Serenity</div>
-                </q-card-section>
-              
-                <!-- <q-card-section class="q-pt-none">
-                  We need to understand the shirt
-                </q-card-section> -->
-              </q-card>
-            </div>
-          </q-carousel-slide>
-        </q-carousel>
     </div>
 
 
@@ -541,7 +495,29 @@ export default defineComponent({
       review_content: ["The agents I talked with through Travel Rover were really genuine.","The wide varieties of itineraries and type of content really helped me.","Really like the add to compare feature which allows me to get the best itinerary.","Stumbled upon this website and found it satisfies all my travel requirements","As a solo traveller, this website was a really a great consultant."],
       area: "",
       qDateProxy :ref(null),
-      showModal: false
+      showModal: false,
+      carouselItems: [
+        {
+          title: "The Transformative Era of Travel in India",
+          subtitle: "Exploring the Post-COVID Landscape",
+          image: "blog_1.jpeg",
+        },
+        {
+          title: "Agent or Do it Yourself (DIY)?",
+          subtitle: "Making the Right Choice for Your Travel Experience",
+          image: "blog_6.jpeg",
+        },
+        {
+          title: "Rising Popularity of Hostels",
+          subtitle: "Why Gen Z Prefers the Social and Adventurous Experience",
+          image: "blog_10.jpeg",
+        },
+        {
+          title: "Work + Vacation = Workation",
+          subtitle: "Unlocking Productivity and Serenity",
+          image: "blog_17.jpeg",
+        },
+      ],
     }
   },
   methods:{
