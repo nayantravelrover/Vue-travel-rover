@@ -330,57 +330,57 @@
         <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated class="rounded-borders">
           <q-carousel-slide :name="1" class="column no-wrap">
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-              <q-card class="my-card rounded-borders col-3 full-height">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('embracing_blog')">
+                <img src="../assets/blog_1.jpeg" class="image_style">
         
                 <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <div class="text-h6">The Transformative Era of Travel in India</div>
+                  <div class="text-subtitle2">Exploring the Post-COVID Landscape</div>
                 </q-card-section>
         
-                <q-card-section class="q-pt-none">
+                <!-- <q-card-section class="q-pt-none">
                   We need to understand the shirt
-                </q-card-section>
+                </q-card-section> -->
               </q-card>
         
-              <q-card class="my-card rounded-borders col-3 full-height">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('agent_or_diy')">
+                <img src="../assets/blog_6.jpeg" class="image_style">
         
                 <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <div class="text-h6">Agent or Do it Yourself (DIY)?</div>
+                  <div class="text-subtitle2">Making the Right Choice for Your Travel Experience</div>
                 </q-card-section>
         
-                <q-card-section class="q-pt-none">
+                <!-- <q-card-section class="q-pt-none">
                   We need to understand the shirt
-                </q-card-section>
+                </q-card-section> -->
               </q-card>
         
         
-              <q-card class="my-card rounded-borders col-3 full-height">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('popularity_zostel')">
+                <img src="../assets/blog_10.jpeg" class="image_style">
         
                 <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <div class="text-h6">Rising Popularity of Hostels</div>
+                  <div class="text-subtitle2">Why Gen Z Prefers the Social and Adventurous Experience</div>
                 </q-card-section>
         
-                <q-card-section class="q-pt-none">
+                <!-- <q-card-section class="q-pt-none">
                   We need to understand the shirt
-                </q-card-section>
+                </q-card-section> -->
               </q-card>
 
-              <q-card class="my-card rounded-borders col-3 full-height">
-                <img src="https://cdn.quasar.dev/img/mountains.jpg">
+              <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage('workation')">
+                <img src="../assets/blog_17.jpeg" class="image_style">
               
                 <q-card-section>
-                  <div class="text-h6">Our Changing Planet</div>
-                  <div class="text-subtitle2">by John Doe</div>
+                  <div class="text-h6">Work + Vacation = Workation</div>
+                  <div class="text-subtitle2">The Ultimate Blend of Work and Vacation - Unlocking Productivity and Serenity</div>
                 </q-card-section>
               
-                <q-card-section class="q-pt-none">
+                <!-- <q-card-section class="q-pt-none">
                   We need to understand the shirt
-                </q-card-section>
+                </q-card-section> -->
               </q-card>
             </div>
           </q-carousel-slide>
@@ -487,12 +487,7 @@
       </footer>
     </div>
   </div>
-
-
-   <button @click="open_payment">Pay</button>
    
-
-
 </template>
 
 <script>
@@ -724,21 +719,21 @@ export default defineComponent({
     handleDateSelection() {
       this.$refs.qDateProxy.hide(); // Close the modal after selecting a date
     },
-    open_payment(){
+    redirectToAnotherPage(param) {
+      if(param == "embracing_blog"){
+        this.$router.push('/embracing_blog'); 
+      }
+      if(param == "agent_or_diy"){
+        this.$router.push('/agent_or_diy'); 
+      }
+      if(param == "popularity_zostel"){
+        this.$router.push('/popularity_zostel'); 
+      }
+      if(param == "workation"){
+        this.$router.push('/workation'); 
+      }
+    },
 
-        let paytm = new_component()
-        console.log(paytm)
-        let paymentPromise = cashfree.pay({
-            paymentMethod: paytm,
-            paymentSessionId: "payment_session_id",
-            returnUrl: "https://test.cashfree.com/pgappsdemos/v3success.php?myorder={order_id}"
-        });
-
-        paymentPromise.then(function(result){
-            console.log(result);
-             
-        })
-    }
   },
   setup() {
     const data = ref({});
@@ -1015,7 +1010,7 @@ footer ul {
 
 .my-card {
   width: 100%;
-  max-width: 250px
+  max-width: 250px;
 }
 
 .blog-heading {
@@ -1320,6 +1315,10 @@ footer ul {
     outline: none;
     border-color: #007aff;
     box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.5);
+  }
+
+  .image_style{
+    height: 180px;
   }
 
 

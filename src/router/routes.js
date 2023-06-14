@@ -18,6 +18,10 @@ const routes = [
   { path: '/blogspage', component: () => import('pages/BlogsPage.vue') },
   { path: '/blogshomepage', component: () => import('pages/BlogsHomePage.vue') },
   { path: '/itinerarylink', component: () => import('components/ItineraryPreviewOpenToInternet.vue') },
+  { path: '/embracing_blog', component: () => import('pages/Embracing_blog.vue') },
+  { path: '/agent_or_diy', component: () => import('pages/Agent_or_diy.vue') },
+  { path: '/popularity_zostel', component: () => import('pages/Popularity_zostel.vue') },
+  { path: '/workation', component: () => import('pages/workation_vue.vue') },
   {
     path: '/',
     redirect: "/home",
