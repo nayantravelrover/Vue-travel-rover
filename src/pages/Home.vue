@@ -3,7 +3,7 @@
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
-          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white; border-radius: 0px">
+          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white;">
            <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="place" />
@@ -45,8 +45,8 @@
         </div>
       </div>
       <div class="row items-center justify-between" style="width: 1000px">
-        <div class="left-section col-md-7 q-pa-md-lg-xl">
-          <h2><b>{{basic_data["header_content"]}}</b></h2>
+        <div class="left-section col-md-7 q-pa-md-lg-xl" style="margin-top: 30px;">
+          <text class="maintxt"><b>{{basic_data["header_content"]}}</b></text>
           <h4>{{basic_data["intro_content"]}}</h4>
           <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
@@ -94,7 +94,7 @@
           </transition> -->
         </div>
         <div class="col-md-5 gt-sm">
-          <q-img style="width: 420px; height: 308px" src="../assets/travel.svg" />
+          <q-img style="width: 520px; height: 408px;margin-bottom: 100px;" src="../assets/travel.svg" />
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
         <div class="row items-center justify-center">
           <div
             class="input-area-1 col-md-3 col-xs-12"
-            style="background-color: white;border-radius: 0px">
+            style="background-color: white;border-radius: 14px 14px 0 0;">
            <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
               <template v-slot:prepend>
                 <q-icon name="place" />
@@ -116,7 +116,7 @@
           
           <div
             class="input-area-2 col-md-3 col-xs-12"
-            style="background-color: white;border-radius: 0px">
+            style="background-color: white;">
             <q-input hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
                     <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
                       <q-date v-model="date" minimal @update:model-value="handleDateSelection" no-unset mask="YYYY-MM-DD">
@@ -131,7 +131,7 @@
                   </q-input>
           </div>
 
-          <div class="input-area-4 col-md-3 col-xs-12" style="">
+          <div class="input-area-4 col-md-3 col-xs-12" style="border-radius: 0 0 14px 14px;">
             <q-btn color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
           </div>
         </div>
@@ -198,11 +198,11 @@
       <div class="carousel-heading">
         <h5 class="text-center">Top Destinations</h5>
       </div>
-      <Carousel :itemsToShow="isMobile?1.3: 5.3">
+      <Carousel :itemsToShow="isMobile?1.3: 5.3" v-model="slide">
         <Slide v-for="items,index in basic_data['explore_destination_images']" :key="items">
-<div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(basic_data['explore_destination'][index],default_date)">
+          <div class="carousel__item-1" style="margin-top: 0px;" @click="go_to_images(basic_data['explore_destination'][index],default_date)">
             
-            <q-card class="destination-carousel-card" >
+            <q-card class="destination-carousel-card" style="cursor: pointer;">
               <img :src=items />
               
               <q-card-section>
@@ -294,7 +294,9 @@
       <div class="carousel-heading">
         <h5 class="text-center">What our users say about us</h5>
       </div>
-      <Carousel :itemsToShow="isMobile?1:2.2" :wrapAround="true">
+      <Carousel :itemsToShow="isMobile?1:2.2" :itemsToScroll="1" :wrap-around="true
+      "
+    v-bind:autoplay="true" v-bind:pause-autoplay-on-hover="true" v-bind:autoplayInterval="2000">
 
         <Slide v-for="items,index in review_content" :key="items">
           <div class="carousel__item">
@@ -324,11 +326,11 @@
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
       </div>
       
-      <div class="q-pa-sm">
+      <div class="q-pa-md" style="display: flex;flex-direction: column;margin-left: 90px;">
 
-        <Carousel v-model="currentIndex" :itemsToShow="isMobile?1.3: 4.3">
-     <Slide v-for="(item, index) in carouselItems" :key="index">
-      <q-card class="my-card rounded-borders col-3 full-height" @click="redirectToAnotherPage(item.redirection_url)">
+    <Carousel v-model="currentIndex" :itemsToShow="isMobile?1.3: 4.3">
+     <Slide v-for="(item, index) in carouselItems" :key="index" style="margin-bottom: 30px;">
+      <q-card class="my-card rounded-borders col-3   full-height" @click="redirectToAnotherPage(item.redirection_url)" style="cursor: pointer;">
         <img :src="require(`../assets/${item.image}`)" class="image_style">
 
         <q-card-section>
@@ -771,6 +773,16 @@ html,body{
   --btn-bg-color: #f1f2fc;
   --btn-hover-bg: #d5d9f6;
   --btn-color: #1e2641;
+}
+
+.maintxt{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30.8559px;
+  line-height: 160%;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .card-see-more {

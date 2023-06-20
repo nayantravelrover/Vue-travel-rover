@@ -1,5 +1,8 @@
 <template>
-    <q-btn label="Sign Up" color="primary" @click="icon = true" style="width: 100%;"/>
+    <div style="display: flex;flex-direction: row;">
+        <img src="../assets/AppBar/signupicon.svg" style="width: 40%; height: 40%; margin-top: 3px;"/>
+        <q-btn label="Sign Up" color="primary" flat rounded="" @click="icon = true" style="width: 120%;"/>
+    </div>
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
         <q-card>

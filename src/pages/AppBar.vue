@@ -6,25 +6,24 @@
             </q-toolbar-title>
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="primary">
                 <q-menu>
-                    <q-list style="min-width: 100px;max-height:89px">
+                    <q-list>
                         <!-- <q-item clickable v-close-popup>
                                     <q-item-section>Login</q-item-section>
                                   </q-item> -->
                         <LoginPage2 v-if="this.$store.state.user_logged_in===false"/>
-                          <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
+                          <div class="q-pa-sm" v-if="this.$store.state.user_logged_in===false">
                             <RegisterPage/>
                           </div>
-
-
-                          
                           <div>
-                            <div>
-                            <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
+                          <div>
+                            <img src="../assets/AppBar/profileicon.svg" style="width: 30%; height: 30%; margin-top: 3px; margin-left: 3px !important;" v-if="this.$store.state.user_logged_in"/>
+                            <q-btn label="Profile" color="primary" flat rounded style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
                           </div>
                           <div class="q-pa-xs">
-                          <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+                            <img src="../assets/AppBar/logouticon.svg" style="width: 30%; height: 30%; margin-top: 3px; margin-left: 3px;" v-if="this.$store.state.user_logged_in"/>
+                          <q-btn label="Logout" color="primary" flat rounded style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                           </div>>
-                           </div>
+                          </div>
             
             
                         <!-- <q-drawer v-if="$q.platform.is.mobile"
