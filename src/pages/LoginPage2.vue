@@ -1,5 +1,8 @@
 <template>
-    <q-btn label="Login" color="primary" @click="icon = true" style="margin-top:3px; width: 91px; margin: 4px;" />
+    <div style="display: flex;flex-direction: row;">
+        <img src="../assets/AppBar/loginicon.svg" style="width: 30%; height: 30%; margin-top: 10px; margin-left: 3px;"/>
+        <q-btn label="Login" color="primary" flat rounded="" @click="icon = true" style="margin-top:3px; width: 91px; margin: 4px; margin-right: 17px;" />
+    </div>
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
             <q-card >

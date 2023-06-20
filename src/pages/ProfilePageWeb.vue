@@ -36,11 +36,9 @@
               <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
                 <RegisterPage/>
               </div>
-
-
-              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
+              <q-btn label="Profile" color="primary" flat rounded  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
               <div class="q-pa-xs">
-              <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+              <q-btn label="Logout" color="primary" flat rounded  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                </div>
 
 
