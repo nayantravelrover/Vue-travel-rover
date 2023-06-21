@@ -528,50 +528,11 @@ export default defineComponent({
   },
   methods:{
     go_to_images(item,date){
-      if(this.$store.state.user_logged_in==false){
-          $q.notify({
-              type: 'negative',
-              message: 'Kindly log-in/sign-up to enable this functionality',
-              position: 'top'
-              })
-      }else{
-        check_if_access_token_is_valid().then(response=>{
-
-          console.log(response);
-          var access_token = window.localStorage.getItem("travel_rover_access");
-          this.$store.commit('user_logged_in_update', true)
-          this.$router.push({
-                  path: '/destination/',
-                  name:'DestinationPage',
-                  query: { place: item, date:date }
-                })
-          
-        }).catch(err =>{
-            console.log(err)
-            check_if_refresh_token_is_valid().then(response => {
-              var access_token = response["data"]["access"];
-              console.log(access_token)
-              window.localStorage.setItem("travel_rover_access", access_token);
-
-              this.$store.commit('user_logged_in_update', true)
-              this.$router.push({
-                  path: '/destination/',
-                  name:'DestinationPage',
-                  query: { place: item, date:date }
-                })
-              
-              console.log(response);
-            }).catch(err =>{
-              $q.notify({
-                type: 'negative',
-                message: 'Kindly log-in/sign-up to enable this functionality',
-                position: 'top'
-              })
-              this.$store.commit('user_logged_in_update', false)
-              console.log(err);
-            });
-        });
-      }
+        this.$router.push({
+            path: '/destination/',
+            name:'DestinationPage',
+            query: { place: item, date:date }
+        })
     },
     subscribe(){
       if(this.$store.state.user_logged_in==false){

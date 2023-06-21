@@ -690,49 +690,16 @@ export default defineComponent({
                     "itinerary_pk":itinerary_pk
                 }
                 
-                check_if_access_token_is_valid().then(response=>{
-                  var access_token = window.localStorage.getItem("travel_rover_access");
-                  this.card = true
-                  var itinerary = []
-                  for(var items in this.itineraries_list_filtered){
-                        if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
-                            itinerary = this.itineraries_list_filtered[items].complete_itinerary
-                            break;
-                        }
+                this.card = true
+                var itinerary = []
+                for(var items in this.itineraries_list_filtered){
+                    if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
+                        itinerary = this.itineraries_list_filtered[items].complete_itinerary
+                        break;
                     }
+                }
                 this.$store.commit('itinerary_preview_update', itinerary)
-                console.log(this.$store.state.itinerary_preview)
-                  viewed_itinerary_api(data, access_token);
-
-                  this.$store.commit('user_logged_in_update', true)
-                }).catch(err =>{
-                    console.log(err)
-                    check_if_refresh_token_is_valid().then(response => {
-                      var access_token = response["data"]["access"];
-
-                      window.localStorage.setItem("travel_rover_access", access_token);
-                      this.card = true
-                      var itinerary = []
-                      for(var items in this.itineraries_list_filtered){
-                            if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
-                                itinerary = this.itineraries_list_filtered[items].complete_itinerary
-                                break;
-                            }
-                        }
-                        console.log(this.$store.state.itinerary_preview)
-                      viewed_itinerary_api(data, access_token)
-                      this.$store.commit('user_logged_in_update', true)
-
-                    }).catch(err =>{
-                      $q.notify({
-                        type: 'negative',
-                        message: 'Kindly log-in/sign-up to enable this functionality',
-                        position: 'top'
-                      })
-                      this.$store.commit('user_logged_in_update', false)
-                      console.log(err);
-                    });
-                });
+                
             },
             groupByMonth(start_dates){
               
@@ -1026,7 +993,7 @@ export default defineComponent({
 }
 
 .text12 {
-    width: 348px;
+    width: fit-content;
     height: 30px;
 
     font-family: 'Poppins';

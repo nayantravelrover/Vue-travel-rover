@@ -22,7 +22,7 @@
                           <div class="q-pa-xs">
                             <img src="../assets/AppBar/logouticon.svg" style="width: 30%; height: 30%; margin-top: 3px; margin-left: 3px;" v-if="this.$store.state.user_logged_in"/>
                           <q-btn label="Logout" color="primary" flat rounded style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
-                          </div>>
+                          </div>
                           </div>
             
             
