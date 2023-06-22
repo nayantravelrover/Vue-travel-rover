@@ -1,8 +1,5 @@
 <template>
-    <div style="display: flex;flex-direction: row;">
-        <img src="../assets/AppBar/loginicon.svg" style="width: 30%; height: 30%; margin-top: 10px; margin-left: 3px;"/>
-        <q-btn label="Login" color="primary" flat rounded="" @click="icon = true" style="margin-top:3px; width: 91px; margin: 4px; margin-right: 17px;" />
-    </div>
+    <q-btn icon="login" label="Login" color="primary" flat rounded="" @click="icon = true" style="margin-top:4px; width: 131px;margin-right: 10px;font-size: 15px;" />
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
             <q-card >
@@ -17,9 +14,8 @@
                                     </div>
 
                                 </div>
-
-                                <q-input outlined v-model="login.username" placeholder="Username" :dense="dense" />
-                                <q-input outlined :dense="dense" v-model="login.password" placeholder="Password" filled
+                                <q-input outlined v-model="login.username" label="Username" :dense="dense"/>
+                                <q-input outlined :dense="dense" v-model="login.password" label="Password" filled
                                     :type="isPwd ? 'password' : 'text'">
                                     <template v-slot:append>
                                         <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
@@ -28,18 +24,18 @@
                                 </q-input>
                                 <div>
                                     <q-btn class="full-width" color="primary" label="Login" type="submit"
-                                        style="font-family: Poppins;">
+                                        style="font-family: Poppins;margin-top: 10px;">
                                     </q-btn>
                                 </div>
-                                <div>
-                                    <q-text class="text5 flex justify-center">Forgot Password? <a href="#">Click
+                                <!-- <div>
+                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">Forgot Password? <a href="#" style="text-decoration: none;color: #003FA3; font-weight: 600;">Click
                                             Here</a></q-text>
-                                </div>
+                                </div> -->
                                 <div>
                                     <img src="../assets/line2.svg" />
                                 </div>
                                 <div>
-                                    <q-text class="text5 flex justify-center">New here? <a href="#">Sign Up</a></q-text>
+                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#" style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</a></q-text>
                                 </div>
                             </q-form>
                         </q-card-section>
@@ -61,13 +57,13 @@
                         <q-form class="q-gutter-md" @submit.prevent="submitForm">
         
                             <div class="container2 col flex justify-left">
-                                <div class="text5">
+                                <div class="text5" style="margin-top: 10px;">
                                     <img src="../assets/travelrover.svg" style="height: 20px; weight: 20px" />
                                 </div>
                             </div>
         
-                            <q-input outlined v-model="login.username" placeholder="Username" :dense="dense" />
-                            <q-input outlined :dense="dense" v-model="login.password" placeholder="Password" filled
+                            <q-input outlined v-model="login.username" label="Username" :dense="dense" />
+                            <q-input outlined :dense="dense" v-model="login.password" label="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
                                 <template v-slot:append>
                                     <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
@@ -76,18 +72,18 @@
                             </q-input>
                             <div>
                                 <q-btn class="full-width" color="primary" label="Login" type="submit"
-                                    style="font-family: Poppins;">
+                                    style="font-family: Poppins;margin-top: 10px;">
                                 </q-btn>
                             </div>
-                            <q-text class="orSection flex justify-center">Or</q-text>
+                            <!-- <q-text class="orSection flex justify-center" style="font-family: Poppins;">Or</q-text>
                             <div>
-                                <q-text class="text5 flex justify-center">Forgot Password? <a href="#">Click Here</a></q-text>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Forgot Password? <a href="#" style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Click Here</a></q-text>
+                            </div> -->
+                            <div>
+                                <img src="../assets/line2.svg" style="max-width: 300px;"/>
                             </div>
                             <div>
-                                <img src="../assets/line2.svg" />
-                            </div>
-                            <div>
-                                <q-text class="text5 flex justify-center">New here? <a href="#">Sign Up</a></q-text>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#" style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Sign Up</a></q-text>
                             </div>
                         </q-form>
                     </q-card-section>

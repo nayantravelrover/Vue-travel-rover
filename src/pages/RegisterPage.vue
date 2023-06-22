@@ -1,8 +1,5 @@
 <template>
-    <div style="display: flex;flex-direction: row;">
-        <img src="../assets/AppBar/signupicon.svg" style="width: 40%; height: 40%; margin-top: 3px;"/>
-        <q-btn label="Sign Up" color="primary" flat rounded="" @click="icon = true" style="width: 120%;"/>
-    </div>
+    <q-btn icon="person_add" label="Sign Up" color="primary" flat rounded="" @click="icon = true" style="width: 102%;font-size: 15px;"/>
     <q-dialog class="flex justify-center" v-model="icon">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
         <q-card>
@@ -11,37 +8,36 @@
                     <q-card-section style="margin: 12px;" >
                     <q-form class="q-gutter-md" @submit.prevent="submitForm">
                 
-                        <div >
+                        <div>
                             <div>
-                                <img src="../assets/travelrover.svg" style="height: 19px; weight: 19px" />
+                                <img src="../assets/travelrover.svg" style="height: 19px; weight: 19px;"/>
                             </div>
-                
                         </div>
-                        <q-input outlined placeholder="Name" v-model="login.first_name" />
-                        <q-input outlined placeholder="Phone number (DW we won't spam you)" v-model="login.mobile_number" />
-                        <q-input outlined v-model="login.username" placeholder="Email ID" />
-                        <q-input outlined v-model="login.password" placeholder="Password" filled
+                        <q-input outlined label="Name" v-model="login.first_name"/>
+                        <q-input outlined placeholder="Phone number (DW we won't spam you)" label="Phone Number" v-model="login.mobile_number" />
+                        <q-input outlined v-model="login.username" label="Email ID" />
+                        <q-input outlined v-model="login.password" label="Password" filled
                             :type="isPwd ? 'password' : 'text'">
                             <template v-slot:append>
                                 <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                                     @click="isPwd = !isPwd" />
                             </template>
                         </q-input>
-                        <div class="q-pa-md">
+                        <!-- <div class="q-pa-md">
                             <div class="q-gutter-sm">
-                           <!--  <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
-                                true-value="yes" false-value="no" /> -->
+                            <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
+                                true-value="yes" false-value="no" />
                             </div>
-                        </div>
+                        </div> -->
                         <div>
-                            <q-btn class="full-width" color="primary" label="Create Account" type="submit" style="font-family: Poppins;">
+                            <q-btn class="full-width" color="primary" label="Create Account" type="submit" style="font-family: Poppins;margin-top: 15px;">
                             </q-btn>
                         </div>
                         <div>
                             <img src="../assets/line2.svg" />
                         </div>
                         <div>
-                            <q-text class="text5 flex justify-center">Already Registered With Us? <a href="#">Sign In</a></q-text>
+                            <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <a href="#" style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</a></q-text>
                         </div>
                     </q-form>
                     </q-card-section>
@@ -61,36 +57,36 @@
                         <q-form class="q-gutter-md" @submit.prevent="submitForm">
         
                             <div class="container2 col flex justify-left">
-                                <div class="text5">
+                                <div class="text5" style="margin-top: 10px;">
                                     <img src="../assets/travelrover.svg" style="height: 20px; weight: 20px" />
                                 </div>
                             </div>
-                            <q-input outlined v-model="login.first_name" placeholder="Name" />
-                            <q-input outlined placeholder="Phone number (DW we won't spam you)" v-model="login.mobile_number" />
-                            <q-input outlined v-model="login.username" placeholder="Username" />
-                            <q-input outlined v-model="login.password" placeholder="Password" filled
+                            <q-input outlined v-model="login.first_name" label="Name" />
+                            <q-input outlined placeholder="Phone number (DW we won't spam you)" label="Phone Number" v-model="login.mobile_number" />
+                            <q-input outlined v-model="login.username" label="Username" />
+                            <q-input outlined v-model="login.password" label="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
                                 <template v-slot:append>
                                     <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                                         @click="isPwd = !isPwd" />
                                 </template>
                             </q-input>
-                            <div class="q-pa-md">
+                            <!-- <div class="q-pa-md">
                                 <div>
-                               <!--  <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
-                                    true-value="yes" false-value="no" /> -->
+                               <q-checkbox v-model="customModel" color="secondary" label="Do you agree with the terms & conditions?"
+                                    true-value="yes" false-value="no" />
                                 </div>
-                            </div>
+                            </div> -->
                             <div>
                                 <q-btn class="full-width" color="primary" label="Create Account" type="submit"
-                                    style="font-family: Poppins;">
+                                    style="font-family: Poppins;margin-top: 15px;">
                                 </q-btn>
                             </div>
                             <div>
-                                <img src="../assets/line2.svg" />
+                                <img src="../assets/line2.svg" style="max-width: 300px;"/>
                             </div>
                             <div>
-                                <q-text class="text5 flex justify-center">Already Registered With Us? <a href="#">Sign In</a></q-text>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <a href="#" style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</a></q-text>
                             </div>
                         </q-form>
                     </q-card-section>

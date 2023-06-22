@@ -2,9 +2,9 @@
   <div id="home">
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
-        <div class="row items-center justify-center">
-          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white;">
-           <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
+        <div class="row items-center justify-center" >
+          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white;border-radius: 29px 0 0 29px;">
+           <q-select bg-color="white" rounded standout v-model="where_to" :options="options" label="Where to?" style="font-family: Poppins;">
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px;" name="place" />
               </template>
@@ -12,7 +12,7 @@
           </div>
           <div class="input-area-1 col-md-4 col-xs-12" style="background-color: white; border-radius: 0px">
 
-            <q-input hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
+            <q-input style="font-family: Poppins;" hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
                     <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
                       <q-date v-model="date" minimal @update:model-value="handleDateSelection" no-unset mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
@@ -40,7 +40,7 @@
               </template>
             </q-input>
           </div> -->
-          <div class="input-area-4 col-md-3 col-xs-12" style=""><q-btn color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
+          <div class="input-area-4 col-md-3 col-xs-12" style="border-radius: 0 29px 29px 0;font-family: Poppins;"><q-btn rounded standout flat color="" text-color="white" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" style="font-size: 17px;"/>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
           <div
             class="input-area-1 col-md-3 col-xs-12"
             style="background-color: white;border-radius: 14px 14px 0 0;">
-           <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?">
+           <q-select bg-color="white" filled v-model="where_to" :options="options" label="Where to?" style="font-family: Poppins;">
               <template v-slot:prepend>
                 <q-icon name="place" />
               </template>
@@ -117,7 +117,7 @@
           <div
             class="input-area-2 col-md-3 col-xs-12"
             style="background-color: white;">
-            <q-input hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
+            <q-input style="font-family: Poppins;" hide-bottom-space square bg-color="white" label="Date ?" filled v-model="date" :rules="[val=> Date.parse(val) || 'Invalid date.']" input-class="cursor-pointer" mask="####-##-##">
                     <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
                       <q-date v-model="date" minimal @update:model-value="handleDateSelection" no-unset mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
@@ -132,7 +132,7 @@
           </div>
 
           <div class="input-area-4 col-md-3 col-xs-12" style="border-radius: 0 0 14px 14px;">
-            <q-btn color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
+            <q-btn style="font-family: Poppins;" color="" class="search-btn" icon="search" label="Search" @click="go_to_images(this.where_to,this.date)" />
           </div>
         </div>
       </div>
@@ -296,7 +296,7 @@
       </div>
       <Carousel :itemsToShow="isMobile?1:2.2" :itemsToScroll="1" :wrap-around="true
       "
-    v-bind:autoplay="true" v-bind:pause-autoplay-on-hover="true" v-bind:autoplayInterval="2000">
+    v-bind:autoplay="true" v-bind:pause-autoplay-on-hover="true" v-bind:autoplayInterval="2000" style="margin-top: -30px;">
 
         <Slide v-for="items,index in review_content" :key="items">
           <div class="carousel__item">
@@ -326,8 +326,7 @@
         <h3 class="blog-text-description ">Some Blogs from traveller around the world</h3>
       </div>
       
-      <div class="q-pa-md" style="display: flex;flex-direction: column;margin-left: 90px;">
-
+      <div class="q-pa-md">
     <Carousel v-model="currentIndex" :itemsToShow="isMobile?1.3: 4.3">
      <Slide v-for="(item, index) in carouselItems" :key="index" style="margin-bottom: 30px;">
       <q-card class="my-card rounded-borders col-3   full-height" @click="redirectToAnotherPage(item.redirection_url)" style="cursor: pointer;">
@@ -1197,18 +1196,21 @@ footer ul {
   transform: scale(0.3) translateY(-50%);
 }
 .explore-btn {
-    /*background-color: #007aff;
-    color: #fff;*/
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    font-family: Poppins;
     border: none;
     margin-right: 10px;
   }
 
   .explore-btn:hover {
-    background-color: #0055ff;
+    background-color: white;
+    color: #ffc106;
+    font-weight: 600;
+    border-color: #0055ff;
+    border: solid;
   }
 
   /* Styles for the modal overlay */

@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <DestinationPageWeb class="gt-xs" />
         <div class="lt-md">
             <div>
@@ -13,9 +12,7 @@
                             <div style="font-size:30px;font-family: Poppins;text-align: center;">{{this.place_description["name"]}}</div>
                             <div style="text-align: center;font-size:20px;font-family: Poppins;"> {{this.place_description['places_one_liner']}}</div>
                         </div>
-
                     </q-carousel-slide>
-
                 </q-carousel>
             </div>
             <div class="description q-pa-md full-width">
@@ -96,6 +93,9 @@
             </div>
             </q-carousel-slide>      
         </q-carousel>
+        <div style="display: flex;justify-content: center;margin: 40px;">
+                <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+            </div>
                     </div>
 
                     <div style="margin-left: 10px;margin-right: 10px;">
