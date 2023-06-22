@@ -4,7 +4,7 @@
             <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
                 transition-next="slide-left">
                     <q-carousel-slide  v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
-                        <AppBar/>
+                    <AppBar/>
                     <div class="gt-xs">
                      <div class="container40" style="display: flex;flex-direction: column;align-items: center;padding: 32px 63px;position: absolute;width: 511px;height: 222px;left: 465px;top: 300px;">
         <text class="text50" style="width: 500px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
@@ -27,10 +27,10 @@
             </div>
             </div>
         </div>
-        <div class="full-width" style="margin-left: 10px; margin-bottom:20px;">
-            <text class="text10" style="margin-left: 65px;">Our top-selling Itineraries</text>
+        <div class="full-width">
+            <text class="text10" style="margin-left: 10%;">Our top-selling Itineraries</text>
         </div>
-        <q-carousel style="height: fit-content;padding: 90px" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
+        <q-carousel style="height: fit-content;padding: 50px;display: flex;justify-content: center;" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
       swipeable
       animated
       control-color="primary"
@@ -92,6 +92,9 @@
 
             </q-carousel-slide>      
         </q-carousel>
+        <div style="display: flex;justify-content: center;margin: 40px;">
+            <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+        </div>
         <div style="margin-left: 0px;">
              <div>
     <div class="q-pa-md">

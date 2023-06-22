@@ -4,6 +4,7 @@
             <q-toolbar-title class="q-pa-md row item-center">
                 <img src="../assets/logo.svg" style="max-width: 200px;" @click="go_to_home"/>
             </q-toolbar-title>
+            <q-btn flat dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="go_to_home"/>
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="primary">
                 <q-menu>
                     <q-list>
@@ -16,12 +17,10 @@
                           </div>
                           <div>
                           <div>
-                            <img src="../assets/AppBar/profileicon.svg" style="width: 30%; height: 30%; margin-top: 3px; margin-left: 3px !important;" v-if="this.$store.state.user_logged_in"/>
-                            <q-btn label="Profile" color="primary" flat rounded style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
+                            <q-btn label="Profile" icon="account_circle" color="primary" flat rounded style="margin-top:3px; width: 141px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" />
                           </div>
                           <div class="q-pa-xs">
-                            <img src="../assets/AppBar/logouticon.svg" style="width: 30%; height: 30%; margin-top: 3px; margin-left: 3px;" v-if="this.$store.state.user_logged_in"/>
-                          <q-btn label="Logout" color="primary" flat rounded style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+                          <q-btn label="Logout" color="primary" icon="logout" flat rounded style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                           </div>
                           </div>
             

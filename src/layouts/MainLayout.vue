@@ -39,11 +39,11 @@
                 <RegisterPage/>
               </div>
               <div v-if="this.$store.state.user_logged_in">
-              <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;"  @click="go_to_profile" v-if="this.$store.state.is_agent === false" />
+              <q-btn label="Profile" icon="account_circle" color="primary" flat rounded style="margin-top:3px; width: 141px; margin: 4px;"  @click="go_to_profile" v-if="this.$store.state.is_agent === false" />
               <q-btn label="Itineraries" color="primary" style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.is_agent === true" @click="create_itinerary"/>
             </div>
               <div class="q-pa-xs">
-              <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+              <q-btn label="Logout" icon="logout" color="primary" flat rounded  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                </div>
 
                <!-- <div class="q-pa-xs">
