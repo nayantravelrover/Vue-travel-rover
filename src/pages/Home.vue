@@ -106,9 +106,9 @@
           <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
 
-          <button @click="showModal = true" class="button explore-btn">
+          <!-- <button @click="showModal = true" class="button explore-btn">
             AI-Powered Journey Planner
-          </button>
+          </button> -->
           <transition name="fade" appear>
             <div
               class="modal-overlay"
@@ -267,9 +267,9 @@
           <h4>{{ basic_data["intro_content"] }}</h4>
           <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations" :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
 
-          <button @click="showModal = true" class="button explore-btn">
+          <!-- <button @click="showModal = true" class="button explore-btn">
             AI-Powered Journey Planner
-          </button>
+          </button> -->
           <transition name="fade" appear>
             <div
               class="modal-overlay"
