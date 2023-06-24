@@ -6,14 +6,17 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
                         <span>
-                            <h3 class="col-title">Corporate Office</h3>
+                            <h3 class="col-title" style="font-family: Poppins;">Corporate Office</h3>
                             <nav class="col-list">
                                 <ul>
-                                    <li><a href="#">Sitaram Nagane House, Zakeria Rd, Opp Tulsi Hotel, Opp Zee Nest Cyber,
-                                            Malad (west),
-                                            Mumbai -400064, Maharashtra
-                                            Phone number : 02228810028
-                                            Email - sales@travelrover.in</a></li>
+                                    <li><a href="#">
+                            <li>Sitaram Nagane House, Zakeria Rd,</li>
+                            <li>Opp Tulsi Hotel, Opp Zee Nest Cyber,</li>
+                            <li>Malad (west),Mumbai -400064,</li>
+                            <li>Maharashtra</li>
+                            <li>Phone number : 02228810028</li>
+                            <li>Email - sales@travelrover.in</li>
+                          </a></li>
                                     <li>
                                         <h3 class="social-col-title">Follow us</h3>
                                         <div class="social-media-list">
@@ -46,14 +49,14 @@
                     <div class="col-3">
     
                     </div>
-                    <div class="col-md-5 col-xs-12 mobile-view-footer">
+                    <div class="col-md-5 col-xs-12 mobile-view-footer" >
     
     
                         <div class="row">
     
     
                             <span>
-                                <h3 class="col-title">Company</h3>
+                                <h3 class="col-title" style="font-family: Poppins;">Company</h3>
                                 <nav class="col-list">
                                     <ul>
                                         <li><a href="#">About Us</a></li>
@@ -64,7 +67,7 @@
                                 </nav>
                             </span>
                             <span>
-                                <h3 class="col-title">Company</h3>
+                                <h3 class="col-title" style="font-family: Poppins;">Company</h3>
                                 <nav class="col-list">
                                     <ul>
                                         <li><a href="#">About Us</a></li>
@@ -75,7 +78,7 @@
                                 </nav>
                             </span>
                             <span>
-                                <h3 class="col-title">Company</h3>
+                                <h3 class="col-title" style="font-family: Poppins;">Company</h3>
                                 <nav class="col-list">
                                     <ul>
                                         <li><a href="#">About Us</a></li>
@@ -91,13 +94,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
-                        <h3 class="col-title-bottom">Made in India </h3>
+                        <h3 class="col-title-bottom" style="font-family: Poppins;">Made in India </h3>
                     </div>
                     <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
-                        <h3 class="col-title-bottom">© 2022 All Rights Reserved</h3>
+                        <h3 class="col-title-bottom" style="font-family: Poppins;">© 2022 All Rights Reserved</h3>
                     </div>
                     <div class="col-md-4 col-xs-12" style="display: flex; justify-content: center;">
-                        <h3 class="col-title-bottom">Terms & Conditions &nbsp; &nbsp; Privacy Policy</h3>
+                    <h3 class="col-title-bottom" style="font-family: Poppins;">Terms & Conditions &nbsp; &nbsp; Privacy Policy</h3>
                     </div>
                 </div>
     

@@ -2,7 +2,7 @@
     <div>
         <div class="gt-sm">
             <div class="column" style="min-width: 300px;max-width: 600px;background-color: white;">
-                <div style="padding: 10px;">
+                <div style="padding: 20px 20px 0px 20px;">
                 <q-card class="row" style="width:100%;background-color: #F4F4F4;">
                     <div class="column" style="width: 70%;">
                         <div class="row" style="width: 100%;">
@@ -28,17 +28,17 @@
                     </div>
                     <div style="width: 30%;">
                         <div style="justify-content: center;">
-                            <q-btn style="width: auto;background-color: #003FA3;">
-                                <div class="custom_btn_text">Message Us</div>
-                                <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
+                            <q-btn icon="question_answer" v-bind:disable="true" style="width: auto;background-color: #003FA3;color: white;">
+                                <div class="custom_btn_text" style="padding-left: 3px;">Message Us</div>
+                                <!-- <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
                                     <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
-                                </div>
+                                </div> -->
                             </q-btn>
                         </div>
                     </div>
                 </q-card>
                 </div>
-                <div style="padding: 10px;">
+                <div style="padding: 14px 20px 0px 20px;;">
                 <q-card class="row" style="width:100%;background-color: #F4F4F4;">
                     <div class="column" style="width: 70%;">
                         <div class="row" style="width: 100%;">
@@ -64,17 +64,14 @@
                     </div>
                     <div style="width: 30%;">
                         <div style="justify-content: center;">
-                            <q-btn style="width: auto;background-color: #003FA3;">
-                                <div class="custom_btn_text">Message Us</div>
-                                <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
-                                    <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
-                                </div>
+                            <q-btn icon="question_answer" v-bind:disable="true" style="width: auto;background-color: #003FA3;color: white;">
+                                <div class="custom_btn_text" style="padding-left: 3px;">Message Us</div>
                             </q-btn>
                         </div>
                     </div>
                 </q-card>
                 </div>
-                <div style="padding: 10px;">
+                <div style="padding: 14px 20px 20px 20px;">
                 <q-card class="row" style="width:100%;background-color: #F4F4F4;">
                     <div class="column" style="width: 70%;">
                         <div class="row" style="width: 100%;">
@@ -100,11 +97,8 @@
                     </div>
                     <div style="width: 30%;">
                         <div style="justify-content: center;">
-                            <q-btn style="width: auto;background-color: #003FA3;">
-                                <div class="custom_btn_text">Message Us</div>
-                                <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
-                                    <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
-                                </div>
+                            <q-btn icon="question_answer" v-bind:disable="true" style="width: auto;background-color: #003FA3;color: white;">
+                                <div class="custom_btn_text" style="padding-left: 3px;">Message Us</div>
                             </q-btn>
                         </div>
                     </div>
@@ -341,96 +335,96 @@
                         </div>
                     </div>
                 </q-card> -->
-                <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;">
-                    <div class="row" style="width: 100%;">
-                        <div style="width: 20%;">
-                            <q-avatar>
-                                <img src="../assets/editcard/avatar2.svg" alt="">
-                            </q-avatar>
-                        </div>
-                        <div class="column" style="width: 80%;">
-                            <div class="custom_itinerary_text1">Simran Chaudhary</div>
-                            <div class="custom_itinerary_text2">Color Holidays</div>
-                            <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
-                        </div>
-                    </div>
-                    <div style="padding: 8px;">
-                        <div class="custom_itinerary_text3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum is simply dummy
-                            text of the
-                            printing and typesetting industry.
-                        </div>
-                    </div>
-                    <div class="" style="width: 100%;padding: 0 0 10px 0;">
-                        <q-btn class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;">
-                            <div class="custom_btn_text">Message Us</div>
-                            <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
-                                <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
+                <div style="padding: 10px 10px 0 10px;">
+                    <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;">
+                        <div class="row" style="width: 100%;">
+                            <div style="width: 20%;">
+                                <q-avatar>
+                                    <img src="../assets/editcard/avatar2.svg" alt="">
+                                </q-avatar>
                             </div>
-                        </q-btn>
-                    </div>
-                </q-card>
-                <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;margin-top: 20px;">
-                    <div class="row" style="width: 100%;">
-                        <div style="width: 20%;">
-                            <q-avatar>
-                                <img src="../assets/editcard/avatar2.svg" alt="">
-                            </q-avatar>
-                        </div>
-                        <div class="column" style="width: 80%;">
-                            <div class="custom_itinerary_text1">Simran Chaudhary</div>
-                            <div class="custom_itinerary_text2">Color Holidays</div>
-                            <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
-                        </div>
-                    </div>
-                    <div style="padding: 8px;">
-                        <div class="custom_itinerary_text3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum is simply dummy
-                            text of the
-                            printing and typesetting industry.
-                        </div>
-                    </div>
-                    <div class="" style="width: 100%;padding: 0 0 10px 0;">
-                        <q-btn class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;">
-                            <div class="custom_btn_text">Message Us</div>
-                            <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
-                                <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
+                            <div class="column" style="width: 80%;">
+                                <div class="custom_itinerary_text1">Simran Chaudhary</div>
+                                <div class="custom_itinerary_text2">Color Holidays</div>
+                                <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
                             </div>
-                        </q-btn>
-                    </div>
-                </q-card>
-                <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;margin-top: 20px;">
-                    <div class="row" style="width: 100%;">
-                        <div style="width: 20%;">
-                            <q-avatar>
-                                <img src="../assets/editcard/avatar2.svg" alt="">
-                            </q-avatar>
                         </div>
-                        <div class="column" style="width: 80%;">
-                            <div class="custom_itinerary_text1">Simran Chaudhary</div>
-                            <div class="custom_itinerary_text2">Color Holidays</div>
-                            <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
-                        </div>
-                    </div>
-                    <div style="padding: 8px;">
-                        <div class="custom_itinerary_text3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                            Ipsum is simply dummy
-                            text of the
-                            printing and typesetting industry.
-                        </div>
-                    </div>
-                    <div class="" style="width: 100%;padding: 0 0 10px 0;">
-                        <q-btn class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;">
-                            <div class="custom_btn_text">Message Us</div>
-                            <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
-                                <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
+                        <div style="padding: 8px;">
+                            <div class="custom_itinerary_text3">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum is simply dummy
+                                text of the
+                                printing and typesetting industry.
                             </div>
-                        </q-btn>
-                    </div>
-                </q-card>
+                        </div>
+                        <div class="" style="width: 100%;padding: 0 0 10px 0;">
+                            <q-btn icon="question_answer" v-bind:disable="true" class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;color: #F4F4F4;">
+                                <div class="custom_btn_text" style="margin-left: 10px;">Message Us</div>
+                                <!-- <div style="height: auto;width:auto; max-width: 100%;justify-content: center;margin-left: 5px;">
+                                <img src="../assets/editcard/whatsapp.svg" alt="" style="width: 70%;height: 70%;">
+                            </div> -->
+                            </q-btn>
+                        </div>
+                    </q-card>
+                </div>
+                <div style="padding: 0 10px 0 10px;">
+                    <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;margin-top: 20px;">
+                        <div class="row" style="width: 100%;">
+                            <div style="width: 20%;">
+                                <q-avatar>
+                                    <img src="../assets/editcard/avatar2.svg" alt="">
+                                </q-avatar>
+                            </div>
+                            <div class="column" style="width: 80%;">
+                                <div class="custom_itinerary_text1">Simran Chaudhary</div>
+                                <div class="custom_itinerary_text2">Color Holidays</div>
+                                <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
+                            </div>
+                        </div>
+                        <div style="padding: 8px;">
+                            <div class="custom_itinerary_text3">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum is simply dummy
+                                text of the
+                                printing and typesetting industry.
+                            </div>
+                        </div>
+                        <div class="" style="width: 100%;padding: 0 0 10px 0;">
+                            <q-btn icon="question_answer" v-bind:disable="true" class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;color: #F4F4F4;">
+                                <div class="custom_btn_text" style="margin-left: 10px;">Message Us</div>
+                            </q-btn>
+                        </div>
+                    </q-card>
+                </div>
+                <div style="padding: 0 10px 10px 10px;">
+                    <q-card class="column" style="background-color: #F4F4F4;padding: 10px 10px 0 10px;margin-top: 20px;">
+                        <div class="row" style="width: 100%;">
+                            <div style="width: 20%;">
+                                <q-avatar>
+                                    <img src="../assets/editcard/avatar2.svg" alt="">
+                                </q-avatar>
+                            </div>
+                            <div class="column" style="width: 80%;">
+                                <div class="custom_itinerary_text1">Simran Chaudhary</div>
+                                <div class="custom_itinerary_text2">Color Holidays</div>
+                                <q-rating v-model="ratingModel" size="1em" :max="5" color="#FDD836" />
+                            </div>
+                        </div>
+                        <div style="padding: 8px;">
+                            <div class="custom_itinerary_text3">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                Ipsum is simply dummy
+                                text of the
+                                printing and typesetting industry.
+                            </div>
+                        </div>
+                        <div class="" style="width: 100%;padding: 0 0 10px 0;">
+                            <q-btn icon="question_answer" v-bind:disable="true" class="row full-width" style="width: auto;background-color: #003FA3;justify-content: center;color: #F4F4F4;">
+                                <div class="custom_btn_text" style="margin-left: 10px;">Message Us</div>
+                            </q-btn>
+                        </div>
+                    </q-card>
+                </div>
             </div>
         </div>
     </div>
