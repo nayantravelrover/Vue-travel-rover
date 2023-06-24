@@ -10,12 +10,12 @@
                             <nav class="col-list">
                                 <ul>
                                     <li><a href="#">
-                            <li>Sitaram Nagane House, Zakeria Rd,</li>
+                            <!-- <li>Sitaram Nagane House, Zakeria Rd,</li>
                             <li>Opp Tulsi Hotel, Opp Zee Nest Cyber,</li>
                             <li>Malad (west),Mumbai -400064,</li>
-                            <li>Maharashtra</li>
-                            <li>Phone number : 02228810028</li>
-                            <li>Email - sales@travelrover.in</li>
+                            <li>Maharashtra</li> -->
+                            <li>Phone number : +917977790353</li>
+                            <li>Email - info@travelrover.in</li>
                           </a></li>
                                     <li>
                                         <h3 class="social-col-title">Follow us</h3>
@@ -50,11 +50,7 @@
     
                     </div>
                     <div class="col-md-5 col-xs-12 mobile-view-footer" >
-    
-    
                         <div class="row">
-    
-    
                             <span>
                                 <h3 class="col-title" style="font-family: Poppins;">Company</h3>
                                 <nav class="col-list">
@@ -103,7 +99,6 @@
                     <h3 class="col-title-bottom" style="font-family: Poppins;">Terms & Conditions &nbsp; &nbsp; Privacy Policy</h3>
                     </div>
                 </div>
-    
             </div>
         </footer>
     </div>
