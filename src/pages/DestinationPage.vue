@@ -32,7 +32,7 @@
                     </div>
                     <div>
 
-                        <q-carousel class="q-pa" style="margin-right: 5px;" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
+                        <q-carousel class="q-pa" style="margin-right: 5px;" v-model="slide_itineraries" transition-prev="slide-right" transition-next="slide-left"
                           swipeable
                           animated
                           control-color="primary"
@@ -460,6 +460,7 @@ export default defineComponent({
             slide: ref(1),
             card: ref(false),
             edititinerary: ref(false),
+            slide_itineraries: ref(1)
         };
     },
     components: {

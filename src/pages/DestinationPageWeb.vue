@@ -30,7 +30,7 @@
             <text class="text10" style="margin-left: 10%;">Our top-selling Itineraries</text>
         </div>
         <div >
-        <q-carousel style="height: fit-content;padding: 50px;display: flex;justify-content: center;" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
+        <q-carousel style="height: fit-content;padding: 50px;display: flex;justify-content: center;" class="q-pa" v-model="slide_itineraries" transition-prev="slide-right" transition-next="slide-left"
       swipeable
       animated
       control-color="primary"
@@ -539,6 +539,7 @@ export default {
             slide: ref(1),
             card: ref(false),
             edititinerary: ref(false),
+            slide_itineraries: ref(1)
         };
     },
     data(){
