@@ -79,6 +79,11 @@
                         <img src="../assets/profilepage/accounticon.svg" alt="">
                         <div class="profile_text">My Profile</div>
                     </div> -->
+                    
+                    <div class="row profile_spacing"  @click="this.show_purchased">
+                        <img src="../assets/profilepage/visibility.svg" alt="">
+                        <div class="profile_text">Purchased Itineraries</div>
+                    </div>
                     <q-separator />
                     <div class="row profile_spacing" @click="this.show_liked">
                         <img src="../assets/profilepage/favorite.svg" alt="">
@@ -87,7 +92,7 @@
                     <q-separator />
                     <div class="row profile_spacing"  @click="this.show_viewed">
                         <img src="../assets/profilepage/visibility.svg" alt="">
-                        <div class="profile_text">Viewed Itineraries</div>
+                        <div class="profile_text">My Created Itineraries</div>
                     </div>
                     <!-- <q-separator /> -->
                     <!-- <div class="row profile_spacing"  @click="this.show_custom">
@@ -106,9 +111,9 @@
                 <ViewedItinerary/>
             </div>
 
-            <!-- <div v-if="this.show_custom_itinerary==true">
-                <CustomItinerary/>
-            </div> -->
+            <div v-if="this.show_purchased_itinerary==true">
+                <PurchasedItinerary/>
+            </div>
 
             
         </div>
@@ -118,7 +123,7 @@
 import { ref } from 'vue'
 import LikedItinerary from "./LikedItinerary.vue"
 import ViewedItinerary from "./ViewedItinerary.vue"
-// import CustomItinerary from "./CustomItinerary.vue"
+import PurchasedItinerary from "./PurchasedItinerary.vue"
 import LoginPage2 from "./LoginPage2.vue"
 import RegisterPage from "./RegisterPage.vue"
 
@@ -141,7 +146,7 @@ export default {
     data(){
         return{
             show_liked_itinerary:true,
-            show_custom_itinerary:false,
+            show_purchased_itinerary:false,
             show_viewed_itinerary: false,
             username: "User",
             mobile_number: "9999999999",
@@ -153,34 +158,51 @@ export default {
         LoginPage2,
         RegisterPage,
         ViewedItinerary,
-        // CustomItinerary,
+        PurchasedItinerary,
         ViewItinerary
     },
     mounted(){
-        console.log("here")
+        
         check_if_access_token_is_valid().then(response=>{
-            console.log(response)
             this.username = response["data"]["username"]
             this.mobile_number = response["data"]["mobile_number"]
             this.name = response["data"]["first_name"]
-            console.log(this.username)
-            console.log(this.mobile_number)
         })
+
+    },
+    created(){
+        const urlParams = window.location.href;
+        var url_params = window.location.href.split("?")[1];
+        var params = new URLSearchParams(url_params);
+        
+        var itinerary_pk = params.get('pk');
+        console.log(itinerary_pk)
+        if(itinerary_pk == null){
+            this.show_liked_itinerary = true
+            this.show_purchased_itinerary = false
+            this.show_viewed_itinerary = false
+        }else{
+            this.show_liked_itinerary = false
+            this.show_purchased_itinerary = true
+            this.show_viewed_itinerary = false
+        }
+        
+
     },
     methods:{
         show_liked(){
             this.show_liked_itinerary = true
-            this.show_custom_itinerary = false
+            this.show_purchased_itinerary = false
             this.show_viewed_itinerary = false
         },
-        show_custom(){
+        show_purchased(){
             this.show_liked_itinerary = false
-            this.show_custom_itinerary = true
+            this.show_purchased_itinerary = true
             this.show_viewed_itinerary = false
         },
         show_viewed(){
             this.show_liked_itinerary = false
-            this.show_custom_itinerary = false
+            this.show_purchased_itinerary = false
             this.show_viewed_itinerary = true
         },
         go_to_home(){

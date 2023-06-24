@@ -284,6 +284,19 @@ function get_itinerary(itinerary_pk){
   });
 }
 
+
+function get_purchased_itinerary(data,access_token){
+  var endpoint = base_url + 'travel-rover/get-purchased-itinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + access_token
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+}
+
+
 export {
   places,
   base_url,
@@ -304,5 +317,6 @@ export {
   my_itinerary,
   create_prompt,
   create_chatgpt_itinerary,
-  get_itinerary
+  get_itinerary,
+  get_purchased_itinerary
 }

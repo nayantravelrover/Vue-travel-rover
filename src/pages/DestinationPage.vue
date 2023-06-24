@@ -524,7 +524,8 @@ export default defineComponent({
                     "cancellation_policy":items.cancellation_policy,
                     "itinerary_pk":JSON.parse(response.data.data)[i].pk,
                     "complete_itinerary":items,
-                    "travel_dates": items.start_dates
+                    "travel_dates": items.start_dates,
+                    "payment_link": items.payment_link
                 }
                 
                 console.log(items.itinerary_name + "  " + items.start_dates)
