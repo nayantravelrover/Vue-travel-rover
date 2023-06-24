@@ -2,7 +2,7 @@
     <div>
         <q-toolbar style="background-color: rgba(0,0,0, 0.4);border-radius: 29px;">
             <q-toolbar-title class="q-pa-md row item-center">
-                <img src="../assets/logo.svg" style="max-width: 200px;" @click="go_to_home"/>
+                <img src="../assets/logo.svg" style="max-width: 200px;cursor: pointer;" @click="go_to_home"/>
             </q-toolbar-title>
             <q-btn flat dense class="q-ml-md" label="Home" style="font-family: Poppins;color:white;" @click="go_to_home"/>
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="white">

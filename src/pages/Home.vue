@@ -10,11 +10,11 @@
             <q-select
               bg-color="white"
               rounded
-              standout
+              outlined
               v-model="where_to"
               :options="options"
               label="Where to?"
-              style="font-family: Poppins"
+              style="font-family: Poppins;"
             >
               <template v-slot:prepend>
                 <q-icon style="margin-left: 5px" name="place" />
@@ -391,7 +391,7 @@
       </div> -->
       <div class="row justify-center section-3">
         <div class="col-md-5">
-          <h3 style="margin-left: 25px">Why Choose Us</h3>
+          <h3 style="margin-left: 25px">About Us</h3>
           <h4 style="margin-left: 25px">
             {{ basic_data["why_choose_us_header"] }}
           </h4>
@@ -400,14 +400,15 @@
               v-for="(items, index) in basic_data['headers_of_why_choose_us']"
               :key="items"
             >
-              <q-item clickable v-ripple>
+              <q-item v-ripple style="cursor: pointer;">
                 <q-item-section avatar>
                   <q-avatar
                     rounded
                     :color="svgs_color[index]"
                     text-color="white"
-                    :icon="basic_data['svgs_of_why_choose_us'][index]"
-                  />
+                  >
+                  <img :src="basic_data['svgs_of_why_choose_us'][index]" alt=""/>
+                </q-avatar>
                 </q-item-section>
 
                 <q-item-section>
@@ -586,12 +587,12 @@
                   <ul>
                     <li>
                       <a href="#" style="font-family: Poppins">
-                        <li>Sitaram Nagane House, Zakeria Rd,</li>
+                        <!-- <li>Sitaram Nagane House, Zakeria Rd,</li>
                         <li>Opp Tulsi Hotel, Opp Zee Nest Cyber,</li>
                         <li>Malad (west),Mumbai -400064,</li>
-                        <li>Maharashtra</li>
-                        <li>Phone number : 02228810028</li>
-                        <li>Email - sales@travelrover.in</li>
+                        <li>Maharashtra</li> -->
+                        <li>Phone number : +917977790353</li>
+                        <li>Email - info@travelrover.in</li>
                       </a>
                     </li>
                     <li>
@@ -629,7 +630,7 @@
                             <path
                               d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
                             /></svg></a>
-                        <a href="#" class="instagram"
+                        <a href="https://instagram.com/travel_rovers?igshid=MzRlODBiNWFlZA==" class="instagram"
                           ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -1031,7 +1032,7 @@ export default defineComponent({
         "Steps to join your ultimate and trustworthy travel partner with us",
       why_choose_us_header:
         "You should choose us because we give you the best agents",
-      svgs_of_why_choose_us: ["app.clickup", "lauda_lasoon"],
+      svgs_of_why_choose_us: ["https://admin.travelrover.in/media/files/expert-advice-icon-linear-isolated-vector-35007621.jpeg","https://cdn-icons-png.flaticon.com/512/7057/7057824.png","https://cdn-icons-png.flaticon.com/128/3343/3343387.png","https://cdn.iconscout.com/icon/premium/png-512-thumb/customer-insights-2443714-2029126.png?f=avif&w=512","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR--nL2QL33LmxKHUmmO7wT5X261XNxza5j4A7KcdJ-A&s","https://cdn-icons-png.flaticon.com/128/8163/8163551.png"],
       headers_of_why_choose_us: [
         "Trips & Travel ",
         " Sales ",

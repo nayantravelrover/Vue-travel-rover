@@ -92,8 +92,9 @@
             </div>
             </q-carousel-slide>      
         </q-carousel>
-        <div style="display: flex;justify-content: center;margin: 40px;">
-                <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+        <div style="display: flex;justify-content: center;margin: 40px;flex-direction: column;">
+            <text style="font-family: Poppins;font-size: large;font-weight: 500;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!" beside the button "AI-powered journey button" </text>
+                <button style="margin-top: 10px;" @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
             </div>
                     </div>
 
