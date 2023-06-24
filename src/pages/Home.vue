@@ -10,7 +10,7 @@
             <q-select
               bg-color="white"
               rounded
-              standout
+              outlined
               v-model="where_to"
               :options="options"
               label="Where to?"
@@ -391,7 +391,7 @@
       </div> -->
       <div class="row justify-center section-3">
         <div class="col-md-5">
-          <h3 style="margin-left: 25px">Why Choose Us</h3>
+          <h3 style="margin-left: 25px">About Us</h3>
           <h4 style="margin-left: 25px">
             {{ basic_data["why_choose_us_header"] }}
           </h4>
@@ -400,14 +400,15 @@
               v-for="(items, index) in basic_data['headers_of_why_choose_us']"
               :key="items"
             >
-              <q-item clickable v-ripple>
+              <q-item v-ripple style="cursor: pointer;">
                 <q-item-section avatar>
                   <q-avatar
                     rounded
                     :color="svgs_color[index]"
                     text-color="white"
-                    :icon="basic_data['svgs_of_why_choose_us'][index]"
-                  />
+                  >
+                  <img :src="basic_data['svgs_of_why_choose_us'][index]" alt=""/>
+                </q-avatar>
                 </q-item-section>
 
                 <q-item-section>
@@ -1031,7 +1032,7 @@ export default defineComponent({
         "Steps to join your ultimate and trustworthy travel partner with us",
       why_choose_us_header:
         "You should choose us because we give you the best agents",
-      svgs_of_why_choose_us: ["app.clickup", "lauda_lasoon"],
+      svgs_of_why_choose_us: ["https://admin.travelrover.in/media/files/expert-advice-icon-linear-isolated-vector-35007621.jpeg","https://cdn-icons-png.flaticon.com/512/7057/7057824.png","https://cdn-icons-png.flaticon.com/128/3343/3343387.png","https://cdn.iconscout.com/icon/premium/png-512-thumb/customer-insights-2443714-2029126.png?f=avif&w=512","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR--nL2QL33LmxKHUmmO7wT5X261XNxza5j4A7KcdJ-A&s","https://cdn-icons-png.flaticon.com/128/8163/8163551.png"],
       headers_of_why_choose_us: [
         "Trips & Travel ",
         " Sales ",
