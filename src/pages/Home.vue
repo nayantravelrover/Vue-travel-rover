@@ -99,9 +99,9 @@
           class="left-section col-md-7 q-pa-md-lg-xl"
           style="margin-top: 30px"
         >
-          <text class="maintxt"
-            ><b>{{ basic_data["header_content"] }}</b></text
-          >
+          <text class="maintxt">
+            <b>{{ basic_data["header_content"] }}</b>
+          </text>
           <h4>{{ basic_data["intro_content"] }}</h4>
           <!-- <q-btn color="" text-color="black" class="explore-btn" label="Explore Destinations"
             :icon-right="matTrendingFlat" @click="scroll('destinations')" /> -->
@@ -395,7 +395,7 @@
           <h4 style="margin-left: 25px">
             {{ basic_data["why_choose_us_header"] }}
           </h4>
-          <div class="q-pa-md" style="max-width: 350px">
+          <div class="q-pa-md" style="max-width: 550px">
             <q-list
               v-for="(items, index) in basic_data['headers_of_why_choose_us']"
               :key="items"
@@ -486,9 +486,8 @@
         :itemsToShow="isMobile ? 1 : 2.2"
         :itemsToScroll="1"
         :wrap-around="true"
-        v-bind:autoplay="true"
+        v-bind:autoplay="2000"
         v-bind:pause-autoplay-on-hover="true"
-        v-bind:autoplayInterval="2000"
         style="margin-top: -30px"
       >
         <Slide v-for="(items, index) in review_content" :key="items">
@@ -1090,6 +1089,7 @@ body {
 .maintxt {
   font-family: "Poppins";
   font-style: normal;
+  text-transform: capitalize;
   font-weight: 500;
   font-size: 30.8559px;
   line-height: 160%;
