@@ -1,13 +1,13 @@
 <template>
 
-    <ItineraryPreview class="q-pa-sm"  id="preview" v-if="$q.platform.is.mobile"></ItineraryPreview>
+    <ItineraryPreviewFullData class="q-pa-sm"  id="preview" v-if="$q.platform.is.mobile"></ItineraryPreviewFullData>
 
     <div class="row" style="min-height: 100%" v-else>
 
     <div class="col-12 q-pa-lg" style="background-color: #4B5563;">
       <img class="top-left" src="../assets/logo.svg" style="max-width: 200px" />
       <q-scroll-area style="height: 100vh; margin: 0 auto; max-width: 800px;">
-        <ItineraryPreview class="q-pa-md"  id="preview"></ItineraryPreview>
+        <ItineraryPreviewFullData class="q-pa-md"  id="preview"></ItineraryPreviewFullData>
       </q-scroll-area>
     </div>
   </div>
@@ -17,7 +17,7 @@
 
 
 <script>
-import ItineraryPreview from "components/ItineraryPreview";
+import ItineraryPreviewFullData from "components/ItineraryPreviewFullData";
 
 import {get_itinerary} from "src/common/api_calls";
 
@@ -26,7 +26,7 @@ import { useQuasar, Notify } from 'quasar'
 
 export default {
   name: "ItineraryPreviewOpenToInternet",
-  components: {ItineraryPreview},
+  components: {ItineraryPreviewFullData},
   mounted() {
       try{
         const urlParams = window.location.href;
