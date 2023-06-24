@@ -1,8 +1,7 @@
 <template>
     <div>
         <div>
-            <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
-                transition-next="slide-left">
+            <q-carousel class="q-pa full-screen" style="height: 750px;" animated v-model="slide" arrows navigation infinite :autoplay="autoplay" transition-prev="slide-right" transition-next="slide-left">
                     <q-carousel-slide  v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                     <AppBar/>
                     <div class="gt-xs">
@@ -38,21 +37,21 @@
       arrows>
             <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list.length/3)" :key="i" :name="i" class="column no-wrap">
                 <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-card v-for="item in itineraries_list.slice((i - 1) * 3, i * 3)" :key="item" class="iternarybox" style="margin-left:35px;">
+                <q-card v-for="item in itineraries_list.slice((i - 1) * 3, i * 4)" :key="item" class="iternarybox" style="margin-left:35px;">
                     <q-img :src="item.place_img" style="height: 282px;" />
                     <div class="heartbox"><q-img :src="this.$parent.heart_transparent" class="heart" @click="this.$parent.like_unlike_itinerary($event,item.itinerary_pk)" />
                     </div>
                     <div style="margin-top: 25px; margin-left: 20px;">
                         <text class="text12">{{item.itinerary_name}}</text>
                     </div>
+                    <div style="height: 320px;overflow-x: scroll;">
+                        <ul class="text13" style="height: auto;">
+                            <li v-for="list_item in item.place_description" :key="list_item">
+                                {{ list_item }}
+                            </li>
+                        </ul>
+                    </div>
                     
-
-
-                    <ul class="text13">
-                        <li v-for="list_item in item.place_description" :key="list_item">
-                            {{list_item}}
-                        </li>
-                    </ul>
                     <div class="line_break" style="margin-left: 10px; margin-top:10px;"></div>
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
@@ -93,7 +92,7 @@
             </q-carousel-slide>      
         </q-carousel>
         <div style="display: flex;justify-content: center;margin: 40px;">
-            <button @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+            <button @click="showModal = true" class="button explore-btn" style="border: none;">AI-Powered Journey Planner</button>
         </div>
         <div style="margin-left: 0px;">
              <div>
@@ -404,26 +403,29 @@
             </div>
 
            
-            <div class="view_all justify-right" style="margin-top: 50px; margin-left: 80%;">
+            <!-- <div class="view_all justify-right" style="margin-top: 50px; margin-left: 80%;">
                 <a href="#">View all</a>
-            </div>
+            </div> -->
         </div>
         </div>
         <div>
             <footer class="footer" id="footer">
                 <div class="q-pa-md">
         
-                    <div class="row">
+                    <div class="row" style="font-family: Poppins;">
                         <div class="col-md-4 col-xs-12">
                             <span>
-                                <h3 class="col-title">Corporate Office</h3>
+                                <h3 class="col-title" style="font-family: Poppins;">Corporate Office</h3>
                                 <nav class="col-list">
                                     <ul>
-                                        <li><a href="#">Sitaram Nagane House, Zakeria Rd, Opp Tulsi Hotel, Opp Zee Nest Cyber,
-                                                Malad (west),
-                                                Mumbai -400064, Maharashtra
-                                                Phone number : 02228810028
-                                                Email - sales@travelrover.in</a></li>
+                                        <li><a href="#">
+                            <li>Sitaram Nagane House, Zakeria Rd,</li>
+                            <li>Opp Tulsi Hotel, Opp Zee Nest Cyber,</li>
+                            <li>Malad (west),Mumbai -400064,</li>
+                            <li>Maharashtra</li>
+                            <li>Phone number : 02228810028</li>
+                            <li>Email - sales@travelrover.in</li>
+                          </a></li>
                                         <li>
                                             <h3 class="social-col-title">Follow us</h3>
                                             <div class="social-media-list">

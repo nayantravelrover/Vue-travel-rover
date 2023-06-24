@@ -5,7 +5,6 @@
             <div>
                 <q-carousel class="goaslide q-pa" animated v-model="slide" navigation infinite
                     :autoplay="autoplay" arrows transition-prev="slide-right" transition-next="slide-left">
-
                     <q-carousel-slide v-for="items,index in this.place_description['images']" :key="index" :name="index" :img-src=items>
                         <AppBar />
                         <div id="inner" style="display: table;margin: 0 auto; margin-top: 35%;color: white;font-weight: bold;">
@@ -40,10 +39,10 @@
                           navigation
                           arrows
                           >
-            <q-carousel-slide  class="column no-wrap" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
+            <q-carousel-slide style="height: auto;"  class="column no-wrap" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
 
-                <div class="row fit justify-start items-center q-col no-wrap">
-                <q-card  class="iternarybox" style="width: 100%">
+                <div class="row fit justify-start items-center q-col no-wrap" style="margin-bottom: 80px;">
+                <q-card  class="iternarybox" style="width: 100%;height: fit-content;">
                     <q-img :src="item.place_img" style="height: 282px;" />
                     <div class="heartbox"><q-img :src="this.heart_transparent" class="heart" @click="this.like_unlike_itinerary($event,item.itinerary_pk)" />
                     </div>
@@ -76,7 +75,7 @@
                         </div>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
-                    <div style="margin-top: 25px; margin-left: 28px; margin-bottom: 30px;">
+                    <div style="margin-top: 25px; margin-left: 28px;margin-bottom: 60px;">
                         <div class="btns">
                             <q-btn class="compare" unelevated
                                 style="background-color: #EFF4FF; color: #003FA3; font-family: Poppins;"
@@ -100,7 +99,7 @@
 
                     <div style="margin-left: 10px;margin-right: 10px;">
                         <div>
-    <div class="q-pa-md">
+    <div class="q-pa-md" style="overflow-y: scroll;">
         <q-card class="column" style="min-width: 1200px;">
             <div class="compare_main_title" style="padding: 10px 0 10px 20px;">Itinerary Comparison</div>
             <div class="row compare_content">

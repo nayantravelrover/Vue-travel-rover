@@ -1,6 +1,9 @@
 <template>
+  <div style="background-color: #333;padding: 10px;">
+    <AppBar/>
+  </div>
   <div class="header">
-    <h3>Agent or DIY? Making the Right Choice for Your Travel Experience</h3>
+    <text>Agent or DIY? Making the Right Choice for Your Travel Experience</text>
   </div>
 
   <div class="blog-post">
@@ -51,9 +54,11 @@
 </template>
 
 <script>
+import AppBar from "../pages/AppBar.vue";
 
 export default {
-  name: "Agent_or_diy"
+    name: "Agent_or_diy",
+    components: { AppBar }
 }
 
 </script>
@@ -69,8 +74,12 @@ export default {
     .header {
       background-color: #333;
       color: #fff;
-      padding: 20px;
+      font-size: 30px;
+      font-weight: bold;
       text-align: center;
+      padding-bottom: 50px;
+      padding-top: 30px;
+      border-radius: 0 0 30px 30px;
     }
 
     .blog-post {
@@ -100,5 +109,14 @@ export default {
     .conclusion {
       font-style: italic;
       text-align: center;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header{
+        font-size: 23px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px 10px 40px 10px;
+      }
     }
   </style>
