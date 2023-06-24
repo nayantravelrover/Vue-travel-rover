@@ -29,6 +29,7 @@
         <div class="full-width">
             <text class="text10" style="margin-left: 10%;">Our top-selling Itineraries</text>
         </div>
+        <div >
         <q-carousel style="height: fit-content;padding: 50px;display: flex;justify-content: center;" class="q-pa" v-model="slide" transition-prev="slide-right" transition-next="slide-left"
       swipeable
       animated
@@ -37,7 +38,7 @@
       arrows>
             <q-carousel-slide  v-for="i in Math.ceil(this.itineraries_list.length/3)" :key="i" :name="i" class="column no-wrap">
                 <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
-                <q-card v-for="item in itineraries_list.slice((i - 1) * 3, i * 4)" :key="item" class="iternarybox" style="margin-left:35px;">
+                <q-card v-for="item in itineraries_list.slice((i - 3) * 3, i * 3)" :key="item" class="iternarybox" style="margin-left:65px;">
                     <q-img :src="item.place_img" style="height: 282px;" />
                     <div class="heartbox"><q-img :src="this.$parent.heart_transparent" class="heart" @click="this.$parent.like_unlike_itinerary($event,item.itinerary_pk)" />
                     </div>
@@ -91,6 +92,7 @@
 
             </q-carousel-slide>      
         </q-carousel>
+        </div>
         <div style="display: flex;justify-content: center;margin: 40px;">
             <button @click="showModal = true" class="button explore-btn" style="border: none;">AI-Powered Journey Planner</button>
         </div>
