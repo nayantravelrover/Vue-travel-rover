@@ -341,10 +341,11 @@
       <div class="carousel-heading">
         <h5 class="text-center">Top Destinations</h5>
       </div>
-      <Carousel :itemsToShow="isMobile ? 1.3 : 5.3" v-model="slide">
+      <Carousel :itemsToShow="isMobile ? 1.2 : 5.3" v-model="slide">
         <Slide
           v-for="(items, index) in basic_data['explore_destination_images']"
           :key="items"
+          arrows
         >
           <div
             class="carousel__item-1"
@@ -361,8 +362,7 @@
 
               <q-card-section>
                 <div class="row no-wrap justify-between">
-                  <div
-                    class="col-md-6 text-black text-caption text-weight-fat bold"
+                  <div class="col-md-6 text-black text-caption text-weight-fat bold"
                   >
                     {{ basic_data["explore_destination"][index] }}
                   </div>
@@ -1052,6 +1052,7 @@ export default defineComponent({
         " Himachal Pradesh ",
         " Goa ",
         " Kashmir",
+        " Rajasthan"
       ],
       explore_destination_images: [
         "https://admin.travelrover.in/media/files/uttarakhand_ocauCp1.jpg ",

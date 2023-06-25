@@ -13,7 +13,7 @@
     <div class="text-bold q-pa-md row">{{itinarary_data.itinerary_name}}</div>
     <div class="text-bold q-pa-md row" style="font-size: medium" v-html="itinarary_data.tour_highlights"></div>
 
-    <ItineraryDates></ItineraryDates>
+    <!-- <ItineraryDates></ItineraryDates> -->
     <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" style="width: 100%;">
       <DayPreview :day="day" :day_index="index"></DayPreview>
     </div>
@@ -62,13 +62,13 @@
 <script>
 import DayPreview from "components/DayPreview";
 import ItineraryContentPreview from "components/ItineraryContentPreview";
-import ItineraryDates from "components/ItineraryDates";
+// import ItineraryDates from "components/ItineraryDates";
 // import ExtraSections from "components/ExtraSections";
 
 
 export default {
   name: "ItineraryPreviewFullData",
-  components: {ItineraryDates, ItineraryContentPreview,DayPreview},
+  components: {ItineraryContentPreview,DayPreview},
   methods: {
     print () {
       // Pass the element id here

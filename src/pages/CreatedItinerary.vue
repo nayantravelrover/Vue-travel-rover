@@ -3,7 +3,7 @@
         <div class="q-pa-md lt-md">
             <!-- <AppBar /> -->
             <div class="col-12" style="margin-top: 50px;">
-                <text class="new2" style="margin-left: 10px;">Viewed Itineraries</text>
+                <text class="new2" style="margin-left: 10px;">My Created Itineraries</text>
                 <q-card class="column" style="padding: 5px;">
                     <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
                         <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;">
@@ -14,14 +14,14 @@
                                     </q-img>
                                 </div>
                                 <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">Exotic Kerala 9 Nights / 10 Days Tour
+                                    <div class="viewed_itinerary_mobile_text">{{item.itinerary_name}}
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 20px;width: 100%;">
                                 <div style="width: 50%;"></div>
                                 <div style="width: 50%;">
-                                    <q-btn class="viewed_itineray_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
+                                    <q-btn class="viewed_itineray_btn" @click="this.purchased_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
         <div class="gt-sm">
             <q-card class="column" style="min-width: 800px;border-radius: 14px;max-width: 800px;">
                 <div class="column">
-                    <div class="profile_liked">Viewed Itineraries</div>
+                    <div class="profile_liked">My Created Itineraries</div>
                     <div style="padding: 10px;">
             
                         <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
@@ -66,8 +66,8 @@
                                             Inclusion
                                         </div>
                                         <div class="profile_itinerary_card_text4">
-                                            <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
-                                            <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+                                            <text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
+                                            <text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
                                         </div>
                                     </div>
                                     <div class="profile_itinerary_card_text5" style="margin-top:10px;">Starts</div>
@@ -75,7 +75,7 @@
                                         <div class="profile_itinerary_card_text6" style="margin-top:10px;">{{item.tour_rates}}</div>
                                         <div class="profile_itinerary_card_text4" style="margin-top:20px;">/Per Person</div>
                                     </div>
-                                    <q-btn class="profile_view_itinerary_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
+                                    <q-btn class="profile_view_itinerary_btn" @click="this.purchased_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                             <q-separator />
@@ -125,13 +125,13 @@
 <script>
 import { defineComponent } from "vue";
 // import AppBar from "./AppBar.vue";
-import {get_liked_itineraries, check_if_access_token_is_valid,check_if_refresh_token_is_valid,get_viewed_itineraries} from "src/common/api_calls";
+import {get_liked_itineraries, check_if_access_token_is_valid,check_if_refresh_token_is_valid,created_itinerary_api} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 
 let $q
 
 export default defineComponent({
-    name: "LikedItinerary",
+    name: "CreatedItinerary",
 
     // components: {
     //     AppBar
@@ -145,6 +145,15 @@ export default defineComponent({
         $q = useQuasar()
     },
     methods:{
+        purchased_itinerary(itinerary_pk){
+
+
+                // Get the current URL
+                var urlString = window.location.origin + "/#/itinerarylink?pk=" + itinerary_pk;
+
+                // Open the URL in a new tab
+                window.open(urlString, '_blank');
+            },
         view_itinerary(itinerary_pk){
                 console.log(itinerary_pk)
                 var data = {
@@ -204,7 +213,7 @@ export default defineComponent({
 
         check_if_access_token_is_valid().then(response=>{
                   var access_token = window.localStorage.getItem("travel_rover_access");
-                  get_viewed_itineraries(access_token).then(response =>{
+                  created_itinerary_api({},access_token).then(response =>{
                         
                         var itineraries_list = []
                         for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
@@ -216,6 +225,8 @@ export default defineComponent({
                                 "place_img": items.place_img,
                                 "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                                 "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "inclusions_headers": items.inclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
+                    "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
                                 "tour_rates": items.tour_rates,
                                 "tour_highlights":items.tour_highlights,
                                 "places_to_visit": items.places_to_visit,
@@ -242,7 +253,7 @@ export default defineComponent({
                     check_if_refresh_token_is_valid().then(response => {
                       var access_token = response["data"]["access"];
                       window.localStorage.setItem("travel_rover_access", access_token);
-                      get_viewed_itineraries(access_token).then(response =>{
+                      created_itinerary_api({}, access_token).then(response =>{
                         
                         var itineraries_list = []
                         for (var i = 0; i < JSON.parse(response.data.data).length; i++) {

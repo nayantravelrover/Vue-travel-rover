@@ -95,6 +95,40 @@
         <div style="display: flex;justify-content: center;margin: 40px;flex-direction: column;">
             <text style="font-family: Poppins;font-size: large;font-weight: 500;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!" beside the button "AI-powered journey button" </text>
                 <button style="margin-top: 10px;" @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
+                <transition name="fade" appear>
+            <div
+              class="modal-overlay"
+              v-if="showModal"
+              @click="showModal = false"
+            ></div>
+          </transition>
+          <transition name="pop" appear>
+            <div
+              class="modal"
+              role="dialog"
+              v-if="showModal"
+              style="max-width: fit-content"
+            >
+              <div class="chatgpt-prompt">
+                <h5>Write your travel related needs below</h5>
+                <q-input
+                  v-model="area"
+                  class="text-area"
+                  type="textarea"
+                  float-label="Textarea"
+                  :max-height="100"
+                  :min-rows="3"
+                  placeholder="I want to go to Himachal Pradesh for 5 days with my family."
+                />
+              </div>
+              <button
+                @click="create_chatgpt_prompt()"
+                class="button submit-btn"
+              >
+                Submit
+              </button>
+            </div>
+          </transition>
             </div>
                     </div>
 
@@ -184,7 +218,7 @@
                     <div class="compare_mains">
                         <div class="compare_title">Tour Departure</div>
                     </div>
-                    <div class="row compare_content">
+                   <!--  <div class="row compare_content">
                         <div class="compare_inner_content"></div>
                         <div class="compare_inner_content">
                             
@@ -217,7 +251,7 @@
                                   row-key="name"
                                 />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="column compare_box">
                     <div class="compare_mains">
@@ -392,9 +426,11 @@
                         <q-img src="../assets/Goa/cartoon.svg" />
                         <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your
                             itinerary?</text>
-                        <q-btn class="btn12" unelevated rounded color="primary" @click="edititinerary = true"><text
+                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I am excited to plan an upcoming trip and would appreciate your expertise in creating a customized itinerary for me.`" target="_blank">
+                        <q-btn class="btn12" unelevated rounded color="primary"><text
                                 style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text>
                         </q-btn>
+                    </a>
                     </div>
                     <q-dialog v-model="edititinerary">
                         <EditItineraryCardw/>
@@ -430,7 +466,7 @@ import FooterPage from './FooterPage.vue'
 import DestinationPageWeb from './DestinationPageWeb.vue';
 // import ComparisonTable from './ComparisonTable.vue';
 import AppBar from './AppBar.vue';
-import { places, load_place_itinerary_data, base_url, check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
+import { places, load_place_itinerary_data, base_url, check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api, create_prompt } from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 import ViewItinerary from './ViewItinerary.vue';
 import ItineraryPreview from '../components/ItineraryPreview.vue'
@@ -450,9 +486,11 @@ export default defineComponent({
             heart_transparent : base_url + 'media/files/heart_transparent.svg',
             heart_red : base_url + 'media/files/heart.svg',
             columns: [
-            { name: 'Month', align: 'center', label: 'Months', field: 'month', sortable: true }
+            { name: 'Month', align: 'center', label: 'Months', field: 'month', sortable: true },
+
             //{ name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
-          ]
+            ],
+            showModal: false
         }
     },
     setup() {
@@ -731,7 +769,89 @@ export default defineComponent({
                 result.push({"month": month})
               }
               return result
-            }
+            },
+            create_chatgpt_prompt() {
+      if (this.$store.state.user_logged_in == false) {
+        $q.notify({
+          type: "negative",
+          message: "Kindly log-in/sign-up to enable this functionality",
+          position: "top",
+        });
+      } else {
+        check_if_access_token_is_valid()
+          .then((response) => {
+            console.log(response);
+            var access_token = window.localStorage.getItem(
+              "travel_rover_access"
+            );
+            console.log(this.area);
+            create_prompt({ prompt: this.area }, access_token)
+              .then((response) => {
+                var pk_of_prompt = response["data"]["pk_of_prompt"];
+
+                $q.notify({
+                  type: "positive",
+                  message: "Saved succesfully.",
+                  position: "top",
+                });
+                window.open(
+                  "/#/itinarybuilder?pk=-1&pk_of_prompt=" + pk_of_prompt,
+                  "_blank"
+                );
+              })
+              .catch((err) => {
+                $q.notify({
+                  type: "negative",
+                  message:
+                    "Some internal issues are going on, please try by reloading again",
+                  position: "top",
+                });
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            check_if_refresh_token_is_valid()
+              .then((response) => {
+                var access_token = response["data"]["access"];
+                console.log(access_token);
+                window.localStorage.setItem(
+                  "travel_rover_access",
+                  access_token
+                );
+                create_prompt({ prompt: this.area }, access_token)
+                  .then((response) => {
+                    var pk_of_prompt = response["data"]["pk_of_prompt"];
+                    $q.notify({
+                      type: "positive",
+                      message: "Saved succesfully.",
+                      position: "top",
+                    });
+                    window.open(
+                      "/#/itinarybuilder?pk=-1&pk_of_prompt=" + pk_of_prompt,
+                      "_blank"
+                    );
+                  })
+                  .catch((err) => {
+                    $q.notify({
+                      type: "negative",
+                      message: "Some internal issues are going on",
+                      position: "top",
+                    });
+                  });
+                console.log(response);
+              })
+              .catch((err) => {
+                $q.notify({
+                  type: "negative",
+                  message: "Kindly log-in/sign-up to enable this functionality",
+                  position: "top",
+                });
+                this.$store.commit("user_logged_in_update", false);
+                console.log(err);
+              });
+          });
+      }
+    }
 
     }
 })
@@ -1672,4 +1792,67 @@ export default defineComponent({
     
             color: #4B5563;
         }
+
+        .chatgpt-prompt {
+  margin-bottom: 20px;
+}
+
+.modal {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 22em;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  z-index: 999;
+  transform: none;
+}
+.modal h1 {
+  margin: 0 0 1rem;
+}
+
+.modal-overlay {
+  content: "";
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  background: #2c3e50;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+
+.pop-enter,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
+}
 </style>

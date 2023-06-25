@@ -71,8 +71,8 @@
                                             Inclusion
                                         </div>
                                         <div class="profile_itinerary_card_text4">
-                                            <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
-                                            <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+                                            <text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
+                                            <text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
                                         </div>
                                     </div>
                                     <div class="profile_itinerary_card_text5" style="margin-top:10px;">Starts</div>
@@ -201,6 +201,8 @@ export default defineComponent({
                                 "place_img": items.place_img,
                                 "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                                 "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                                "inclusions_headers": items.inclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
+                    "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
                                 "tour_rates": items.tour_rates,
                                 "tour_highlights":items.tour_highlights,
                                 "places_to_visit": items.places_to_visit,
@@ -212,7 +214,8 @@ export default defineComponent({
                                 "cancellation_policy":items.cancellation_policy,
                                 "itinerary_pk":JSON.parse(response.data.data)[i].pk,
                                 "complete_itinerary":items,
-                                "travel_dates": items.start_dates
+                                "travel_dates": items.start_dates,
+                                
                             }
                         }
                         var itineraries_list_filtered = itineraries_list.filter(function (el) {

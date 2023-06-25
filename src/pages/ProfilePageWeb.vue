@@ -81,7 +81,7 @@
                     </div> -->
                     
                     <div class="row profile_spacing"  @click="this.show_purchased">
-                        <img src="../assets/profilepage/visibility.svg" alt="">
+                        <img src="../assets/profilepage/purchased.svg" alt="">
                         <div class="profile_text">Purchased Itineraries</div>
                     </div>
                     <q-separator />
@@ -107,8 +107,8 @@
                 <LikedItinerary/>
             </div>
 
-            <div v-if="this.show_viewed_itinerary==true">
-                <ViewedItinerary/>
+            <div v-if="this.show_created_itinerary==true">
+                <CreatedItinerary/>
             </div>
 
             <div v-if="this.show_purchased_itinerary==true">
@@ -122,7 +122,7 @@
 <script>
 import { ref } from 'vue'
 import LikedItinerary from "./LikedItinerary.vue"
-import ViewedItinerary from "./ViewedItinerary.vue"
+import CreatedItinerary from "./CreatedItinerary.vue"
 import PurchasedItinerary from "./PurchasedItinerary.vue"
 import LoginPage2 from "./LoginPage2.vue"
 import RegisterPage from "./RegisterPage.vue"
@@ -147,7 +147,7 @@ export default {
         return{
             show_liked_itinerary:true,
             show_purchased_itinerary:false,
-            show_viewed_itinerary: false,
+            show_created_itinerary: false,
             username: "User",
             mobile_number: "9999999999",
             name: "User",
@@ -157,7 +157,7 @@ export default {
         LikedItinerary,
         LoginPage2,
         RegisterPage,
-        ViewedItinerary,
+        CreatedItinerary,
         PurchasedItinerary,
         ViewItinerary
     },
@@ -180,11 +180,11 @@ export default {
         if(itinerary_pk == null){
             this.show_liked_itinerary = true
             this.show_purchased_itinerary = false
-            this.show_viewed_itinerary = false
+            this.show_created_itinerary = false
         }else{
             this.show_liked_itinerary = false
             this.show_purchased_itinerary = true
-            this.show_viewed_itinerary = false
+            this.show_created_itinerary = false
         }
         
 
@@ -193,17 +193,17 @@ export default {
         show_liked(){
             this.show_liked_itinerary = true
             this.show_purchased_itinerary = false
-            this.show_viewed_itinerary = false
+            this.show_created_itinerary = false
         },
         show_purchased(){
             this.show_liked_itinerary = false
             this.show_purchased_itinerary = true
-            this.show_viewed_itinerary = false
+            this.show_created_itinerary = false
         },
         show_viewed(){
             this.show_liked_itinerary = false
             this.show_purchased_itinerary = false
-            this.show_viewed_itinerary = true
+            this.show_created_itinerary = true
         },
         go_to_home(){
             console.log("here")

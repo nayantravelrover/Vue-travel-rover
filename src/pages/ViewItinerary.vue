@@ -53,7 +53,7 @@
                             </div>
                         </a>
 
-                        <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
+                        <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
                             <div class="box11">
                                 <text class="type6">Query?</text>
                                 <img src="../assets/editcard/whatsapp.svg" alt="">
