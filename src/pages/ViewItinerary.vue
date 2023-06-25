@@ -48,15 +48,17 @@
 
                         <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank">
                             <div class="box11">
+                                 <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
                                 <text class="type6">Buy Now</text>
-                                <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
+                               
                             </div>
                         </a>
 
                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
                             <div class="box11">
-                                <text class="type6">Query?</text>
                                 <img src="../assets/editcard/whatsapp.svg" alt="">
+                                <text class="type6">Query?</text>
+                                
                             </div>
                         </a>
 
@@ -89,14 +91,20 @@
             <div class="box23 col">
                 <div class="box24">
 
-                    <q-btn class="box25" @click="this.generateReport()">
-                        <text class="type20">Download</text>
-                        
-                        <img class="card2" src="../assets/editcard/cart1.svg" alt="">
-                    </q-btn>
+                   
+                    <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" >
+                        <q-btn class="box25">
+                            <img class="card2" src="../assets/editcard/cart1.svg" alt="">
+                            <text class="type20">Buy Now</text>
+                            
+                            
+                        </q-btn>
+                    </a>
+
                     <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank"><q-btn class="box25">
-                        <text class="type20">Contact Us</text>
                         <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
+                        <text class="type20">Query?</text>
+                        
                     </q-btn></a>
                 </div>
             </div>

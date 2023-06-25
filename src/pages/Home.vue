@@ -341,7 +341,7 @@
       <div class="carousel-heading">
         <h5 class="text-center">Top Destinations</h5>
       </div>
-      <Carousel :itemsToShow="isMobile ? 1.2 : 5.3" v-model="slide">
+      <Carousel :itemsToShow="isMobile ? 1.2 : 6" v-model="slide">
         <Slide
           v-for="(items, index) in basic_data['explore_destination_images']"
           :key="items"
@@ -362,7 +362,7 @@
 
               <q-card-section>
                 <div class="row no-wrap justify-between">
-                  <div class="col-md-6 text-black text-caption text-weight-fat bold"
+                  <div class="col-md-6 text-black text-caption text-weight-fat bold" style="width: fit-content;" 
                   >
                     {{ basic_data["explore_destination"][index] }}
                   </div>
