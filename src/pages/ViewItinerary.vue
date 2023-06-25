@@ -104,7 +104,7 @@
                         </q-btn>
                     </a>
 
-                    <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
+                    <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
                         <q-btn class="box25" icon="help_outline" color="primary">
                         <!-- <img class="share20" src="../assets/editcard/whatsapp.svg" alt=""> -->
                         <text class="type20" style="margin-left: 4px;">Query?</text>

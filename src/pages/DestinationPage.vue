@@ -17,7 +17,7 @@
             <div class="description q-pa-md full-width">
                 <div class="about full-width">
                     <div style="margin-left: 5px;">
-                        <text class="text10">{{this.place_description["name"]}}travel guide</text>
+                        <text class="text10">{{this.place_description["name"]}} travel guide</text>
                         <div class="" style="margin-top: 12px;">
                             <text class="text11">{{this.place_description["description"][0]}}
                             </text>
