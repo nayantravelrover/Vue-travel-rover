@@ -47,7 +47,7 @@
 
                           <!-- <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" /> -->
                           <div class="q-pa-xs">
-                          <q-btn label="Logout" color="primary"  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+                          <q-btn label="Logout" color="primary" icon="logout" flat  style="width: 110%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                            </div>
             
                     </q-list>
