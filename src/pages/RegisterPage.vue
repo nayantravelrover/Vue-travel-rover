@@ -37,7 +37,7 @@
                             <img src="../assets/line2.svg" />
                         </div>
                         <div>
-                            <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <a href="#" style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</a></q-text>
+                            <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
                         </div>
                     </q-form>
                     </q-card-section>
@@ -63,7 +63,7 @@
                             </div>
                             <q-input outlined v-model="login.first_name" label="Name" />
                             <q-input outlined placeholder="Phone number (DW we won't spam you)" label="Phone Number" v-model="login.mobile_number" />
-                            <q-input outlined v-model="login.username" label="Username" />
+                            <q-input outlined v-model="login.username" label="Email" />
                             <q-input outlined v-model="login.password" label="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
                                 <template v-slot:append>
@@ -86,7 +86,7 @@
                                 <img src="../assets/line2.svg" style="max-width: 300px;"/>
                             </div>
                             <div>
-                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <a href="#" style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</a></q-text>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
                             </div>
                         </q-form>
                     </q-card-section>
