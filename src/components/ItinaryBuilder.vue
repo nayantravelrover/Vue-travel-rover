@@ -61,7 +61,7 @@
 <!--    <div class="q-ma-sm">-->
     <div class="text-bold  row sectionheading" >Place Name</div>
     <q-select outlined v-model="place_name" :options="[
-        'Himachal Pradesh','Leh Ladakh','Goa','Kashmir','Uttarakhand'
+        'Himachal Pradesh','Leh Ladakh','Goa','Kashmir','Uttarakhand','Rajasthan'
       ]"  />
 <!--    </div>-->
     <div id="place_description" class="q-pt-lg ">
@@ -157,6 +157,8 @@
      <PicturedWYISG class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="inclusions" heading="Inclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="exclusions" heading="Exclusions"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="inclusions_headers" heading="Inclusions Headers List"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="exclusions_headers" heading="Exclusions Headers List"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
@@ -170,7 +172,7 @@
         
       </div>
       <q-scroll-area style="height: 92vh">
-        <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
+        <ItineraryPreviewFullData class="q-ma-lg"  id="preview"></ItineraryPreviewFullData>
       </q-scroll-area>
     </div>
   </div>
@@ -182,7 +184,7 @@
 <script>
 
 import DayEditor from "components/DayEditor";
-import ItineraryPreview from "components/ItineraryPreview";
+import ItineraryPreviewFullData from "components/ItineraryPreviewFullData";
 import PicturedWYISG from "components/PicturedWYISG";
 import OnlyPicture from "components/OnlyPicture";
 import { ref } from 'vue'
@@ -199,7 +201,7 @@ let $q
 
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker,OnlyPicture },
+  components: {PicturedWYISG, ItineraryPreviewFullData, DayEditor,Datepicker,OnlyPicture },
   mounted(){
     const urlParams = window.location.href;
     var url_params = window.location.href.split("?")[1];

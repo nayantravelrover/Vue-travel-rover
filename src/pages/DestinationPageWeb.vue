@@ -57,9 +57,9 @@
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
 
-<text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+<text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
 <br>
-<text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+<text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
                         </text>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column compare_box">
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Accomodation</div>
                     </div>
@@ -261,8 +261,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Travel Arrangements</div>
                     </div>
@@ -284,8 +284,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Things to carry</div>
                     </div>
@@ -307,8 +307,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Inclusions</div>
                     </div>
@@ -349,8 +349,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Cancellations Policy</div>
                     </div>
@@ -370,7 +370,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </q-card>
     </div>
@@ -1579,7 +1579,7 @@ footer ul {
 }
 
 .compare_box {
-    padding: 0 16px 0 16px;
+    padding: 0 16px 0 16px !important;
 }
 
 .compare_mains {

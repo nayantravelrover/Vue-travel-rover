@@ -245,7 +245,7 @@
         padding: 5px 0 5px 10px;
 }
 .compare_box{
-    padding: 0 16px 0 16px;
+    padding: 0 16px 0 16px !important;
 }
 .compare_mains{
     background: #F9F9F9;

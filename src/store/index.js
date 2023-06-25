@@ -47,7 +47,9 @@ export default store(function (/* { ssrContext } */) {
         travel_arrangements_img:'download.jpeg',
         user_mobile_number: "",
         user_name: "",
-        payment_link:""
+        payment_link:"",
+        inclusions_headers: "",
+        exclusions_headers: ""
       },
     },
     mutations:{
@@ -169,6 +171,12 @@ export default store(function (/* { ssrContext } */) {
       },
       accomodation_arrangements_4_img_update(state,val) {
         state.itinerary_preview.accomodation_arrangements_img[0].images[3] = val
+      },
+      inclusions_headers_update(state,val) {
+        state.itinerary_preview.inclusions_headers = val;
+      },
+      exclusions_headers_update(state,val) {
+        state.itinerary_preview.exclusions_headers = val;
       },
     },
     actions:{

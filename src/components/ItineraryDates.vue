@@ -27,8 +27,8 @@ export default {
   data(){
     return {
       columns: [
-        { name: 'Month', align: 'center', label: 'Month', field: 'month', sortable: true },
-        { name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
+        { name: 'Months', align: 'center', label: 'Months', field: 'month', sortable: true }
+        //{ name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
       ]
     }
   },
@@ -53,7 +53,8 @@ export default {
         for (const items in month_dates[month]){
           month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
         }
-        result.push({"month": month, "days": month_dates[month].join(", ")})
+        //result.push({"month": month, "days": month_dates[month].join(", ")})
+        result.push({"month": month})
       }
       return result
     }

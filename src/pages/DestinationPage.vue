@@ -59,9 +59,9 @@
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
 
-                        <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+                        <text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
                         <br>
-                        <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+                        <text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
                         </text>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column compare_box">
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Places To Visit</div>
                     </div>
@@ -258,8 +258,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Accomodation</div>
                     </div>
@@ -279,8 +279,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Travel Arrangements</div>
                     </div>
@@ -299,8 +299,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Things to carry</div>
                     </div>
@@ -321,8 +321,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Inclusions</div>
                     </div>
@@ -361,8 +361,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Cancellations Policy</div>
                     </div>
@@ -381,7 +381,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </q-card>
     </div>
@@ -450,8 +450,8 @@ export default defineComponent({
             heart_transparent : base_url + 'media/files/heart_transparent.svg',
             heart_red : base_url + 'media/files/heart.svg',
             columns: [
-            { name: 'Month', align: 'center', label: 'Month', field: 'month', sortable: true },
-            { name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
+            { name: 'Month', align: 'center', label: 'Months', field: 'month', sortable: true }
+            //{ name: 'Days', label: 'Start Dates', align: 'center', field: 'days', sortable: true },
           ]
         }
     },
@@ -514,6 +514,8 @@ export default defineComponent({
                     "place_img": items.place_img,
                     "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                     "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
+                    "inclusions_headers": items.inclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
+                    "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
                     "tour_rates": items.tour_rates,
                     "tour_highlights":items.tour_highlights,
                     "places_to_visit": items.places_to_visit,
@@ -725,7 +727,8 @@ export default defineComponent({
                 for (const items in month_dates[month]){
                   month_dates[month][items] = new Date(month_dates[month][items]).getUTCDate()
                 }
-                result.push({"month": month, "days": month_dates[month].join(", ")})
+                //result.push({"month": month, "days": month_dates[month].join(", ")})
+                result.push({"month": month})
               }
               return result
             }
@@ -969,7 +972,7 @@ export default defineComponent({
     width: 338px;
     left: 0px;
     top: 0px;
-    height:950px;
+    height:1200px;
 
     background: #FFFFFF;
     border: 1px solid #E6E7EA;

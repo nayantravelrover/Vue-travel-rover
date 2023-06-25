@@ -487,7 +487,7 @@
         :itemsToShow="isMobile ? 1 : 2.2"
         :itemsToScroll="1"
         :wrap-around="true"
-        v-bind:autoplay="2000"
+        v-bind:autoplay="5000"
         v-bind:pause-autoplay-on-hover="true"
         style="margin-top: -30px"
       >
