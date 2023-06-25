@@ -201,6 +201,7 @@ import {toDataURL} from "src/common/utils";
 
 
 
+
 let $q
 
 export default {
@@ -210,12 +211,12 @@ export default {
     const urlParams = window.location.href;
     var url_params = window.location.href.split("?")[1];
     var params = new URLSearchParams(url_params);
-    console.log(params)
+    
     var itinerary_pk = params.get('pk');
     this.shareable_pk = itinerary_pk
     var pk_of_prompt = params.get('pk_of_prompt');
-    console.log(itinerary_pk); // -1
-    console.log(pk_of_prompt); // 15
+    
+    $q = useQuasar()
 
     if(pk_of_prompt == null){
       this.view_itinerary(itinerary_pk);
@@ -288,6 +289,20 @@ export default {
   }
   },
   methods: {
+      logout(){
+      window.localStorage.removeItem("travel_rover_access");
+      window.localStorage.removeItem("travel_rover_refresh_token");
+      this.$store.commit('user_logged_in_update', false)
+      console.log("here in logout")
+      $q.notify({
+              type: 'negative',
+              message: 'Successfully Logged Out',
+              position: 'top'
+              })
+      window.location.reload();
+      },
+
+
       view_itinerary(itinerary_pk){
             var data = {
                 "itinerary_pk":itinerary_pk
