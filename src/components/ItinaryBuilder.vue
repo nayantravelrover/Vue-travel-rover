@@ -1,5 +1,4 @@
 <template>
-
   <transition name="fade" appear>
             <div class="modal-overlay" 
                  v-if="showModal" 
@@ -16,6 +15,8 @@
         <div></div>
         <div></div>
         <div></div>
+import RegisterPage from "../pages/RegisterPage.vue";
+import LoginPage2 from "../pages/LoginPage2.vue";
       </div>
       <p>Please wait, AI will generate your itinerary in 2 minutes.</p>
   </div>
@@ -39,10 +40,10 @@
                         <!-- <q-item clickable v-close-popup>
                                     <q-item-section>Login</q-item-section>
                                   </q-item> -->
-                        <LoginPage2 v-if="this.$store.state.user_logged_in===false"/>
+                          <LoginPage2 v-if="this.$store.state.user_logged_in===false"/>
                           <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
                             <RegisterPage/>
-                          </div>
+                         </div>
 
 
                           <!-- <q-btn label="Profile" color="primary"  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" @click="go_to_profile" /> -->
@@ -182,6 +183,8 @@
 <script>
 
 import DayEditor from "components/DayEditor";
+import RegisterPage from "../pages/RegisterPage.vue"
+import LoginPage2 from "../pages/LoginPage2.vue"
 import ItineraryPreview from "components/ItineraryPreview";
 import PicturedWYISG from "components/PicturedWYISG";
 import OnlyPicture from "components/OnlyPicture";
@@ -199,7 +202,7 @@ let $q
 
 export default {
   name: "Itinary-Builder",
-  components: {PicturedWYISG, ItineraryPreview, DayEditor,Datepicker,OnlyPicture },
+  components: { PicturedWYISG, ItineraryPreview, DayEditor, Datepicker, OnlyPicture, LoginPage2, RegisterPage },
   mounted(){
     const urlParams = window.location.href;
     var url_params = window.location.href.split("?")[1];

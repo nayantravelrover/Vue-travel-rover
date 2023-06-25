@@ -69,7 +69,7 @@
                         </div>
                         <div class="text15">
                             <text>{{item.tour_rates}}</text>
-                            <text class="text14">/Per Person</text>
+                            <!-- <text class="text14">/Per Person</text> -->
                         </div>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
