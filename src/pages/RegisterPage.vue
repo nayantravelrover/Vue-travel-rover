@@ -188,6 +188,7 @@ export default {
                           //alert("The system seems to be under maintainence");
                         }
                       }).catch(err => {
+                        console.log(response.data)
                         console.log("Here")
                         console.log(err)
                         $q.notify({
@@ -201,10 +202,10 @@ export default {
                       }
                     }).catch(err => {
                         console.log("Here")
-                        console.log(err.response)
+                        console.log(err.response.data.username[0])
                         $q.notify({
                                 type: 'negative',
-                                message: 'The system seems to be under maintainence'
+                                message: err.response.data.username[0]
                             })
                     })
 
