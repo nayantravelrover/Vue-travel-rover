@@ -93,7 +93,7 @@ export default {
     }
     @media only screen and (max-width: 600px) {
       .header{
-        font-size: 23px;
+        font-size: 19px;
       font-weight: bold;
       text-align: center;
       padding: 20px 10px 40px 10px;

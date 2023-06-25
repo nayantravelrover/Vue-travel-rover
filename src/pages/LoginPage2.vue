@@ -14,7 +14,7 @@
                                     </div>
 
                                 </div>
-                                <q-input outlined v-model="login.username" label="Username" :dense="dense"/>
+                                <q-input outlined v-model="login.username" label="Email" :dense="dense"/>
                                 <q-input outlined :dense="dense" v-model="login.password" label="Password" filled
                                     :type="isPwd ? 'password' : 'text'">
                                     <template v-slot:append>
@@ -35,7 +35,7 @@
                                     <img src="../assets/line2.svg" />
                                 </div>
                                 <div>
-                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#"  style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</a></q-text>
+                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</text></q-text>
                                 </div>
                             </q-form>
                         </q-card-section>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
         
-                            <q-input outlined v-model="login.username" label="Username" :dense="dense" />
+                            <q-input outlined v-model="login.username" label="Email" :dense="dense" />
                             <q-input outlined :dense="dense" v-model="login.password" label="Password" filled
                                 :type="isPwd ? 'password' : 'text'">
                                 <template v-slot:append>
@@ -83,7 +83,7 @@
                                 <img src="../assets/line2.svg" style="max-width: 300px;"/>
                             </div>
                             <div>
-                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#" style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Sign Up</a></q-text>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Sign Up</text></q-text>
                             </div>
                         </q-form>
                     </q-card-section>

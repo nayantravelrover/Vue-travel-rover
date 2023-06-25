@@ -17,7 +17,7 @@
             <div class="description q-pa-md full-width">
                 <div class="about full-width">
                     <div style="margin-left: 5px;">
-                        <text class="text10">{{this.place_description["name"]}} travel guide</text>
+                        <text class="text10">{{this.place_description["name"]}}travel guide</text>
                         <div class="" style="margin-top: 12px;">
                             <text class="text11">{{this.place_description["description"][0]}}
                             </text>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="text15">
                             <text>{{item.tour_rates}}</text>
-                            <text class="text14">/Per Person</text>
+                            <!-- <text class="text14">/Per Person</text> -->
                         </div>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
