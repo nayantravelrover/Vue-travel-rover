@@ -6,7 +6,7 @@
                     <AppBar/>
                     <div class="gt-xs">
                      <div class="container40" style="display: flex;flex-direction: column;align-items: center;padding: 32px 63px;position: absolute;width: 511px;height: 222px;left: 465px;top: 300px;">
-        <text class="text50" style="width: 500px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
+        <text class="text50" style="width: 800px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
 
         <text class="text51" style="width: 500px;height: 60px;font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 40px;line-height: 60px;color: #FFFFFF;flex: none;order: 1;flex-grow: 0;text-align: center;">{{this.place_description['places_one_liner']}}</text>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
                     <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
                         <div class="price_container">
-                            <text class="text14" style="width: 80px;">Starts from</text>
+                            <text class="text14" style="width: 80px;">Start From RS. </text>
                         </div>
                         <div class="text15">
                             <text>{{item.tour_rates}}</text>
@@ -150,7 +150,7 @@
                             <img :src="this.$parent.compare_itinerary_one.place_img" alt="" class="compare_img"/>
                         </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_one.itinerary_name}}</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.$parent.compare_itinerary_one.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>
@@ -167,7 +167,7 @@
                             <img :src="this.$parent.compare_itinerary_two.place_img" alt="" class="compare_img" />
                         </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_two.itinerary_name}}</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.$parent.compare_itinerary_two.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>
@@ -184,7 +184,7 @@
                             <img :src="this.$parent.compare_itinerary_three.place_img" alt="" class="compare_img" />
                         </q-img>
                         <div class="compare_title1">{{this.$parent.compare_itinerary_three.itinerary_name}}</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.$parent.compare_itinerary_three.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>

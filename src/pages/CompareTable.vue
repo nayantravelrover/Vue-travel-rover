@@ -16,7 +16,7 @@
                             <img src="this.$parent.compare_itinerary_one.place_img" alt="" class="compare_img">
                         </q-img>
                         <div class="compare_title1">Exotic Goa 9 Nights / 10 Days Tour</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">4999</div>
                             <div class="compare_title3">/per person</div>
@@ -32,7 +32,7 @@
                             <img src="../assets/Goa/goa1.jpg" alt="" class="compare_img">
                         </q-img>
                         <div class="compare_title1">Exotic Goa 9 Nights / 10 Days Tour</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">4999</div>
                             <div class="compare_title3">/per person</div>
@@ -48,7 +48,7 @@
                             <img src="../assets/Goa/goa1.jpg" alt="" class="compare_img">
                         </q-img>
                         <div class="compare_title1">Exotic Goa 9 Nights / 10 Days Tour</div>
-                        <div class="compare_title2">Starts From</div>
+                        <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">4999</div>
                             <div class="compare_title3">/per person</div>

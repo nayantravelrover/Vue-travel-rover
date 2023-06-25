@@ -36,7 +36,7 @@
                 <div class="box7">
                     <div class="box8">
                         <div class="box9">
-                            <text class="type3">Starts from</text>
+                            <text class="type3">Start From RS. </text>
                             <div class="type5">
                                 <text class="type4">{{this.$store.state.itinerary_preview.tour_rates}}</text>
                                 <text class="type3">/Per Person</text>

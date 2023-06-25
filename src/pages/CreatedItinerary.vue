@@ -226,7 +226,7 @@ export default defineComponent({
                                 "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                                 "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                                 "inclusions_headers": items.inclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
-                    "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
+                                "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
                                 "tour_rates": items.tour_rates,
                                 "tour_highlights":items.tour_highlights,
                                 "places_to_visit": items.places_to_visit,

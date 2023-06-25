@@ -1034,16 +1034,21 @@ export default defineComponent({
         "You should choose us because we give you the best agents",
       svgs_of_why_choose_us: ["https://admin.travelrover.in/media/files/expert-advice-icon-linear-isolated-vector-35007621.jpeg","https://cdn-icons-png.flaticon.com/512/7057/7057824.png","https://cdn-icons-png.flaticon.com/128/3343/3343387.png","https://cdn.iconscout.com/icon/premium/png-512-thumb/customer-insights-2443714-2029126.png?f=avif&w=512","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR--nL2QL33LmxKHUmmO7wT5X261XNxza5j4A7KcdJ-A&s","https://cdn-icons-png.flaticon.com/128/8163/8163551.png"],
       headers_of_why_choose_us: [
-        "Trips & Travel ",
-        " Sales ",
-        " Finance ",
-        " Insurance",
+        "Personalized Itineraries",
+        "Expert Guidance",
+        "Budget-Friendly Options",
+        "Local Insights",
+        "Hassle-Free Planning",
+        "Customer Satisfaction"
       ],
+
       content_of_why_choose_us: [
-        "Trips & Travel ",
-        " Sales ",
-        " Finance ",
-        " Insurance",
+        "We specialize in creating custom itineraries tailored to your specific budget and travel preferences. Our experienced travel experts work closely with you to understand your needs, interests, and limitations, ensuring that you have a trip that's perfectly suited to you.",
+        "We provide you with expert guidance throughout the entire trip planning process. Whether you're unsure about choosing a destination, selecting accommodations, or deciding on activities, our team is here to offer insights and recommendations that will make your journey unforgettable.",
+        "We make it our priority to work within your budget while still delivering an incredible travel experience. Our team has the expertise to find the best deals, negotiate prices, and suggest cost-effective alternatives, ensuring that you get the most value out of your money.",
+        "By choosing us, you'll gain access to insider knowledge and hidden gems that only locals know about, allowing you to discover the authentic side of your chosen destination.",
+        "Our team helps with all the intricate details, including transportation, accommodation bookings, activities, and more. Sit back, relax, and let us take care of everything, so you can focus on enjoying your journey.",
+        "We go the extra mile to ensure that every aspect of your trip meets or exceeds your expectations. From the initial consultation to the end of your journey, we strive to provide exceptional service, prompt communication, and seamless execution."
       ],
       gif_of_why_choose_us_link: "app.clickup.com",
       explore_destination: [
