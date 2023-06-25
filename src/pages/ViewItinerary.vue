@@ -63,7 +63,7 @@
                                 
                             </div> -->
                             <q-btn class="box11" color="primary" icon="help_outline" style="font-family: Poppins;font-weight: 600;">
-                                <text class="type6">Query?</text>
+                                <text class="type6">Query</text>
                             </q-btn>
                         </a>
 
@@ -97,17 +97,26 @@
                 <div class="box24">
 
                    
-                    <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" >
-                        <q-btn class="box25" icon="shopping_cart" color="primary">
+                    <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank"  v-if="this.allow_buy">
+                        <q-btn class="box25" icon="shopping_cart" color="primary" >
                             <!-- <img class="card2" src="../assets/editcard/cart1.svg" alt=""> -->
                             <text class="type20" style="margin-left: 4px;">Buy Now</text>
                         </q-btn>
                     </a>
 
+                    <a v-if="this.allow_buy===false">
+                        <q-btn class="box25" icon="shopping_cart" color="primary" @click="show_notification">
+                            <!-- <img class="card2" src="../assets/editcard/cart1.svg" alt=""> -->
+                            <text class="type20" style="margin-left: 4px;">Buy Now</text>
+                        </q-btn>
+                    </a>                    
+
+
+
                     <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
                         <q-btn class="box25" icon="help_outline" color="primary">
                         <!-- <img class="share20" src="../assets/editcard/whatsapp.svg" alt=""> -->
-                        <text class="type20" style="margin-left: 4px;">Query?</text>
+                        <text class="type20" style="margin-left: 4px;">Query</text>
                         
                     </q-btn></a>
                 </div>
@@ -118,23 +127,68 @@
     </div>
 </template>
 <script type="text/javascript">
+    
     import html2pdf from "html2pdf.js/src";
+    import { ref, defineComponent } from 'vue'
     import ItineraryPreview from "components/ItineraryPreview";
-    export default {
+    import { base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid } from "src/common/api_calls";
+    import { useQuasar, Notify } from 'quasar'
+    let $q
+
+    export default ({
         components: {ItineraryPreview},
+        data(){
+        return{
+            allow_buy: false,
+            }
+        },
+        setup(){
+            const $q = useQuasar()
+        },
+        mounted(){
+            $q = useQuasar()
+         },
         methods:{
-            generateReport () {
-            alert("Itinerary will be generated soon")
-            
-            html2pdf(document.getElementById("preview"), {
-                pagebreak: { mode: 'avoid-all', before: '#page2el' },
-                filename: this.$store.state.itinerary_preview.place_name,
-                      })
-                windows.location.reload();
-                },
+            show_notification(){
+                $q.notify({
+                  type: "negative",
+                  message: "Kindly log-in/sign-up to enable this functionality",
+                  position: "top",
+                });
+            }
+        },
+        created(){
+            check_if_access_token_is_valid()
+          .then((response) => {
+            console.log(response);
+            var access_token = window.localStorage.getItem(
+              "travel_rover_access"
+            );
+            console.log(this.area);
+            this.allow_buy = true
+          })
+          .catch((err) => {
+            console.log(err);
+            check_if_refresh_token_is_valid()
+              .then((response) => {
+                var access_token = response["data"]["access"];
+                this.allow_buy = true
+                window.localStorage.setItem(
+                  "travel_rover_access",
+                  access_token
+                );
+                
+                
+              })
+              .catch((err) => {
+                this.$store.commit("user_logged_in_update", false);
+                this.allow_buy = false
+                
+              });
+          });
 
         }
-    }
+    })
 </script>
 <style>
 .card2{
@@ -341,7 +395,7 @@
             flex-grow: 0;
     }
 .type3{
-        width: 78px;
+        width: 100px;
             height: 21px;
         
             font-family: 'Poppins';
