@@ -151,11 +151,11 @@ export default {
             } else{
                 create_user(this.login).then(response => {
                     if(response.status == 201){
-                      console.log(response)
+                      
                       
                       var username = JSON.parse(response.config.data).username
                       var password = JSON.parse(response.config.data).password
-                      console.log(password)
+                      
                       var name = JSON.parse(response.config.data).first_name
                       var mobile_number = JSON.parse(response.config.data).mobile_number
 
@@ -165,9 +165,9 @@ export default {
                         'Content-Type': 'application/json'
                       }
                       var create_token = postAPIService(endpoint_token, headers, data_token).then(response => {
-                        console.log(response.status)
+                        
                         if(response.status == 200){
-                          console.log(response.data)
+                          
                           setAccessToken(response.data)
                           this.$store.commit('user_logged_in_update', true)
                           this.icon = false
@@ -179,7 +179,7 @@ export default {
                                 position: 'top'
                             })
                         }else{
-                            console.log("Here")
+                            
                             $q.notify({
                                 type: 'negative',
                                 message: 'The system seems to be under maintainence',
@@ -188,9 +188,7 @@ export default {
                           //alert("The system seems to be under maintainence");
                         }
                       }).catch(err => {
-                        console.log(response.data)
-                        console.log("Here")
-                        console.log(err)
+                        
                         $q.notify({
                                 type: 'negative',
                                 message: 'The system seems to be under maintainence',
@@ -201,8 +199,7 @@ export default {
                       
                       }
                     }).catch(err => {
-                        console.log("Here")
-                        console.log(err.response.data.username[0])
+                        
                         $q.notify({
                                 type: 'negative',
                                 message: err.response.data.username[0]

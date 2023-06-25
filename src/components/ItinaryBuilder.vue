@@ -15,8 +15,7 @@
         <div></div>
         <div></div>
         <div></div>
-import RegisterPage from "../pages/RegisterPage.vue";
-import LoginPage2 from "../pages/LoginPage2.vue";
+
       </div>
       <p>Please wait, AI will generate your itinerary in 2 minutes.</p>
   </div>
@@ -188,7 +187,6 @@ import DayEditor from "components/DayEditor";
 
 import RegisterPage from "../pages/RegisterPage.vue"
 import LoginPage2 from "../pages/LoginPage2.vue"
-import ItineraryPreview from "components/ItineraryPreview";
 import ItineraryPreviewFullData from "components/ItineraryPreviewFullData";
 import PicturedWYISG from "components/PicturedWYISG";
 import OnlyPicture from "components/OnlyPicture";
@@ -202,11 +200,12 @@ import { matAccountCircle } from "@quasar/extras/material-icons";
 import {toDataURL} from "src/common/utils";
 
 
+
 let $q
 
 export default {
   name: "Itinary-Builder",
-  components: { PicturedWYISG, ItineraryPreview, DayEditor, Datepicker, OnlyPicture, LoginPage2, RegisterPage },
+  components: { PicturedWYISG, ItineraryPreviewFullData, DayEditor, Datepicker, OnlyPicture, LoginPage2, RegisterPage },
   mounted(){
     const urlParams = window.location.href;
     var url_params = window.location.href.split("?")[1];
