@@ -93,8 +93,8 @@
             </q-carousel-slide>      
         </q-carousel>
         </div>
-        <div style="display: flex;justify-content: center;margin: 40px;">
-            <text style="max-width: 700px;font-family: Poppins;font-size: large;font-weight: 600;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!" beside the button "AI-powered journey button"</text>
+        <div class="ai-journey" style="display: flex;justify-content: center;margin: 40px;">
+            <text class="Ai-text" style="max-width: 700px;font-family: Poppins;font-size: large;font-weight: 600;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!"</text>
             <button @click="showModal = true" class="button explore-btn" style="border: none;margin:10px 0 0 10px;font-family: Poppins;">AI-Powered Journey Planner</button>
             <transition name="fade" appear>
             <div
@@ -503,28 +503,6 @@
                             <div class="row">
         
         
-                                <span>
-                                    <h3 class="col-title">Company</h3>
-                                    <nav class="col-list">
-                                        <ul>
-                                            <li><a href="#">About Us</a></li>
-                                            <li><a href="#">Sustainability</a></li>
-                                            <li><a href="#">Terms of Service</a></li>
-                                            <li><a href="#">Privacy</a></li>
-                                        </ul>
-                                    </nav>
-                                </span>
-                                <span>
-                                    <h3 class="col-title">Company</h3>
-                                    <nav class="col-list">
-                                        <ul>
-                                            <li><a href="#">About Us</a></li>
-                                            <li><a href="#">Sustainability</a></li>
-                                            <li><a href="#">Terms of Service</a></li>
-                                            <li><a href="#">Privacy</a></li>
-                                        </ul>
-                                    </nav>
-                                </span>
                                 <span>
                                     <h3 class="col-title">Company</h3>
                                     <nav class="col-list">
@@ -1053,6 +1031,15 @@ footer ul {
     footer {
         /* padding: 2em; */
         flex-direction: column;
+    }
+}
+@media screen and (max-width: 1057px) {
+    .ai-journey{
+        display: flex;
+        flex-direction: column;
+    }
+    .explore-btn{
+        max-width: 500px;
     }
 }
 

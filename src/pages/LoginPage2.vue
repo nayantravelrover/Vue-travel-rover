@@ -35,7 +35,7 @@
                                     <img src="../assets/line2.svg" />
                                 </div>
                                 <div>
-                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#" style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</a></q-text>
+                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <a href="#"  style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</a></q-text>
                                 </div>
                             </q-form>
                         </q-card-section>
@@ -98,6 +98,7 @@ import { mapActions } from 'vuex'
 import { ref } from 'vue'
 import {base_url, setAccessToken, basicconfig, user_login,check_if_access_token_is_valid} from '../common/api_calls.js'
 
+const RegisterPage = () => import('../pages/RegisterPage.vue')
 
 let $q
 export default {
@@ -107,7 +108,6 @@ export default {
         return {
             password: ref(''),
             isPwd: ref(true),
-
             icon: ref(false),
         }
     },
@@ -172,11 +172,11 @@ export default {
                             })
                       })
                       }
-            }
+            },
         },
         mounted() {
             $q = useQuasar()
-        }
+        },
     }
     
 </script>

@@ -9,13 +9,13 @@
                         <AppBar />
                         <div id="inner" style="display: table;margin: 0 auto; margin-top: 35%;color: white;font-weight: bold;">
                             <div style="font-size:30px;font-family: Poppins;text-align: center;">{{this.place_description["name"]}}</div>
-                            <div style="text-align: center;font-size:20px;font-family: Poppins;"> {{this.place_description['places_one_liner']}}</div>
+                            <div style="text-align: center;font-size:20px;font-family: Poppins;margin-bottom: 70px;"> {{this.place_description['places_one_liner']}}</div>
                         </div>
                     </q-carousel-slide>
                 </q-carousel>
             </div>
             <div class="description q-pa-md full-width">
-                <div class="about full-width" style="margin-bottom: 30px;">
+                <div class="about full-width">
                     <div style="margin-left: 5px;">
                         <text class="text10">{{this.place_description["name"]}} travel guide</text>
                         <div class="" style="margin-top: 12px;">
@@ -93,7 +93,7 @@
             </q-carousel-slide>      
         </q-carousel>
         <div style="display: flex;justify-content: center;margin: 40px;flex-direction: column;">
-            <text style="font-family: Poppins;font-size: large;font-weight: 500;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!" beside the button "AI-powered journey button" </text>
+            <text style="font-family: Poppins;font-size: large;font-weight: 500;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!"</text>
                 <button style="margin-top: 10px;" @click="showModal = true" class="button explore-btn">AI-Powered Journey Planner</button>
                 <transition name="fade" appear>
             <div
@@ -253,7 +253,7 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="column compare_box">
+                <div class="column compare_box" style="font-family: Poppins;">
                     <div class="compare_mains">
                         <div class="compare_title">Tour Highlights</div>
                     </div>
@@ -435,10 +435,9 @@
                     <q-dialog v-model="edititinerary">
                         <EditItineraryCardw/>
                     </q-dialog>
-                    <div class="faq_card" style="margin-left: 20px; margin-top: 20px; ">
+                    <div class="faq_card" style="margin-left: 20px; margin-top: 50px;margin-bottom: 40px; ">
                         <text class="text10">FAQ about {{this.place_description["name"]}}</text>
-                        <br>
-                        <div style="margin-top: 10px;" v-for="items,index in this.place_description['faqs_question']"
+                        <div style="" v-for="items,index in this.place_description['faqs_question']"
                             :key="index">
                             <text class="number">{{index + 1}}</text>
                             <text class="questions" style="margin-left: 10px;">{{items}}</text>

@@ -1,6 +1,6 @@
 <template>
     <q-btn icon="person_add" label="Sign Up" color="primary" flat rounded="" @click="icon = true" style="width: 102%;font-size: 15px;"/>
-    <q-dialog class="flex justify-center" v-model="icon">
+    <q-dialog class="flex justify-center" v-model="icon" id="register">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
         <q-card>
             <div>
@@ -95,7 +95,6 @@
     </q-dialog>
 </template>
 <script>
-
 import { useQuasar } from 'quasar'
 import { mapActions } from 'vuex'
 import { ref } from 'vue'
