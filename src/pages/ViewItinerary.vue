@@ -46,20 +46,25 @@
                     <div class="box10">
 
 
-                        <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank">
-                            <div class="box11">
+                        <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" style="text-decoration: none;">
+                            <!-- <div class="box11">
                                  <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
                                 <text class="type6">Buy Now</text>
-                               
-                            </div>
+                            </div> -->
+                            <q-btn class="box11" color="primary" icon="shopping_cart" style="font-family: Poppins;font-weight: 600;">
+                                <text class="type6">Buy Now</text>
+                            </q-btn>
                         </a>
 
                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
-                            <div class="box11">
+                            <!-- <div class="box11">
                                 <img src="../assets/editcard/whatsapp.svg" alt="">
                                 <text class="type6">Query?</text>
                                 
-                            </div>
+                            </div> -->
+                            <q-btn class="box11" color="primary" icon="help_outline" style="font-family: Poppins;font-weight: 600;">
+                                <text class="type6">Query?</text>
+                            </q-btn>
                         </a>
 
 
@@ -93,17 +98,16 @@
 
                    
                     <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" >
-                        <q-btn class="box25">
-                            <img class="card2" src="../assets/editcard/cart1.svg" alt="">
-                            <text class="type20">Buy Now</text>
-                            
-                            
+                        <q-btn class="box25" icon="shopping_cart" color="primary">
+                            <!-- <img class="card2" src="../assets/editcard/cart1.svg" alt=""> -->
+                            <text class="type20" style="margin-left: 4px;">Buy Now</text>
                         </q-btn>
                     </a>
 
-                    <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank"><q-btn class="box25">
-                        <img class="share20" src="../assets/editcard/whatsapp.svg" alt="">
-                        <text class="type20">Query?</text>
+                    <a :href="`https://api.whatsapp.com/send?phone=${this.$store.state.itinerary_preview.user_mobile_number}&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
+                        <q-btn class="box25" icon="help_outline" color="primary">
+                        <!-- <img class="share20" src="../assets/editcard/whatsapp.svg" alt=""> -->
+                        <text class="type20" style="margin-left: 4px;">Query?</text>
                         
                     </q-btn></a>
                 </div>
@@ -290,9 +294,6 @@
             width: 245px;
             height: 52px;
         
-            /* Travel Rover/Primary Color */
-            background: #003FA3;
-            border-radius: 6px;
         
             /* Inside auto layout */
             flex: none;
