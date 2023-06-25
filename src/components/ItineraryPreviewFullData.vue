@@ -14,9 +14,9 @@
     <div class="text-bold q-pa-md row" style="font-size: medium" v-html="itinarary_data.tour_highlights"></div>
 
     <!-- <ItineraryDates></ItineraryDates> -->
-   <!--  <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" style="width: 100%;">
+    <div v-for="(day, index) in itinarary_data.days" v-bind:key="index" style="width: 100%;">
       <DayPreview :day="day" :day_index="index"></DayPreview>
-    </div> -->
+    </div>
 
 
 
@@ -30,13 +30,13 @@
     </div>
   </div>
 </div>
-  <!-- <br> -->
+  <br>
 
 
     
 
-    <!-- <ItineraryContentPreview  :content="itinarary_data.places_to_visit_img" label="Places to visit"></ItineraryContentPreview> -->
-   <!--  <div>
+   <!--  <ItineraryContentPreview  :content="itinarary_data.places_to_visit_img" label="Places to visit"></ItineraryContentPreview> -->
+    <div>
     <ItineraryContentPreview :content="itinarary_data.accomodation_arrangements" label="Accomodation Arrangements"></ItineraryContentPreview>
   
 
@@ -45,30 +45,30 @@
       <img v-if="img !== ''" :src="img" alt="accomodation_arrangements_img" style="border-radius: 10px" width="200" height="200">
     </div>
   </div>
-  </div> -->
+  </div>
     
-    <!-- <ItineraryContentPreview :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview> -->
+    <ItineraryContentPreview :content="itinarary_data.travel_arrangements" label="Travel Arrangements"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.inclusions" label="Inclusions"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.exclusions" label="Exclusions"></ItineraryContentPreview>
     <!-- <ItineraryContentPreview :content="itinarary_data.terms_and_conditions" label="Terms and Conditions"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview> -->
-   <!--  <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview> -->
-    <!-- <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview> -->
+    <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview>
    <!--  <ExtraSections v-if="$store.state.itinerary_preview.extra_sections.length>0" class="q-pa-lg"></ExtraSections> -->
   </div>
 </template>
 
 
 <script>
-// import DayPreview from "components/DayPreview";
+import DayPreview from "components/DayPreview";
 import ItineraryContentPreview from "components/ItineraryContentPreview";
 // import ItineraryDates from "components/ItineraryDates";
 // import ExtraSections from "components/ExtraSections";
 
 
 export default {
-  name: "ItineraryPreview",
-  components: {ItineraryContentPreview},
+  name: "ItineraryPreviewFullData",
+  components: {ItineraryContentPreview,DayPreview},
   methods: {
     print () {
       // Pass the element id here

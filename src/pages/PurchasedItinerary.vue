@@ -1,14 +1,12 @@
 <template>
-    
-
     <div>
         <div class="q-pa-md lt-md">
             <!-- <AppBar /> -->
             <div class="col-12" style="margin-top: 50px;">
-                <text class="new2" style="margin-left: 10px;">Liked Itineraries</text>
+                <text class="new2" style="margin-left: 10px;">Purchased Itineraries</text>
                 <q-card class="column" style="padding: 5px;">
-                    <q-list class="column" style="justify-items: space-evenly;">
-                    <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
+                    <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
+                        <div class="column" style="padding: 10px;width: 100%;border-radius: 10px;">
                             <div class="row">
                                 <div style="width: 40%;">
                                     <q-img style="border-radius: 10px;">
@@ -16,35 +14,33 @@
                                     </q-img>
                                 </div>
                                 <div style="width: 60%;padding: 0 0 0 10px;">
-                                    <div class="viewed_itinerary_mobile_text">{{item.itinerary_name}}
+                                     <div class="
+                                     ">{{item.itinerary_name}}
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 20px;width: 100%;">
                                 <div style="width: 50%;"></div>
                                 <div style="width: 50%;">
-
-                                    <q-btn class="viewed_itineray_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
-                                    
+                                    <q-btn class="viewed_itineray_btn" @click="this.purchased_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                         </div>
                         <q-separator />
+                        
                     </q-list>
                 </q-card>
             </div>
         </div>
 
-
         <!-- for web -->
 
-        
         <div class="gt-sm">
             <q-card class="column" style="min-width: 800px;border-radius: 14px;max-width: 800px;">
                 <div class="column">
-                    <div class="profile_liked">Liked Itineraries</div>
+                    <div class="profile_liked">Purchased Itineraries</div>
                     <div style="padding: 10px;">
-                        
+            
                         <q-list class="column" style="justify-items: space-evenly;" v-for="item,index in itineraries_list_filtered" :key="item" :name="(index+1)">
 
                             <div class="row" style="padding: 10px;width: 100%;justify-content: space-evenly;border-radius: 10px;" >
@@ -58,7 +54,7 @@
                                 <div class="column" style="width: 33%;padding: 5px;">
                                     <div class="profile_itinerary_card_text1">{{item.itinerary_name}}</div>
                                     <div class="profile_itinerary_card_text2">
-                                         
+                                        
                                         <li v-for="list_item in item.place_description" :key="list_item">
                                             {{list_item}}
                                         </li>
@@ -71,8 +67,8 @@
                                             Inclusion
                                         </div>
                                         <div class="profile_itinerary_card_text4">
-                                            <text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
-                                            <text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
+                                            <text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+                                            <text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
                                         </div>
                                     </div>
                                     <div class="profile_itinerary_card_text5" style="margin-top:10px;">Starts</div>
@@ -80,12 +76,11 @@
                                         <div class="profile_itinerary_card_text6" style="margin-top:10px;">{{item.tour_rates}}</div>
                                         <div class="profile_itinerary_card_text4" style="margin-top:20px;">/Per Person</div>
                                     </div>
-
-                                    <q-btn class="profile_view_itinerary_btn" @click="this.view_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
-
+                                    <q-btn class="profile_view_itinerary_btn" @click="this.purchased_itinerary(item.itinerary_pk)">View Itinerary</q-btn>
                                 </div>
                             </div>
                             <q-separator />
+                            
             
                         </q-list>
             
@@ -93,31 +88,18 @@
                 </div>
             </q-card>
         </div>
-
-        
     </div>
 </template>
 <script>
-import { ref, defineComponent } from 'vue'
+import { defineComponent } from "vue";
 // import AppBar from "./AppBar.vue";
-import { places, load_place_itinerary_data, base_url, check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api, get_liked_itineraries } from "src/common/api_calls";
+import {get_liked_itineraries, check_if_access_token_is_valid,check_if_refresh_token_is_valid,get_purchased_itinerary} from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
-import ViewItinerary from './ViewItinerary.vue';
 
 let $q
 
 export default defineComponent({
-    name: "LikedItinerary",
-
-    // components: {
-    //     AppBar
-    // },
-    setup(){
-        const $q = useQuasar()
-        return {
-            card: ref(false),
-        };
-    },
+    name: "PurchasedItinerary",
     data(){
         return{
             itineraries_list_filtered:[]
@@ -125,72 +107,35 @@ export default defineComponent({
     },
     mounted(){
         $q = useQuasar()
-
     },
     methods:{
-        view_itinerary(itinerary_pk){
-                console.log(itinerary_pk)
-                var data = {
-                    "itinerary_pk":itinerary_pk
-                }
-                
-                check_if_access_token_is_valid().then(response=>{
-                  var access_token = window.localStorage.getItem("travel_rover_access");
-                  this.$parent.card = true
-                  var itinerary = []
-                  console.log(this.itineraries_list_filtered)
-                  for(var items in this.itineraries_list_filtered){
-                        if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
-                            itinerary = this.itineraries_list_filtered[items].complete_itinerary
-                            break;
-                        }
-                    }
-                    
-                  console.log(itinerary)
-                  
-                  this.$store.commit('itinerary_preview_update', itinerary)
-                  this.$store.commit('user_logged_in_update', true)
-                  console.log(this.$store.state.itinerary_preview)
-                }).catch(err =>{
-                    console.log(err)
-                    check_if_refresh_token_is_valid().then(response => {
-                      var access_token = response["data"]["access"];
 
-                      window.localStorage.setItem("travel_rover_access", access_token);
-                      this.$parent.card = true
-                      var itinerary = []
-                      for(var items in this.itineraries_list_filtered){
-                            if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
-                                itinerary = this.itineraries_list_filtered[items].complete_itinerary
-                                break;
-                            }
-                        }
-                        
-                      this.$store.commit('itinerary_preview_update', itinerary)
+            purchased_itinerary(itinerary_pk){
+                // Get the current URL
+                var urlString = window.location.origin + "/#/itinerarylink?pk=" + itinerary_pk;
 
-                      this.$store.commit('user_logged_in_update', true)
-
-                    }).catch(err =>{
-                      $q.notify({
-                        type: 'negative',
-                        message: 'Kindly log-in/sign-up to enable this functionality',
-                        position: 'top'
-                      })
-
-                      this.$store.commit('user_logged_in_update', false)
-                      console.log(err);
-                    });
-                });
-            },
-    },
+                // Open the URL in a new tab
+                window.open(urlString, '_blank');
+            }
+        },
     created(){
 
+        const urlParams = window.location.href;
+        var url_params = window.location.href.split("?")[1];
+        var params = new URLSearchParams(url_params);
+        
+        var itinerary_pk = params.get('pk');
+        console.log(itinerary_pk)
 
         check_if_access_token_is_valid().then(response=>{
-                  var access_token = window.localStorage.getItem("travel_rover_access");
-                  get_liked_itineraries(access_token).then(response =>{
-                        
 
+                  var data = {
+                    "itinerary_pk":itinerary_pk
+                    }
+
+                  var access_token = window.localStorage.getItem("travel_rover_access");
+                  get_purchased_itinerary(data,access_token).then(response =>{
+                        
                         var itineraries_list = []
                         for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
 
@@ -201,8 +146,6 @@ export default defineComponent({
                                 "place_img": items.place_img,
                                 "inclusions": items.inclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
                                 "exclusions": items.exclusions.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").split("</li><li>"),
-                                "inclusions_headers": items.inclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
-                    "exclusions_headers": items.exclusions_headers.replaceAll("<ol><li>", "").replaceAll("</li></ol>", "").replaceAll("<br>"," ").split("</li><li>"),
                                 "tour_rates": items.tour_rates,
                                 "tour_highlights":items.tour_highlights,
                                 "places_to_visit": items.places_to_visit,
@@ -214,8 +157,7 @@ export default defineComponent({
                                 "cancellation_policy":items.cancellation_policy,
                                 "itinerary_pk":JSON.parse(response.data.data)[i].pk,
                                 "complete_itinerary":items,
-                                "travel_dates": items.start_dates,
-                                
+                                "travel_dates": items.start_dates
                             }
                         }
                         var itineraries_list_filtered = itineraries_list.filter(function (el) {
@@ -230,9 +172,8 @@ export default defineComponent({
                     check_if_refresh_token_is_valid().then(response => {
                       var access_token = response["data"]["access"];
                       window.localStorage.setItem("travel_rover_access", access_token);
-                      get_liked_itineraries(access_token).then(response =>{
+                      get_purchased_itinerary(data,access_token).then(response =>{
                         
-
                         var itineraries_list = []
                         for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
 
@@ -253,6 +194,8 @@ export default defineComponent({
                                 "things_to_carry": items.things_to_carry,
                                 "cancellation_policy":items.cancellation_policy,
                                 "itinerary_pk":JSON.parse(response.data.data)[i].pk,
+                                "complete_itinerary":items,
+                                "travel_dates": items.start_dates
                             }
                         }
                         var itineraries_list_filtered = itineraries_list.filter(function (el) {
@@ -260,11 +203,8 @@ export default defineComponent({
                         });
                         this.itineraries_list_filtered = itineraries_list_filtered;
 
-
-
                         console.log(this.itineraries_list_filtered)
-                        console.log(response)
-                        });
+                    });
                       this.$store.commit('user_logged_in_update', true)
                     }).catch(err =>{
                       $q.notify({
@@ -272,7 +212,6 @@ export default defineComponent({
                         message: 'Kindly log-in/sign-up to enable this functionality',
                         position: 'top'
                       })
-                      console.log(err)
                       this.$store.commit('user_logged_in_update', false)
                     });
                 });

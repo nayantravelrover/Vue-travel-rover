@@ -57,9 +57,9 @@
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
 
-<text v-for="list_item in item.inclusions" :key="list_item">✔️ {{list_item}} </text> 
+<text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
 <br>
-<text v-for="list_item in item.exclusions" :key="list_item">❌ {{list_item}} </text> 
+<text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
                         </text>
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
@@ -96,6 +96,40 @@
         <div class="ai-journey" style="display: flex;justify-content: center;margin: 40px;">
             <text class="Ai-text" style="max-width: 700px;font-family: Poppins;font-size: large;font-weight: 600;">"Embrace the convenience and efficiency of AI and embark on an unforgettable travel experience today!"</text>
             <button @click="showModal = true" class="button explore-btn" style="border: none;margin:10px 0 0 10px;font-family: Poppins;">AI-Powered Journey Planner</button>
+            <transition name="fade" appear>
+            <div
+              class="modal-overlay"
+              v-if="showModal"
+              @click="showModal = false"
+            ></div>
+          </transition>
+          <transition name="pop" appear>
+            <div
+              class="modal"
+              role="dialog"
+              v-if="showModal"
+              style="max-width: fit-content"
+            >
+              <div class="chatgpt-prompt">
+                <h5>Write your travel related needs below</h5>
+                <q-input
+                  v-model="area"
+                  class="text-area"
+                  type="textarea"
+                  float-label="Textarea"
+                  :max-height="100"
+                  :min-rows="3"
+                  placeholder="I want to go to Himachal Pradesh for 5 days with my family."
+                />
+              </div>
+              <button
+                @click="create_chatgpt_prompt()"
+                class="button submit-btn"
+              >
+                Submit
+              </button>
+            </div>
+          </transition>
         </div>
         <div style="margin-left: 0px;">
              <div>
@@ -161,11 +195,11 @@
             <q-separator />
             <div class="column" style="padding: 10px 0 0 0;">
     
-                <div class="column compare_box">
-                    <div class="compare_mains">
+                <!-- <div class="column compare_box"> -->
+                    <!-- <div class="compare_mains">
                         <div class="compare_title">Tour Departure</div>
-                    </div>
-                    <div class="row compare_content">
+                    </div> -->
+                    <!-- <div class="row compare_content">
                         <div class="compare_inner_content"></div>
                         <div class="compare_inner_content">
                             <q-table
@@ -197,8 +231,8 @@
                               row-key="name"
                             />
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
                 <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Tour Highlights</div>
@@ -241,7 +275,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column compare_box">
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Accomodation</div>
                     </div>
@@ -261,8 +295,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Travel Arrangements</div>
                     </div>
@@ -284,8 +318,8 @@
                             </ol>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Things to carry</div>
                     </div>
@@ -307,8 +341,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Inclusions</div>
                     </div>
@@ -349,8 +383,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="column compare_box">
+                </div> -->
+                <!-- <div class="column compare_box">
                     <div class="compare_mains">
                         <div class="compare_title">Cancellations Policy</div>
                     </div>
@@ -370,7 +404,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </q-card>
     </div>
@@ -384,9 +418,11 @@
                     Want to customise your itinerary?
                     <q-img class="cartoon" style="margin-left: 20px;" src="../assets/Goa/cartoon.svg"/>
                 </text>
-            <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;" @click="edititinerary = true">
+            <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I am excited to plan an upcoming trip and would appreciate your expertise in creating a customized itinerary for me.`" target="_blank">
+            <q-btn rounded color="primary" style="height: 50px; width: 200px; margin-top: 180px;margin-left: 30px;">
                 <text style="font-size: 24px; ">Click Here</text>
             </q-btn>
+        </a>
         </div>
         <q-dialog v-model="edititinerary">
             <EditItineraryCardw/>
@@ -505,7 +541,7 @@ import { ref, watch } from 'vue'
 import AppBar from './AppBar.vue';
 import ViewItinerary from './ViewItinerary.vue';
 import CompareTable from './CompareTable.vue';
-import { places, load_place_itinerary_data,base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api } from "src/common/api_calls";
+import { places, load_place_itinerary_data,base_url,check_if_access_token_is_valid,check_if_refresh_token_is_valid,liked_itinerary, viewed_itinerary_api, create_prompt } from "src/common/api_calls";
 import { useQuasar, Notify } from 'quasar'
 let $q
 import EditItineraryCardw from './EditItineraryCardw.vue';
@@ -525,6 +561,7 @@ export default {
         return{
             itineraries_list:this.$parent.itineraries_list_filtered,
             place_description:this.$parent.place_description,
+            showModal: false,
         }
     },
     computed:{
@@ -562,7 +599,89 @@ export default {
                 }
             }
             this.$store.commit('itinerary_preview_update', itinerary)        
-        }
+        },
+        create_chatgpt_prompt() {
+      if (this.$store.state.user_logged_in == false) {
+        $q.notify({
+          type: "negative",
+          message: "Kindly log-in/sign-up to enable this functionality",
+          position: "top",
+        });
+      } else {
+        check_if_access_token_is_valid()
+          .then((response) => {
+            console.log(response);
+            var access_token = window.localStorage.getItem(
+              "travel_rover_access"
+            );
+            console.log(this.area);
+            create_prompt({ prompt: this.area }, access_token)
+              .then((response) => {
+                var pk_of_prompt = response["data"]["pk_of_prompt"];
+
+                $q.notify({
+                  type: "positive",
+                  message: "Saved succesfully.",
+                  position: "top",
+                });
+                window.open(
+                  "/#/itinarybuilder?pk=-1&pk_of_prompt=" + pk_of_prompt,
+                  "_blank"
+                );
+              })
+              .catch((err) => {
+                $q.notify({
+                  type: "negative",
+                  message:
+                    "Some internal issues are going on, please try by reloading again",
+                  position: "top",
+                });
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            check_if_refresh_token_is_valid()
+              .then((response) => {
+                var access_token = response["data"]["access"];
+                console.log(access_token);
+                window.localStorage.setItem(
+                  "travel_rover_access",
+                  access_token
+                );
+                create_prompt({ prompt: this.area }, access_token)
+                  .then((response) => {
+                    var pk_of_prompt = response["data"]["pk_of_prompt"];
+                    $q.notify({
+                      type: "positive",
+                      message: "Saved succesfully.",
+                      position: "top",
+                    });
+                    window.open(
+                      "/#/itinarybuilder?pk=-1&pk_of_prompt=" + pk_of_prompt,
+                      "_blank"
+                    );
+                  })
+                  .catch((err) => {
+                    $q.notify({
+                      type: "negative",
+                      message: "Some internal issues are going on",
+                      position: "top",
+                    });
+                  });
+                console.log(response);
+              })
+              .catch((err) => {
+                $q.notify({
+                  type: "negative",
+                  message: "Kindly log-in/sign-up to enable this functionality",
+                  position: "top",
+                });
+                this.$store.commit("user_logged_in_update", false);
+                console.log(err);
+              });
+          });
+      }
+    }
     },
     components: { AppBar, ViewItinerary, EditItineraryCardw }
 }
@@ -1566,7 +1685,7 @@ footer ul {
 }
 
 .compare_box {
-    padding: 0 16px 0 16px;
+    padding: 0 16px 0 16px !important;
 }
 
 .compare_mains {
@@ -1666,5 +1785,76 @@ footer ul {
         line-height: 28px;
     
         color: #4B5563;
+}
+.modal {
+  position: fixed;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.chatgpt-prompt {
+  margin-bottom: 20px;
+}
+
+.modal {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 22em;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  z-index: 999;
+  transform: none;
+}
+.modal h1 {
+  margin: 0 0 1rem;
+}
+
+.modal-overlay {
+  content: "";
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  background: #2c3e50;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+
+.pop-enter,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
 }
 </style>

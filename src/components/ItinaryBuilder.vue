@@ -62,7 +62,7 @@ import LoginPage2 from "../pages/LoginPage2.vue";
 <!--    <div class="q-ma-sm">-->
     <div class="text-bold  row sectionheading" >Place Name</div>
     <q-select outlined v-model="place_name" :options="[
-        'Himachal Pradesh','Leh Ladakh','Goa','Kashmir','Uttarakhand'
+        'Himachal Pradesh','Leh Ladakh','Goa','Kashmir','Uttarakhand','Rajasthan'
       ]"  />
 <!--    </div>-->
     <div id="place_description" class="q-pt-lg ">
@@ -158,6 +158,8 @@ import LoginPage2 from "../pages/LoginPage2.vue";
      <PicturedWYISG class="q-pt-lg " property_key="travel_arrangements" heading="Travel Arrangements"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="inclusions" heading="Inclusions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="exclusions" heading="Exclusions"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="inclusions_headers" heading="Inclusions Headers List"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="exclusions_headers" heading="Exclusions Headers List"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="terms_and_conditions" heading="Terms and Conditions"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
@@ -171,7 +173,7 @@ import LoginPage2 from "../pages/LoginPage2.vue";
         
       </div>
       <q-scroll-area style="height: 92vh">
-        <ItineraryPreview class="q-ma-lg"  id="preview"></ItineraryPreview>
+        <ItineraryPreviewFullData class="q-ma-lg"  id="preview"></ItineraryPreviewFullData>
       </q-scroll-area>
     </div>
   </div>
@@ -183,9 +185,11 @@ import LoginPage2 from "../pages/LoginPage2.vue";
 <script>
 
 import DayEditor from "components/DayEditor";
+
 import RegisterPage from "../pages/RegisterPage.vue"
 import LoginPage2 from "../pages/LoginPage2.vue"
 import ItineraryPreview from "components/ItineraryPreview";
+import ItineraryPreviewFullData from "components/ItineraryPreviewFullData";
 import PicturedWYISG from "components/PicturedWYISG";
 import OnlyPicture from "components/OnlyPicture";
 import { ref } from 'vue'
@@ -209,6 +213,7 @@ export default {
     var params = new URLSearchParams(url_params);
     console.log(params)
     var itinerary_pk = params.get('pk');
+    this.shareable_pk = itinerary_pk
     var pk_of_prompt = params.get('pk_of_prompt');
     console.log(itinerary_pk); // -1
     console.log(pk_of_prompt); // 15
@@ -358,86 +363,8 @@ export default {
       },
 
     generateReport () {
-        
-        async function update_cover_image(images_list) {
-          const data_cover_image = await toDataURL(images_list.state.itinerary_preview.place_img);
-          images_list.commit('place_img_update', data_cover_image);
-        }
-
-        async function update_places_to_visit(images_list) {
-
-          for(let i = 0; i < images_list.state.itinerary_preview.places_to_visit_img[0].images.length; i++) {
-            
-            if(images_list.state.itinerary_preview.places_to_visit_img[0].images[i] != ""){
-
-              const dataUrl = await toDataURL(images_list.state.itinerary_preview.places_to_visit_img[0].images[i]);
-              
-              images_list.commit('places_to_visit_'+(i+1)+'_img_update', dataUrl);
-
-              console.log(dataUrl)
-              
-            }
-          }
-        }
-
-        async function accomodation_arrangements(images_list) {
-
-          for(let i = 0; i < images_list.state.itinerary_preview.accomodation_arrangements_img[0].images.length; i++) {
-            
-            if(images_list.state.itinerary_preview.accomodation_arrangements_img[0].images[i] != ""){
-
-              const dataUrl = await toDataURL(images_list.state.itinerary_preview.accomodation_arrangements_img[0].images[i]);
-              
-              images_list.commit('accomodation_arrangements_'+(i+1)+'_img_update', dataUrl);
-
-              
-            }
-          }
-        }
-
-
-        async function updateDaysImages(images_list) {
-          alert("PDF will be downloaded within " + 2*images_list.state.itinerary_preview.days.length + " seconds")
-
-          for(let i = 0; i < images_list.state.itinerary_preview.days.length; i++) {
-            
-            
-            const dataUrl = await toDataURL(images_list.state.itinerary_preview.days[i].images);
-            const day_content_indexed = { index_day: i, value: dataUrl };
-            images_list.commit('day_img_update', day_content_indexed);
-
-            console.log(images_list);
-            if(i==images_list.state.itinerary_preview.days.length-1){
-
-              setTimeout(() => {
-                html2pdf(document.getElementById("preview"), {
-                pagebreak: { mode: 'avoid-all', before: '#page2el' },
-                filename: images_list.state.itinerary_preview.place_name,
-              })
-              }, "1000")
-            }
-          }
-        }
-
-
-
-
-        update_cover_image(this.$store).then(response=>{
-          console.log("done")
-        })
-
-        accomodation_arrangements(this.$store).then(response=>{
-          console.log("done")
-        })
-
-        update_places_to_visit(this.$store).then(response=>{
-          console.log("done")
-        })
-
-        updateDaysImages(this.$store).then(response=>{
-          console.log("done")
-        })
-
+          var urlString = window.location.origin + "/#/itinerarylink?pk=" + this.shareable_pk;
+          window.open(urlString, '_blank');
       },
       save_itinerary: function(){
         console.log(this.$store.state.itinerary_preview)
@@ -505,6 +432,7 @@ export default {
       imageData: null,
       date: [],
       showModal: false,
+      shareable_pk: -1
     }
   },
   computed:{

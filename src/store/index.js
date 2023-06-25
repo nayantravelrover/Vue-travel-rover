@@ -46,7 +46,10 @@ export default store(function (/* { ssrContext } */) {
         accomodation_arrangements_img: [{"images": ["https://plus.unsplash.com/premium_photo-1680127402006-3a21c93da392?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80","https://plus.unsplash.com/premium_photo-1680127402006-3a21c93da392?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80","https://plus.unsplash.com/premium_photo-1680127402006-3a21c93da392?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80","https://plus.unsplash.com/premium_photo-1680127402006-3a21c93da392?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"]}],
         travel_arrangements_img:'download.jpeg',
         user_mobile_number: "",
-        user_name: ""
+        user_name: "",
+        payment_link:"",
+        inclusions_headers: "",
+        exclusions_headers: ""
       },
     },
     mutations:{
@@ -168,6 +171,12 @@ export default store(function (/* { ssrContext } */) {
       },
       accomodation_arrangements_4_img_update(state,val) {
         state.itinerary_preview.accomodation_arrangements_img[0].images[3] = val
+      },
+      inclusions_headers_update(state,val) {
+        state.itinerary_preview.inclusions_headers = val;
+      },
+      exclusions_headers_update(state,val) {
+        state.itinerary_preview.exclusions_headers = val;
       },
     },
     actions:{
