@@ -139,7 +139,7 @@ export default {
             path: '/profilepageweb/',
             name:'ProfilePageWeb'
           })
-          },
+          },  
     },
     components: { LoginPage2, RegisterPage }
 }
