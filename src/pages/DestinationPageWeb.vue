@@ -138,7 +138,7 @@
             <div class="compare_main_title" style="padding: 10px 0 10px 20px;">Itinerary Comparison</div>
             <div class="row compare_content">
                 <div class="compare_inner_content2">
-                    <div class="compare_main_subtitle">Compare Exotic Goa 9 Nights / 10 Days Tour vs 2 others</div>
+                    <div class="compare_main_subtitle">Compare your itineraries here.</div>
                 </div>
                 <div class="compare_inner_content2">
                     <div class="column compare_images">

@@ -22,6 +22,9 @@
         </q-toolbar-title>
 
         <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="go_to_home"/>
+        <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=There are some issues with the website, please help here.`" target="_blank" style="text-decoration: none; color:white;">
+            <q-btn flat  dense class="q-ml-md gt-sm" label="Contact Us" style="font-family: Poppins;" @click="contact_us"/>
+        </a>
         <q-btn
           flat
           dense
