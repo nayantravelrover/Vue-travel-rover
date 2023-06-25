@@ -6,7 +6,7 @@
                     <AppBar/>
                     <div class="gt-xs">
                      <div class="container40" style="display: flex;flex-direction: column;align-items: center;padding: 32px 63px;position: absolute;width: 511px;height: 222px;left: 465px;top: 300px;">
-        <text class="text50" style="width: 500px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
+        <text class="text50" style="width: 800px;height: 108px;font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 72px;line-height: 108px;color: #FFFFFF;flex: none;order: 0;flex-grow: 0;margin: -10px 0px;text-align: center;">{{this.place_description['name']}}</text>
 
         <text class="text51" style="width: 500px;height: 60px;font-family: 'Poppins';font-style: normal;font-weight: 500;font-size: 40px;line-height: 60px;color: #FFFFFF;flex: none;order: 1;flex-grow: 0;text-align: center;">{{this.place_description['places_one_liner']}}</text>
                     </div>

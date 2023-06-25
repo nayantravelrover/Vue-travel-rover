@@ -18,7 +18,7 @@
         /> -->
 
         <q-toolbar-title class="q-pa-md row item-center">
-          <img src="../assets/logo.svg" @click="go_to_home" />
+          <img src="../assets/logo.svg" @click="go_to_home" style="cursor: pointer;"/>
         </q-toolbar-title>
 
         <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="go_to_home"/>
@@ -26,8 +26,9 @@
           flat
           dense
           round
+          color="white"
           class="q-ml-md"
-          :icon="matAccountCircle"
+          icon="account_circle"
           aria-label="Menu">
           <q-menu>
             <q-list style="min-width: 100px;max-height:89px">
@@ -36,9 +37,9 @@
               <div class="q-pa-xs" v-if="this.$store.state.user_logged_in===false">
                 <RegisterPage/>
               </div>
-              <q-btn label="Profile" color="primary" flat rounded  style="margin-top:3px; width: 91px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
+              <q-btn label="Profile" icon="account_circle" color="primary" flat rounded  style="margin-top:3px; width: 131px; margin: 4px;" v-if="this.$store.state.user_logged_in" />
               <div class="q-pa-xs">
-              <q-btn label="Logout" color="primary" flat rounded  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
+              <q-btn label="Logout" icon="logout" color="primary" flat rounded  style="width: 100%;" v-if="this.$store.state.user_logged_in" @click="logout"/>
                </div>
 
 
@@ -80,17 +81,17 @@
                         <div class="profile_text">My Profile</div>
                     </div> -->
                     
-                    <div class="row profile_spacing"  @click="this.show_purchased">
+                    <div class="row profile_spacing"  @click="this.show_purchased" style="cursor: pointer;">
                         <img src="../assets/profilepage/purchased.svg" alt="">
                         <div class="profile_text">Purchased Itineraries</div>
                     </div>
                     <q-separator />
-                    <div class="row profile_spacing" @click="this.show_liked">
+                    <div class="row profile_spacing" @click="this.show_liked" style="cursor: pointer;">
                         <img src="../assets/profilepage/favorite.svg" alt="">
                         <div class="profile_text">Liked Itineraries</div>
                     </div>
                     <q-separator />
-                    <div class="row profile_spacing"  @click="this.show_viewed">
+                    <div class="row profile_spacing"  @click="this.show_viewed" style="cursor: pointer;">
                         <img src="../assets/profilepage/visibility.svg" alt="">
                         <div class="profile_text">My Created Itineraries</div>
                     </div>
@@ -127,7 +128,7 @@ import PurchasedItinerary from "./PurchasedItinerary.vue"
 import LoginPage2 from "./LoginPage2.vue"
 import RegisterPage from "./RegisterPage.vue"
 
-import { matAccountCircle } from "@quasar/extras/material-icons";
+import {matAccountCircle} from "@quasar/extras/material-icons";
 import {check_if_access_token_is_valid} from "src/common/api_calls";
 import ViewItinerary from './ViewItinerary.vue';
 
