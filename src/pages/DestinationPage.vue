@@ -50,7 +50,7 @@
                         <text class="text12">{{item.itinerary_name}}</text>
                     </div>
                     
-                    <ul class="text13">
+                    <ul class="text13" style="overflow-x: scroll;">
                         <li v-for="list_item in item.place_description" :key="list_item">
                             {{list_item}}
                         </li>
@@ -58,7 +58,6 @@
                     <div class="line_break" style="margin-left: 10px; margin-top:10px;"></div>
                     <div style="margin-top: 20px; margin-left: 30px;">
                         <text class="text16">
-
                         <text v-for="list_item in item.inclusions_headers" :key="list_item">✔️ {{list_item}} </text> 
                         <br>
                         <text v-for="list_item in item.exclusions_headers" :key="list_item">❌ {{list_item}} </text> 
