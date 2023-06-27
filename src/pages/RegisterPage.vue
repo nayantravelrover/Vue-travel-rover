@@ -33,12 +33,12 @@
                             <q-btn class="full-width" color="primary" label="Create Account" type="submit" style="font-family: Poppins;margin-top: 15px;">
                             </q-btn>
                         </div>
-                        <div>
-                            <img src="../assets/line2.svg" />
+                        <div style="width: 330px;">
+                            <!-- <img src="../assets/line2.svg" /> -->
                         </div>
-                        <div>
+                        <!-- <div>
                             <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
-                        </div>
+                        </div> -->
                     </q-form>
                     </q-card-section>
                     <q-card-section style="margin: 10px;">
@@ -82,12 +82,12 @@
                                     style="font-family: Poppins;margin-top: 15px;">
                                 </q-btn>
                             </div>
-                            <div>
-                                <img src="../assets/line2.svg" style="max-width: 300px;"/>
+                            <div style="width: 300px;">
+                                <!-- <img src="../assets/line2.svg"/> -->
                             </div>
-                            <div>
+                            <!-- <div>
                                 <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
-                            </div>
+                            </div> -->
                         </q-form>
                     </q-card-section>
                 </q-card>

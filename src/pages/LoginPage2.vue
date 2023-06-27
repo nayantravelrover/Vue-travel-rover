@@ -14,7 +14,8 @@
                                     </div>
 
                                 </div>
-                                <q-input outlined v-model="login.username" label="Email" :dense="dense"/>
+                                <div style="margin-top: 80px;">
+                                <q-input style="margin-bottom: 20px;" outlined v-model="login.username" label="Email" :dense="dense"/>
                                 <q-input outlined :dense="dense" v-model="login.password" label="Password" filled
                                     :type="isPwd ? 'password' : 'text'">
                                     <template v-slot:append>
@@ -22,6 +23,7 @@
                                             @click="isPwd = !isPwd" />
                                     </template>
                                 </q-input>
+                                </div>
                                 <div>
                                     <q-btn class="full-width" color="primary" label="Login" type="submit"
                                         style="font-family: Poppins;margin-top: 10px;">
@@ -31,12 +33,12 @@
                                     <q-text class="text5 flex justify-center" style="font-family: Poppins;">Forgot Password? <a href="#" style="text-decoration: none;color: #003FA3; font-weight: 600;">Click
                                             Here</a></q-text>
                                 </div> -->
-                                <div>
-                                    <img src="../assets/line2.svg" />
+                                <div style="width: 330px;">
+                                    <!-- <img src="../assets/line2.svg" /> -->
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</text></q-text>
-                                </div>
+                                </div> -->
                             </q-form>
                         </q-card-section>
                         <q-card-section class="gt-sm" style="margin: 10px;">
@@ -79,12 +81,12 @@
                             <div>
                                 <q-text class="text5 flex justify-center" style="font-family: Poppins;">Forgot Password? <a href="#" style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Click Here</a></q-text>
                             </div> -->
-                            <div>
-                                <img src="../assets/line2.svg" style="max-width: 300px;"/>
+                            <div style="width: 300px;">
+                                <!-- <img src="../assets/line2.svg" style="max-width: 300px;"/> -->
                             </div>
-                            <div>
+                            <!-- <div>
                                 <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Sign Up</text></q-text>
-                            </div>
+                            </div> -->
                         </q-form>
                     </q-card-section>
                 </q-card>
