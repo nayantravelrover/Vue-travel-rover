@@ -341,7 +341,7 @@
       <div class="carousel-heading">
         <h5 class="text-center">Top Destinations</h5>
       </div>
-      <Carousel :itemsToShow="isMobile ? 1.2 : 6" v-model="slide">
+      <Carousel :itemsToShow="isMobile ? 1.3 : 6" v-model="slide">
         <Slide
           v-for="(items, index) in basic_data['explore_destination_images']"
           :key="items"
@@ -652,7 +652,7 @@
             <div class="col-md-5 col-xs-12 mobile-view-footer">
               <div class="row">
                 <span>
-                  <h3 class="col-title">Company</h3>
+                  <h3 class="col-title" style="font-family: Poppins;">Company</h3>
                   <nav class="col-list">
                     <ul>
                       <li><a href="#">About Us</a></li>
@@ -664,30 +664,30 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="font-family: Poppins;">
             <div
               class="col-md-3 col-xs-12"
-              style="display: flex; justify-content: center"
+              style="display: flex; justify-content: center;"
             >
-              <h3 class="col-title-bottom">Made in India</h3>
+              <h3 class="col-title-bottom" style="font-family: Poppins;">Made in India</h3>
             </div>
             <div
               class="col-md-3 col-xs-12"
               style="display: flex; justify-content: center"
             >
-              <h3 class="col-title-bottom">© 2023 All Rights Reserved</h3>
+              <h3 class="col-title-bottom" style="font-family: Poppins;">© 2023 All Rights Reserved</h3>
             </div>
             <div
               class="col-md-3 col-xs-12"
               style="display: flex; justify-content: center"
             >
-              <h3 class="col-title-bottom">Terms & Conditions</h3>
+              <h3 class="col-title-bottom" style="font-family: Poppins;">Terms & Conditions</h3>
             </div>
             <div
               class="col-md-3 col-xs-12"
               style="display: flex; justify-content: center"
             >
-              <h3 class="col-title-bottom">Privacy Policy</h3>
+              <h3 class="col-title-bottom" style="font-family: Poppins;">Privacy Policy</h3>
             </div>
           </div>
         </div>
