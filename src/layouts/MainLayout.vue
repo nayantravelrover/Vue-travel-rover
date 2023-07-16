@@ -141,36 +141,35 @@ export default defineComponent({
   created() {
     this.matAccountCircle = matAccountCircle;
     
-
-    
     var modalTimeout;
     const self = this;
+    self.$store.commit('state_signup_modal', true);
     // this.$store.commit('inactivity_var_update', true)
     // Set the time (in milliseconds) for inactivity
-    var inactivityTimeout = 30000; // 30 seconds
+    // var inactivityTimeout = 30000; // 30 seconds
 
-    // Function to reset the inactivity timer
-    function resetInactivityTimer() {
-      clearTimeout(modalTimeout);
-      startInactivityTimer();
-    }
+    // // Function to reset the inactivity timer
+    // function resetInactivityTimer() {
+    //   clearTimeout(modalTimeout);
+    //   startInactivityTimer();
+    // }
 
-    // Function to start the inactivity timer
-    function startInactivityTimer() {
+    // // Function to start the inactivity timer
+    // function startInactivityTimer() {
       
-      modalTimeout = setTimeout(() => {
-          self.$store.commit('state_login_modal', true);
+    //   modalTimeout = setTimeout(() => {
+    //       self.$store.commit('state_login_modal', true);
         
-      }, inactivityTimeout);
-    }
+    //   }, inactivityTimeout);
+    // }
 
 
-    // Event listeners to track user activity
-    document.onload = resetInactivityTimer; // Reset timer on page load
-    document.onmousemove = resetInactivityTimer; // Reset timer on mouse movement
-    document.onkeypress = resetInactivityTimer; // Reset timer on keypress
-    document.addEventListener("touchstart", resetInactivityTimer, true); // Reset timer on touchstart
-    document.addEventListener("scroll", resetInactivityTimer, true); // Reset timer on scroll
+    // // Event listeners to track user activity
+    // document.onload = resetInactivityTimer; // Reset timer on page load
+    // document.onmousemove = resetInactivityTimer; // Reset timer on mouse movement
+    // document.onkeypress = resetInactivityTimer; // Reset timer on keypress
+    // document.addEventListener("touchstart", resetInactivityTimer, true); // Reset timer on touchstart
+    // document.addEventListener("scroll", resetInactivityTimer, true); // Reset timer on scroll
   },
   name: "MainLayout",
   plugins: { Notify },
