@@ -100,7 +100,6 @@ import { defineComponent, onMounted } from "vue";
 import { ref, computed } from "vue";
 import { useQuasar } from 'quasar'
 import {base_url, setAccessToken, basicconfig, user_login,check_if_access_token_is_valid} from '../common/api_calls.js'
-import _ from "lodash";
 
 
 const RegisterPage = () => import('../pages/RegisterPage.vue')

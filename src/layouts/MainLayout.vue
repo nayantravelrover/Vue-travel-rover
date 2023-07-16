@@ -181,12 +181,6 @@ export default defineComponent({
 
   mounted(){
 
-
-    
-
-
-
-
     check_if_access_token_is_valid().then(response=>{
       
       if(response["data"]["type_of_user"] == "agent"){
@@ -208,11 +202,6 @@ export default defineComponent({
           });
     });
     $q = useQuasar()
-  },
-  data(){
-    return {
-      inactivity_parent_var: this.$store.state.inactivity_var
-    }
   },
   setup() {
     const leftDrawerOpen = ref(false);
@@ -248,7 +237,7 @@ export default defineComponent({
       window.localStorage.removeItem("travel_rover_access");
       window.localStorage.removeItem("travel_rover_refresh_token");
       this.$store.commit('user_logged_in_update', false)
-      console.log("here in logout")
+      
       $q.notify({
               type: 'negative',
               message: 'Successfully Logged Out',
