@@ -2,7 +2,9 @@
   <div>
   <q-layout view="lHh Lpr lFf">
     <q-header>
-    
+      
+      <LoginPage2 v-if="this.$store.state.user_logged_in===false && this.$store.state.show_login_modal===true "/>
+      <RegisterPage v-if="this.$store.state.user_logged_in===false && this.$store.state.show_signup_modal===true"/>
       <q-toolbar>
         <!-- <q-btn v-if="$q.platform.is.mobile"
           flat
@@ -20,7 +22,7 @@
         <q-btn flat  dense class="q-ml-md gt-sm" label="Home" style="font-family: Poppins;" @click="scroll('home')"/>
         <q-btn flat  dense class="q-ml-md gt-sm" label="About Us" style="font-family: Poppins;" @click="scroll('why_choose_us')" />
         <q-btn flat  dense class="q-ml-md gt-sm" label="Testimonials" style="font-family: Poppins;"  @click="scroll('testimonials')" />
-        <q-btn flat  dense class="q-ml-md gt-sm" label="ContactUs" style="font-family: Poppins;" @click="scroll('contact_us')" />
+        <q-btn flat  dense class="q-ml-md gt-sm" label="Contact Us" style="font-family: Poppins;" @click="scroll('contact_us')" />
         <q-btn
           flat
           dense
@@ -29,6 +31,7 @@
           :icon="matAccountCircle"
           aria-label="Menu">
           <q-menu>
+
             <q-list style="min-width: 100px;max-height:89px">
               <!-- <q-item clickable v-close-popup>
                 <q-item-section>Login</q-item-section>
@@ -137,18 +140,53 @@ let $q
 export default defineComponent({
   created() {
     this.matAccountCircle = matAccountCircle;
-    console.log(this.$store.state.user_logged_in)
+    
+
+    
+    var modalTimeout;
+    const self = this;
+    // this.$store.commit('inactivity_var_update', true)
+    // Set the time (in milliseconds) for inactivity
+    var inactivityTimeout = 10000; // 30 seconds
+
+    // Function to reset the inactivity timer
+    function resetInactivityTimer() {
+      clearTimeout(modalTimeout);
+      startInactivityTimer();
+    }
+
+    // Function to start the inactivity timer
+    function startInactivityTimer() {
+      
+      modalTimeout = setTimeout(() => {
+          self.$store.commit('state_login_modal', true);
+        
+      }, inactivityTimeout);
+    }
+
+
+    // Event listeners to track user activity
+    document.onload = resetInactivityTimer; // Reset timer on page load
+    document.onmousemove = resetInactivityTimer; // Reset timer on mouse movement
+    document.onkeypress = resetInactivityTimer; // Reset timer on keypress
+    document.addEventListener("touchstart", resetInactivityTimer, true); // Reset timer on touchstart
+    document.addEventListener("scroll", resetInactivityTimer, true); // Reset timer on scroll
   },
   name: "MainLayout",
   plugins: { Notify },
   components: {
-    // EssentialLink,
-    // Login,
-    //LoginPage,
     RegisterPage,
     LoginPage2,
   },
+
   mounted(){
+
+
+    
+
+
+
+
     check_if_access_token_is_valid().then(response=>{
       
       if(response["data"]["type_of_user"] == "agent"){
@@ -170,6 +208,11 @@ export default defineComponent({
           });
     });
     $q = useQuasar()
+  },
+  data(){
+    return {
+      inactivity_parent_var: this.$store.state.inactivity_var
+    }
   },
   setup() {
     const leftDrawerOpen = ref(false);

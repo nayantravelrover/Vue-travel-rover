@@ -3,10 +3,7 @@
     <div class="main-container row justify-center q-pa-md gt-sm">
       <div class="col-md-8 content">
         <div class="row items-center justify-center">
-          <div
-            class="input-area-1 col-md-5 col-xs-12"
-            style="background-color: white; border-radius: 29px 0 0 29px"
-          >
+          <div class="input-area-1 col-md-5 col-xs-12" style="background-color: white; border-radius: 29px 0 0 29px">
             <q-select
               bg-color="white"
               rounded
@@ -25,40 +22,21 @@
             class="input-area-1 col-md-4 col-xs-12"
             style="background-color: white; border-radius: 0px"
           >
-            <q-input
-              style="font-family: Poppins"
-              hide-bottom-space
-              square
+
+          <q-select
               bg-color="white"
-              label="Date ?"
-              filled
-              v-model="date"
-              :rules="[(val) => Date.parse(val) || 'Invalid date.']"
-              input-class="cursor-pointer"
-              mask="####-##-##"
+              rounded
+              outlined
+              v-model="category"
+              :options="options_category"
+              label="Category?"
+              style="font-family: Poppins;"
             >
-              <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
-                <q-date
-                  v-model="date"
-                  minimal
-                  @update:model-value="handleDateSelection"
-                  no-unset
-                  mask="YYYY-MM-DD"
-                >
-                  <div class="row items-center justify-end">
-                    <q-btn
-                      v-close-popup
-                      label="Close"
-                      color="primary"
-                      flat
-                    ></q-btn>
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-              <template v-slot:append>
-                <q-icon name="event" class="cursor-pointer"></q-icon>
+              <template v-slot:prepend>
+                <q-icon style="margin-left: 5px" name="category" />
               </template>
-            </q-input>
+            </q-select>
+            
           </div>
           <!-- <div class="input-area-3 col-md-3 col-xs-12" style="background-color: white">
             <q-input borderless bg-color="white" label="To ?" v-model="date">
@@ -88,7 +66,7 @@
               class="search-btn"
               icon="search"
               label="Search"
-              @click="go_to_images(this.where_to, this.date)"
+              @click="go_to_category_itinerary(this.where_to, this.category)"
               style="font-size: 17px"
             />
           </div>
@@ -205,40 +183,18 @@
             class="input-area-2 col-md-3 col-xs-12"
             style="background-color: white"
           >
-            <q-input
-              style="font-family: Poppins"
-              hide-bottom-space
-              square
+           <q-select
               bg-color="white"
-              label="Date ?"
               filled
-              v-model="date"
-              :rules="[(val) => Date.parse(val) || 'Invalid date.']"
-              input-class="cursor-pointer"
-              mask="####-##-##"
+              v-model="category"
+              :options="options_category"
+              label="Category"
+              style="font-family: Poppins"
             >
-              <q-popup-proxy ref="qDateProxy" :breakpoint="0" behavior="menu">
-                <q-date
-                  v-model="date"
-                  minimal
-                  @update:model-value="handleDateSelection"
-                  no-unset
-                  mask="YYYY-MM-DD"
-                >
-                  <div class="row items-center justify-end">
-                    <q-btn
-                      v-close-popup
-                      label="Close"
-                      color="primary"
-                      flat
-                    ></q-btn>
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-              <template v-slot:append>
-                <q-icon name="event" class="cursor-pointer"></q-icon>
+              <template v-slot:prepend>
+                <q-icon name="category" />
               </template>
-            </q-input>
+            </q-select>
           </div>
 
           <div
@@ -251,7 +207,7 @@
               class="search-btn"
               icon="search"
               label="Search"
-              @click="go_to_images(this.where_to, this.date)"
+              @click="go_to_category_itinerary(this.where_to, this.category)"
             />
           </div>
         </div>
@@ -336,6 +292,48 @@
 
     <!--- End of Mobile Header  ------>
 
+    <!-- top itineraries -->
+    <div class="q-pa-sm" style="margin-top: 50px" id="destinations">
+      <div class="carousel-heading">
+        <h5 class="text-center">Our Top Itineraries</h5>
+      </div>
+      <Carousel :itemsToShow="isMobile ? 1.3 : 6" v-model="slide">
+        <Slide
+          v-for="(items) in top_selling_itineraries"
+          :key="items"
+          arrows
+        >
+
+          <div
+            class="carousel__item-1"
+            style="margin-top: 0px"
+            @click="this.view_itinerary(items.pk)"
+          >
+            <q-card class="destination-carousel-card" style="cursor: pointer">
+              <img :src="items.fields.place_img" />
+
+              <q-card-section>
+                <div class="row no-wrap justify-between">
+                  <div class="col-md-10 text-black text-caption text-weight-fat bold" style="width: fit-content;font-size: 10px;" >
+                    {{ items.fields.itinerary_name }}
+                  </div>
+
+                  
+                </div>
+            
+              </q-card-section>
+            </q-card>
+          </div>
+        </Slide>
+      </Carousel>
+      
+    </div>
+
+
+    <q-dialog v-model="card">
+          <ViewItinerary/>
+    </q-dialog>
+
     <!-- top 5 destinations -->
     <div class="q-pa-sm" style="margin-top: 50px" id="destinations">
       <div class="carousel-heading">
@@ -347,16 +345,7 @@
           :key="items"
           arrows
         >
-          <div
-            class="carousel__item-1"
-            style="margin-top: 0px"
-            @click="
-              go_to_images(
-                basic_data['explore_destination'][index],
-                default_date
-              )
-            "
-          >
+<div class="carousel__item-1" style="margin-top: 0px" @click="go_to_images(basic_data['explore_destination'][index])">
             <q-card class="destination-carousel-card" style="cursor: pointer">
               <img :src="items" />
 
@@ -381,7 +370,15 @@
         </Slide>
       </Carousel>
     </div>
+    
+
+    
+
+
     <!-- why choose us  -->
+
+
+
 
     <div id="why_choose_us" class="q-pa-md section-3-main justify-center">
       <!-- <div class="main-section-3" id="why_choose_us">
@@ -501,7 +498,7 @@
                 </div>
               </q-card-section>
               <q-card-section>
-                <q-rating color="orange" v-model="stars" :max="5" size="32px" />
+                <q-rating readonly value="5" color="orange" size="32px" no-dimming />
                 <div class="text-h6">{{ reviewers[index] }}</div>
               </q-card-section>
             </q-card>
@@ -642,6 +639,11 @@
                             <path
                               d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
                             /></svg></a>
+
+                <a href="https://api.whatsapp.com/send?phone=7977790353&text=We're here to assist with your travel needs and make your journey unforgettable!" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="500px" height="500px" fill="white">    <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z"/></svg></a>
+
+
                       </div>
                     </li>
                   </ul>
@@ -704,6 +706,9 @@ import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 // import MobileHeader from '../components/MobileHeader.vue';
 import axios from "axios";
+import _ from "lodash";
+
+
 
 import {
   basicconfig,
@@ -711,10 +716,13 @@ import {
   check_if_access_token_is_valid,
   check_if_refresh_token_is_valid,
   create_prompt,
+  load_top_selling_itineraries,
+  get_category_itinerary
 } from "src/common/api_calls";
 
 import DestinationPageWeb from "./DestinationPageWeb.vue";
 import DestinationPage from "./DestinationPage.vue";
+import ViewItinerary from './ViewItinerary.vue';
 import { useQuasar, Notify } from "quasar";
 
 let $q;
@@ -723,6 +731,7 @@ export default defineComponent({
   components: {
     Carousel,
     Slide,
+    ViewItinerary
     // MobileHeader,
   },
   props: {
@@ -738,6 +747,7 @@ export default defineComponent({
         "-" +
         new Date().toLocaleString("default", { day: "2-digit" }),
       header_content: "",
+      top_selling_itineraries: [],
       basic_data: {},
       svgs_color: ["orange", "light-green", "brown", "purple"],
       options: [
@@ -747,9 +757,18 @@ export default defineComponent({
         "Goa",
         "Kashmir",
         "Rajasthan",
+        "Others"
       ],
       where_to: ref(null),
-      date: new Date().toISOString().slice(0, 10).replace(/-/g, "-"),
+      category : ref(null),
+      options_category: [
+        "Honeymoon",
+        "Workation",
+        "Backpackers",
+        "Family Trip",
+        "Friends Trip",
+        "Others"
+      ],
       reviewers: [
         "Anuj Vadecha",
         "Nitin Bhansali",
@@ -793,15 +812,31 @@ export default defineComponent({
           redirection_url: "workation",
         },
       ],
+      card: false
     };
   },
   methods: {
-    go_to_images(item, date) {
-      this.$router.push({
-        path: "/destination/",
-        name: "DestinationPage",
-        query: { place: item, date: date },
-      });
+    view_itinerary(itinerary_pk){
+                var data = {
+                    "itinerary_pk":itinerary_pk
+                }
+                this.card = true
+                var itinerary = []
+                for(var items in this.top_selling_itineraries){
+                    if(itinerary_pk == this.top_selling_itineraries[items]["pk"]){
+                        itinerary = this.top_selling_itineraries[items]["fields"]
+                        break;
+                    }
+                }
+                this.$store.commit('itinerary_preview_update', itinerary)
+                this.$store.commit('itinerary_pk_update',itinerary_pk)
+    },
+    go_to_images(item) {
+        this.$router.push({
+            path: "/destination/",
+            name: "DestinationPage",
+            query: { place: item, date: this.default_date }
+        });
     },
     subscribe() {
       if (this.$store.state.user_logged_in == false) {
@@ -813,7 +848,7 @@ export default defineComponent({
       } else {
         check_if_access_token_is_valid()
           .then((response) => {
-            console.log(response);
+            
             var access_token = window.localStorage.getItem(
               "travel_rover_access"
             );
@@ -835,11 +870,11 @@ export default defineComponent({
             this.$store.commit("user_logged_in_update", true);
           })
           .catch((err) => {
-            console.log(err);
+            
             check_if_refresh_token_is_valid()
               .then((response) => {
                 var access_token = response["data"]["access"];
-                console.log(access_token);
+                
                 window.localStorage.setItem(
                   "travel_rover_access",
                   access_token
@@ -884,11 +919,11 @@ export default defineComponent({
       } else {
         check_if_access_token_is_valid()
           .then((response) => {
-            console.log(response);
+            
             var access_token = window.localStorage.getItem(
               "travel_rover_access"
             );
-            console.log(this.area);
+            
             create_prompt({ prompt: this.area }, access_token)
               .then((response) => {
                 var pk_of_prompt = response["data"]["pk_of_prompt"];
@@ -913,11 +948,11 @@ export default defineComponent({
               });
           })
           .catch((err) => {
-            console.log(err);
+            
             check_if_refresh_token_is_valid()
               .then((response) => {
                 var access_token = response["data"]["access"];
-                console.log(access_token);
+                
                 window.localStorage.setItem(
                   "travel_rover_access",
                   access_token
@@ -956,6 +991,48 @@ export default defineComponent({
           });
       }
     },
+
+    go_to_category_itinerary(item, category) {
+
+      if(item == "Others" || category == "Others"){
+
+        window.open(
+          "https://api.whatsapp.com/send?phone=7977790353&text=I want your help in creating a customised itinerary",
+          "_blank" // <- This is what makes it open in a new window.
+        );
+      }
+
+      else if(category == "" || category == null){
+        $q.notify({
+              type: "negative",
+              message: "Kindly select a category",
+              position: "top",
+            });
+      }
+
+
+      else{
+        get_category_itinerary({"category":category,"place_name":item})
+                  .then((response) => {
+                    
+                    this.card = true
+                    var itinerary = []
+                    
+                    itinerary = JSON.parse(response.data.data)[0]["fields"]
+                    this.$store.commit('itinerary_preview_update', itinerary)
+                    this.$store.commit('itinerary_pk_update',JSON.parse(response.data.data)[0]['pk'])
+
+                  })
+                  .catch((err) => {
+                    $q.notify({
+                      type: "negative",
+                      message: "Some internal issues are going on",
+                      position: "top",
+                    });
+                  });
+      }
+    },
+
     scroll(id) {
       const element = document.getElementById(id);
       element.scrollIntoView({ behavior: "smooth" });
@@ -994,6 +1071,9 @@ export default defineComponent({
   },
   mounted() {
     $q = useQuasar();
+    load_top_selling_itineraries().then((response) => {
+          this.top_selling_itineraries = JSON.parse(response.data.data)
+        });
   },
   created() {
     document.onreadystatechange = () => {
@@ -1071,7 +1151,7 @@ export default defineComponent({
         "Kullu $$$ Maldives $$$ Kerala $$$ Manali $$$ Rishikesh",
       top_five_destination_images:
         "https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI $$$ https://unsplash.com/photos/oL3-V8xhqlI",
-      top_five_likes: ["500", "300", "200", "200", "200", "400"],
+      top_five_likes: ["1.3K", "1.7K", "1.1K", "1.9K", "1.2K", "2.1K"],
       video_link: "www.google.com",
       watch_latest_tour_content: "Watch our latest tour content it is amazing",
     };
@@ -1633,5 +1713,63 @@ footer ul {
 
 .image_style {
   height: 180px;
+}
+.modal {
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  max-width: 22em;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  z-index: 999;
+  transform: none;
+}
+.modal h1 {
+  margin: 0 0 1rem;
+}
+
+.modal-overlay {
+  content: "";
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 998;
+  background: #2c3e50;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+}
+
+.pop-enter,
+.pop-leave-to {
+  opacity: 0;
+  transform: scale(0.3) translateY(-50%);
 }
 </style>

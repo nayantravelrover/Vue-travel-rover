@@ -36,17 +36,23 @@
                 <div class="box7">
                     <div class="box8">
                         <div class="box9">
-                            <text class="type3">Start From RS. </text>
-                            <div class="type5">
-                                <text class="type4">{{this.$store.state.itinerary_preview.tour_rates}}</text>
-                                <text class="type3">/Per Person</text>
+
+                            <div class="type5" v-if="this.$store.state.itinerary_preview.zero_valued===true">
+                                 <text class="type4">Starts From Rs. 0</text>
+                                 
+                            </div>
+
+                           
+                            <div class="type5" v-else>
+                                <text class="type4">Starts From Rs. {{this.$store.state.itinerary_preview.tour_rates}}</text>
                             </div>
                         </div>
                     </div>
                     <div class="box10">
 
 
-                        <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" style="text-decoration: none;">
+
+                        <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank" style="text-decoration: none;" v-if="this.allow_buy && this.$store.state.itinerary_preview.zero_valued===false">
                             <!-- <div class="box11">
                                  <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
                                 <text class="type6">Buy Now</text>
@@ -55,6 +61,31 @@
                                 <text class="type6">Buy Now</text>
                             </q-btn>
                         </a>
+
+                        <a :href="`#/itinerarylink/?pk=${this.$store.state.itinerary_pk}`" target="_blank" style="text-decoration: none;" v-if="this.allow_buy && this.$store.state.itinerary_preview.zero_valued===true">
+                            <!-- <div class="box11">
+                                 <img class="cart1" src="../assets/editcard/cart1.svg" alt="">
+                                <text class="type6">Buy Now</text>
+                            </div> -->
+                            <q-btn class="box11" color="primary" icon="shopping_cart" style="font-family: Poppins;font-weight: 600;">
+                                <text class="type6">View Itinerary</text>
+                            </q-btn>
+                        </a>
+
+                        <a v-if="this.allow_buy===false">
+
+
+                        
+                         <q-btn class="box11" color="primary" icon="shopping_cart" style="font-family: Poppins;font-weight: 600;"  @click="show_notification"  v-if="this.$store.state.itinerary_preview.zero_valued===false" >
+                                <text class="type6">Buy Now</text>
+                            </q-btn>
+
+
+                        <q-btn class="box11" color="primary" icon="shopping_cart" style="font-family: Poppins;font-weight: 600;"  @click="show_notification"  v-else >
+                                <text class="type6">View Itinerary</text>
+                            </q-btn>
+
+                        </a>         
 
                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want to enquire about the itinerary named ${this.$store.state.itinerary_preview.itinerary_name}`" target="_blank">
                             <!-- <div class="box11">
@@ -93,21 +124,49 @@
                     <ItineraryPreview class="q-ma-lg"  id="preview" style="margin:0px;"></ItineraryPreview>
                 </div>
             </div>
-            <div class="box23 col">
-                <div class="box24">
+            
+            <div class="box26">
 
-                   
-                    <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank"  v-if="this.allow_buy">
+                <div style="align-content: center;"  v-if="this.$store.state.itinerary_preview.zero_valued===true">
+                    <text class="type4" style="padding-left: 10px;">  Starts From Rs. 0</text>
+                </div>
+                <div style="align-content: center;"  v-else>
+                    <text class="type4" style="padding:10px 10px 10px 30px;">Starts From Rs. {{this.$store.state.itinerary_preview.tour_rates}}</text>
+                </div>
+
+            </div>
+            
+            <div class="box23">
+
+                <div class="box24">
+                    <a :href="`${this.$store.state.itinerary_preview.payment_link}`" target="_blank"  v-if="this.allow_buy && this.$store.state.itinerary_preview.zero_valued===false">
                         <q-btn class="box25" icon="shopping_cart" color="primary" >
-                            <!-- <img class="card2" src="../assets/editcard/cart1.svg" alt=""> -->
+                            
                             <text class="type20" style="margin-left: 4px;">Buy Now</text>
                         </q-btn>
                     </a>
 
+                    
+
+                    <a :href="`#/itinerarylink/?pk=${this.$store.state.itinerary_pk}`" target="_blank" v-if="this.allow_buy && this.$store.state.itinerary_preview.zero_valued===true">
+                        <q-btn class="box25" icon="shopping_cart" color="primary" >
+                            
+                            <text class="type20">View Itinerary</text>
+                        </q-btn>
+                    </a>
+
+
+
+
                     <a v-if="this.allow_buy===false">
-                        <q-btn class="box25" icon="shopping_cart" color="primary" @click="show_notification">
-                            <!-- <img class="card2" src="../assets/editcard/cart1.svg" alt=""> -->
+                        <q-btn class="box25" icon="shopping_cart" color="primary" @click="show_notification" v-if="this.$store.state.itinerary_preview.zero_valued===false">
+                            
                             <text class="type20" style="margin-left: 4px;">Buy Now</text>
+                        </q-btn>
+
+                    <q-btn class="box25" icon="shopping_cart" color="primary" @click="show_notification" v-else>
+                            
+                            <text class="type20" style="margin-left: 4px;">View Itinerary</text>
                         </q-btn>
                     </a>                    
 
@@ -121,6 +180,7 @@
                     </q-btn></a>
                 </div>
             </div>
+            
         </q-card>
     </div>
         
@@ -147,6 +207,7 @@
         },
         mounted(){
             $q = useQuasar()
+
          },
         methods:{
             show_notification(){
@@ -158,17 +219,17 @@
             }
         },
         created(){
+            
             check_if_access_token_is_valid()
           .then((response) => {
-            console.log(response);
+
             var access_token = window.localStorage.getItem(
               "travel_rover_access"
             );
-            console.log(this.area);
             this.allow_buy = true
           })
           .catch((err) => {
-            console.log(err);
+            
             check_if_refresh_token_is_valid()
               .then((response) => {
                 var access_token = response["data"]["access"];
@@ -177,8 +238,6 @@
                   "travel_rover_access",
                   access_token
                 );
-                
-                
               })
               .catch((err) => {
                 this.$store.commit("user_logged_in_update", false);
@@ -193,33 +252,25 @@
 <style>
 .card2{
         width: 20.13px;
-            height: 20.13px;
-        
-        
+        height: 20.13px;
            
     }
 .share20{
         width: 20.13px;
-            height: 20.13px;
+        height: 20.13px;
     }
 .type20{
         
-              font-family: 'Poppins';
+            font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
             font-size: 16px;
-            
             color: #FFFFFF;
-        
-        
-           
     }
 .box25{
         display: flex;
-            background: #003FA3;
-            border-radius: 3.77419px;
-        
-           
+        background: #003FA3;
+        border-radius: 3.77419px;   
     }
 .box24{
         
@@ -232,6 +283,7 @@
             justify-content: center;
             padding: 10px 10px 10px 10px;
     }
+
 .box22{
         display: flex;
            
@@ -246,6 +298,8 @@
         
             background: #E5E3E6;
     }
+
+
 .box21{
        
             width: fit-content;
@@ -253,6 +307,11 @@
             overflow-y: scroll;
         
             background: #FFFFFF;
+    }
+
+.box26{
+        display: flex;    
+        justify-content: center;
     }
     .box20{
         
@@ -298,7 +357,7 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            font-size: 18px;
+            font-size: 15px;
             line-height: 27px;
             /* identical to box height */
             text-align: center;
@@ -374,8 +433,8 @@
         width: 345px;
     }
 .type4{
-        width: 363px;
-            height: 42px;
+        width: 263px;
+            height: 30px;
         
             font-family: 'Poppins';
             flex-direction: row;

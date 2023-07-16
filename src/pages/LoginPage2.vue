@@ -1,6 +1,6 @@
 <template>
-    <q-btn icon="login" label="Login" color="primary" flat rounded="" @click="icon = true" style="margin-top:4px; width: 131px;margin-right: 10px;font-size: 15px;" />
-    <q-dialog class="flex justify-center" v-model="icon">
+    <q-btn icon="login" label="Login" color="primary" flat rounded="" @click="enable_modal" style="margin-top:4px; width: 131px;margin-right: 10px;font-size: 15px;"/>
+    <q-dialog class="flex justify-center" v-model="dialogModel">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
             <q-card >
                 <div>
@@ -36,9 +36,9 @@
                                 <div style="width: 330px;">
                                     <!-- <img src="../assets/line2.svg" /> -->
                                 </div>
-                                <!-- <div>
-                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;">Sign Up</text></q-text>
-                                </div> -->
+                                <div>
+                                    <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="text-decoration: none;color: #003FA3;font-weight: 600;margin-left: 4px;cursor: pointer;" @click="disable_login_modal">Sign Up</text></q-text>
+                                </div>
                             </q-form>
                         </q-card-section>
                         <q-card-section class="gt-sm" style="margin: 10px;">
@@ -84,9 +84,9 @@
                             <div style="width: 300px;">
                                 <!-- <img src="../assets/line2.svg" style="max-width: 300px;"/> -->
                             </div>
-                            <!-- <div>
-                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;">Sign Up</text></q-text>
-                            </div> -->
+                            <div>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">New here? <text style="font-family: Poppins;text-decoration: none;font-weight: 600;color: #003FA3;cursor: pointer;" @click="disable_login_modal">Sign Up</text></q-text>
+                            </div>
                         </q-form>
                     </q-card-section>
                 </q-card>
@@ -95,32 +95,43 @@
     </q-dialog>
 </template>
 <script>
+
+import { defineComponent, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useQuasar } from 'quasar'
-import { mapActions } from 'vuex'
-import { ref } from 'vue'
 import {base_url, setAccessToken, basicconfig, user_login,check_if_access_token_is_valid} from '../common/api_calls.js'
+import _ from "lodash";
+
 
 const RegisterPage = () => import('../pages/RegisterPage.vue')
 
 let $q
-export default {
+export default defineComponent({
 
     name: 'LoginLayout',
     setup() {
         return {
             password: ref(''),
             isPwd: ref(true),
-            icon: ref(false),
+            icon: ref(false)
         }
     },
     data() {
         return {
             login: {
                 username: '',
-                password: ''
+                password: '',
+                inactivity_parent_var: this.$parent.inactivity_parent_var,
+                show_login_modal: this.$store.state.show_login_modal
             }
         }
     },
+    computed:{
+        dialogModel() {
+                
+                return this.$store.state.show_login_modal;
+            },  
+        },
     methods: {
         async submitForm() {
             if (!this.login.username || !this.login.password) {
@@ -142,6 +153,7 @@ export default {
                           setAccessToken(response.data)
                           this.$store.commit('user_logged_in_update', true)
                           this.icon = false
+                          this.$store.commit('inactivity_var_update', false);
                           check_if_access_token_is_valid().then(response=>{
                               console.log(response)
                               console.log(this.$store.state.is_agent)
@@ -175,10 +187,27 @@ export default {
                       })
                       }
             },
+            enable_modal(){
+                console.log("HERE IN LOGIN");
+                this.$store.commit('state_login_modal', true);
+                this.$store.commit('state_signup_modal', false)
+                console.log(this.$store.state.show_login_modal)
+
+            },
+
+            
+
+            disable_login_modal(){
+                console.log("here")
+                this.$store.commit('inactivity_var_update', false);
+                this.$store.commit('state_login_modal', false);
+                this.$store.commit('state_signup_modal', true)
+            }
         },
+
         mounted() {
             $q = useQuasar()
-        },
-    }
+        }
+    })
     
 </script>

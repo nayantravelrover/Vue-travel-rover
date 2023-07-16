@@ -19,6 +19,22 @@ function basicconfig () {
   });
 }
 
+function load_top_selling_itineraries () {
+  const endpoint = base_url + 'travel-rover/get-top-selling-itineraries/'
+  var headers = {
+    'Content-Type': 'application/json'
+  }
+  return new Promise(function (resolve, reject){
+    var result =  getAPIService(endpoint,headers, null).then(response =>{
+    resolve(response);
+  })
+  .catch(err =>{
+    reject(err)
+    console.log(err)
+  })
+  });
+}
+
 
 function load_place_itinerary_data(place,date){
   const endpoint = base_url + 'travel-rover/getcards/?place_name=' + place.trim() + "&date=" + date
@@ -297,6 +313,17 @@ function get_purchased_itinerary(data,access_token){
 }
 
 
+function get_category_itinerary(data){
+  var endpoint = base_url + 'travel-rover/get-category-itinerary/'
+  var data = data
+  var headers = {
+    'Content-Type': 'application/json',
+  }
+  var result = postAPIService(endpoint,headers, data)
+  return result
+}
+
+
 export {
   places,
   base_url,
@@ -318,5 +345,7 @@ export {
   create_prompt,
   create_chatgpt_itinerary,
   get_itinerary,
-  get_purchased_itinerary
+  get_purchased_itinerary,
+  load_top_selling_itineraries,
+  get_category_itinerary
 }

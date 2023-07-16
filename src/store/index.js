@@ -23,6 +23,9 @@ export default store(function (/* { ssrContext } */) {
     state: {
       user_logged_in: true,
       is_agent: false,
+      inactivity_var: false,
+      show_login_modal: false,
+      show_register_modal: false,
       itinerary_preview: {
         place_name: "Leh Ladakh",
         place_description: "Kerala, also known as 'God's Own Country', is a tropical paradise located in South India. It is known for its palm-lined beaches, serene backwaters, lush green hills, and traditional culture.",
@@ -49,8 +52,10 @@ export default store(function (/* { ssrContext } */) {
         user_name: "",
         payment_link:"",
         inclusions_headers: "",
-        exclusions_headers: ""
+        exclusions_headers: "",
+        zero_valued:""
       },
+      itinerary_pk: ""
     },
     mutations:{
       itinerary_preview_update(state,itinerary){
@@ -178,6 +183,19 @@ export default store(function (/* { ssrContext } */) {
       exclusions_headers_update(state,val) {
         state.itinerary_preview.exclusions_headers = val;
       },
+      itinerary_pk_update(state,val){
+        state.itinerary_pk = val
+      },
+      inactivity_var_update(state,val){
+        state.inactivity_var = val
+      },
+      state_login_modal(state,val){
+        state.show_login_modal = val  
+      },
+      state_signup_modal(state,val){
+        state.show_signup_modal = val
+      }
+
     },
     actions:{
 

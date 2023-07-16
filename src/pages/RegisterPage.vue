@@ -1,6 +1,6 @@
 <template>
-    <q-btn icon="person_add" label="Sign Up" color="primary" flat rounded="" @click="icon = true" style="width: 102%;font-size: 15px;"/>
-    <q-dialog class="flex justify-center" v-model="icon" id="register">
+    <q-btn icon="person_add" label="Sign Up" color="primary" flat rounded="" @click="enable_modal" style="width: 102%;font-size: 15px;"/>
+    <q-dialog class="flex justify-center" v-model="dialogModel" id="register">
         <div class="gt-sm" style="width: 765px; max-width: 70vw;">
         <q-card>
             <div>
@@ -36,9 +36,9 @@
                         <div style="width: 330px;">
                             <!-- <img src="../assets/line2.svg" /> -->
                         </div>
-                        <!-- <div>
-                            <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
-                        </div> -->
+                        <div>
+                            <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;cursor: pointer;" @click="disable_signup_modal">Sign In</text></q-text>
+                        </div>
                     </q-form>
                     </q-card-section>
                     <q-card-section style="margin: 10px;">
@@ -85,9 +85,9 @@
                             <div style="width: 300px;">
                                 <!-- <img src="../assets/line2.svg"/> -->
                             </div>
-                            <!-- <div>
-                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;">Sign In</text></q-text>
-                            </div> -->
+                            <div>
+                                <q-text class="text5 flex justify-center" style="font-family: Poppins;">Already Registered With Us? <text style="text-decoration: none;font-weight: 600;color:  #003FA3;margin-left: 4px;;cursor: pointer;" @click="disable_signup_modal">Sign In</text></q-text>
+                            </div>
                         </q-form>
                     </q-card-section>
                 </q-card>
@@ -120,10 +120,6 @@ export default {
     //     }
 
     // },
-    created() {
-        
-
-    },
 
     data() {
         return {
@@ -135,6 +131,12 @@ export default {
             }
         }
     },
+    computed:{
+        dialogModel() {
+                console.log(this.$store.state.show_signup_modal)
+                return this.$store.state.show_signup_modal;
+            },  
+        },
     methods: {
         async submitForm() {
             if (!this.login.username || !this.login.password) {
@@ -208,6 +210,16 @@ export default {
 
                 
             }
+        },
+        enable_modal(){
+            console.log("Hereee")
+            this.$store.commit('state_login_modal', false);
+            this.$store.commit('state_signup_modal', true)
+        },
+
+        disable_signup_modal(){
+            this.$store.commit('state_login_modal', true);
+            this.$store.commit('state_signup_modal', false)
         }
     },
     mounted() {
