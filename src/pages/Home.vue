@@ -293,10 +293,11 @@
     <!--- End of Mobile Header  ------>
 
     <!-- top itineraries -->
-    <div class="q-pa-sm" style="margin-top: 50px" id="destinations">
+    <div class="q-pa-sm" style="margin-top: 50px;" id="destinations" >
       <div class="carousel-heading">
         <h5 class="text-center">Our Top Itineraries</h5>
       </div>
+
       <Carousel :itemsToShow="isMobile ? 1.3 : 6" v-model="slide">
         <Slide
           v-for="(items) in top_selling_itineraries"
@@ -1073,6 +1074,7 @@ export default defineComponent({
     $q = useQuasar();
     load_top_selling_itineraries().then((response) => {
           this.top_selling_itineraries = JSON.parse(response.data.data)
+          console.log(this.top_selling_itineraries)
         });
   },
   created() {
@@ -1098,6 +1100,8 @@ export default defineComponent({
 
           // console.dir(JSON.stringify(this.basic_data), {'maxArrayLength': 10000000000});
         });
+
+
       }
     };
 
@@ -1155,6 +1159,47 @@ export default defineComponent({
       video_link: "www.google.com",
       watch_latest_tour_content: "Watch our latest tour content it is amazing",
     };
+
+    this.top_selling_itineraries = [
+        {
+            "pk": 73,
+            "fields": {
+                "place_img": "https://admin.travelrover.in/media/files/WhatsApp_Image_2023-03-08_at_22.18.44.jpeg",
+                "itinerary_name": "15 Days Workation Trip in Goa",
+            }
+        },
+        {
+            "pk": 73,
+            "fields": {
+                "place_img": "https://admin.travelrover.in/media/files/WhatsApp_Image_2023-03-08_at_22.18.44.jpeg",
+                "itinerary_name": "15 Days Workation Trip in Goa",
+            }
+        },
+        {
+            "pk": 73,
+            "fields": {
+                "place_img": "https://admin.travelrover.in/media/files/WhatsApp_Image_2023-03-08_at_22.18.44.jpeg",
+                "itinerary_name": "15 Days Workation Trip in Goa",
+            }
+        },
+        {
+            "pk": 73,
+            "fields": {
+                "place_img": "https://admin.travelrover.in/media/files/WhatsApp_Image_2023-03-08_at_22.18.44.jpeg",
+                "itinerary_name": "15 Days Workation Trip in Goa",
+            }
+        },
+        {
+            "pk": 73,
+            "fields": {
+                "place_img": "https://admin.travelrover.in/media/files/WhatsApp_Image_2023-03-08_at_22.18.44.jpeg",
+                "itinerary_name": "15 Days Workation Trip in Goa",
+            }
+        }
+    ]
+
+
+
   },
 });
 </script>
