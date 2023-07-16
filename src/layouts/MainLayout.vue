@@ -147,7 +147,7 @@ export default defineComponent({
     const self = this;
     // this.$store.commit('inactivity_var_update', true)
     // Set the time (in milliseconds) for inactivity
-    var inactivityTimeout = 10000; // 30 seconds
+    var inactivityTimeout = 30000; // 30 seconds
 
     // Function to reset the inactivity timer
     function resetInactivityTimer() {
