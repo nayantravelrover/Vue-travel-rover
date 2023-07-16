@@ -38,13 +38,13 @@
                         <div class="box9">
 
                             <div class="type5" v-if="this.$store.state.itinerary_preview.zero_valued===true">
-                                 <text class="type4">Itinerary Cost: Rs. 0</text>
+                                 <text class="type4">Itinerary Cost: Rs.0</text>
                                  
                             </div>
 
                            
                             <div class="type5" v-else>
-                                <text class="type4">Itinerary Cost: Rs. {{this.$store.state.itinerary_preview.tour_rates}}</text>
+                                <text class="type4">Itinerary Cost: Rs.{{this.$store.state.itinerary_preview.tour_rates}}</text>
                             </div>
                         </div>
                     </div>
@@ -128,10 +128,10 @@
             <div class="box26">
 
                 <div style="align-content: center;"  v-if="this.$store.state.itinerary_preview.zero_valued===true">
-                    <text class="type4" style="padding-left: 10px;">  Itinerary Cost: Rs. 0</text>
+                    <text class="type4">Itinerary Cost: Rs.0</text>
                 </div>
                 <div style="align-content: center;"  v-else>
-                    <text class="type4" style="padding:10px 10px 10px 30px;">Itinerary Cost: Rs. {{this.$store.state.itinerary_preview.tour_rates}}</text>
+                    <text class="type4">Itinerary Cost: Rs.{{this.$store.state.itinerary_preview.tour_rates}}</text>
                 </div>
 
             </div>
