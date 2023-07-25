@@ -998,19 +998,29 @@ export default defineComponent({
       if(item == "Others" || category == "Others"){
 
         window.open(
-          "https://api.whatsapp.com/send?phone=7977790353&text=I want your help in creating a customised itinerary",
+          "https://api.whatsapp.com/send?phone=7977790353&text=Hello! I'm looking for assistance in planning my upcoming trip. Would you be able to help me create a customised itinerary?",
           "_blank" // <- This is what makes it open in a new window.
         );
       }
 
       else if(category == "" || category == null){
-        $q.notify({
+
+        if(item != "" || item != null){
+          this.$router.push({
+            path: "/destination/",
+            name: "DestinationPage",
+            query: { place: item, date: this.default_date }
+          });
+        }
+
+        else{
+          $q.notify({
               type: "negative",
               message: "Kindly select a category",
               position: "top",
             });
+        }
       }
-
 
       else{
         get_category_itinerary({"category":category,"place_name":item})

@@ -425,7 +425,7 @@
                         <q-img src="../assets/Goa/cartoon.svg" />
                         <text class="text17">Ain’t satisfied with the Top-Selling itinerary. Want to customise your
                             itinerary?</text>
-                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=I want your help in creating a customised itinerary.`" target="_blank">
+                         <a :href="`https://api.whatsapp.com/send?phone=7977790353&text=Hello! I'm looking for assistance in planning my upcoming trip. Would you be able to help me create a customised itinerary?.`" target="_blank">
                         <q-btn class="btn12" unelevated rounded color="primary"><text
                                 style="font-family: Poppins; font-size: 20px; font-style: normal;">Click Here</text>
                         </q-btn>
