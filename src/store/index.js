@@ -53,7 +53,7 @@ export default store(function (/* { ssrContext } */) {
         payment_link:"",
         inclusions_headers: "",
         exclusions_headers: "",
-        zero_valued:""
+        zero_valued:false
       },
       itinerary_pk: ""
     },
