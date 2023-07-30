@@ -5,6 +5,7 @@
                 <img src="../assets/logo.svg" style="max-width: 200px;cursor: pointer;" @click="go_to_home"/>
             </q-toolbar-title>
             <q-btn flat dense class="q-ml-md" label="Home" style="font-family: Poppins;color:white;" @click="go_to_home"/>
+            <q-btn flat  dense class="q-ml-md gt-sm" label="Contact Us" style="font-family: Poppins;color:white;" @click="scroll('contact_us')" />
             <q-btn flat dense round class="q-ml-md" :icon="matAccountCircle" aria-label="Menu" color="white">
                 <q-menu>
                     <q-list>
@@ -139,7 +140,12 @@ export default {
             path: '/profilepageweb/',
             name:'ProfilePageWeb'
           })
-          },  
+          },
+            
+        scroll(id) {
+            const element = document.getElementById(id);
+            element.scrollIntoView({ behavior: "smooth" });
+          },
     },
     components: { LoginPage2, RegisterPage }
 }
