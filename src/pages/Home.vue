@@ -310,7 +310,7 @@
             style="margin-top: 0px"
             @click="this.view_itinerary(items.pk)"
           >
-            <q-card class="destination-carousel-card" style="cursor: pointer">
+            <q-card class="destination-carousel-card itineraries-free-badge" style="cursor: pointer">
               <img :src="items.fields.place_img" />
 
               <q-card-section>
@@ -1826,5 +1826,17 @@ footer ul {
 .pop-leave-to {
   opacity: 0;
   transform: scale(0.3) translateY(-50%);
+}
+
+.itineraries-free-badge::after {
+  position: absolute;
+  content: '';
+  right: -15px;
+  top: 6px;
+  background-image: url("../assets/icons/free-tab-badge.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 70px;
+  height: 70px;
 }
 </style>
