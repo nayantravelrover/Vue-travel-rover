@@ -1831,12 +1831,15 @@ footer ul {
 .itineraries-free-badge::after {
   position: absolute;
   content: '';
-  right: -15px;
-  top: 6px;
+  right: -8px;
+  top: -8px;
   background-image: url("../assets/icons/free-tab-badge.png");
   background-size: cover;
   background-repeat: no-repeat;
-  width: 70px;
-  height: 70px;
+  width: 30px;
+  height: 30px;
+}
+.carousel__viewport {
+  overflow: visible;
 }
 </style>
