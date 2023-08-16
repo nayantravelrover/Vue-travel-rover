@@ -54,6 +54,7 @@
     <ItineraryContentPreview :content="itinarary_data.cancellations_policy" label="Cancellations Policy"></ItineraryContentPreview> -->
     <ItineraryContentPreview :content="itinarary_data.things_to_carry" label="Things to Carry"></ItineraryContentPreview>
     <ItineraryContentPreview :content="itinarary_data.tour_rates" label="Tour rates"></ItineraryContentPreview>
+    <ItineraryContentPreview :content="itinarary_data.per_person_cost" label="Per Person Cost"></ItineraryContentPreview>
    <!--  <ExtraSections v-if="$store.state.itinerary_preview.extra_sections.length>0" class="q-pa-lg"></ExtraSections> -->
   </div>
 </template>
