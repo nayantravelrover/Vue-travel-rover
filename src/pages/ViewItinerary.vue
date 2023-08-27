@@ -270,7 +270,12 @@
 .box25{
         display: flex;
         background: #003FA3;
-        border-radius: 3.77419px;   
+        border-radius: 3.77419px;
+        border-radius: 3.77419px;
+        padding: 10px 22px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
     }
 .box24{
         
@@ -440,8 +445,9 @@
             flex-direction: row;
             font-style: normal;
             font-weight: 700;
-            font-size: 28px;
+            font-size: 20px;
             line-height: 42px;
+            padding: 0px 12px;
             /* identical to box height */
             text-align: justify;
         

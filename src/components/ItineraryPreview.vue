@@ -79,6 +79,7 @@ export default {
   },
   computed:{
     itinarary_data:function (){
+      console.log(this.$store.state.itinerary_preview);
       return this.$store.state.itinerary_preview
     },
     nonEmptyImagesCountPlacesToVisit() {

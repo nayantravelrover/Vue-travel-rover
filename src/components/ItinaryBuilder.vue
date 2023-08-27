@@ -163,6 +163,7 @@
      <PicturedWYISG class="q-pt-lg " property_key="cancellations_policy" heading="Cancellations Policy"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="things_to_carry" heading="Things to Carry"></PicturedWYISG>
      <PicturedWYISG class="q-pt-lg " property_key="tour_rates" heading="Tour Rates"></PicturedWYISG>
+     <PicturedWYISG class="q-pt-lg " property_key="per_person_cost" heading="Per Person Cost"></PicturedWYISG>
     </div>
     <q-btn color="green" label="Save" @click="save_itinerary()" />
    </q-scroll-area>
