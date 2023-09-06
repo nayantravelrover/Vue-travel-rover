@@ -813,12 +813,14 @@ export default defineComponent({
         get_category_itinerary({ "category": category, "place_name": item })
           .then((response) => {
 
-            this.card = true
+            //this.card = true
+            this.$store.commit('toggle_preview_itinerary_modal', true)
             var itinerary = []
 
             itinerary = JSON.parse(response.data.data)[0]["fields"]
             this.$store.commit('itinerary_preview_update', itinerary)
             this.$store.commit('itinerary_pk_update', JSON.parse(response.data.data)[0]['pk'])
+            console.log("here")
 
           })
           .catch((err) => {
