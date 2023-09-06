@@ -362,7 +362,7 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 27px;
             /* identical to box height */
             text-align: center;
