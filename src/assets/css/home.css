@@ -961,3 +961,25 @@ footer ul {
 }
 
 /* Mobile Handle Ends */
+
+.lead_button_container a{
+    display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 30px;
+  background: #25d366;
+  color: white;
+  cursor: pointer;
+  width: 14em;
+  border: none;
+  text-decoration: none;
+  margin: 24px;
+}
+
+.lead_button_container .book_meet{
+    background: #ffc106 !important;
+  width: 18em !important;
+  color: black !important;
+}
