@@ -1,6 +1,6 @@
 <template>
-  <LoginPage v-if="this.$store.state.user_logged_in === false" />
-  <RegisterPage v-if="this.$store.state.user_logged_in === false" />
+  <!-- <LoginPage v-if="this.$store.state.user_logged_in === false" />
+  <RegisterPage v-if="this.$store.state.user_logged_in === false" /> -->
   <div>
     <q-layout view="lHh Lpr lFf">
       <q-header class="base-header q-pa-md">
@@ -43,8 +43,8 @@
 import { defineComponent, ref } from "vue";
 import { matAccountCircle } from "@quasar/extras/material-icons";
 import { useQuasar, Notify } from 'quasar'
-import RegisterPage from "src/pages/RegisterPage.vue"
-import LoginPage from "src/pages/LoginPage2.vue";
+// import RegisterPage from "src/pages/RegisterPage.vue"
+// import LoginPage from "src/pages/LoginPage2.vue";
 import {
   check_if_access_token_is_valid,
   check_if_refresh_token_is_valid
@@ -59,11 +59,12 @@ export default defineComponent({
   },
   name: "MainLayout",
   plugins: { Notify },
-  components: {
-    RegisterPage,
-    LoginPage,
-  },
+  // components: {
+  //   RegisterPage,
+  //   LoginPage,
+  // },
   mounted() {
+    this.$store.commit('user_logged_in_update', true)
     check_if_access_token_is_valid().then(response => {
       if (response["data"]["type_of_user"] == "agent") {
         this.$store.commit('is_agent_update', true)

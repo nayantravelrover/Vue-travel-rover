@@ -30,7 +30,15 @@
           <q-img src="../assets/travel.svg" />
         </div>
       </div>
+
+
+           
+
     </div>
+     <q-btn class="subscribe-input-btn" style="" unelevated rounded color="primary" label="Book a meeting" href="https://calendly.com/travelrover/travel-rover-consulting" target="_blank" />
+
+      <q-btn class="subscribe-input-btn" style="color: yellow !important;" unelevated rounded color="primary" label="WhatsApp Us" :href="`https://api.whatsapp.com/send?phone=7977790353&text=Hello! I'm looking for assistance in planning my upcoming trip. Would you be able to help me create a customised itinerary?.`" target="_blank" />
+     
     <!-- Main Page Ends -->
 
     <!-- Top Itineraries -->
@@ -292,8 +300,6 @@ import _ from "lodash";
 import Typed from 'typed.js';
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-
-
 import {
   basicconfig,
   subscribe_user,

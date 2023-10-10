@@ -26,6 +26,7 @@
     "quasar": "^2.11.7",
     "typed.js": "^2.0.16",
     "vue": "^3.2.47",
+    "vue-calendly": "^0.0.4",
     "vue-html-to-paper": "^1.4.4",
     "vue-router": "^4.0.0",
     "vue-slick-carousel": "^1.0.6",

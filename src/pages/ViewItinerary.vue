@@ -199,7 +199,7 @@
         components: {ItineraryPreview},
         data(){
         return{
-            allow_buy: false,
+            allow_buy: true,
             }
         },
         setup(){
@@ -220,31 +220,32 @@
         },
         created(){
             
-            check_if_access_token_is_valid()
-          .then((response) => {
+          //   check_if_access_token_is_valid()
+          // .then((response) => {
 
-            var access_token = window.localStorage.getItem(
-              "travel_rover_access"
-            );
-            this.allow_buy = true
-          })
-          .catch((err) => {
+          //   var access_token = window.localStorage.getItem(
+          //     "travel_rover_access"
+          //   );
+          //   this.allow_buy = true
+          // })
+          // .catch((err) => {
             
-            check_if_refresh_token_is_valid()
-              .then((response) => {
-                var access_token = response["data"]["access"];
-                this.allow_buy = true
-                window.localStorage.setItem(
-                  "travel_rover_access",
-                  access_token
-                );
-              })
-              .catch((err) => {
-                this.$store.commit("user_logged_in_update", false);
-                this.allow_buy = false
+          //   check_if_refresh_token_is_valid()
+          //     .then((response) => {
+          //       var access_token = response["data"]["access"];
+          //       this.allow_buy = true
+          //       window.localStorage.setItem(
+          //         "travel_rover_access",
+          //         access_token
+          //       );
+          //     })
+          //     .catch((err) => {
+          //       console.log("Here")
+          //       this.$store.commit("user_logged_in_update", false);
+          //       this.allow_buy = false
                 
-              });
-          });
+          //     });
+          // });
 
         }
     })
