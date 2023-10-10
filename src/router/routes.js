@@ -22,19 +22,22 @@ const routes = [
   { path: '/agent_or_diy', component: () => import('pages/Agent_or_diy.vue') },
   { path: '/popularity_zostel', component: () => import('pages/Popularity_zostel.vue') },
   { path: '/workation', component: () => import('pages/workation_vue.vue') },
-  {
-    path: '/',
-    redirect: "/home",
-    name: "Home",
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      {
-        path: "",
-        name: "home",
-        component: () => import("pages/Home.vue")
-      },
-    ]
-  },
+  { path: '/', component: () => import('pages/HomePage.vue') },
+  { path: '/search-destination', component: () => import('pages/SearchDestination.vue')},
+
+  // {
+  //   path: '/',
+  //   redirect: "/home",
+  //   name: "Home",
+  //   component: () => import('layouts/MainLayout.vue'),
+  //   children: [
+  //     {
+  //       path: "",
+  //       name: "home",
+  //       component: () => import("pages/Home.vue")
+  //     },
+  //   ]
+  // },
 
   // Always leave this as last one,
   // but you can also remove it

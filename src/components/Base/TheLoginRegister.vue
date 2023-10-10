@@ -1,0 +1,100 @@
+<script setup>
+import { ref, defineProps } from 'vue';
+
+defineProps(['show_login'])
+
+const show_modal = ref(true);
+
+</script>
+
+<template>
+  <q-dialog v-model="show_modal" persistent>
+    <div class="register-form row">
+      <q-card-section class="col-6">
+      </q-card-section>
+      <q-card-section class="col-6">
+      </q-card-section>
+    </div>
+  </q-dialog>
+</template>
+
+<style>
+.register-form {
+    max-width: 80vw !important;
+    border-radius: 10px !important;
+    background: #FFF;
+    height: 640px;
+    width: 800px;
+}
+
+.register-form-inputs {
+    padding: 2em;
+}
+
+.register-form-inputs h3 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #D0D0D0;
+    line-height: 0.1em;
+    margin: 15px 0 15px;
+    color: #D0D0D0;
+    font-size: 14px;
+}
+
+.register-form-inputs h3 span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.register-form-inputs img {
+    margin-bottom: 1em;
+}
+
+.register-form-inputs label {
+    padding: 8px 0px;
+}
+
+.register-form-inputs button {
+    height: 48px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: #003FA3 !important;
+    text-transform: capitalize;
+    margin: 6px 0px;
+}
+
+.register-form-inputs h2 {
+    color: #515151;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.175px;
+    margin: 0px;
+}
+
+.register-form-inputs h2 text {
+    color: #0098EA;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.175px;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+@media all and (max-width: 600px) {
+    .register-form{
+        max-width: 90vw !important;
+        height: auto;
+    }
+    .register-form div.col-6:nth-child(1){
+        width: 100%;
+    }
+    .register-form div.col-6:nth-child(2){
+        display: none;
+    }
+}
+</style>
