@@ -541,6 +541,7 @@ export default defineComponent({
         load_place_itinerary_data(place,date).then(response => {
             var itineraries_list = []
             for (var i = 0; i < JSON.parse(response.data.data).length; i++) {
+                console.log(JSON.parse(response.data.data))
 
                 var items = JSON.parse(response.data.data)[i]["fields"];
 
@@ -726,6 +727,7 @@ export default defineComponent({
                 });
             },
             view_itinerary(itinerary_pk){
+                console.log(itinerary_pk)
                 var data = {
                     "itinerary_pk":itinerary_pk
                 }
@@ -733,12 +735,16 @@ export default defineComponent({
                 this.card = true
                 var itinerary = []
                 for(var items in this.itineraries_list_filtered){
+                    console.log(this.itineraries_list_filtered[items].itinerary_pk)
+
                     if(itinerary_pk == this.itineraries_list_filtered[items].itinerary_pk){
                         itinerary = this.itineraries_list_filtered[items].complete_itinerary
+                        console.log(itinerary)
                         break;
                     }
                 }
-                this.$store.commit('itinerary_preview_update', itinerary)
+                this.$store.commit('itinerary_preview_update', itinerary);
+                this.$store.commit('itinerary_pk_update',itinerary_pk);      
                 
             },
             groupByMonth(start_dates){

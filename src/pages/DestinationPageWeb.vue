@@ -624,6 +624,7 @@ export default {
     },
     methods:{
         view_itinerary(itinerary_pk){
+            console.log(itinerary_pk)
             var data = {
                 "itinerary_pk":itinerary_pk
             }
@@ -631,12 +632,15 @@ export default {
             this.card = true
             var itinerary = []
             for(var items in this.$parent.itineraries_list_filtered){
+
                 if(itinerary_pk == this.$parent.itineraries_list_filtered[items].itinerary_pk){
                     itinerary = this.$parent.itineraries_list_filtered[items].complete_itinerary
+                    console.log(itinerary)
                     break;
                 }
             }
-            this.$store.commit('itinerary_preview_update', itinerary)        
+            this.$store.commit('itinerary_preview_update', itinerary);
+            this.$store.commit('itinerary_pk_update',itinerary_pk);       
         },
         create_chatgpt_prompt() {
       if (this.$store.state.user_logged_in == false) {
