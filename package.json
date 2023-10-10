@@ -13,7 +13,10 @@
   "dependencies": {
     "@cashfreepayments/cashfree-js": "^1.0.4",
     "@quasar/extras": "^1.0.0",
+    "@splidejs/vue-splide": "^0.6.12",
     "@vuepic/vue-datepicker": "^3.5.2",
+    "@vueuse/motion": "^2.0.0",
+    "aos": "^2.3.4",
     "axios": "^0.21.1",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
@@ -25,6 +28,7 @@
     "vue": "^3.2.47",
     "vue-html-to-paper": "^1.4.4",
     "vue-router": "^4.0.0",
+    "vue-slick-carousel": "^1.0.6",
     "vue3-carousel": "^0.1.46",
     "vue3-html2pdf": "^1.1.2",
     "vuex": "^4.0.1"
@@ -36,7 +40,8 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
     "eslint-webpack-plugin": "^3.1.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "vue-concise-slider": "^4.2.5"
   },
   "browserslist": [
     "last 10 Chrome versions",

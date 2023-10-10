@@ -21,7 +21,7 @@ export default store(function (/* { ssrContext } */) {
       // example
     },
     state: {
-      user_logged_in: true,
+      user_logged_in: false,
       is_agent: false,
       inactivity_var: false,
       show_login_modal: false,
