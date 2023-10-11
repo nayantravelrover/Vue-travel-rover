@@ -731,7 +731,7 @@ footer ul {
         margin: -15px -30px;
         padding: 15px 30px;
         background: white;
-        height: 18em;
+        height: fit-content;
     }
 
     .main-background h1 {
@@ -962,7 +962,7 @@ footer ul {
 
 .lead_button_container{
     display: flex;
-    margin-left: 12px;
+    /*margin-left: 12px;*/
 }
 
 .lead_button_container a{
@@ -978,7 +978,7 @@ footer ul {
   width: 18em;
   border: none;
   text-decoration: none;
-  margin: 24px 12px;
+  
 }
 
 .lead_button_container .book_meet{

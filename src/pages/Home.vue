@@ -24,18 +24,14 @@
       <div class="main-background row">
         <div class="col-md-6 ">
           <h1>{{ site_data.header.title }} <span id="typing-element">{{ site_data.header.sub_title }}</span></h1>
-          <h4>{{ site_data.header.discription }}</h4>
-        </div>
-        <div class="col-md-6 gt-sm">
-          <q-img src="../assets/travel.svg" />
-        </div>
-      </div>
+          <!-- <h4>{{ site_data.header.discription }}</h4> -->
 
 
-           
-
-    </div>
-      <div class="lead_button_container">
+      <div class="lead_button_container" v-if="!$q.platform.is.mobile">
+        <a class="book_meet" href="https://calendly.com/travelrover/travel-rover-consulting"
+        target="_blank" style="margin-right: 15px">
+        Book a meeting
+      </a>
       <a class="message_us" :href="`https://api.whatsapp.com/send?phone=7977790353&text=Hello! I'm looking for assistance in planning my upcoming trip. Would you be able to help me create a customised itinerary?.`"
         target="_blank">
         Message Us
@@ -43,10 +39,34 @@
         <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z" />
     </svg>
       </a>
-      <a class="book_meet" href="https://calendly.com/travelrover/travel-rover-consulting"
-        target="_blank">
+      
+    </div>
+
+
+
+        </div>
+        <div class="col-md-6 gt-sm">
+          <q-img src="../assets/travel.svg" />
+        </div>
+      </div>
+
+
+     
+
+    </div>
+      <div class="lead_button_container" v-if="$q.platform.is.mobile">
+        <a class="book_meet" href="https://calendly.com/travelrover/travel-rover-consulting"
+        target="_blank" style="margin: 12px;">
         Book a meeting
       </a>
+      <a class="message_us" :href="`https://api.whatsapp.com/send?phone=7977790353&text=Hello! I'm looking for assistance in planning my upcoming trip. Would you be able to help me create a customised itinerary?.`"
+        target="_blank" style="margin: 12px;">
+        Message Us
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="2em" height="2em" fill="white">
+        <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z" />
+    </svg>
+      </a>
+      
     </div>
      
     <!-- Main Page Ends -->
@@ -405,10 +425,10 @@ export default defineComponent({
       ],
       site_data: {
         header: {
-          title: "Crafting Your Perfect Journey",
+          title: "Your Gateway to India:",
           sub_title: "",
-          sub_title_list: ["Personalized Plans", "Expert Tips", "Tailored Experiences"],
-          discription: "Can't Find Your Destination? Build Your Custom Travel Plan with Us!"
+          sub_title_list: ["Find Expert Travel Consultations","Explore India with Confidence"],
+          discription: "We're not just travel consultants, we're your personal Indian adventure architects."
         },
         top_itineraries: [
           {
@@ -490,7 +510,7 @@ export default defineComponent({
         ],
         choose_us: {
           title: "Why choose us",
-          description: "Choose Travel Rover for a personalized, stress-free, and memorable travel experience. Let us turn your travel dreams into reality!",
+          description: "With a dedicated team of India travel enthusiasts, we bring an in-depth understanding of the country's diverse culture and destinations to the forefront. When you choose us, you choose local insights, seasoned guidance, and a world of adventure.",
           sub_list: [
             {
               name: "Personalized Itineraries",
@@ -889,19 +909,19 @@ export default defineComponent({
   },
   mounted() {
     useGoogleTagManager("G-HGTNLCSVZ0");
-    this.site_data.header.sub_title = "";
+    this.site_data.header.sub_title = "Find Expert Travel Consultations";
 
     // Load TypeWriter Affect
-    this.site_data.header.sub_title = new Typed('#typing-element', {
-      strings: this.site_data.header.sub_title_list,
-      startDelay: 100,
-      typeSpeed: 80,
-      backSpeed: 30,
-      backDelay: 700,
-      shuffle: true,
-      loop: true,
-      loopCount: Infinity,
-    });
+    // this.site_data.header.sub_title = new Typed('#typing-element', {
+    //   strings: this.site_data.header.sub_title_list,
+    //   startDelay: 100,
+    //   typeSpeed: 80,
+    //   backSpeed: 30,
+    //   backDelay: 700,
+    //   shuffle: true,
+    //   loop: true,
+    //   loopCount: Infinity,
+    // });
 
     // Load Top Itineraries
     load_top_selling_itineraries().then((response) => {

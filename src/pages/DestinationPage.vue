@@ -65,13 +65,13 @@
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
                     <div class="price_main" style="margin-top: 20px; margin-left: 30px;">
-                        <div class="price_container">
+                        <!-- <div class="price_container">
                             <text class="text14" style="width: 80px;">Start From RS. </text>
                         </div>
                         <div class="text15">
                             <text>{{item.tour_rates}}</text>
-                            <!-- <text class="text14">/Per Person</text> -->
-                        </div>
+                            
+                        </div> -->
                     </div>
                     <div class="line_break" style="margin-left: 20px; margin-top:20px;"></div>
                     <div style="margin-top: 25px; margin-left: 28px;margin-bottom: 60px;">
@@ -150,11 +150,11 @@
                             <q-img :src="this.compare_itinerary_one.place_img" alt="" class="compare_img" />
                         </div>
                         <div class="compare_title1">{{this.compare_itinerary_one.itinerary_name}}</div>
-                        <div class="compare_title2">Start From RS. </div>
+                       <!--  <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.compare_itinerary_one.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="compare_inner_content2">
@@ -167,11 +167,11 @@
                             <q-img :src="this.compare_itinerary_two.place_img" alt="" class="compare_img" />
                         </div>
                         <div class="compare_title1">{{this.compare_itinerary_two.itinerary_name}}</div>
-                        <div class="compare_title2">Start From RS. </div>
+                        <!-- <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.compare_itinerary_two.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="compare_inner_content2">
@@ -184,11 +184,11 @@
                             <q-img :src="this.compare_itinerary_three.place_img" alt="" class="compare_img" />
                         </div>
                         <div class="compare_title1">{{this.compare_itinerary_three.itinerary_name}}</div>
-                        <div class="compare_title2">Start From RS. </div>
+                        <!-- <div class="compare_title2">Start From RS. </div>
                         <div class="row">
                             <div class="compare_price">{{this.compare_itinerary_three.tour_rates}}</div>
                             <div class="compare_title3">/per person</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
     

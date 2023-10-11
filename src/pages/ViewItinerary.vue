@@ -38,7 +38,7 @@
                         <div class="box9">
 
                             <div class="type5" v-if="this.$store.state.itinerary_preview.zero_valued===true">
-                                 <text class="type4">Itinerary Cost: Rs.0</text>
+                                 <!-- <text class="type4">Itinerary Cost: Rs.0</text> -->
                                  
                             </div>
 
